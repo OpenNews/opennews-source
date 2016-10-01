@@ -1,0 +1,44 @@
+{% extends "code/_base_code.html" %}
+
+{% block content %}
+<h1 class="maintopic"><a href="{{ url('code_list') }}">Code</a>{% if tag %} / <span class="category">{{ tag.name|smartypants }}</span>{% endif %}</h1>
+
+<div id="filterable-list">
+{% if tags %}
+    <div class="grouper-block filter-block">
+        <h2 class="grouper-header"><span class="category">Code index entries tagged: {% for tag in tags %}{{ tag.name }}{% if not loop.last %}, {% endif %}{% endfor %}</span></h2>
+        {% for code in object_list %}
+        <div class="grid-box">
+            <h3><a href="{{ code.get_absolute_url() }}">{{ code.name|typogrify }}</a></h3>
+            {% if code.summary_or_description %}<p>{{ code.summary_or_description|typogrify|safe }}</p>{% endif %}
+            <ul class="link-list">
+                {% if code.get_live_organization_set().exists() %}<li><i class="icon-cogs small"></i>{% for organization in code.get_live_organization_set() %}<a class="small" href="{{ organization.get_absolute_url() }}">{{ organization.name|typogrify }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>{% endif %}
+                {% if code.tags.all().exists() %}<li><i class="icon-tags small"></i>{% for tag in code.tags.all() %}<a class="small" href="{{ url('code_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>{% endif %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    {% for alpha in object_list|groupby('sort_letter') %}
+    <div class="grouper-block filter-block">
+        <h2 class="grouper-header"><span class="category">{{ alpha.grouper }}</span></h2>
+        {% for code in alpha.list %}
+        <div class="grid-box">
+            <h3><a href="{{ code.get_absolute_url() }}">{{ code.name|typogrify }}</a></h3>
+            {% if code.summary_or_description %}<p>{{ code.summary_or_description|typogrify|safe }}</p>{% endif %}
+            <ul class="link-list">
+                {% if code.get_live_organization_set().exists() %}<li><i class="icon-cogs small"></i>{% for organization in code.get_live_organization_set() %}<a class="small" href="{{ organization.get_absolute_url() }}">{{ organization.name|typogrify }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>{% endif %}
+                {% if code.tags.all().exists() %}<li><i class="icon-tags small"></i>{% for tag in code.tags.all() %}<a class="small" href="{{ url('code_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>{% endif %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% if not object_list %}<p>No matching code index entries found.</p>{% endif %}
+{% endif %}
+</div>
+{% endblock content %}
+
+{% block site_js_extra %}
+<script src="{{ static('base/js/gridfilter.js') }}"></script>
+{% endblock %}

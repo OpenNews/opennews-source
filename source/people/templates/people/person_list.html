@@ -1,0 +1,28 @@
+{% extends "people/_base_people.html" %}
+
+{% block content %}
+<h1 class="maintopic">
+    <span class="category">People</span> / <a href="{{ url('organization_list') }}">Organizations</a>
+</h1>
+
+<div id="filterable-list">
+{% for alpha in object_list|groupby('sort_letter') %}
+    <div class="grouper-block filter-block">
+        <h2 class="grouper-header"><span class="category">{{ alpha.grouper }}</span></h2>
+        {% for person in alpha.list %}
+        <div class="grid-box">
+            <h3><a href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></h3>
+            {% if person.get_live_organization_set().exists() %}
+            <ul class="link-list">
+                <li><i class="icon-cogs small"></i>{% for organization in person.get_live_organization_set() %}<a class="small" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</li>
+            </ul>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+</div>
+{% endblock content %}
+
+{% block site_js_extra %}
+<script src="{{ static('base/js/gridfilter.js') }}"></script>
+{% endblock %}

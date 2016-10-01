@@ -1,0 +1,62 @@
+{% if jsonp_callback %}{{ jsonp_callback|escapejs }}({% endif %}{ "objects": [
+{% for code in object_list %}
+    {
+        "name": "{{ code.name|escape }}",
+        "slug": "{{ code.slug }}",
+        "source_url": "{{ HTTP_PROTOCOL }}://{{ request.get_host }}{{ code.get_absolute_url }}",
+        "project_url": "{{ code.url }}",
+        "active_project": {{ code.is_active|lower }},
+        "seeking_contributors": {{ code.seeking_contributors|lower }},
+        "summary": {% if not code.summary %}null{% else %}"{{ code.summary|striptags|escape }}"{% endif %},
+        "description": {% if not code.description %}null{% else %}"{{ code.description|striptags|escape }}"{% endif %},
+        "tags": {% if code.tags.all %}[ {% for tag in code.tags.all %}{# TODO: remove `tags` #}
+        
+            {
+                "name": "{{ tag|escape }}",
+                "source_url": "{{ HTTP_PROTOCOL }}://{{ request.get_host }}{% url 'code_list_by_tag' tag.slug %}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        
+        ]{% else %}null{% endif %},
+        "technology_tags": {% if code.technology_tags.all %}[ {% for tag in code.technology_tags.all %}
+        
+            {
+                "name": "{{ tag|escape }}",
+                "source_url": "{{ HTTP_PROTOCOL }}://{{ request.get_host }}{% url 'code_list_by_tag' tag.slug %}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        
+        ]{% else %}null{% endif %},
+        "concept_tags": {% if code.concept_tags.all %}[ {% for tag in code.concept_tags.all %}
+        
+            {
+                "name": "{{ tag|escape }}",
+                "source_url": "{{ HTTP_PROTOCOL }}://{{ request.get_host }}{% url 'code_list_by_tag' tag.slug %}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        
+        ]{% else %}null{% endif %},
+        "people": {% if code.people.all %}[ {% for person in code.people.all %}
+
+            {
+                "name": "{{ person.name|escape }}",
+                "source_url": "{{ HTTP_PROTOCOL }}://{{ request.get_host }}{{ person.get_absolute_url }}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+
+        ]{% else %}null{% endif %},
+        "organizations": {% if code.organizations.all %}[ {% for organization in code.organizations.all %}
+
+            {
+                "name": "{{ organization.name|escape }}",
+                "source_url": "{{ HTTP_PROTOCOL }}://{{ request.get_host }}{{ organization.get_absolute_url }}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+
+        ]
+{% else %}null
+{% endif %}
+    }{% if not loop.last %},{% endif %}
+
+{% endfor %}
+]}{% if jsonp_callback %});{% endif %}

@@ -1,0 +1,79 @@
+{% extends "code/_base_code.html" %}
+
+{% block page_title %}{{ code.name }} - {{ super() }}{% endblock %}
+
+{% block content %}
+<h1 class="maintopic"><a href="{{ url('code_list') }}">Code</a></h1>
+
+<div class="page-block">
+    <h2 id="code-name">{% include "code/_code_category_and_tags_overline.html" %}{{ code.name|typogrify }}</h2>
+
+    {% if code.screenshot %}
+        <div class="image-inset-right-wrapper">
+            <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300") }}" alt="{{ code.name }}">
+        </div>
+    {% endif %}
+
+    {% if code.description_or_summary %}{{ code.description_or_summary|linebreaks|typogrify|safe }}{% endif %}
+    <ul class="link-list" id="code-details">
+        <li>
+            <i class="icon-home"></i><a id="code-url" href="{{ code.url }}">Code repo</a>
+            {% if code.is_active %}<i class="icon-ok" style="margin-left: 1em;"></i>Active project{% endif %}
+            {% if code.seeking_contributors %}<i class="icon-ok" style="margin-left: 1em;"></i>Seeking contributors{% endif %}
+        </li>
+        {% if code.repo_last_push %}
+        <li class="spacers">
+            <i class="icon-github"></i>
+            <span>Forks: {{ code.repo_forks|dj_intcomma }}</span>
+            <span>Watchers: {{ code.repo_watchers|dj_intcomma }}</span>
+            <span>Last push: {{ dj_date(code.repo_last_push, "l, F j, Y") }}</span>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+
+<div class="page-block">
+    <div id="code-link-lists">
+        {% with person_link_list = code.get_live_person_set() %}
+        {% include "people/_person_link_list.html" %}{% endwith %}
+    
+        {% with organization_link_list = code.get_live_organization_set() %}
+        {% include "people/_organization_link_list.html" %}{% endwith %}
+    
+        {% with article_link_list = code.get_live_article_set() %}
+        {% include "articles/_article_link_list.html" %}{% endwith %}
+    
+        {% with basic_link_list = code.codelink_set.all() %}
+        {% include "utils/_basic_link_list.html" %}{% endwith %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block site_js_extra %}
+{% if 'github.com/' in code.url %}{# load the in-page repo browser #}
+<script src="{{ static('code/js/repo.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var tmpGithubValues = '{{ code.url }}'.split('github.com/')[1].split('/');
+    var sourceData = {
+        githubUser: tmpGithubValues[0],
+        githubRepo: tmpGithubValues[1],
+        githubMasterBranch: '{{ code.repo_master_branch }}'
+    };
+    loadRepo(
+        sourceData['githubUser'], sourceData['githubRepo'], sourceData['githubMasterBranch']
+    );
+});
+
+function loadRepo(user, repo, branch) {
+    var repoContainer = '<div class="code-repo-browse"><h5>Browse this repo</h5><div id="repo"></div></div>';
+    $('#code-link-lists').addClass('code-repo-meta').before(repoContainer);
+    $('#repo').repo({
+        user: user,
+        name: repo,
+        branch: branch
+    });
+}
+</script>
+{% endif %}
+{% endblock %}

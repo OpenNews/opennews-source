@@ -1,0 +1,172 @@
+{% extends "articles/_base_articles.html" %}
+
+{% block page_title %} {{ article.title }} - {{ super() }}{% endblock %}
+
+{% block head_extra %}{{ super() }}
+{% if article.article_js_header %}{{ article.article_js_header|safe }}{% endif %}
+{% endblock %}
+
+{% block site_js_extra %}
+<link rel="stylesheet" href="{{ static('articles/css/highlight-theme.css') }}">
+<script src="//cdn.jsdelivr.net/highlight.js/8.5/highlight.min.js"></script>
+{% compress js %}
+    {% if article.section.slug == "learning" %}
+        <script src="{{ static('articles/js/jquery.scrollTo.min.js') }}"></script>
+        <script src="{{ static('articles/js/jquery.localScroll.min.js') }}"></script>
+    {% endif %}
+{% endcompress %}
+<script type="text/javascript">
+    {% if article.disable_auto_linebreaks %}
+    hljs.initHighlightingOnLoad();
+    {% else %}
+    hljs.configure({useBR: true});
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });    
+    {% endif %}
+
+    {% if article.section.slug == "learning" %}
+    $('.article-toc').localScroll({
+        offset: -80,
+        hash: true,
+        target: '#snap-content-wrapper'
+    });
+    {% endif %}
+</script>
+    
+{% if article.article_js_footer %}{{ article.article_js_footer|safe }}{% endif %}
+{% endblock %}
+
+{% block article_class %}article-detail{% endblock %}
+{% block content %}
+    {% if article.image %}
+        <div class="image-full-width-wrapper">
+            <img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "800") }}" alt="{{ article.title }}" onerror="this.parentNode.style.display='none'">
+            {% if article.pretty_caption %}<p class="caption">{{ article.pretty_caption|typogrify|safe }}</p>{% endif %}
+        </div>
+    {% endif %}
+
+    <h2>{% include "articles/_article_category_and_tags_overline.html" %}{{ article.title|typogrify }}</h2>
+    <h4 class="subhead">{{ article.subhead|typogrify }}</h4>
+    
+    <aside>
+        <div class="byline">
+            {% if article.section.slug == "learning" %}
+            <div class="article-toc">
+                {% for article_block in article.articleblock_set.all() %}
+                    {% if loop.first %}<h3 class="subhead list-header">In this case study</h3>
+                        <ul class="toc">{% endif %}
+                            <li><i class="icon-circle-arrow-right"></i> <a href="#{{ article_block.slug }}">{{ article_block.title|typogrify }}</a></li>
+                    {% if loop.last %}</ul>{% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% with guide_link_list = article.get_live_guide_set() %}
+            {% include "guides/_guide_link_list.html" %}{% endwith %}
+
+            <h6 class="date">{{ article.pretty_pubdate|typogrify }}</h6>
+            {% if article.get_live_author_set().exists() %}<h6 class="byline-name">{% with author_list = article.get_live_author_set() %}{% include "articles/_article_author_list.html" %}{% endwith %}</h6>{% endif %}
+
+            <ul class="link-list">
+                <li><i class="icon-comments"></i> <a href="{{ HTTP_PROTOCOL }}://{{ request.get_host() }}{{ article.get_absolute_url() }}#disqus_thread" data-disqus-identifier="article_detail_{{ article.pk }}">Comments</a></li>
+            </ul>
+        </div>
+
+        <div class="article-people">
+            {% with code_link_list = article.get_live_code_set() %}
+            {% include "code/_code_link_list.html" %}{% endwith %}
+
+            {% with person_link_list = article.get_live_person_set() %}
+            {% include "people/_person_link_list.html" %}{% endwith %}
+
+            {% with organization_link_list = article.get_live_organization_set() %}
+            {% include "people/_organization_link_list.html" %}{% endwith %}
+        </div>
+    </aside>
+    
+    {{ article.pretty_body_text|typogrify|safe }}
+    
+    {% for articleblock in article.articleblock_set.all() %}
+    <div class="article-block">
+        <h3 id="{{ articleblock.slug }}">{{ articleblock.title|typogrify }}</h3>
+        {% if articleblock.image and articleblock.image_presentation in ['full-width','inset-left','inset-right'] %}
+            {% set _image_width_options = {
+                'full-width':'800',
+                'inset-left':'300',
+                'inset-right':'300',
+            } -%}
+            {% set _this_image_width = _image_width_options[articleblock.image_presentation] %}
+            <div class="image-{{ articleblock.image_presentation }}-wrapper">
+                <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, _this_image_width) }}" alt="{{ articleblock.title }}" onerror="this.parentNode.style.display='none'">
+                {% if articleblock.pretty_caption %}<p class="caption">{{ articleblock.pretty_caption|typogrify|safe }}</p>{% endif %}
+            </div>
+        {% endif %}
+        
+        {{ articleblock.pretty_body_text|typogrify|safe }}
+        
+        {% if articleblock.image and articleblock.image_presentation == 'full-width-below' %}
+            <div class="image-full-width-wrapper">
+                <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "800") }}" alt="{{ articleblock.title }}" onerror="this.parentNode.style.display='none'">
+                {% if articleblock.pretty_caption %}<p class="caption">{{ articleblock.pretty_caption|typogrify|safe }}</p>{% endif %}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    {% if article.get_live_guide_set().exists() %}
+        <h5>
+            This article is part of a Guide: 
+            {% for guide in article.get_live_guide_set() %}
+                <a href="{{ guide.get_absolute_url() }}">{{ guide.title }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </h5>
+    {% endif %}
+    
+    {# test for author bios in person db, add block if found #}
+    {% if article.get_live_author_bio_set().exists() %}
+    <div class="page-block article-block author-box">
+        {% for author in article.get_live_author_bio_set() %}
+        <h3 id="about-{{ author.slug }}">About <a href="{{ author.get_absolute_url() }}">{{ author.name()|smartypants }}</a></h3>
+        <p{% if author.twitter_profile_image_url %} class="twitter-bio"{% endif %}>
+            <img src="{{ author.twitter_profile_image_url }}">
+            {{ author.description|typogrify|safe }}
+        </p>
+        {% endfor %}
+    </div>{% endif %}
+    
+    <aside class="article-people">
+        {% with code_link_list = article.get_live_code_set() %}
+        {% include "code/_code_link_list.html" %}{% endwith %}
+
+        {% with person_link_list = article.get_live_person_set() %}
+        {% include "people/_person_link_list.html" %}{% endwith %}
+
+        {% with organization_link_list = article.get_live_organization_set() %}
+        {% include "people/_organization_link_list.html" %}{% endwith %}
+    </aside>
+    
+    {% if article.allow_comments and not settings.DEBUG %}
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = "source-opennews";
+        //var disqus_developer = 1; // developer mode is on
+        var disqus_identifier = "article_detail_{{ article.pk }}";
+        var disqus_url = "{{ HTTP_PROTOCOL }}://{{ request.get_host() }}{{ article.get_absolute_url() }}";
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '{{ HTTP_PROTOCOL }}://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '{{ HTTP_PROTOCOL }}://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    {% endif %}
+{% endblock content %}

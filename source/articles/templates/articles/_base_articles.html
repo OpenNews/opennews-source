@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% if section %}
+    {% set active_nav = section.slug %}
+{% endif %}
+
+{% block page_title %}{% if section %}{{ section.name }}{% else %}Articles{% endif %}{% if tags %} tagged: {% for tag in tags %}{{ tag.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %} - {{ super() }}{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "articles/_base_articles.html" %}
+
+{% block content %}
+{% if section %}
+    {% include "articles/_article_list_section_overline.html" %}
+{% endif %}
+
+{% for article in page.object_list %}
+    {% include "articles/_article_list_item.html" %}
+{% endfor %}
+
+{% include "utils/_paginate.html" %}
+{% endblock content %}
+
+{% block site_js_extra %}
+<script type="text/javascript">
+var disqus_shortname = 'source-opennews';
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '{{ HTTP_PROTOCOL }}://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+{% endblock %}
