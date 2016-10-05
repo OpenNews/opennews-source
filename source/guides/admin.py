@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 from .models import Guide, GuideArticle
-from sorl.thumbnail.admin import AdminImageMixin
+#from sorl.thumbnail.admin import AdminImageMixin
+from source.utils.widgets.thumbnail import AdminImageMixin
 
 class GuideArticleInline(admin.StackedInline):
     model = GuideArticle
