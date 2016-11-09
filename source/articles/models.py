@@ -98,7 +98,7 @@ class Article(CachingMixin, models.Model):
     @property
     def safe_summary(self):
         '''suitable for use in places that must avoid nested anchor tags'''
-        return striptags(self.summary, 'a')
+        return striptags(self.summary)
 
     @property
     def merged_tag_list(self):
