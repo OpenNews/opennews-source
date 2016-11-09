@@ -10,6 +10,7 @@ Unidecode==0.04.19
 certifi==2015.11.20.1
 django-appconf==1.0.1
 django-autoslug==1.9.3
+django-bmemcached==0.2.3
 django-browserid==2.0.0
 django-cache-machine==0.9.1
 django-compressor==2.0
@@ -22,6 +23,7 @@ elasticsearch==1.9.0
 oauthlib==1.0.3
 psycopg2==2.6.1
 pyelasticsearch==1.4
+python-binary-memcached==0.24.7
 python-dateutil==2.4.2
 python-oauth2==1.0.0
 python-twitter==2.2

@@ -10,7 +10,9 @@ Production Configurations
 
 '''
 from __future__ import absolute_import, unicode_literals
-
+import os
+import urlparse
+import json
 from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
 
@@ -126,17 +128,15 @@ DATABASES['default'] = env.db("DATABASE_URL")
 # ------------------------------------------------------------------------------
 # Heroku URL does not pass the DB number, so we parse it in
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "{0}/{1}".format(env('REDIS_URL', default="redis://127.0.0.1:6379"), 0),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "IGNORE_EXCEPTIONS": True,  # mimics memcache behavior.
-                                        # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
-        }
+    'default': {
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+        'OPTIONS': {
+                    'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+                    'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+            }
     }
 }
-
 
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------
