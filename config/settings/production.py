@@ -11,8 +11,8 @@ Production Configurations
 '''
 from __future__ import absolute_import, unicode_literals
 import os
-import urlparse
 import json
+from urllib.parse import urlparse
 from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
 
@@ -128,7 +128,12 @@ DATABASES['default'] = env.db("DATABASE_URL")
 # ------------------------------------------------------------------------------
 CACHES = {
     'default': {
-        'BACKEND': 'django_bmemcached.memcached.BMemcached'
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
+        'OPTIONS': {
+                    'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
+                    'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
+            }
     }
 }
 
