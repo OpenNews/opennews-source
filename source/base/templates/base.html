@@ -6,11 +6,11 @@
         <meta name="description" content="Source - Journalism Code, Context & Community">
         <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1;">
         <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-        {% compress css %}
-            <link href="{{ static('base/css/bootstrap.css') }}" rel="stylesheet">
-            <link href="{{ static('base/css/font-awesome.css') }}" rel="stylesheet">
-            <link href="{{ static('base/css/app.css') }}" rel="stylesheet">
-        {% endcompress %}
+
+        <link href="{{ static('base/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ static('base/css/font-awesome.css') }}" rel="stylesheet">
+        <link href="{{ static('base/css/app.css') }}" rel="stylesheet">
+
         <!--[if IE 7]>
         <link href="{{ static('base/css/font-awesome-ie7.min.css') }}" rel="stylesheet">
         <![endif]-->
@@ -21,9 +21,7 @@
             <link rel="alternate" href="{{ rss_link }}" type="application/rss+xml" title="RSS" />
         {% endif %}
         <link rel="shortcut icon" href="{{ static('base/img/favicon.ico') }}" />
-        {% compress js %}
-            <script src="{{ static('base/js/libs/modernizr-2.0.6.min.js') }}"></script>
-        {% endcompress %}
+        <script src="{{ static('base/js/libs/modernizr-2.0.6.min.js') }}"></script>
         {% if not settings.DEBUG %}
             {% block google_analytics %}
                 <script type="text/javascript">
@@ -134,11 +132,9 @@
         {% block site_js %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script>window.jQuery || document.write("<script src=\"{{ static('base/js/libs/jquery-1.7.2.min.js') }}\"><\/script>")</script>
-        {% compress js %}
-            <script src="{{ static('base/js/libs/snap.min.js') }}"></script>
-            <script src="{{ static('base/js/libs/overthrow.min.js') }}"></script>
-            <script src="{{ static('base/js/app.js') }}"></script>
-        {% endcompress %}
+        <script src="{{ static('base/js/libs/snap.min.js') }}"></script>
+        <script src="{{ static('base/js/libs/overthrow.min.js') }}"></script>
+        <script src="{{ static('base/js/app.js') }}"></script>
         {% endblock %}
         {% block site_js_extra %}{% endblock %}
         <!-- Page generated: {{ get_timestamp() }} -->

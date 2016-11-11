@@ -55,11 +55,10 @@
 {% endblock content %}
 
 {% block site_js_extra %}
-{% compress js %}
-    <script src="{{ static('base/js/listfilter.js') }}"></script>
-    <script src="{{ static('articles/js/jquery.scrollTo.min.js') }}"></script>
-    <script src="{{ static('articles/js/jquery.localScroll.min.js') }}"></script>
-{% endcompress %}
+<script src="{{ static('base/js/listfilter.js') }}"></script>
+<script src="{{ static('articles/js/jquery.scrollTo.min.js') }}"></script>
+<script src="{{ static('articles/js/jquery.localScroll.min.js') }}"></script>
+
 <script type="text/javascript">
     $('.intro').localScroll({
         offset: -80,

@@ -48,7 +48,6 @@ THIRD_PARTY_APPS = (
     'taggit',
     'django_browserid',
     'django_jinja',
-    'compressor',
     'storages',
 )
 
@@ -150,9 +149,7 @@ TEMPLATES = [
             'match_extension': '.html',
             'match_regex': r'^(?!admin/).*',
             'auto_reload': DEBUG,
-            'extensions': DEFAULT_EXTENSIONS + [
-                'compressor.contrib.jinja2ext.CompressorExtension'
-            ],
+            'extensions': DEFAULT_EXTENSIONS,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -218,13 +215,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
-
-COMPRESS_ROOT = STATIC_ROOT
-COMPRESS_CSS_FILTERS = (
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter'
 )
 
 # MEDIA CONFIGURATION
