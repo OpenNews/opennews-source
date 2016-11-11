@@ -126,15 +126,9 @@ DATABASES['default'] = env.db("DATABASE_URL")
 
 # CACHING
 # ------------------------------------------------------------------------------
-# Heroku URL does not pass the DB number, so we parse it in
 CACHES = {
     'default': {
-        'BACKEND': 'django_bmemcached.memcached.BMemcached',
-        'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-        'OPTIONS': {
-                    'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-                    'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
-            }
+        'BACKEND': 'django_bmemcached.memcached.BMemcached'
     }
 }
 
