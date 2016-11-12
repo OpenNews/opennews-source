@@ -101,13 +101,13 @@ CACHES = {
     'default': {
         'BACKEND': 'django_bmemcached.memcached.BMemcached',
         'LOCATION': os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','),
-        'KEY_PREFIX': 'opennews_source',
         'OPTIONS': {
             'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
             'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD'),
         }
     }
 }
+BASE_URL = env('BASE_URL', default='')
 
 # LOGGING CONFIGURATION
 # ------------------------------------------------------------------------------

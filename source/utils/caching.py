@@ -31,8 +31,12 @@ def reverse_with_locale(viewname, urlconf=None, args=None, kwargs=None, prefix=N
     if prefixer:
         url = prefixer.fix(url)
 
+    # Django's @cache_page cache keys include protocol/domain
+    protocol_domain = getattr(settings, 'BASE_URL', 'http://127.0.0.1:8000')
     # Ensure any unicode characters in the URL are escaped.
-    return iri_to_uri(url)
+    reversed_url = '{}{}'.format(protocol_domain, iri_to_uri(url))
+
+    return reversed_url
 
 def expire_page_cache(path, key_prefix=None):
     # pass the path through funfactory resolver in order to get locale
@@ -43,14 +47,10 @@ def expire_page_cache(path, key_prefix=None):
         args = resolved_path.args,
         kwargs = resolved_path.kwargs
     )
-    try:
-        language = urlresolvers.split_path(path_with_locale)[0].lower()
-    except:
-        language = None
 
     # get cache key, expire if the cached item exists
     key = get_url_cache_key(
-        path_with_locale, language=language, key_prefix=key_prefix
+        path_with_locale, key_prefix=key_prefix
     )
 
     if key:
@@ -60,7 +60,7 @@ def expire_page_cache(path, key_prefix=None):
     return False
 
 
-def get_url_cache_key(url, language=None, key_prefix=None):
+def get_url_cache_key(url, key_prefix=None):
     '''
     modified version of http://djangosnippets.org/snippets/2595/
     '''
@@ -68,15 +68,14 @@ def get_url_cache_key(url, language=None, key_prefix=None):
         try:
             key_prefix = getattr(settings, 'CACHES', {})['default']['KEY_PREFIX']
         except:
-            pass
+            key_prefix = ''
         
     ctx = hashlib.md5()
     path = hashlib.md5(iri_to_uri(url).encode('utf-8'))
     cache_key = 'views.decorators.cache.cache_page.%s.%s.%s.%s' % (
         key_prefix, 'GET', path.hexdigest(), ctx.hexdigest()
     )
-    if language:
-        cache_key += '.%s' % language
+
     return cache_key
 
 

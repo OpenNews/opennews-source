@@ -35,12 +35,13 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND',
 # ------------------------------------------------------------------------------
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        #'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         #'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
-        'KEY_PREFIX': 'opennews_source'
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
+        'LOCATION': '127.0.0.1:11211',
     }
 }
+BASE_URL = 'http://127.0.0.1:8000'
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
