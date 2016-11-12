@@ -65,7 +65,11 @@ def get_url_cache_key(url, language=None, key_prefix=None):
     modified version of http://djangosnippets.org/snippets/2595/
     '''
     if key_prefix is None:
-        key_prefix = getattr(settings, 'CACHE_MIDDLEWARE_KEY_PREFIX', None)
+        try:
+            key_prefix = getattr(settings, 'CACHES', {})['default']['KEY_PREFIX']
+        except:
+            pass
+        
     ctx = hashlib.md5()
     path = hashlib.md5(iri_to_uri(url).encode('utf-8'))
     cache_key = 'views.decorators.cache.cache_page.%s.%s.%s.%s' % (
