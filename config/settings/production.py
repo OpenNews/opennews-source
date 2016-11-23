@@ -95,6 +95,21 @@ EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default='[Source] ')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
 
+# SEARCH
+# ------------------------------------------------------------------------------
+ES_URL = urlparse(os.environ.get('BONSAI_URL') or 'http://127.0.0.1:9200/')
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': ES_URL.scheme + '://' + ES_URL.hostname + ':80',
+        'INDEX_NAME': 'haystack',
+    },
+}
+
+if ES_URL.username:
+    HAYSTACK_CONNECTIONS['default']['KWARGS'] = {"http_auth": ES_URL.username + ':' + ES_URL.password}
+
 # CACHING
 # ------------------------------------------------------------------------------
 CACHES = {
