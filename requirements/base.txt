@@ -16,7 +16,7 @@ django-browserid==2.0.0
 django-cache-machine==0.9.1
 django-debug-toolbar==1.4
 django-environ==0.4.0
-django-haystack==2.4.1
+django-haystack==2.5.1
 django-jinja==2.2.1
 django-secure==1.0.1
 django-storages==1.5.1
@@ -24,7 +24,6 @@ django-taggit==0.18.0
 elasticsearch==1.9.0
 oauthlib==1.0.3
 psycopg2==2.6.1
-pyelasticsearch==1.4
 python-binary-memcached==0.24.7
 python-dateutil==2.4.2
 python-oauth2==1.0.0
