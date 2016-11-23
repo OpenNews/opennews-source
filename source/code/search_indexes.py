@@ -12,6 +12,6 @@ class CodeIndex(indexes.SearchIndex, indexes.Indexable):
     def get_updated_field(self):
         return 'modified'
         
-    def index_queryset(self):
+    def index_queryset(self, using=None):
         """Used when the entire index for model is updated."""
         return self.get_model().live_objects.all()
