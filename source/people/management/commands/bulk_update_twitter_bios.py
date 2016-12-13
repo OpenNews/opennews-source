@@ -29,7 +29,7 @@ logging.basicConfig(filename='twitter_update.log', filemode='w', level=logging.I
 
 
 def chunks(object_list, chunk_size=100):
-    for i in xrange(0, len(object_list), chunk_size):
+    for i in range(0, len(object_list), chunk_size):
         yield object_list[i:i+chunk_size]
 
 class Command(BaseCommand):
@@ -48,7 +48,7 @@ class Command(BaseCommand):
         access_token = oauth.Token(key=ACCESS_KEY, secret=ACCESS_SECRET)
         client = oauth.Client(consumer, access_token)
         api_endpoint = 'https://api.twitter.com/1.1/users/lookup.json'
-
+        
         # loop through our queryset in chunks of 100
         for person_set in person_list_sets:
             # hit the API with list of usernames
@@ -56,7 +56,7 @@ class Command(BaseCommand):
             response, data = client.request('%s%s' % (api_endpoint, querystring))
 
             # loop through the Twitter API response
-            users = json.loads(data)
+            users = json.loads(data.decode('utf-8'))
             for user in users:
                 try:
                     # take the data from each user returned...
