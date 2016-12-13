@@ -5,14 +5,15 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 from source.base import urls
+from source.base.views import L10NRedirectView
 
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
     url(r'^browserid/', include('django_browserid.urls')),
+    url(r'^en-(us|US)/', L10NRedirectView.as_view()),
     # Generate a robots.txt
     url(r'^robots.txt$',
         lambda r: HttpResponse(
@@ -24,8 +25,7 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
-    # This allows the error pages to be debugged during development, just visit
-    # these url in browser to see how these error pages look like.
+    # allows error pages to be debugged during development
     urlpatterns += [
         url(r'^400/$', default_views.bad_request, kwargs={'exception': Exception("Bad Request!")}),
         url(r'^403/$', default_views.permission_denied, kwargs={'exception': Exception("Permissin Denied")}),

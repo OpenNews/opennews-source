@@ -1,6 +1,7 @@
 import requests
 
 from django.conf import settings
+from django.shortcuts import redirect
 from django.views.generic import ListView, View
 
 from haystack.views import SearchView
@@ -79,6 +80,16 @@ class SourceSearchView(SearchView):
             })
         
         return page_context
+
+class L10NRedirectView(View):
+    '''
+    Original Mozilla Playdoh framework forced en-US URLs. Now that we
+    no longer use them, this view handles redirects for old inbound links.
+    '''
+    def get(self, request, *args, **kwargs):
+        new_url = request.get_full_path().lower().replace('/en-us','',1)
+
+        return redirect(new_url, permanent=True)
 
 class SlackMessageView(View):
     def post(self, request, *args, **kwargs):
