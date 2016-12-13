@@ -178,7 +178,10 @@ class Organization(CachingMixin, models.Model):
         return self.code_set.filter(is_live=True)
 
     def get_live_job_set(self):
-        return self.job_set.filter(is_live=True, listing_start_date__lte=datetime.today, listing_end_date__gte=datetime.today)
+        return self.job_set.filter(is_live=True, listing_start_date__lte=datetime.today(), listing_end_date__gte=datetime.today())
+    
+    def has_open_jobs(self):
+        return self.get_live_job_set().exists()
 
 
 class OrganizationLink(CachingMixin, models.Model):
