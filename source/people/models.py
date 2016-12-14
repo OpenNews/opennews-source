@@ -25,6 +25,7 @@ class Person(CachingMixin, models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
     slug = models.SlugField(unique=True)
+    photo = ImageField(upload_to='img/uploads/person_photos', blank=True, null=True)
     email = models.EmailField('Email address', blank=True)
     twitter_username = models.CharField(max_length=32, blank=True)
     twitter_bio = models.TextField(blank=True)

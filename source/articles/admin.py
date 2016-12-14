@@ -26,11 +26,11 @@ class ArticleAdmin(AdminImageMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('authors', 'people', 'organizations', 'code',)
     list_filter = ('is_live', 'category',)
-    list_display = ('title', 'pubdate', 'category', 'is_live')
+    list_display = ('title', 'pubdate', 'category', 'is_live', 'is_featured')
     search_fields = ('title', 'body', 'summary',)
     date_hierarchy = 'pubdate'
     fieldsets = (
-        ('', {'fields': (('pubdate', 'is_live', 'show_in_lists', 'allow_comments'), ('title', 'slug'), 'subhead', ('category', 'tags'), 'technology_tags', 'concept_tags',)}),
+        ('', {'fields': (('pubdate', 'is_live', 'show_in_lists', 'allow_comments', 'is_featured'), ('title', 'slug'), 'subhead', ('category', 'tags'), 'technology_tags', 'concept_tags',)}),
         ('Article relationships', {'fields': ('authors', 'people', 'organizations', 'code',)}),
         ('Article body', {'fields': ('image', 'image_caption', 'image_credit', 'summary', 'body', 'disable_auto_linebreaks')}),
         ('Article javascript', {'classes': ('collapse',), 'fields': ('article_js_header', 'article_js_footer')}),

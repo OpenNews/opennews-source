@@ -25,6 +25,7 @@ class Article(CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     is_live = models.BooleanField('Display on site', default=True)
+    is_featured = models.BooleanField('Featured article', default=False, help_text='Most recent featured article appears at top of homepage')
     show_in_lists = models.BooleanField('Show in lists', default=True)
     allow_comments = models.BooleanField('Allow comments', default=True)
     title = models.CharField(max_length=128)
