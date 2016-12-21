@@ -1,2 +1,2 @@
-echo "=> Performing database migrations..."
+echo "=====> Performing database migrations..."
 python manage.py migrate
