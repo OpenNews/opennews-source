@@ -24,6 +24,7 @@ BASE_URLS = [
     url(r'^code/', include('source.code.urls')),
     url(r'^guides/', include('source.guides.urls')),
     url(r'^jobs/', include('source.jobs.urls')),
+    url(r'^community/', include('source.people.urls.community')),
     url(r'^organizations/', include('source.people.urls.organizations')),
     url(r'^people/', include('source.people.urls.people')),
     url(

@@ -1,0 +1,19 @@
+{% extends "people/_base_community.html" %}
+
+{% block content %}
+
+People
+<ul>
+{% for person in people %}
+    <li>{{ person.name() }}</li>
+{% endfor %}
+</ul>
+
+Organizations
+<ul>
+{% for organization in organizations %}
+    <li>{{ organization.name }}</li>
+{% endfor %}
+</ul>
+{% endblock content %}
+

@@ -1,4 +1,5 @@
 import json
+import random
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -11,16 +12,61 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.template.defaultfilters import slugify
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView, TemplateView, View
 
 from .forms import OrganizationUpdateForm, PersonUpdateForm
 from .models import Person, Organization
 
+from caching.config import NO_CACHE
+from source.articles.models import Article
+from source.code.models import Code
 from source.utils.json import render_json_to_response
 
 USER_DEBUG = getattr(settings, 'USER_DEBUG', False)
 
 
+class CommunityList(TemplateView):
+    template_name = 'people/community_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CommunityList, self).get_context_data(**kwargs)
+
+        # this page randomly selects a few Person and Organization
+        # records to display based on recent Article and Code posts
+        recent_articles = Article.live_objects.order_by('-pubdate')[:20]
+        recent_codes = Code.live_objects.order_by('-created')[:20]
+        
+        # we only need the Person record pks here, setting NO_CACHE because
+        # django-cache-machine does not work with .values() or .values_list()
+        article_author_ids = recent_articles.values_list('authors', flat=True)
+        article_author_ids.timeout = NO_CACHE
+        article_people_ids = recent_articles.values_list('people', flat=True)
+        article_people_ids.timeout = NO_CACHE
+        code_people_ids = recent_codes.values_list('people', flat=True)
+        code_people_ids.timeout = NO_CACHE
+        
+        # get 3 random unique Person records
+        people_ids = list(article_author_ids) + list(article_people_ids) + list(code_people_ids)
+        people_ids = list(set([x for x in people_ids if x is not None]))
+        people_ids = random.sample(people_ids, 3)
+        people = Person.objects.filter(id__in=people_ids)
+        context['people'] = people
+
+        # only need the Organization pks
+        article_organization_ids = recent_articles.values_list('organizations', flat=True)
+        article_organization_ids.timeout = NO_CACHE
+        article_code_ids = recent_codes.values_list('organizations', flat=True)
+        article_code_ids.timeout = NO_CACHE
+        
+        # get 3 random unique Organization records
+        organization_ids = list(article_organization_ids) + list(article_code_ids)
+        organization_ids = list(set([x for x in organization_ids if x is not None]))
+        organization_ids = random.sample(organization_ids, 3)
+        organizations = Organization.objects.filter(id__in=organization_ids)
+        context['organizations'] = organizations
+
+        return context
+        
 class PersonList(ListView):
     model = Person
 
