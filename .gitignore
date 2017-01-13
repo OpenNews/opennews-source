@@ -3,3 +3,7 @@
 *.pyc
 *.sqlite*
 .DS_Store
+settings.env
+node_modules
+.tm_properties
+dist
