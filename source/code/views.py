@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.views.generic import ListView, DetailView
 
@@ -59,10 +59,10 @@ class CodeList(ListView):
                 # provide jsonp support for requests
                 # with ?callback=foo paramater
                 context['jsonp_callback'] = self.request.GET['callback']
-            return render_to_response(
+            return render(
+                self.request,
                 'code/code_list.json',
                 context,
-                context_instance = RequestContext(self.request),
                 content_type='application/json'
             )
         return super(CodeList, self).render_to_response(context)
