@@ -6,6 +6,7 @@
     "license": "MIT",
     "devDependencies": {
         "grunt": "^1.0.0",
+        "grunt-browser-sync": "latest",
         "grunt-contrib-clean": "latest",
         "grunt-contrib-concat": "latest",
         "grunt-contrib-cssmin": "latest",

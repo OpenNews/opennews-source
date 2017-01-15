@@ -13,22 +13,44 @@ module.exports = function( grunt ) {
 
     // Take options passed to grunt or fallback to local config or to a default of production
     var env = grunt.config( "env", grunt.option( "env" ) || localConfig.NODE_ENV || "production" );
-    var dev = ( env === "development" );
+    var is_dev = ( env === "development" );
 
     // Project configuration.
-    grunt.initConfig({
+    grunt.initConfig( {
         pkg: grunt.file.readJSON( "package.json" ),
 
-        config: {
+        _config: {
             dir: {
                 templates: "tmpl/",
                 output: "tmpl/dist/"
             }
         },
 
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src : "tmpl/*.php"
+                },
+                options: {
+                    proxy: "http://local.source",
+                    watchTask: true
+                }
+            }
+        },
+
+        bsReload: {
+            css: {
+                reload: "<%= cssmin.css_main.dest %>"
+            },
+            all: {
+                reload: true
+            }
+        },
+
         clean: {
             dist: [
-                "<%= config.dir.output %>**/*"
+                "<%= _config.dir.output %>css/**/*",
+                "<%= _config.dir.output %>js/**/*"
             ]
         },
 
@@ -36,32 +58,33 @@ module.exports = function( grunt ) {
             js_initial: {
                 src: [
                     "<%= grunticon.svg.files[0].dest %>grunticon.loader.js",
-                    "<%= config.dir.templates %>js/config.js",
-                    "<%= config.dir.templates %>js/utils.js",
+                    "<%= _config.dir.templates %>js/config.js",
+                    "<%= _config.dir.templates %>js/utils.js",
+                    "<%= _config.dir.templates %>js/typekit.js",
                     // initial.js needs to be last.
-                    "<%= config.dir.templates %>js/initial.js"
+                    "<%= _config.dir.templates %>js/initial.js"
                 ],
-                dest: "<%= config.dir.output %>js/initial.js"
+                dest: "<%= _config.dir.output %>js/initial.js"
             },
             js_main: {
                 src: [
-                    "<%= config.dir.templates %>js/lib/shoestring.js",
-                    "<%= config.dir.templates %>js/lib/$.js",
-                    "<%= config.dir.templates %>js/lib/transition-support.js",
-                    "<%= config.dir.templates %>js/lib/appendAround.js",
-                    "<%= config.dir.templates %>js/lib/collapsible.js",
-                    "<%= config.dir.templates %>js/lib/collapsible.externaltoggle.js",
-                    "<%= config.dir.templates %>js/navigation.js",
+                    "<%= _config.dir.templates %>js/lib/shoestring.js",
+                    "<%= _config.dir.templates %>js/lib/$.js",
+                    "<%= _config.dir.templates %>js/lib/transition-support.js",
+                    "<%= _config.dir.templates %>js/lib/appendAround.js",
+                    "<%= _config.dir.templates %>js/lib/collapsible.js",
+                    "<%= _config.dir.templates %>js/lib/collapsible.externaltoggle.js",
+                    "<%= _config.dir.templates %>js/navigation.js",
                     // source-init.js needs to be last.
-                    "<%= config.dir.templates %>js/source-init.js"
+                    "<%= _config.dir.templates %>js/source-init.js"
                 ],
-                dest: "<%= config.dir.output %>js/main.js"
+                dest: "<%= _config.dir.output %>js/main.js"
             },
             js_picturefill: {
                 src: [
-                    "<%= config.dir.templates %>js/lib/picturefill.js"
+                    "<%= _config.dir.templates %>js/lib/picturefill.js"
                 ],
-                dest: "<%= config.dir.output %>js/lib/picturefill.js"
+                dest: "<%= _config.dir.output %>js/lib/picturefill.js"
             }
         },
 
@@ -77,8 +100,8 @@ module.exports = function( grunt ) {
         grunticon: {
             svg: {
                 files: [{
-                    cwd: "<%= config.dir.templates %>svg/",
-                    dest: "<%= config.dir.output %>svg/",
+                    cwd: "<%= _config.dir.templates %>svg/",
+                    dest: "<%= _config.dir.output %>svg/",
                     expand: true,
                     src: [
                         "*.png",
@@ -97,11 +120,11 @@ module.exports = function( grunt ) {
         sass: {
             options: {
                 outputStyle: "nested",
-                sourceMap: dev
+                sourceMap: is_dev
             },
             dist: {
                 files: {
-                    "<%= config.dir.output %>css/main.css": "<%= config.dir.templates %>scss/source.scss"
+                    "<%= _config.dir.output %>css/main.css": "<%= _config.dir.templates %>scss/source.scss"
                 }
             }
         },
@@ -120,7 +143,27 @@ module.exports = function( grunt ) {
                 dest: '<%= concat.js_main.dest %>'
             }
         },
-    });
+
+        watch: {
+            options: {
+                // Required for browsersync
+                spawn: false
+            },
+            css: {
+                files: [
+                    "<%= _config.dir.templates %>**/*",
+                    "Gruntfile.js"
+                ],
+                tasks: [ "sass", "cssmin", "concat", "uglify", "bsReload" ]
+            },
+            svg: {
+                files: [
+                    "svg/**/*"
+                ],
+                tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
+            }
+        }
+    } );
 
     grunt.registerTask( "build", [
         "clean",
@@ -128,7 +171,9 @@ module.exports = function( grunt ) {
         "cssmin",
         "concat",
         "uglify",
-        "grunticon"
+        "grunticon",
+        "browserSync",
+        "watch"
     ] );
 
     grunt.registerTask( "default", "build" );
