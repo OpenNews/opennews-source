@@ -1,13 +1,13 @@
 // Webfont map
 //
-// The loaded webfonts can be accessed through a map, useful if there are ever
-// font stacks for serif as well as sans serif fonts.
-// e.g. font-family: map-get($fonts, serif);
+// The loaded webfonts can be accessed through a map.
+// e.g. font-family: map-get( $fonts, "serif" );
 //
 // @type Map
 $fonts: (
-    'sans': ("BentonSans", Arial, Helvetica, sans-serif),
-    'sans-alt': (Arial, Helvetica, sans-serif),
-    'serif': (Utopia, Georgia, Times, serif),
-    'serif-alt': (Georgia, Times, serif)
+    "mono": ( Consolas, Inconsolata, "Courier New", Courier, monospace ),
+    "sans": ( "sofia-pro", sans-serif ),
+    "sans-base": ( Arial, Helvetica, sans-serif ),
+    "serif": ( "freight-text-pro", serif ),
+    "serif-base": ( Georgia, Times, serif )
 );
