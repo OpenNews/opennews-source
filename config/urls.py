@@ -12,7 +12,6 @@ from source.base.views import L10NRedirectView
 
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
-    url(r'^browserid/', include('django_browserid.urls')),
     url(r'^en-(us|US)/', L10NRedirectView.as_view()),
     # Generate a robots.txt
     url(r'^robots.txt$',

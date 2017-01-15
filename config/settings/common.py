@@ -46,7 +46,6 @@ THIRD_PARTY_APPS = (
     'haystack',
     'sorl.thumbnail',
     'taggit',
-    'django_browserid',
     'django_jinja',
     'storages',
 )
@@ -159,7 +158,6 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'django_browserid.context_processors.browserid',
                 'source.base.context_processors.globals',
             ],
         }
@@ -190,7 +188,6 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'django_browserid.context_processors.browserid',
                 'source.base.context_processors.globals',
             ],
         },
@@ -251,7 +248,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     #'allauth.account.auth_backends.AuthenticationBackend',
-    'django_browserid.auth.BrowserIDBackend',
 )
 BROWSERID_CREATE_USER = 'source.people.utils.create_auth_user'
 LOGIN_REDIRECT_URL = '/organizations/update/'

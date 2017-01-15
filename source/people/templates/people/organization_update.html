@@ -4,15 +4,14 @@
 
 {% block content %}
 <div class="authentication">
-    {{ browserid_info() }}
     {% if not user.is_authenticated() %}
-        {{ browserid_login(text='Log in to change your organization details') }}
+        Hi you need to log in
     {% endif %}
 </div>
 
 {% if error_message %}
     <div class="toggle-buttons">
-        {{ browserid_logout(text='Log out') }}
+        Log out
     </div>
     <p>{{ error_message }}</p>
 
@@ -21,7 +20,7 @@
     <a href="#organization" class="active">Your organization</a>
     <a href="#people">Your people</a>
     <a href="#jobs">Your job listings</a>
-    {{ browserid_logout(text='Log out') }}
+    Log out
 </div>
 
 <div id="organization" class="admin-panel">
@@ -69,7 +68,6 @@
         
             <div class="page-block clear">
                 <input class="btn btn-primary" id="organization-update-button" type="submit" value="Update details">
-                {#}{{ browserid_logout(text='Log out', link_class='btn') }}{#}
             </div>
         </form>
     </div>
@@ -227,7 +225,6 @@
 {% endblock content %}
 
 {% block site_js_extra %}
-{{ browserid_js() }}
 <script src="{{ static('base/js/libs/jquery-1.7.2.min.js') }}"></script>
 <script src="{{ static('base/js/libs/typeahead.min.js') }}"></script>
 <script src="{{ static('base/js/libs/hogan-2.0.0.js') }}"></script>
