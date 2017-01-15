@@ -33,7 +33,7 @@ Enhancements for all browsers, qualified or not
     }
 
     // Grunticon
-    if ( grunticonPath && grunticonPath.content ) {
+    if ( grunticon && grunticonPath && grunticonPath.content ) {
         var path = grunticonPath.content;
 
         grunticon( [ path + iconsDataSVG, path + iconsDataPNG, path + iconsPNG ], function() {
