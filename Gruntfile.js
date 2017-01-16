@@ -112,6 +112,7 @@ module.exports = function( grunt ) {
                     compressPNG: true,
                     cssprefix: ".icon-",
                     customselectors: {
+                        "close": [ ".search-trigger:after" ],
                         "dots-footer": [ ".foot-source" ],
                         "dots-search": [ ".site-search" ]
                     },

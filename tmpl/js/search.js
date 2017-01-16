@@ -10,13 +10,14 @@ Component: Navigation toggle
             var $trigger = $( this ),
                 slug = "#" + $trigger.attr( "href" ).split( "#" )[ 1 ],
                 $target = $( slug ),
-                openClass = "is-expanded";
+                $body = $( "body" ),
+                openClass = "search-expanded";
 
             if ( $target ) {
                 if ( $target.is( ".collapsible-expanded" ) ) {
-                    $trigger.removeClass( openClass );
+                    $body.removeClass( openClass );
                 } else {
-                    $trigger.addClass( openClass );
+                    $body.addClass( openClass );
                 }
             }
 

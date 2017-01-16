@@ -153,15 +153,29 @@ Header
     margin-right: -1em;
     min-width: 40px;
     padding: 1em;
+    position: relative;
     text-indent: -1000em;
     transition: background-position 0.2s;
 }
-.search-trigger:focus,
-.search-trigger:hover {
-    background-position: 50% 43%;
+.search-trigger:after {
+    background-position: 50% 50%;
+    bottom: 0;
+    content: "Close search";
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-indent: -1000em;
+    top: 0;
+    transform: scale( 0 );
+    transition: transform 0.2s, opacity 0.2s;
+    transition-delay: 0.2s;
 }
-.search-trigger.is-expanded {
-    background-position: 50% left -2em bottom;
+.search-expanded .search-trigger:after {
+    opacity: 1;
+    transform: scale( 1 );
+}
+.search-expanded .search-trigger {
+    background-position: left 50% bottom -33px;
     transition-delay: 0.2s;
 }
 
