@@ -49,7 +49,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 </ul><!-- /end .site-nav-links -->
             </div><!-- /end .site-nav -->
 
-            <a class="search-trigger icon-search" href="#search">Search this site</a>
+            <a class="search-trigger icon-search" data-collapsible-target href="#search">Search this site</a>
         </div><!-- /end .page-header -->
     </header>
 
@@ -67,7 +67,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
             <p class="article-date">Posted on: <time datetime="2015-09-15">20 September 2015</time></p>
 
-            <div class="figure figure-article-minor">
+            <div class="figure figure-article-lead">
                 <figure>
                     <img src="/img/fpo-article-lead.jpg" alt="" />
                     <figcaption>
@@ -149,28 +149,38 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 <h2>Credits</h2>
 
                 <ul>
-                    <li>
-                        <h3><a href="#">Basile Simon</a></h3>
+                    <li class="profile-person h-card">
+                        <h3 class="profile-name">
+                            <a href="#">
+                                <img class="u-photo" src="/img/avatar.jpg" alt="" />
+                                <cite class="p-name">Basile Simon</cite>
+                            </a>
+                        </h3>
 
-                        <p>Hacker-journalist @BBC<em>News</em>Labs. Data-journalist @airwars_. #ddj, linked-data, infosec, drones with @TBIJ, stuff PGP: http://t.co/P1GYMem22Y</p>
-
-                        <ul>
-                            <li><a href="#">BBC News</a></li>
-                            <li><a href="#">@basilesimon</a></li>
-                            <li><a href="#">Visit website</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h3><a href="#">Tiff Fehr</a></h3>
-
-                        <p>The Inimitable Tiff ☔ Asst. editor, @nytinteractive/@nytimes. Seattle-raised. Owner of a Dragon &amp; a Behemoth (cats). Prolly following you via matryoshka Lists.</p>
+                        <p class="profile-bio">Hacker-journalist @BBC<em>News</em>Labs. Data-journalist @airwars_. #ddj, linked-data, infosec, drones with @TBIJ, stuff PGP: http://t.co/P1GYMem22Y</p>
 
                         <ul>
-                            <li><a class="icon-corp" href="#">The New York Times</a></li>
-                            <li><a class="icon-twitter" href="#">@tiffehr</a></li>
-                            <li><a class="" href="#">Visit website</a></li>
+                            <li><a class="p-org icon-company" href="#">BBC News</a></li>
+                            <li><a class="icon-twitter-alt" href="#">@basilesimon</a></li>
+                            <li><a class="u-url icon-link" href="#">Visit website</a></li>
                         </ul>
-                    </li>
+                    </li><!-- /end .profile-person -->
+                    <li class="profile-person h-card">
+                        <h3 class="profile-name">
+                            <a href="#">
+                                <img class="u-photo" src="/img/avatar.jpg" alt="" />
+                                <cite class="p-name">Tiff Fehr</cite>
+                            </a>
+                        </h3>
+
+                        <p class="profile-bio">The Inimitable Tiff ☔ Asst. editor, @nytinteractive/@nytimes. Seattle-raised. Owner of a Dragon &amp; a Behemoth (cats). Prolly following you via matryoshka Lists.</p>
+
+                        <ul>
+                            <li><a class="p-org icon-company" href="#">The New York Times</a></li>
+                            <li><a class="icon-twitter-alt" href="#">@tiffehr</a></li>
+                            <li><a class="u-url icon-link" href="#">Visit website</a></li>
+                        </ul>
+                    </li><!-- /end .profile-person -->
                 </ul>
             </div><!-- /end .article-credits -->
 
@@ -202,26 +212,59 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 </ul><!-- /end .list-promo -->
             </div><!-- /end .article-related -->
 
+            <div class="site-search collapsible collapsible-collapsed" id="search">
+                <h1 class="a11y">Search this site:</h1>
+                <div class="site-search-inner">
+                    <div class="article-tease">
+                        <p class="hed-search">From our Archives:</p>
+                        <h2 class="hed-article-tease-search">
+                            <a href="#">
+                                <img class="thumb" src="/img/fpo-article-thumb.jpg" alt="" />
+                                From the BBC News Labs: Datastringer
+                            </a>
+                        </h2>
+                    </div>
+                    <form class="form-search">
+                        <label class="hed-search" for="text-search">Search SOURCE:</label>
+                        <p class="fields-search">
+                            <input class="text-search" id="text-search" type="search" value="" />
+                            <input class="btn-search icon-search" type="submit" value="Search" />
+                        </p><!-- /end .fields-search -->
+                    </form><!-- /end .form-search -->
+                </div>
+            </div><!-- /end .site-search -->
+
         </div><!-- /end .page-main -->
     </main>
 
     <footer>
         <div class="page-footer">
-            <div>
-                <h2><img src="/svg/logo-source.svg" onerror="this.src='/dist/svg/png/logo-source.png'; return false" alt="Source" /></h2>
 
-                <p>Source is an OpenNews project designed to amplify the impact of journalism code and the community of developers, designers, journalists, and editors who make it.</p>
+            <div class="foot-source">
+                <h2 class="foot-logo"><img src="/svg/logo-source.svg" onerror="this.src='/dist/svg/png/logo-source.png'; return false" alt="Source" /></h2>
 
-                <p>Learn more <a href="#">about the project</a> or <a href="#">contribute your work</a>. <a href="#">Contact us</a>.</p>
+                <div class="foot-content">
+                    <p>Source is an OpenNews project designed to amplify the impact of journalism code and the community of developers, designers, journalists, and editors who make it.</p>
 
-                <p><a href="https://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a></p>
-            </div>
+                    <p>Learn more <a href="#">about the project</a> or <a href="#">contribute your work</a>. <a href="#">Contact us</a>.</p>
 
-            <div>
-                <h2><img src="/svg/logo-opennews.svg" onerror="this.src='/dist/svg/png/logo-opennews.png'; return false" alt="Source" /></h2>
+                    <p><a href="https://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a></p>
+                </div><!-- /end .foot-content -->
+
+                <h3>Connect</h3>
+                <ul>
+                    <li><a class="icon-rss" href="#">RSS</a></li>
+                    <li><a class="icon-twitter" href="#">@source</a></li>
+                    <li><a class="icon-email" href="#">Get our biweekly roundup email</a></li>
+                </ul>
+            </div><!-- /end .foot-source -->
+
+            <div class="foot-opennews">
+                <h2 class="foot-logo"><img src="/svg/logo-opennews.svg" onerror="this.src='/dist/svg/png/logo-opennews.png'; return false" alt="Source" /></h2>
 
                 <p>A multi-year partnership between Mozilla and the Knight Foundation, Knight-Mozilla OpenNews is dedicated to creating an ecosystem to help strengthen and build community around journalism on the web. More at <a href="https://opennews.org">opennews.org</a>.</p>
-            </div>
+            </div><!-- /end .foot-opennews -->
+
         </div><!-- /end .page-footer -->
     </footer>
 

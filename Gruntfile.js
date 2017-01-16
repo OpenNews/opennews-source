@@ -111,8 +111,11 @@ module.exports = function( grunt ) {
                 options: {
                     compressPNG: true,
                     cssprefix: ".icon-",
-                    customselectors: {},
-                    enhanceSVG:    true
+                    customselectors: {
+                        "dots-footer": [ ".foot-source" ],
+                        "dots-search": [ ".site-search" ]
+                    },
+                    enhanceSVG: true
                 }
             }
         },
@@ -149,16 +152,21 @@ module.exports = function( grunt ) {
                 // Required for browsersync
                 spawn: false
             },
+            config: {
+                files: [
+                    "Gruntfile.js"
+                ],
+                tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
+            },
             css: {
                 files: [
                     "<%= _config.dir.templates %>**/*",
-                    "Gruntfile.js"
                 ],
                 tasks: [ "sass", "cssmin", "concat", "uglify", "bsReload" ]
             },
             svg: {
                 files: [
-                    "svg/**/*"
+                    "<%= _config.dir.templates %>svg/**/*"
                 ],
                 tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
             }
