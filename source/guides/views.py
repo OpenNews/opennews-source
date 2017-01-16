@@ -1,5 +1,4 @@
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
 from django.views.generic import ListView, DetailView
 
 from .models import Guide

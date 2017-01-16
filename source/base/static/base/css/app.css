@@ -234,7 +234,7 @@ article .article-block {
 }
 
 h1, h2, h3, h5, h6, ul, ol, .caption, label, table,
-.helptext, .browserid-logout {
+.helptext, .logout {
     font-family: 'Open Sans', Helvetica, sans-serif;
     font-weight: 400;
     text-align: left;

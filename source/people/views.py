@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.forms.models import modelformset_factory
 from django.http import Http404, HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template import RequestContext
 from django.template.defaultfilters import slugify
 from django.views.generic import ListView, DetailView, TemplateView, View
@@ -281,7 +281,7 @@ class OrganizationUpdate(View):
                     'error_message': self.error_message
                 })
             
-        return render_to_response(self.template_name, context, context_instance=RequestContext(request))
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         context = {}
@@ -305,5 +305,5 @@ class OrganizationUpdate(View):
 
         # if for some reason we're not hitting via ajax
         messages.success(request, 'Updates saved')
-        return render_to_response(self.template_name, context, context_instance=RequestContext(request))
+        return render(request, self.template_name, context)
         
