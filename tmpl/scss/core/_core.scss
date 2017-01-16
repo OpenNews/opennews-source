@@ -160,7 +160,10 @@ Header
 .search-trigger:hover {
     background-position: 50% 43%;
 }
-
+.search-trigger.is-expanded {
+    background-position: 50% left -2em bottom;
+    transition-delay: 0.2s;
+}
 
 
 /*-
@@ -324,6 +327,7 @@ Enhanced version
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.2s, opacity 0.2s;
+    transition-delay: 0.2s;
 }
 .site-search.collapsible-expanded .collapsible-content {
     opacity: 1;

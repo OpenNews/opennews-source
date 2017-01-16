@@ -74,7 +74,7 @@ module.exports = function( grunt ) {
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
                     "<%= _config.dir.templates %>js/lib/collapsible.js",
                     "<%= _config.dir.templates %>js/lib/collapsible.externaltoggle.js",
-                    "<%= _config.dir.templates %>js/navigation.js",
+                    "<%= _config.dir.templates %>js/search.js",
                     // source-init.js needs to be last.
                     "<%= _config.dir.templates %>js/source-init.js"
                 ],
@@ -158,18 +158,18 @@ module.exports = function( grunt ) {
                 ],
                 tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
             },
-            css: {
-                files: [
-                    "<%= _config.dir.templates %>**/*",
-                ],
-                tasks: [ "sass", "cssmin", "concat", "uglify", "bsReload" ]
-            },
             svg: {
                 files: [
                     "<%= _config.dir.templates %>svg/**/*"
                 ],
                 tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
-            }
+            },
+            templates: {
+                files: [
+                    "<%= _config.dir.templates %>**/*",
+                ],
+                tasks: [ "sass", "cssmin", "concat", "uglify", "bsReload" ]
+            },
         }
     } );
 
