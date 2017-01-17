@@ -49,7 +49,9 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 </ul><!-- /end .site-nav-links -->
             </div><!-- /end .site-nav -->
 
-            <a class="search-trigger icon-search" data-collapsible-target href="#search">Search this site</a>
+            <a class="search-toggle" href="#search">
+                <span class="icon icon-search">Search this site</span>
+            </a>
         </div><!-- /end .page-header -->
     </header>
 
@@ -212,8 +214,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 </ul><!-- /end .list-promo -->
             </div><!-- /end .article-related -->
 
-            <div class="site-search collapsible collapsible-collapsed" id="search">
-                <h1 class="a11y">Search this site:</h1>
+            <div class="site-search" id="search">
                 <div class="site-search-inner">
                     <div class="article-tease">
                         <p class="hed-search">From our Archives:</p>

@@ -73,25 +73,25 @@ Enhancements for QUALIFIED browsers. (Yay! We passed!)
     var animation = false,
         elm = document.createElement('div');
 
-    if ( elm.style.animationName !== undefined ) {
-      animation = true;
-    }
-
-    if( animation === false ) {
-      for( var i = 0; i < domPrefixes.length; i++ ) {
-        if( elm.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
-          var pfx = domPrefixes[ i ];
-          var animationstring = pfx + 'Animation';
-          var keyframeprefix = '-' + pfx.toLowerCase() + '-';
-          animation = true;
-          break;
+        if ( elm.style.animationName !== undefined ) {
+            animation = true;
         }
-      }
-    }
 
-    if ( animation == true ) {
-      docClasses.push( animationClasses );
-    }
+        if( animation === false ) {
+            for( var i = 0; i < domPrefixes.length; i++ ) {
+                if( elm.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
+                    var pfx = domPrefixes[ i ];
+                    var animationstring = pfx + 'Animation';
+                    var keyframeprefix = '-' + pfx.toLowerCase() + '-';
+                    animation = true;
+                    break;
+                }
+            }
+        }
+
+        if ( animation == true ) {
+            docClasses.push( animationClasses );
+        }
 
     // Get scripts to load, if defined
     var fullJS = utils.getMeta( fullJSKey );

@@ -146,7 +146,7 @@ Header
     height: 1em;
     bottom: -0.5em;
 }
-.search-trigger {
+.search-toggle {
     background-position: 50% 50%;
     background-size: 33px 33px;
     margin-left: auto;
@@ -157,24 +157,29 @@ Header
     text-indent: -1000em;
     transition: background-position 0.2s;
 }
-.search-trigger:after {
+.search-toggle .icon {
     background-position: 50% 50%;
     bottom: 0;
-    content: "Close search";
     left: 0;
     position: absolute;
     right: 0;
     text-indent: -1000em;
     top: 0;
-    transform: scale( 0 );
-    transition: transform 0.2s, opacity 0.2s;
-    transition-delay: 0.2s;
+    transition: background-position 0.2s, transform 0.2s, opacity 0.2s;
 }
-.search-expanded .search-trigger:after {
+.search-toggle .icon-close {
+    background-size: 30px auto;
+    transform: scale( 0 );
+    opacity: 0;
+}
+.site-search-open.site-search-transitioning .search-toggle .icon-close {
+    transition-delay: 0.3s;
+}
+.site-search-open .search-toggle .icon-close {
     opacity: 1;
     transform: scale( 1 );
 }
-.search-expanded .search-trigger {
+.site-search-open .search-toggle .icon-search {
     background-position: left 50% bottom -33px;
     transition-delay: 0.2s;
 }
@@ -326,26 +331,35 @@ Site search
 /*
 Enhanced version
 */
-.site-search.collapsible-enhanced {
+// Hide the search panel by default, and position it at the top of .page-main
+.enhanced .site-search {
     left: 0;
     margin-top: 0;
+    max-height: 0;
+    opacity: 0.5;
+    overflow: hidden;
     position: absolute;
     right: 0;
     top: 0;
+    transition: max-height 0.2s, opacity 0.2s;
     z-index: 1;
 }
-.site-search.collapsible-enhanced .collapsible-content {
-    display: block;
-    display: flex;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.2s, opacity 0.2s;
-    transition-delay: 0.2s;
-}
-.site-search.collapsible-expanded .collapsible-content {
+// Expanded/“open” state for the search panel
+.site-search-open .site-search {
     opacity: 1;
     max-height: 20em;
+}
+.site-search-open.site-search-transitioning .site-search {
+    transition-delay: 0.3s;
+}
+.site-search[ data-enhanced-site-search ] .btn-search {
+    background-size: 0 0;
+}
+.site-search-open.site-search-transitioning .site-search .btn-search {
+    transition-delay: 0.5s;
+}
+.site-search-open .site-search .btn-search {
+    background-size: 33px 33px;
 }
 
 

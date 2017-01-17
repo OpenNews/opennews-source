@@ -42,6 +42,9 @@ module.exports = function( grunt ) {
             css: {
                 reload: "<%= cssmin.css_main.dest %>"
             },
+            js: {
+                reload: "<%= _config.dir.output %>js/**/*"
+            },
             all: {
                 reload: true
             }
@@ -112,7 +115,6 @@ module.exports = function( grunt ) {
                     compressPNG: true,
                     cssprefix: ".icon-",
                     customselectors: {
-                        "close": [ ".search-trigger:after" ],
                         "dots-footer": [ ".foot-source" ],
                         "dots-search": [ ".site-search" ]
                     },
