@@ -71,7 +71,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
             <div class="figure figure-article-lead">
                 <figure>
-                    <img src="/img/fpo-article-lead.jpg" alt="" />
+                    <img src="/img/fpo/article-lead.jpg" alt="" />
                     <figcaption>
                         <p>Our printed ballot guide for voters to take to the polls—a product of the testing described in this article.</p>
                     </figcaption>
@@ -112,7 +112,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
                 <div class="figure figure-article-minor">
                     <figure>
-                        <img src="/img/fpo-article-inset.jpg" alt="" />
+                        <img src="/img/fpo/article-inset.jpg" alt="" />
                         <figcaption>
                             <p>Clément drawing explanations on the windows.</p>
                         </figcaption>
@@ -133,7 +133,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
                 <div class="figure figure-article-full">
                     <figure>
-                        <img src="/img/fpo-article-full.jpg" alt="" />
+                        <img src="/img/fpo/article-full.jpg" alt="" />
                         <figcaption>
                             <p>Our printed ballot guide for voters to take to the polls—a product of the testing described in this article.</p>
                         </figcaption>
@@ -198,17 +198,17 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 <ul class="list-promo">
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo-article-teaser.jpg" alt="" /> How NPR Fact-Checks The Debate, Live
+                            <img src="/img/fpo/article-teaser.jpg" alt="" /> How NPR Fact-Checks The Debate, Live
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo-article-teaser.jpg" alt="" /> Event Round-Up, Oct 17
+                            <img src="/img/fpo/article-teaser.jpg" alt="" /> Event Round-Up, Oct 17
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo-article-teaser.jpg" alt="" /> What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes
+                            <img src="/img/fpo/article-teaser.jpg" alt="" /> What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes
                         </a>
                     </li><!-- /end .src-promo -->
                 </ul><!-- /end .list-promo -->
@@ -220,7 +220,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                         <p class="hed-search">From our Archives:</p>
                         <h2 class="hed-article-tease-search">
                             <a href="#">
-                                <img class="thumb" src="/img/fpo-article-thumb.jpg" alt="" />
+                                <img class="thumb" src="/img/fpo/article-thumb.jpg" alt="" />
                                 From the BBC News Labs: Datastringer
                             </a>
                         </h2>
