@@ -32,6 +32,7 @@ module.exports = function( grunt ) {
                     src : "tmpl/*.php"
                 },
                 options: {
+                    ghostMode: false,
                     proxy: "http://local.source",
                     watchTask: true
                 }
@@ -78,6 +79,7 @@ module.exports = function( grunt ) {
                     "<%= _config.dir.templates %>js/lib/collapsible.js",
                     "<%= _config.dir.templates %>js/lib/collapsible.externaltoggle.js",
                     "<%= _config.dir.templates %>js/search.js",
+                    "<%= _config.dir.templates %>js/comments-disqus.js",
                     // source-init.js needs to be last.
                     "<%= _config.dir.templates %>js/source-init.js"
                 ],
@@ -155,12 +157,6 @@ module.exports = function( grunt ) {
                 // Required for browsersync
                 spawn: false
             },
-            config: {
-                files: [
-                    "Gruntfile.js"
-                ],
-                tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
-            },
             svg: {
                 files: [
                     "<%= _config.dir.templates %>svg/**/*"
@@ -169,6 +165,7 @@ module.exports = function( grunt ) {
             },
             templates: {
                 files: [
+                    "Gruntfile.js",
                     "<%= _config.dir.templates %>**/*",
                 ],
                 tasks: [ "sass", "cssmin", "concat", "uglify", "bsReload" ]

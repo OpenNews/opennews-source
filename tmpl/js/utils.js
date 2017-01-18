@@ -162,4 +162,11 @@
 
     utils.debounce = debounce;
 
+    // Disqus comments loaded?
+    var disqusRender = function() {
+        console.log( "disqus loaded!" );
+    };
+
+    utils.disqusRender = disqusRender;
+
 }( this ));

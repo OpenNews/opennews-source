@@ -24,50 +24,51 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
 <noscript><link href="/dist/svg/icons.fallback.css" rel="stylesheet" /></noscript>
 
+<script>
+// If there are Disqus-specific variables to be included, uncomment this block and add them below.
+/*
+var disqus_config = function () {
+    this.page.url = PAGE_URL;
+    this.page.identifier = PAGE_IDENTIFIER; identifier variable
+};
+*/
+</script>
+
 </head>
 
 <body class="tmpl-article">
 
 <div class="page">
 
-    <header>
-        <div class="page-header">
-            <h1 class="site-logo">
-                <a href="/">
-                    <img src="/svg/logo-source.svg" onerror="this.src='/dist/svg/png/logo-source.png'; return false" alt="Source" />
-                </a>
-            </h1>
-
-            <div class="site-nav">
-                <h2 class="a11y"><a href="#nav-primary">Explore this site</a></h2>
-
-                <ul class="site-nav-links" id="nav-primary">
-                    <li><a href="#" aria-describedby="current-page" class="is-active">Articles</a></li>
-                    <li><a href="#">Guides</a></li>
-                    <li><a href="#">Community</a></li>
-                    <li><a href="#">Jobs</a></li>
-                </ul><!-- /end .site-nav-links -->
-            </div><!-- /end .site-nav -->
-
-            <a class="search-toggle" href="#search">
-                <span class="icon icon-search">Search this site</span>
-            </a>
-        </div><!-- /end .page-header -->
-    </header>
-
-    <hr />
+    <?php include($rootpath . "/inc/site-header.php"); ?>
 
     <main>
         <div class="page-main">
-            <p>Project</p>
+            <div class="article-matter-front">
+                <p class="hed-label">Project<span class="a11y">:</span></p>
 
-            <h1 class="article-title-lead">From the BBC News Labs: Datastringer</h1>
+                <h1 class="page-title-lead">From the BBC News Labs: Datastringer</h1>
 
-            <h2 class="article-subtitle-lead">Basile Simon walks through a project sparked at Hacks/Hackers London</h2>
+                <h2 class="article-subtitle-lead">Basile Simon walks through a project sparked at Hacks/Hackers London</h2>
 
-            <p class="article-byline">By <a href="#">Basile Simon</a>, <a href="#">Tiff Fehr</a>, <a href="#">Erin Kissane</a>, and <a href="#">Alyson Hurt</a></p>
+                <ul class="list-tags">
+                    <li><a class="tag" href="#">javascript</a></li>
+                    <li><a class="tag" href="#">data</a></li>
+                    <li><a class="tag" href="#">onboarding</a></li>
+                    <li><a class="tag" href="#">work</a></li>
+                    <li><a class="tag" href="#">survey</a></li>
+                    <li><a class="tag" href="#">hashtags</a></li>
+                    <li><a class="tag" href="#">teens</a></li>
+                </ul><!-- /end .list-tags -->
 
-            <p class="article-date">Posted on: <time datetime="2015-09-15">20 September 2015</time></p>
+                <div class="article-meta">
+                    <p class="article-byline">By <a href="#">Basile Simon</a>, <a href="#">Tiff Fehr</a>, <a href="#">Erin Kissane</a>, and <a href="#">Alyson Hurt</a></p>
+
+                    <p class="article-date">Posted on: <time datetime="2015-09-15">20 September 2015</time></p>
+                </div><!-- /end .article-meta -->
+            </div><!-- /end .article-matter-front -->
+
+            <hr />
 
             <div class="figure figure-article-lead">
                 <figure>
@@ -86,10 +87,20 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 <p>That’s what <a href="#">Datastringer</a> aims to do. It was built to be as simple as possible, and very much journalism-oriented. The idea is not new in itself, it’s basically a monitoring tool. However, Datastringer wants to:</p>
 
                 <ul>
-                <li>Simplify the process of monitoring streaming pure-data sources,</li>
-                <li>Give you the freedom to use all of JavaScript and Node’s power to mash up several datasets at once,</li>
-                <li>Provide a ready-to-use environment to help you define your alert parameters, as well as encourage you to perform basic data-analysis operations on the monitored datasets before setting the alerts.</li>
+                    <li>Simplify the process of monitoring streaming pure-data sources,</li>
+                    <li>Give you the freedom to use all of JavaScript and Node’s power to mash up several datasets at once,</li>
+                    <li>Provide a ready-to-use environment to help you define your alert parameters, as well as encourage you to perform basic data-analysis operations on the monitored datasets before setting the alerts.</li>
                 </ul>
+
+                <p>As always, I will try my best not to fall into PR, and instead, to offer my personal view on Datastringer’s creation process, as well as what we learnt by doing it. Do head to the repo and wiki for examples, snippets, and more code-related stuff.</p>
+
+                <blockquote>
+                    <p>Developing with the app is like developing with any of NPR Visuals’ applications – you run the Flask app locally, and it offers easy Fabric commands to bake the app into static HTML. The difference is the deployment process runs Node scripts that package the app into an Electron app and then create ready-to-use installers for Windows and Mac OS X.</p>
+                    <p>…</p>
+                    <p>Configurable copyright options add an additional layer of complexity to the app, but it is a necessary step. <a href="https://source.opennews.org/en-US/articles/introducing-lunchbox/">Waterbug</a>’s main purpose is to properly give credit to photographers while not wasting characters on that attribution (this is especially useful on Twitter as images take up 23 of the the 140 character limit).</p>
+                </blockquote>
+
+                <p>That’s what <a href="#">Datastringer</a> aims to do. It was built to be as simple as possible, and very much journalism-oriented. The idea is not new in itself, it’s basically a monitoring tool. However, Datastringer wants to:</p>
 
                 <p>As always, I will try my best not to fall into PR, and instead, to offer my personal view on Datastringer’s creation process, as well as what we learnt by doing it. Do head to the repo and wiki for examples, snippets, and more code-related stuff.</p>
 
@@ -97,16 +108,31 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
                 <p>As always, I will try my best not to fall into PR, and instead, to offer my personal view on Datastringer’s creation process, as well as what we learnt by doing it. Do head to the repo and wiki for examples, snippets, and more code-related stuff.</p>
 
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, quaerat neque magni natus sunt autem animi soluta labore ipsa nulla quod nam itaque fugit eum delectus tenetur esse vitae fugiat.</p>
+
+                <ol>
+                    <li>Simplify the process of monitoring streaming pure-data sources,</li>
+                    <li>Give you the freedom to use all of JavaScript and Node’s power to mash up several datasets at once,
+                        <ol>
+                            <li>oh look</li>
+                            <li>this list</li>
+                            <li>it is nested</li>
+                        </ol>
+                    </li>
+                    <li>Provide a ready-to-use environment to help you define your alert parameters, as well as encourage you to perform basic data-analysis operations on the monitored datasets before setting the alerts.</li>
+                </ol>
+
+
                 <p>About the way it works, you’ve got to think of it this way: <code>datastringer.js</code> is a sort of black box which uses user-input values, parameters, and functions, stored in <code>use_cases.json</code>. Let’s have a look at this file’s structure:</p>
 
                 <pre><code>javascript
-    [{
-      "stringer": "local-police-stringer.js",
-      "parameters": ["metropolitan", "00AGGU"]
-    }, {
-      "stringer": "crime-stringer.js",
-      "parameters": ["51.52863195218981", "-0.12342453002929688", "6", "10"]
-    }]</code></pre>
+  [{
+    "stringer": "local-police-stringer.js",
+    "parameters": ["metropolitan", "00AGGU"]
+  }, {
+    "stringer": "crime-stringer.js",
+    "parameters": ["51.52863195218981", "-0.12342453002929688", "6", "10"]
+  }]</code></pre>
 
                 <p>The day before August 16, e.g. one day before the Knight-Mozilla Fellowship deadline, and three days before our presentation to the News Labs, Clément came to London for a final sprint. We worked all day on the project and on our caffeine-per-gram-of-blood level. Until this key moment when, while writing the documentation, I asked Clément for help.</p>
 
@@ -147,133 +173,107 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                 <p>My main focus for the weeks to come will be to field-test the project and to make the software more accessible for the audience. I am very much looking forward to our 1.0 release, that I will consider ready when anyone can install Datastringer on his machine and get up and running without coding.</p>
             </div><!-- /end .article.main -->
 
-            <div class="article-credits">
-                <h2>Credits</h2>
+            <div class="article-links-relevant">
+                <h2 class="hed-category">People</h2>
 
                 <ul>
-                    <li class="profile-person h-card">
-                        <h3 class="profile-name">
-                            <a href="#">
-                                <img class="u-photo" src="/img/avatar.jpg" alt="" />
-                                <cite class="p-name">Basile Simon</cite>
-                            </a>
-                        </h3>
-
-                        <p class="profile-bio">Hacker-journalist @BBC<em>News</em>Labs. Data-journalist @airwars_. #ddj, linked-data, infosec, drones with @TBIJ, stuff PGP: http://t.co/P1GYMem22Y</p>
-
-                        <ul>
-                            <li><a class="p-org icon-company" href="#">BBC News</a></li>
-                            <li><a class="icon-twitter-alt" href="#">@basilesimon</a></li>
-                            <li><a class="u-url icon-link" href="#">Visit website</a></li>
-                        </ul>
-                    </li><!-- /end .profile-person -->
-                    <li class="profile-person h-card">
-                        <h3 class="profile-name">
-                            <a href="#">
-                                <img class="u-photo" src="/img/avatar.jpg" alt="" />
-                                <cite class="p-name">Tiff Fehr</cite>
-                            </a>
-                        </h3>
-
-                        <p class="profile-bio">The Inimitable Tiff ☔ Asst. editor, @nytinteractive/@nytimes. Seattle-raised. Owner of a Dragon &amp; a Behemoth (cats). Prolly following you via matryoshka Lists.</p>
-
-                        <ul>
-                            <li><a class="p-org icon-company" href="#">The New York Times</a></li>
-                            <li><a class="icon-twitter-alt" href="#">@tiffehr</a></li>
-                            <li><a class="u-url icon-link" href="#">Visit website</a></li>
-                        </ul>
-                    </li><!-- /end .profile-person -->
+                    <li><a href="#">Clément Geiger</a></li>
+                    <li><a href="#">Basile Simon-MuchLongername</a></li>
                 </ul>
-            </div><!-- /end .article-credits -->
 
-            <div class="article-comments">
-                <h2>Comments</h2>
+                <h2 class="hed-category">Organizations</h2>
 
-                <!-- comments TK -->
-            </div><!-- /end .article-comments -->
+                <ul>
+                    <li><a href="#">NJ.com</a></li>
+                    <li><a href="#">ProPublica</a></li>
+                    <li><a href="#">The Chicago Tribune</a></li>
+                    <li><a href="#">The Washington Post</a></li>
+                    <li><a href="#">WNYC</a></li>
+                </ul>
+            </div><!-- /end .article-links-relevant -->
 
-            <div class="article-related">
-                <h2>Recently</h2>
+            <div class="article-matter-back">
+                <div class="mod article-credits">
+                    <h2 class="hed-label">Credits</h2>
 
-                <ul class="list-promo">
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" /> How NPR Fact-Checks The Debate, Live
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" /> Event Round-Up, Oct 17
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" /> What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes
-                        </a>
-                    </li><!-- /end .src-promo -->
-                </ul><!-- /end .list-promo -->
-            </div><!-- /end .article-related -->
+                    <ul>
+                        <li class="profile-person h-card">
+                            <h3 class="profile-name">
+                                <a href="#">
+                                    <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
+                                    <cite class="p-name">Basile Simon</cite>
+                                </a>
+                            </h3>
 
-            <div class="site-search" id="search">
-                <div class="site-search-inner">
-                    <div class="article-tease">
-                        <p class="hed-search">From our Archives:</p>
-                        <h2 class="hed-article-tease-search">
+                            <p class="profile-bio">Hacker-journalist @BBC<em>News</em>Labs. Data-journalist @airwars_. #ddj, linked-data, infosec, drones with @TBIJ, stuff PGP: http://t.co/P1GYMem22Y</p>
+
+                            <ul class="profile-links">
+                                <li><a class="p-org icon-company" href="#">BBC News</a></li>
+                                <li><a class="icon-twitter-alt" href="#">@basilesimon</a></li>
+                                <li><a class="u-url icon-link" href="#">Visit website</a></li>
+                            </ul>
+                        </li><!-- /end .profile-person -->
+                        <li class="profile-person h-card">
+                            <h3 class="profile-name">
+                                <a href="#">
+                                    <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
+                                    <cite class="p-name">Tiff Fehr</cite>
+                                </a>
+                            </h3>
+
+                            <p class="profile-bio">The Inimitable Tiff ☔ Asst. editor, @nytinteractive/@nytimes. Seattle-raised. Owner of a Dragon &amp; a Behemoth (cats). Prolly following you via matryoshka Lists.</p>
+
+                            <ul class="profile-links">
+                                <li><a class="p-org icon-company" href="#">The New York Times</a></li>
+                                <li><a class="icon-twitter-alt" href="#">@tiffehr</a></li>
+                                <li><a class="u-url icon-link" href="#">Visit website</a></li>
+                            </ul>
+                        </li><!-- /end .profile-person -->
+                    </ul>
+                </div><!-- /end .article-credits -->
+
+                <div class="mod article-comments" data-title="Comments">
+                    <div id="disqus_thread"></div>
+                </div><!-- /end .article-comments -->
+
+                <div class="mod article-related">
+                    <h2 class="hed-label">Recently</h2>
+
+                    <ul class="list-promos">
+                        <li class="src-promo">
                             <a href="#">
-                                <img class="thumb" src="/img/fpo/article-thumb.jpg" alt="" />
-                                From the BBC News Labs: Datastringer
+                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
                             </a>
-                        </h2>
-                    </div>
-                    <form class="form-search">
-                        <label class="hed-search" for="text-search">Search SOURCE:</label>
-                        <p class="fields-search">
-                            <input class="text-search" id="text-search" type="search" value="" />
-                            <input class="btn-search icon-search" type="submit" value="Search" />
-                        </p><!-- /end .fields-search -->
-                    </form><!-- /end .form-search -->
-                </div>
-            </div><!-- /end .site-search -->
+                        </li><!-- /end .src-promo -->
+                        <li class="src-promo">
+                            <a href="#">
+                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
+                            </a>
+                        </li><!-- /end .src-promo -->
+                        <li class="src-promo">
+                            <a href="#">
+                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
+                            </a>
+                        </li><!-- /end .src-promo -->
+                    </ul><!-- /end .list-promos -->
+                </div><!-- /end .article-related -->
+            </div><!-- /end .article-matter-back -->
+
+            <?php include($rootpath . "/inc/site-search.php"); ?>
 
         </div><!-- /end .page-main -->
     </main>
 
-    <footer>
-        <div class="page-footer">
-
-            <div class="foot-source">
-                <h2 class="foot-logo"><img src="/svg/logo-source.svg" onerror="this.src='/dist/svg/png/logo-source.png'; return false" alt="Source" /></h2>
-
-                <div class="foot-content">
-                    <p>Source is an OpenNews project designed to amplify the impact of journalism code and the community of developers, designers, journalists, and editors who make it.</p>
-
-                    <p>Learn more <a href="#">about the project</a> or <a href="#">contribute your work</a>. <a href="#">Contact us</a>.</p>
-
-                    <p><a href="https://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a></p>
-                </div><!-- /end .foot-content -->
-
-                <h3>Connect</h3>
-                <ul>
-                    <li><a class="icon-rss" href="#">RSS</a></li>
-                    <li><a class="icon-twitter" href="#">@source</a></li>
-                    <li><a class="icon-email" href="#">Get our biweekly roundup email</a></li>
-                </ul>
-            </div><!-- /end .foot-source -->
-
-            <div class="foot-opennews">
-                <h2 class="foot-logo"><img src="/svg/logo-opennews.svg" onerror="this.src='/dist/svg/png/logo-opennews.png'; return false" alt="Source" /></h2>
-
-                <p>A multi-year partnership between Mozilla and the Knight Foundation, Knight-Mozilla OpenNews is dedicated to creating an ecosystem to help strengthen and build community around journalism on the web. More at <a href="https://opennews.org">opennews.org</a>.</p>
-            </div><!-- /end .foot-opennews -->
-
-        </div><!-- /end .page-footer -->
-    </footer>
+    <?php include($rootpath . "/inc/site-footer.php"); ?>
 
 </div><!-- /end .page -->
 
 <!-- Anchors used by `aria-describedby` states -->
 <div id="wayfinding" class="squelch">
-  <span id="current-page">Current page</span>
+    <span id="current-page">Current page</span>
 </div>
 
 </body>
