@@ -17,7 +17,7 @@ body {
 
 /*-
 
-Common/base elements
+Base element styles
 
 -*/
 a {
@@ -100,7 +100,30 @@ ul li {
     margin-left: 0;
     padding-left: 0;
 }
-
+// CC license link
+.link-cc {
+    background: url("/img/cc.png") no-repeat 0 0.2em;
+    display: inline-block;
+    padding-left: 100px;
+    font-size: 0.8125em;    /* 13/16 */
+    margin: 1em 0;
+}
+// “CTA” link (has a » on the side)
+.link-cta:after {
+    content: " »";
+    display: inline-block;
+    padding-left: 0.3em;
+    text-decoration: none;
+}
+// Container for “primary” CTA link
+.cta-primary {
+    margin: 3em 0;
+    text-align: right;
+}
+.cta-primary .link-cta {
+    font-size: 1.5em;
+    font-weight: 700;
+}
 
 
 /*-
@@ -111,8 +134,8 @@ Macro-level structural elements
 .page {
     margin: 0 3.055555555555555555%;    /* 44/1440 */
 }
-.page-main,
-.page-header {
+.site-header,
+.page-main {
     padding: 0 4.758364312267657992%;    /* 64/1345 */
 }
 .page-main {
@@ -127,9 +150,6 @@ Macro-level structural elements
     display: table;
     clear: both;
 }
-.page-main .mod {
-    margin-bottom: 2em;
-}
 .content-main {
     margin-bottom: 4em;
 }
@@ -138,9 +158,6 @@ Macro-level structural elements
         float: left;
         margin-bottom: 0;
         width: 74.285714285714285714%;    /* 884/1190 */
-    }
-    .content-main .mod {
-        margin-bottom: 4em;
     }
     .content-aside {
         float: right;
@@ -152,16 +169,35 @@ Macro-level structural elements
 
 /*-
 
+“Modules” - in-page section dividers
+
+-*/
+.page-main .mod {
+    margin-bottom: 2em;
+}
+.page-main .mod .hed-label {
+    margin-bottom: 4em;
+}
+@media (min-width: 60em) {
+    .content-main .mod {
+        margin-bottom: 4em;
+    }
+}
+
+
+
+/*-
+
 Header
 
 -*/
-.page-header {
+.site-header {
     display: flex;
 }
-.page-header > * {
+.site-header > * {
     margin: 0;
 }
-.page-header a {
+.site-header a {
     display: block;
 }
 // Logo
@@ -403,6 +439,19 @@ Main section (in white)
 
 /*-
 
+Landing page
+
+-*/
+.main-lead {
+    font-size: 1.5em;    /* 24/16 */
+    line-height: 1.20833333333333333333;    /* 29/24 */
+    max-width: 24.08333333333333333333em;    /* 578/24 */
+}
+
+
+
+/*-
+
 Article
 
 -*/
@@ -473,7 +522,7 @@ Headings
     font-size: 0.8125em;    /* 13/16 */
     text-transform: uppercase;
 }
-// Figure styles
+// In-article figure styles
 .figure {
     font-family: map-get( $fonts, "serif" );;
     margin-bottom: 2em;
@@ -523,6 +572,142 @@ Headings
 }
 
 /*
+Lists!
+*/
+// “Promo” lists. Contains (at widescreen) a 3-up list of elements
+.list-promos {
+    display: flex;
+    font-size: 1.25em;    /* 20 / 16 */
+    line-height: 1.25;    /* 25/20 */
+    justify-content: space-between;
+}
+.list-promos .src-promo {
+    flex: 0 1 31%;
+}
+// “Long” (block) and “short” (inline) lists of hashtags
+.list-tags li {
+    margin-bottom: 0.4em;
+}
+.list-tags-short li {
+    display: inline;
+    margin-bottom: 0;
+    margin-right: 0.4em;
+}
+// Topic lists.
+.list-topics .topic {
+    margin-bottom: 2em;
+}
+.hed-topic {
+    font-size: 1.5em;    /* 24 / 16 */
+    line-height: 1.25;
+    margin-bottom: 0.25em;
+}
+.list-topics .list-compact {
+    font-size: 1.25rem;
+    line-height: 1.25;    /* 25/20 */
+}
+.list-compact li {
+    display: inline;
+}
+@media (min-width: 30em),
+(min-width: 60em) and (max-width: 69.99em) {
+    .list-topics {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .list-topics .topic,
+    .list-topics:after {
+        width: 46%;
+    }
+    .list-topics .topic {
+        margin-bottom: 4em;
+    }
+    .list-topics:after {
+        content: "";
+    }
+}
+@media (min-width: 50em) and (max-width: 59.99em),
+(min-width: 70em) {
+    .list-topics .topic,
+    .list-topics:after {
+        width: 31%;
+    }
+}
+// In-article lists
+.article-main ol {
+    padding-left: 0;
+}
+.article-main ol ol {
+    margin-left: 1.5em;
+}
+.article-main ul li {
+    list-style: disc;
+}
+// Recently added elements
+.list-recently li {
+    list-style: none;
+}
+.list-recently,
+.item-recent {
+    padding-left: 0;
+}
+.item-recent {
+    border-bottom: 1px solid #C6C6C6;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+.hed-recent {
+    margin-bottom: 0.5em;
+}
+.item-recent:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.item-recent li {
+    margin-bottom: 0.5em;
+}
+.item-recent li a {
+    background-position: 0 0.2em;
+    color: inherit;
+    display: block;
+    font-size: 0.8125em;    /* 13 / 16 */
+    padding-left: 30px;
+    text-decoration: none;
+}
+.item-recent li a:focus,
+.item-recent li a:hover {
+    color: #45BEA9;
+}
+// At lower breakpoints, let’s move to 2- and 3-col layouts. (But not above 60em, because at that point, we’ll be in the sidebar.)
+@media (min-width: 30em) and (max-width: 59.99em) {
+    .list-recently {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+@media (min-width: 30em) and (max-width: 49.99em) {
+    .item-recent {
+        border: none;
+        width: 44%;
+    }
+}
+@media (min-width: 50em) and (max-width: 59.99em) {
+    .list-recently:after,
+    .item-recent {
+        border: none;
+        width: 31%;
+    }
+    .list-recently:after {
+        content: "";
+    }
+}
+
+/*
+Structural elements for article
+*/
+/*
 Article front matter
 */
 .article-matter-front .list-tags li {
@@ -533,7 +718,21 @@ Article front matter
     top: 0;
     right: 0;
 }
+// Article block - metadata
+.article-meta {
+    display: flex;
+    font-size: 1.125em;    /* 18/16 */
+    line-height: 1.2;
+}
+.article-byline {
+    margin-right: 2em;
+}
+.article-date {
+    color: #959595;
+    margin-left: auto;
+}
 @media (max-width: 64.99em) {
+    // If a browser supports flexbox, visually reposition the list-tags to the bottom on smaller screens
     .article-matter-front {
         display: flex;
         flex-direction: column;
@@ -588,37 +787,9 @@ Article front matter
         position: static;
     }
 }
-
 /*
-Article lists
+Article block - MAIN CONTENT
 */
-.article-main ol {
-    padding-left: 0;
-}
-.article-main ol ol {
-    margin-left: 1.5em;
-}
-.article-main ul li {
-    list-style: disc;
-}
-
-/*
-Structural elements for article
-*/
-// Article block - metadata
-.article-meta {
-    display: flex;
-    font-size: 1.125em;    /* 18/16 */
-    line-height: 1.2;
-}
-.article-byline {
-    margin-right: 2em;
-}
-.article-date {
-    color: #959595;
-    margin-left: auto;
-}
-// Article block - MAIN CONTENT
 .article-main {
     font-family: map-get( $fonts, "serif-base" );;
     font-size: 1.25em;
@@ -723,14 +894,6 @@ Article back matter
     color: #45BEA9;
 }
 // Hashtag: hashtags
-.list-tags li {
-    margin-bottom: 0.4em;
-}
-.list-tags-short li {
-    display: inline;
-    margin-bottom: 0;
-    margin-right: 0.4em;
-}
 .tag {
     background-color: #D8D8D8;
     border-radius: 0.45em;
@@ -787,17 +950,6 @@ Article back matter
 }
 
 
-.list-promos {
-    display: flex;
-    font-size: 1.25em;    /* 20 / 16 */
-    line-height: 1.25;    /* 25/20 */
-    justify-content: space-between;
-}
-.list-promos .src-promo {
-    flex: 0 1 31%;
-}
-
-
 
 /*-
 
@@ -815,7 +967,8 @@ Footer
     color: #45BEA9;
     text-decoration: none;
 }
-.page-footer > div {
+// “Main” footer blocks display side-by-side on wider screens; they’re the primary dividers in the footer
+.foot-main {
     padding: 1em;
     padding: 4vw;
 }
@@ -826,19 +979,74 @@ Footer
 .foot-opennews {
     background: #232D44;
 }
+.foot-content {
+    font-size: 1.125em;
+    line-height: 1.45;
+    margin-bottom: 2em;
+}
+// Footer logos
+.page-footer .foot-logo {
+    margin: 0 0 1em;
+}
+.foot-opennews .foot-logo {
+    margin-bottom: 0.8em;
+}
+.foot-opennews img {
+    margin-top: -6px;
+}
+.foot-source .foot-logo {
+    margin-bottom: 1em;
+}
+// “Connect” links
+.hed-foot {
+    color: #47BFF8;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.list-foot-social {
+    line-height: 1.25;
+}
+.list-foot-social li {
+    margin-bottom: 0.75em;
+}
+.list-foot-social a {
+    background-position: 0 0.25em;
+    display: block;
+    padding-left: 30px;
+}
 @media (min-width: 55em) {
+    // Two-column layout
     .page-footer {
         display: flex;
     }
-    .page-footer > div {
+    .foot-main {
         flex: 1 0 auto;
     }
     .foot-source {
         background-size: 55% auto;
         background-position: 100% 100%;
+        display: flex;
         padding-left: 4.903417533432392273%;    /* 66/1346 */
         padding-right: 4.903417533432392273%;    /* 66/1346 */
         width: 50.520059435364041604%;    /* 680/1346 */
+    }
+    .foot-source .foot-content {
+        flex: 0 1 55%;
+        margin-bottom: 0;
+        margin-right: 10%;
+    }
+    .foot-source .link-cc {
+        margin: 4em 0 0;
+    }
+    .foot-source .hed-foot {
+        margin-bottom: 2.5em;
+        margin-top: 1.2em;
+    }
+    .list-foot-social {
+        max-width: 10em;
+    }
+    .list-foot-social a {
+        margin-left: -30px;
     }
     .foot-opennews {
         background: #232D44;
@@ -847,13 +1055,4 @@ Footer
         padding-right: 6.835066864784546805%;    /* 92/1346 */
         width: 27.786032689450222882%;    /* 374/1346 */
     }
-}
-.page-footer .foot-logo {
-    margin: 0 0 1.3em;
-}
-.foot-opennews .foot-logo {
-    margin-bottom: 0.8em;
-}
-.foot-opennews img {
-    margin-top: -6px;
 }

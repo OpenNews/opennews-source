@@ -1,5 +1,5 @@
     <header>
-        <div class="page-header">
+        <div class="site-header">
             <h1 class="site-logo">
                 <a href="/">
                     <img src="/svg/logo-source.svg" onerror="this.src='/dist/svg/png/logo-source.png'; return false" alt="Source" />
@@ -20,7 +20,7 @@
             <a class="search-toggle" href="#search">
                 <span class="icon icon-search">Search this site</span>
             </a>
-        </div><!-- /end .page-header -->
+        </div><!-- /end .site-header -->
     </header>
 
     <hr />

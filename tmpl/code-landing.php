@@ -8,7 +8,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 <head>
 <meta charset="utf-8" />
 
-<title>From the BBC News Labs: Datastringer — SOURCE</title>
+<title>Code — SOURCE</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -36,9 +36,9 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
         <div class="page-main">
 
             <div class="content-main">
-                <div class="mod main-lead">
-                    <h1 class="page-title-lead">Code</h1>
+                <h1 class="page-title-lead">Code</h1>
 
+                <div class="mod main-lead">
                     <p>We collect a feed of code repositories from tech teams in news organizations and feature repos referenced in our articles or submitted by readers.</p>
 
                     <p><a class="link-cta" href="#">Submit a repo now</a></p>
@@ -51,7 +51,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                         <li class="src-promo">
                             <a href="#">
                                 <img src="/img/fpo/article-teaser.jpg" alt="" />
-                                <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
+                                <h3 class="hed-promo">agate</h3>
                             </a>
                             <ul class="list-tags-short">
                                 <li><a class="tag" href="#">data analysis</a></li>
@@ -60,7 +60,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                         <li class="src-promo">
                             <a href="#">
                                 <img src="/img/default@1x.png" srcset="/img/default@2x.png 2x" alt="" />
-                                <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
+                                <h3 class="hed-promo">Aufbau</h3>
                             </a>
 
                             <ul class="list-tags-short">
@@ -71,7 +71,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                         <li class="src-promo">
                             <a href="#">
                                 <img src="/img/fpo/article-teaser.jpg" alt="" />
-                                <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
+                                <h3 class="hed-promo">Tik Tok</h3>
                             </a>
 
                             <ul class="list-tags-short">
@@ -83,13 +83,13 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                         </li><!-- /end .src-promo -->
                     </ul><!-- /end .list-promos -->
 
-                    <a class="link-cta cta-primary" href="#">See more</a>
+                    <p class="cta-primary"><a class="link-cta" href="#">See more</a></p>
                 </div><!-- /end .mod -->
 
                 <div class="mod">
                     <h2 class="hed-label">Explore All Code</h2>
 
-                    <ul class="list-topic">
+                    <ul class="list-topics">
                         <li class="topic">
                             <h3 class="hed-topic">Culture</h3>
                             <ul class="list-compact">
@@ -203,17 +203,17 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                                 <li><a href="#">code links here</a></li>
                             </ul><!-- /end .list-compact -->
                         </li><!-- /end .topic -->
-                    </ul><!-- /end .list-topic -->
+                    </ul><!-- /end .list-topics -->
                 </div><!-- /end .mod -->
             </div><!-- /end .group.p-more -->
 
             <div class="content-aside">
                 <div class="mod aside-lead">
-                    <h2 class="hed-label">Featured Repos</h2>
+                    <h2 class="hed-label">Recently Added</h2>
 
                     <ol class="list-recently">
                         <li class="item-recent">
-                            <h3><a href="#">Stat Index</a></h3>
+                            <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
 
                             <ul>
                                 <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
@@ -221,7 +221,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3><a href="#">Narrative Charts</a></h3>
+                            <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
 
                             <ul>
                                 <li><a class="icon-profile" href="#">Simon Elvery</a></li>
@@ -229,7 +229,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3><a href="#">Elex</a></h3>
+                            <h3 class="hed-recent"><a href="#">Elex</a></h3>
 
                             <ul>
                                 <li><a class="icon-profile" href="#">Simon Elvery</a></li>
@@ -237,7 +237,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3><a href="#">Stat Index</a></h3>
+                            <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
 
                             <ul>
                                 <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
@@ -245,7 +245,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3><a href="#">Narrative Charts</a></h3>
+                            <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
 
                             <ul>
                                 <li><a class="icon-profile" href="#">Simon Elvery</a></li>
@@ -253,7 +253,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3><a href="#">Elex</a></h3>
+                            <h3 class="hed-recent"><a href="#">Elex</a></h3>
 
                             <ul>
                                 <li><a class="icon-profile" href="#">Simon Elvery</a></li>
