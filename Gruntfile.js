@@ -76,8 +76,7 @@ module.exports = function( grunt ) {
                     "<%= _config.dir.templates %>js/lib/$.js",
                     "<%= _config.dir.templates %>js/lib/transition-support.js",
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
-                    "<%= _config.dir.templates %>js/lib/collapsible.js",
-                    "<%= _config.dir.templates %>js/lib/collapsible.externaltoggle.js",
+                    "<%= _config.dir.templates %>js/navigation.js",
                     "<%= _config.dir.templates %>js/search.js",
                     "<%= _config.dir.templates %>js/comments-disqus.js",
                     // source-init.js needs to be last.
