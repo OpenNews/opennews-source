@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Person, PersonLink, Organization, OrganizationLink
+from .models import Person, PersonLink, Organization, OrganizationLink, OrganizationAdmin
 #from sorl.thumbnail.admin import AdminImageMixin
 from source.utils.widgets.thumbnail import AdminImageMixin
 
@@ -44,6 +44,16 @@ class OrganizationLinkInline(admin.StackedInline):
             field.widget.attrs['style'] = 'width: 30em;'
         return field
 
+class OrganizationAdminInline(admin.StackedInline):
+    model = OrganizationAdmin
+    extra = 1
+    fieldsets = (
+        ('', {
+            'fields': ('email',),
+            'description': 'This email address will be able to log in and manage job postings for this organization.',
+        }),
+    )
+
 class OrganizationAdmin(AdminImageMixin, admin.ModelAdmin):
     save_on_top = True
     prepopulated_fields = {'slug': ('name',)}
@@ -53,7 +63,7 @@ class OrganizationAdmin(AdminImageMixin, admin.ModelAdmin):
         ('', {'fields': (('name', 'slug'), ('is_live', 'show_in_lists'), 'email', 'twitter_username', 'github_username', ('github_repos_num', 'github_gists_num'), 'homepage', 'logo', 'description',)}),
         ('Location', {'fields': ('address', ('city', 'state',), 'country',)}),
     )
-    inlines = [OrganizationLinkInline,]
+    inlines = [OrganizationAdminInline, OrganizationLinkInline,]
 
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Organization, OrganizationAdmin)

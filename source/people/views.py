@@ -15,7 +15,7 @@ from django.template.defaultfilters import slugify
 from django.views.generic import ListView, DetailView, TemplateView, View
 
 from .forms import OrganizationUpdateForm, PersonUpdateForm
-from .models import Person, Organization
+from .models import Person, Organization, OrganizationAdmin
 
 from caching.config import NO_CACHE
 from source.articles.models import Article
@@ -97,6 +97,8 @@ class PersonSearchJson(View):
             people = people.filter(Q(first_name__icontains = q) | Q(last_name__icontains = q))
             
         people = people.values('first_name', 'last_name', 'email', 'twitter_username', 'github_username', 'id')
+        people.timeout = NO_CACHE
+        
         for person in list(people):
             person['name'] = '%s %s' % (person['first_name'], person['last_name'])
 
@@ -253,11 +255,11 @@ class OrganizationUpdate(View):
     def get_organization(self, user):
         if user.is_authenticated() and user.is_active:
             try:
-                organization = Organization.objects.get(is_live=True, email=user.email)
-                return organization
-            except Organization.DoesNotExist:
+                org_admin = OrganizationAdmin.objects.get(email=user.email, organization__is_live=True)
+                return org_admin.organization
+            except OrganizationAdmin.DoesNotExist:
                 self.error_message = "Sorry, no Organization account found that matches your email address: {}".format(user.email)
-            except Organization.MultipleObjectsReturned:
+            except OrganizationAdmin.MultipleObjectsReturned:
                 self.error_message = "Uh-oh, somehow there are multiple Organization accounts attached to your email address: {}. Please contact us for cleanup.".format(user.email)
                 
         return None

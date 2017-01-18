@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import logout
 from django.views import defaults as default_views
 
 from source.base import urls
@@ -12,6 +13,7 @@ from source.base.views import L10NRedirectView
 
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
+    url(r'^auth/logout/', logout, name='logout'),
     url(r'^auth/', include('django_auth0.urls')),
     url(r'^en-(us|US)/', L10NRedirectView.as_view()),
     # Generate a robots.txt

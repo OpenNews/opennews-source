@@ -19,7 +19,7 @@
 
 {% if error_message %}
     <div class="toggle-buttons">
-        Log out
+        <a class="logout" href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a>
     </div>
     <p>{{ error_message }}</p>
 
@@ -28,7 +28,7 @@
     <a href="#organization" class="active">Your organization</a>
     <a href="#people">Your people</a>
     <a href="#jobs">Your job listings</a>
-    Log out
+    <a class="logout" href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a>
 </div>
 
 <div id="organization" class="admin-panel">
@@ -347,7 +347,7 @@ jQuery(document).ready(function(){
     });
 
     var toggleContainer = $('.toggle-buttons');
-    toggleContainer.on('click', 'a', function(e) {
+    toggleContainer.on('click', 'a:not(.logout)', function(e) {
         e.preventDefault();
         toggleContainer.find('a').removeClass('active');
         $(this).addClass('active');
