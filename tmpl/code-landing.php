@@ -30,7 +30,10 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
 <div class="page">
 
-    <?php include($rootpath . "/inc/site-header.php"); ?>
+    <?php
+    $current_page = "community";
+    include($rootpath . "/inc/site-header.php");
+    ?>
 
     <main>
         <div class="page-main">

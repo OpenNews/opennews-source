@@ -40,7 +40,10 @@ var disqus_config = function () {
 
 <div class="page">
 
-    <?php include($rootpath . "/inc/site-header.php"); ?>
+    <?php
+    $current_page = "articles";
+    include($rootpath . "/inc/site-header.php");
+    ?>
 
     <main>
         <div class="page-main">
