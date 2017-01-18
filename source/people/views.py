@@ -256,9 +256,9 @@ class OrganizationUpdate(View):
                 organization = Organization.objects.get(is_live=True, email=user.email)
                 return organization
             except Organization.DoesNotExist:
-                self.error_message = "No Organization account found that matches the email address used to log in."
+                self.error_message = "Sorry, no Organization account found that matches your email address: {}".format(user.email)
             except Organization.MultipleObjectsReturned:
-                self.error_message = "Uh-oh, somehow there are multiple Organization accounts attached to this email address. Please contact us for cleanup."
+                self.error_message = "Uh-oh, somehow there are multiple Organization accounts attached to your email address: {}. Please contact us for cleanup.".format(user.email)
                 
         return None
 

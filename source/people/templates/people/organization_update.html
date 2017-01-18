@@ -5,7 +5,15 @@
 {% block content %}
 <div class="authentication">
     {% if not user.is_authenticated() %}
-        Hi you need to log in
+    <script src="https://cdn.auth0.com/js/lock-passwordless-1.0.min.js"></script>
+    <script type="text/javascript">
+        var options = {"callbackURL":"{{ AUTH0_CALLBACK_URL }}"}
+        var lock = new Auth0LockPasswordless(
+            '{{AUTH0_CLIENT_ID}}',
+            '{{AUTH0_DOMAIN}}'
+        );
+    </script>
+    <button onclick="lock.magiclink(options)">Please sign in to update your organization</button>
     {% endif %}
 </div>
 
@@ -221,6 +229,8 @@
         {% endfor %}
     </div>
 </div>
+{% elif user.is_authenticated() %}
+<p>Sorry, no organization account found for this email address.</p>
 {% endif %}
 {% endblock content %}
 

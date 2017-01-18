@@ -10,6 +10,8 @@ Local settings
 
 from .common import *
 
+BASE_SITE_URL = 'http://127.0.0.1:8000'
+
 # DEBUG
 # ------------------------------------------------------------------------------
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
@@ -20,7 +22,6 @@ THUMBNAIL_DEBUG = False
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key only used for development and testing.
 SECRET_KEY = env("DJANGO_SECRET_KEY", default='!kl8xt91apv&7m*9px=j7%y*vr*8%k_q78#m010-kc8l-uqe_b')
 
