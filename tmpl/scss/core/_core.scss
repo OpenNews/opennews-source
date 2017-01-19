@@ -1,0 +1,1435 @@
+body {
+    background: #232C50;
+    color: #FFF;
+    font: normal 100%/1.5 map-get( $fonts, "sans-base" );
+    font-size: calc( 14px + ( 16 - 14 ) * ( ( 100vw - 300px ) / ( 1400 - 300 ) ) );
+    margin: 0;
+}
+.wf-active body {
+    font-family: map-get( $fonts, "sans" );
+}
+
+* {
+    margin-top: 0;
+}
+
+
+
+/*-
+
+Base element styles
+
+-*/
+a {
+    color: #469ABC;
+    text-decoration: underline;
+    transition: color 0.1s;
+}
+a:hover,
+a:focus {
+    color: #45BEA9;
+    text-decoration: none;
+}
+blockquote {
+    margin: 1.5em;
+}
+blockquote:before,
+blockquote:after {
+    content: "";
+    display: inline-block;
+    background: #D8D8D8;
+    height: 1em;
+    min-width: 7em;
+    width: 30%;
+}
+blockquote:after {
+    margin-top: 1em;
+}
+blockquote:before {
+    margin-bottom: 0.75em;
+}
+code {
+    color: #469A56;
+    font-family: map-get( $fonts, "mono" );
+    font-size: 0.8125em;
+}
+figure {
+    margin: 0;
+}
+img {
+    max-width: 100%;
+}
+pre {
+    background: #545454;
+    border: 6px solid #F5F5F5,
+            1px solid #E2E2E2;
+    padding: 1em;
+    font-size: 0.85em;
+    overflow: auto;
+}
+@media (min-width: 50em) {
+    pre {
+        font-size: 18px;
+        font-size: 1.125rem;
+    }
+}
+@media (min-width: 60em) {
+    pre {
+        margin-left: -1em;
+        margin-left: calc( -1 * ( 1em + 7px) );
+        margin-right: -1em;
+        margin-right: calc( -1 * ( 1em + 7px) );
+    }
+}
+pre code {
+    color: #FFF;
+    font-size: 0.9em;
+}
+ol,
+p,
+ul {
+    margin-top: 0;
+}
+ol:last-child,
+p:last-child,
+ul:last-child {
+    margin-bottom: 0;
+}
+ul,
+ul li {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+// CC license link
+.link-cc {
+    background: url("/img/cc.png") no-repeat 0 0.2em;
+    display: inline-block;
+    padding-left: 100px;
+    font-size: 0.8125em;    /* 13/16 */
+    margin: 1em 0;
+}
+// “CTA” link (has a » on the side)
+.link-cta:after {
+    content: " »";
+    display: inline-block;
+    padding-left: 0.3em;
+    text-decoration: none;
+}
+// Container for “primary” CTA link
+.cta-primary {
+    margin: 3em 0;
+    text-align: right;
+}
+.cta-primary .link-cta {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+
+/*-
+
+Macro-level structural elements
+
+-*/
+.page {
+    margin: 0 3.055555555555555555%;    /* 44/1440 */
+}
+.page-main {
+    padding: 1em 4.758364312267657992%;    /* 64/1345 */
+    padding-bottom: 4vw;
+    padding-top: 4vw;
+    zoom: 1;
+}
+.page-main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.content-main {
+    margin-bottom: 4em;
+}
+@media (min-width: 60em) {
+    .content-main {
+        float: left;
+        margin-bottom: 0;
+        width: 74.285714285714285714%;    /* 884/1190 */
+    }
+    .content-aside {
+        float: right;
+        width: 21.176470588235294117%;    /* 252/1190 */
+    }
+}
+
+
+
+/*-
+
+“Modules” - in-page section dividers
+
+-*/
+.page-main .mod {
+    margin-bottom: 2em;
+}
+.page-main .mod .hed-label {
+    margin-bottom: 4em;
+}
+@media (min-width: 60em) {
+    .content-main .mod {
+        margin-bottom: 4em;
+    }
+}
+
+
+
+/*-
+
+Header
+
+-*/
+.site-header {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+}
+.site-header a {
+    color: #FFF;
+    text-decoration: none;
+}
+.header-main {
+    display: flex;
+}
+.header-main > * {
+    margin: 0;
+}
+.site-logo {
+    flex: 1;
+}
+.site-logo a {
+    display: flex;
+    justify-content: center;
+    padding: 0.7em;
+}
+.site-logo img {
+    height: 0.9em;
+}
+// Toggle links
+.header-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 2em;
+    position: relative;
+}
+.header-main .nav-toggle {
+    order: -1;
+}
+// Inside each toggle link is an `.icon`, whose visibility gets toggled as menus open/close
+.site-header .icon {
+    background-color: #001A33;
+    background-position: 50% 50%;
+    background-size: auto 18px;
+    display: inline-block;
+    border-radius: 0.1875em;    /* 6/32 */
+    height: 2em;
+    line-height: 1;
+    text-indent: -1000em;
+    width: 4em;
+}
+.site-header .icon-close {
+    background-color: #2676A0;
+    border-radius: 0;
+    bottom: 100%;
+    height: inherit;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: inherit;
+    transition: bottom 0.2s, opacity 0.2s;
+}
+.site-nav-links-open .nav-toggle .icon-close,
+.site-search-open .search-toggle .icon-close {
+    bottom: 0;
+    opacity: 1;
+}
+.nav-toggle .icon-menu {
+    background-size: auto 9px;
+}
+// Primary navigation
+.site-nav {
+    background-color: #2676A0;
+    line-height: 1.2;
+    padding: 0 0.5em;
+}
+.site-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+.site-nav-links li {
+    border-bottom: 1px solid #FFF;
+    flex: 1 0 50%;
+}
+.site-nav-links li:nth-last-child( 1 ),
+.site-nav-links li:nth-last-child( 2 ) {
+    border-bottom: none;
+}
+.site-nav-links a {
+    display: block;
+    padding: 2em 1em;
+}
+.site-nav-links a.is-active {
+    color: #47BFF8;
+    cursor: text;
+}
+.enhanced .site-nav {
+    margin: 0 -3.055555555555555555%;        /* 44/1440 */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s, opacity 0.2s;
+}
+.site-nav-links-open .site-nav {
+    max-height: 11em;
+    opacity: 1;
+}
+// Move from a 2-up grid in the navigation menu to a centered, single row of links
+// NOTE: This may change if the number of links in the menu needs to increase.
+@media (min-width: 23em) {
+    .site-nav-links {
+        flex-wrap: nowrap;
+    }
+    .site-nav-links li {
+        border-bottom: none;
+        flex-basis: 25%;
+    }
+    .site-nav-links a {
+        text-align: center;
+        position: relative;
+        padding: 2em 0.8em;
+    }
+}
+// Move the nav toggle off to the right, and introduce border highlights to the primary navigation
+@media (min-width: 25em) {
+    // From this point on, we’ll use `.site-logo a` to shim the height of the masthead
+    .site-logo a {
+        justify-content: initial;
+        padding: 0.8em 0;
+    }
+    // Move nav-toggle to the right, next to nav-search
+    .header-toggle + .header-toggle {
+        margin-left: 0.5em;
+    }
+    .header-main .nav-toggle {
+        order: initial;
+    }
+    // Navigation highlight bars
+    .site-nav {
+        padding: 0;
+    }
+    .site-nav-links a:after {
+        background: #FFF;
+        top: 0;
+        content: "";
+        height: 0;
+        left: 5%;
+        position: absolute;
+        right: 5%;
+        transition: height 0.2s;
+        width: 90%;
+        z-index: 1;
+    }
+    .site-nav-links a:focus:after,
+    .site-nav-links a:hover:after,
+    .site-nav-links a.is-active:after {
+        height: 0.5em;
+    }
+    .site-nav-links a.is-active:after {
+        background-color: #47BFF8;
+    }
+}
+// Move toward the “full” masthead: make the navigation visible by default, hide the navigation toggle, and position the search toggle off to the right
+@media (min-width: 45em) {
+    .site-header {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        position: relative;
+        margin: 0 4.758364312267657992%;    /* 64/1345 */
+    }
+    .header-main {
+        margin-right: 2.857142857142857142%;    /* 34/1190 */
+    }
+    .site-logo {
+        display: flex;
+        width: 17.226890756302521008%;    /* 205/1190 */
+    }
+    .site-logo a {
+        padding: 1em 0;
+    }
+    .nav-toggle {
+        display: none;
+    }
+    .search-toggle {
+        bottom: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    // Restore search icon to full size
+    .search-toggle .icon {
+        background-color: inherit;
+        background-size: 33px 33px;
+        height: 100%;
+        transition: background-position 0.2s, background-size 0.4s ease-in-out, transform 0.2s, opacity 0.2s;
+        width: 33px;
+    }
+    // Hide the close icon by default
+    .search-toggle .icon-close {
+        background-size: 30px auto;
+        transform: scale( 0 );
+        opacity: 0;
+    }
+    // Open/close states for the search toggle
+    .site-search-open.site-search-transitioning .search-toggle .icon-close {
+        transition-delay: 0.3s;
+    }
+    .site-search-open .search-toggle .icon-close {
+        opacity: 1;
+        transform: scale( 1 );
+    }
+    .site-search-open .search-toggle .icon-search {
+        background-position: left 50% bottom -33px;
+        background-size: 0 0;
+        opacity: 0.1;
+        transition-delay: 0.2s;
+    }
+    // Make the primary navigation visible by default
+    .enhanced .site-nav {
+        background: inherit;
+        margin: 0;
+        overflow: visible;
+        max-height: inherit;
+    }
+    .site-nav,
+    .site-nav-links,
+    .site-nav-links li,
+    .site-nav-links a {
+        display: flex;
+    }
+    .site-nav {
+        width: 50%;
+    }
+    .site-nav-links,
+    .site-nav-links a {
+        width: 100%;
+    }
+    .site-nav-links li,
+    .site-nav-links a {
+        justify-content: center;
+    }
+    .site-nav-links a {
+        box-sizing: border-box;
+        align-items: center;
+        padding: 0;
+    }
+    .site-nav-links a:after {
+        top: auto;
+        bottom: 0;
+    }
+    .site-nav-links a.is-active:after {
+        height: 1em;
+        bottom: -0.5em;
+    }
+}
+@media (min-width: 55em) {
+    // Bump up the vertical height of the masthead row
+    .site-logo a {
+        padding: 1.5em 0;
+    }
+    // Vertical tweak to line .nav-toggle up with the search button
+    .nav-toggle {
+        margin-right: 0.9em;
+    }
+}
+@media (min-width: 60em) {
+    // Bump up the vertical height of the masthead row
+    .site-logo a {
+        padding: 2em 0;
+    }
+}
+
+/*-
+
+Site search
+
+-*/
+.site-search,
+.site-search a {
+    color: #FFF;
+}
+.site-search {
+    background-color: #22759F;
+    background-position: 100% 0;
+    clear: both;
+    margin-top: 3em;
+}
+.hed-search {
+    font-size: 1em;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+.form-search .hed-search {
+    display: block;
+    margin-bottom: 0.5em;
+}
+.hed-article-tease-search {
+    margin: 0;
+    font-size: 1.25em;
+    line-height: 1.2;
+}
+@media (min-width: 20em) {
+    .hed-article-tease-search {
+        font-size: 1.4em;
+    }
+}
+@media (min-width: 25em) {
+    .hed-article-tease-search {
+        font-size: 1.7em;
+    }
+}
+@media (min-width: 40em) {
+    .hed-article-tease-search {
+        font-size: 1.7em;
+    }
+}
+@media (min-width: 60em) {
+    .hed-article-tease-search {
+        font-size: 2em;
+    }
+}
+@media (min-width: 70em) {
+    .hed-article-tease-search {
+        font-size: 2.25em;
+    }
+}
+.site-search img {
+    float: right;
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+}
+.fields-search {
+    display: flex;
+}
+.fields-search input {
+    -webkit-appearance: none;
+    border: none;
+}
+.text-search {
+    border-radius: 0.2rem 0 0 0.2rem;
+    color: #5C5C5C;
+    font-size: 26px;
+    font-size: 1.625rem;
+    line-height: 1.3;
+    padding: 0.1em 0.2em;
+    flex: 1 0 auto;
+    width: 84%;
+}
+@media (min-width: 30em) {
+    .text-search {
+        font-size: 40px;
+        font-size: 2.5rem;
+    }
+}
+@media (min-width: 50em) {
+    .text-search {
+        font-size: 48px;
+        font-size: 3rem;
+    }
+}
+.btn-search {
+    background-color: #00314A;
+    background-position: 50% 50%;
+    border-radius: 0 0.2rem 0.2rem 0;
+    background-size: 20px auto;
+    cursor: pointer;
+    text-indent: -1000em;
+    transition: background-color 0.2s, background-size 0.2s;
+    flex: 0 1 16%;
+}
+.btn-search:hover,
+.btn-search:focus {
+    background-color: #1896D7;
+    background-size: 24px auto;
+}
+@media (min-width: 50em) {
+    .btn-search {
+        background-size: 33px 33px;
+    }
+    .btn-search:hover,
+    .btn-search:focus {
+        background-size: 36px 36px;
+    }
+}
+.site-search-inner > * {
+    padding: 1em;
+}
+@media (min-width: 50em) {
+    .site-search-inner {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .site-search-inner > * {
+        box-sizing: border-box;
+        margin: 1.5em 0;
+        padding: 0 2em;
+        width: 50%;
+    }
+    .site-search .article-tease {
+        border-right: 1px solid #FFF;
+        padding-left: 4.758364312267657992%;    /* 64/1345 */
+    }
+}
+/*
+Enhanced version
+*/
+// Hide the search panel by default, and position it at the top of .page-main
+.enhanced .site-search {
+    left: 0;
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0.5;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: max-height 0.2s, opacity 0.2s;
+    transform: translateZ( 0 );
+    z-index: 1;
+}
+.tmpl-article .page-main .site-search {
+    margin-left: 0;
+}
+// Expanded/“open” state for the search panel
+.site-search-open .site-search {
+    opacity: 1;
+    max-height: 20em;
+}
+.site-search-open.site-search-transitioning .site-search {
+    transition-delay: 0.3s;
+}
+.site-search[ data-enhanced-site-search ] .btn-search {
+    background-size: 0 0;
+}
+.site-search-open.site-search-transitioning .site-search .btn-search {
+    transition-delay: 0.5s;
+}
+
+.site-search-open .site-search .btn-search {
+    background-size: 20px auto;
+}
+@media (min-width: 50em) {
+    .site-search-open .site-search .btn-search {
+        background-size: 33px 33px;
+    }
+}
+
+
+
+/*-
+
+Main section (in white)
+
+-*/
+.page-main {
+    background-color: #FFF;
+    color: #4D4D4D;
+    position: relative;
+}
+
+
+
+/*-
+
+Landing page
+
+-*/
+.main-lead {
+    font-size: 1.25em;    /* 20/16 */
+    line-height: 1.5;
+    max-width: 24.08333333333333333333em;    /* 578/24 */
+}
+@media (min-width: 40em) {
+    .main-lead {
+        font-size: 1.5em;    /* 24/16 */
+        line-height: 1.20833333333333333333;    /* 29/24 */
+    }
+}
+
+
+
+/*-
+
+Article
+
+-*/
+/*
+Headings
+*/
+.article-main h2,
+.article-main h3,
+.article-main h4,
+.article-main h5,
+.article-main h6 {
+    font-family: map-get( $fonts, "sans-base" );
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 0.1em;
+    margin-top: 1.5em;
+}
+.wf-active .article-main h2,
+.wf-active .article-main h3,
+.wf-active .article-main h4,
+.wf-active .article-main h5,
+.wf-active .article-main h6 {
+    font-family: map-get( $fonts, "sans" );
+}
+.article-main h2 {
+    font-size: 1.2em;    /* 24/20 */
+}
+.article-main h3 {
+    font-size: 1.05em;
+}
+.article-main h4 {
+    font-size: 0.9em;
+}
+.article-main h5,
+.article-main h6 {
+    font-size: 0.8125em;    /* 13/16 */
+}
+// .hed-label - little red headlines, they look like labels, naming things is difficult
+.hed-label {
+    background-color: #F04736;
+    color: #FFF;
+    display: inline-block;
+    font-size: 0.8125em;    /* 13/16 */
+    font-weight: 700;
+    line-height: 1;
+    padding: 1em 1.2em;
+    text-transform: uppercase;
+}
+// .page-title-lead is, well, the lead/primary hed on articles + landing pages
+.page-title-lead {
+    font-size: 2em;    /* 32/16 */
+    font-weight: 500;
+    line-height: 1;
+    margin: 0 0 0.5em;
+}
+@media (min-width: 40em) {
+    .page-title-lead {
+        font-size: 3em;    /* 48/16 */
+    }
+}
+.article-subtitle-lead {
+    font-size: 1.5em;    /* 24/16 */
+    font-family: map-get( $fonts, "serif" );;
+    font-weight: normal;
+    line-height: 1.21;    /* 29/24 */
+}
+.wf-active .article-subtitle-lead {
+    font-family: map-get( $fonts, "serif" );;
+}
+// .hed-category {
+.hed-category {
+    color: #F7786B;
+    font-size: 0.8125em;    /* 13/16 */
+    text-transform: uppercase;
+}
+// In-article figure styles
+.figure {
+    font-family: map-get( $fonts, "serif" );;
+    margin-bottom: 2em;
+}
+.wf-active .figure {
+    font-family: map-get( $fonts, "serif" );;
+}
+.figure img {
+    display: block;
+    margin-bottom: 1em;
+    width: 100%;
+}
+.figure figcaption,
+.figure .caption {
+    border-bottom: 1.125em solid #D8D8D8;    /* 18/16 */
+    font-size: 16px;
+    font-size: 1rem;
+    padding-bottom: 1em;
+}
+.figure p {
+    margin: 0;
+}
+.figure p+p {
+    margin-top: 1em;
+}
+@media (min-width: 30em) {
+    .figure-article-minor {
+        float: right;
+        margin-left: 5%;    /* 34/680 */
+        width: 40%;    /* 272/680 */
+    }
+    .figure-article-minor figcaption,
+    .figure-article-minor .caption {
+        border-bottom: none;
+        margin-bottom: 1em;
+    }
+}
+@media (min-width: 46em) {
+    .figure-article-lead figcaption,
+    .figure-article-lead .caption {
+        width: 37.829614604462474645%;    /* 373/986 */
+    }
+    .figure-article-full figcaption,
+    .figure-article-full .caption {
+        width: 54.852941176470588235%;    /* 373/680 */
+    }
+}
+
+/*
+Lists!
+*/
+// “Promo” lists. Contains (at widescreen) a 3-up list of elements
+.list-promos {
+    font-size: 1.0625em;    /* 27 / 16 */
+    line-height: 1.25;      /* 25/20 */
+}
+.src-promo {
+    margin-bottom: 2em;
+}
+@media (min-width: 25em) and (max-width: 39.99em) {
+    .src-promo {
+        border-bottom: 1px solid #C6C6C6;
+        flex: 1 0 100%;
+        margin-bottom: 2em;
+        padding-bottom: 2em;
+        width: 100%;
+    }
+    .src-promo:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .src-promo:last-child {
+        border-bottom: none;
+    }
+    .src-promo img {
+        float: left;
+        width: 33%;
+        margin-right: 5%;
+    }
+    .src-promo .hed-promo,
+    .src-promo .list-tags-short {
+        margin-left: 38%;
+    }
+    .src-promo .hed-promo {
+        font-size: 1.5em;    /* 20 / 16 */
+    }
+}
+@media (min-width: 40em) {
+    .list-promos {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-wrap: nowrap;
+    }
+    .src-promo:first-child {
+        width: inherit;
+    }
+    .src-promo {
+        flex: 0 1 31%;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 50em) {
+    .list-promos {
+        font-size: 1.25em;    /* 20 / 16 */
+    }
+}
+// “Long” (block) and “short” (inline) lists of hashtags
+.list-tags li {
+    margin-bottom: 0.4em;
+}
+.list-tags-short li {
+    display: inline-block;
+    margin-bottom: 0.2em;
+    margin-right: 0.1em;
+}
+// Topic lists.
+.list-topics .topic {
+    margin-bottom: 2em;
+}
+.hed-topic {
+    font-size: 1.5em;    /* 24 / 16 */
+    line-height: 1.25;
+    margin-bottom: 0.25em;
+}
+.list-topics .list-compact {
+    font-size: 1.25rem;
+    line-height: 1.25;    /* 25/20 */
+}
+.list-compact li {
+    display: inline;
+}
+@media (min-width: 30em),
+(min-width: 60em) and (max-width: 69.99em) {
+    .list-topics {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .list-topics .topic,
+    .list-topics:after {
+        width: 46%;
+    }
+    .list-topics .topic {
+        margin-bottom: 4em;
+    }
+    .list-topics:after {
+        content: "";
+    }
+}
+@media (min-width: 50em) and (max-width: 59.99em),
+(min-width: 70em) {
+    .list-topics .topic,
+    .list-topics:after {
+        width: 31%;
+    }
+}
+// In-article lists
+.article-main ol,
+.article-main ul {
+    padding-left: 1em;
+}
+.article-main ol ol {
+    margin-left: 1.5em;
+}
+.article-main ul li {
+    list-style: disc;
+}
+@media (min-width: 40em) {
+    .article-main ul,
+    .article-main ol {
+        padding-left: 0;
+    }
+}
+// Social/share links
+.links-article-social {
+    margin: 1.5em 0;
+    position: relative;
+    text-align: center;
+}
+.links-article-social li {
+    margin: 0 0.3em;
+}
+ul.links-article-social {
+    padding-left: 0;
+}
+ul.links-article-social li {
+    list-style: none;
+    display: inline-block;
+}
+.links-article-social a {
+    background-position: 50% 50%;
+    display: block;
+    height: 70px;
+    text-align: left;
+    text-indent: -1000em;
+    transition: transform 0.2s;
+    width: 70px;
+}
+.links-article-social a:hover,
+.links-article-social a:focus {
+    transform: scale( 1.2 );
+    z-index: 1;
+}
+.links-article-social .icon-comments {
+    background-color: #F14835;
+    background-size: 90% auto;
+    color: #F14835;
+}
+.links-article-social .icon-twitter {
+    background-color: #47BFF8;
+    background-size: 32px auto;
+}
+.links-article-social .icon-facebook {
+    background-color: #2482AF;
+}
+@media (min-width: 65em) {
+    .links-article-social {
+        position: absolute;
+        top: 0;
+        margin: 0;
+        left: -25.184094256259204712%;    /* 171/679 */
+    }
+    ul.links-article-social li {
+        display: block;
+        margin: 0 0 8px;
+    }
+    .links-article-social .icon-comments,
+    .links-article-social .icon-facebook {
+        transform-origin: 100% 50%;
+    }
+    .links-article-social .icon-twitter {
+        left: 70px;
+        position: absolute;
+        top: 38px;
+        transform-origin: 0 50%;
+    }
+}
+// Recently added items
+.list-recently li {
+    list-style: none;
+}
+.list-recently,
+.item-recent {
+    padding-left: 0;
+}
+.item-recent {
+    border-bottom: 1px solid #C6C6C6;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+.hed-recent {
+    margin-bottom: 0.5em;
+}
+.item-recent:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.item-recent li {
+    margin-bottom: 0.5em;
+}
+.item-recent li a {
+    background-position: 0 0.2em;
+    color: inherit;
+    display: block;
+    font-size: 0.8125em;    /* 13 / 16 */
+    padding-left: 30px;
+    text-decoration: none;
+}
+.item-recent li a:focus,
+.item-recent li a:hover {
+    color: #45BEA9;
+}
+// At lower breakpoints, let’s move to 2- and 3-col layouts. (But not above 60em, because at that point, we’ll be in the sidebar.)
+@media (min-width: 30em) and (max-width: 59.99em) {
+    .list-recently {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+@media (min-width: 30em) and (max-width: 49.99em) {
+    .item-recent {
+        border: none;
+        width: 44%;
+    }
+}
+@media (min-width: 50em) and (max-width: 59.99em) {
+    .list-recently:after,
+    .item-recent {
+        border: none;
+        width: 31%;
+    }
+    .list-recently:after {
+        content: "";
+    }
+}
+
+/*
+Structural elements for article
+*/
+/*
+Article front matter
+*/
+.article-matter-front .list-tags li {
+    display: inline;
+    margin-bottom: 0.1em;
+}
+// Article block - metadata
+.article-meta {
+    font-size: 1.125em;    /* 18/16 */
+    line-height: 1.2;
+    margin-bottom: 1em;
+}
+.article-byline {
+    margin-right: 2em;
+}
+.article-date {
+    color: #959595;
+    margin-left: auto;
+}
+@media (min-width: 30em) {
+    .article-meta {
+        display: flex;
+        font-size: 1.125em;    /* 18/16 */
+        line-height: 1.2;
+    }
+    .article-matter-front .article-date {
+        position: absolute;
+        top: 0.5em;
+        right: 0;
+    }
+}
+@media (max-width: 64.99em) {
+    // If a browser supports flexbox, visually reposition the list-tags to the bottom on smaller screens
+    .article-matter-front {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .article-matter-front .hed-label {
+        display: inline-flex;
+        margin-right: auto;
+        max-width: 10em; /* TODO: Fix iOS Safari inline-flex bug */
+        order: -1;
+    }
+    .article-matter-front .list-tags {
+        margin-bottom: 1.5em;
+        order: 2;
+    }
+}
+@media (min-width: 65em) {
+    .tmpl-article .page-main > * {
+        margin-left: 14.369747899%;    /* 171 / 1190 */
+    }
+    .article-matter-front .hed-label,
+    .article-matter-front .list-tags {
+        float: left;
+        margin-left: -17.342799188640973630%;    /* 171 / 986 */
+    }
+    .article-matter-front .hed-label {
+        margin-top: 0.9em;
+    }
+    .article-matter-front .page-title-lead {
+        max-width: 15em;
+    }
+    .article-matter-front .article-subtitle-lead {
+        float: right;
+        margin-bottom: 2.5em;
+        padding-right: 31.034482758620689655%;    /* 306 / 986 */
+        width: 68.864097363083164300%;    /* 679 / 986 */
+    }
+    .article-matter-front .list-tags li {
+        display: block;
+    }
+    .article-meta {
+        clear: right;
+        margin-bottom: 1em;
+    }
+    .article-subtitle-lead + .list-tags + .article-meta:before {
+        border-top: 1px solid #D8D8D8;
+        content: "";
+        margin-top: -1.1em;
+        position: absolute;
+        width: 17.3427992%;
+    }
+    .article-matter-front .article-date {
+        position: static;
+    }
+}
+/*
+Article block - MAIN CONTENT
+*/
+.article-main {
+    font-family: map-get( $fonts, "serif-base" );;
+    font-size: 1.25em;
+    line-height: 1.5;
+    border-bottom: 1.125rem solid #D8D8D8;    /* 18/16 */
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+.wf-active .article-main {
+    font-family: map-get( $fonts, "serif" );;
+}
+// Article credits
+.article-links-relevant {
+    margin-bottom: 4em;
+}
+.article-links-relevant ul {
+    line-height: 1.375;
+    margin-bottom: 2em;
+}
+.article-links-relevant li {
+    margin-bottom: 0.6em;
+    hyphens: auto;
+}
+@media (min-width: 50em) {
+    .article-links-relevant ul {
+        margin-bottom: 5.75em;
+    }
+}
+.article-links-relevant ul:last-child {
+    margin-bottom: 0;
+}
+@media (min-width: 50em) {
+    .article-main {
+        float: left;
+        width: 65%;
+    }
+    .article-links-relevant {
+        float: right;
+        width: 25%;
+    }
+}
+@media (min-width: 65em) {
+    .article-main {
+        /* If there are any floats before .article-main—e.g., if there’s no lead figure, and the hashtag list is long—clear them. */
+        clear: left;
+        /* Positioning context needed for social links */
+        position: relative;
+        width: 57.058823529411764705%;    /* 679/1190 */
+    }
+    .article-links-relevant {
+        width: 14.369747899159663865%;    /* 171/1190 */
+    }
+    .tmpl-article .page-main .article-links-relevant {
+        margin-left: 0;
+    }
+}
+/*
+Article back matter
+*/
+// Profiles
+.profile-person {
+    margin-bottom: 3em;
+}
+.profile-photo {
+    border-radius: 50%;
+    float: right;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    max-width: 130px;
+    width: 30%;
+}
+.profile-name {
+    font-size: 1.5em;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 0.3em;
+}
+.profile-name cite {
+    font-style: normal;
+}
+.profile-bio {
+    font-family: map-get( $fonts, "serif" );;
+    font-size: 1.125em;    /* 18/16 */
+    line-height: 1.4;    /* 30/18 */
+    hyphens: auto;
+    margin-bottom: 1.5em;
+}
+.wf-active .profile-bio {
+    font-family: map-get( $fonts, "serif" );;
+}
+@media (min-width: 40em) {
+    .profile-bio {
+        line-height: 1.66666666666666666666;    /* 30/18 */
+        hyphens: inherit;
+        margin-bottom: 0;
+    }
+}
+.profile-links {
+    font-size: 0.8125;    /* 13/16 */
+    clear: both;
+}
+.profile-links li {
+    margin-bottom: 0.6em;
+}
+@media (min-width: 40em) {
+    .profile-links {
+        display: flex;
+    }
+    .profile-links li {
+        margin-bottom: 0;
+        margin-right: 1em;
+    }
+    .profile-links li:first-child {
+        flex: 1;
+    }
+    .profile-links li:last-child {
+        margin-right: 0;
+    }
+}
+.profile-links a {
+    background-position: 0 50%;
+    color: inherit;
+    padding-left: 30px;
+    text-decoration: none;
+}
+.profile-links a:focus,
+.profile-links a:hover {
+    color: #45BEA9;
+}
+// Hashtag: hashtags
+.tag {
+    background-color: #D8D8D8;
+    border-radius: 0.45em;
+    color: #4D4D4D;
+    display: inline-block;
+    font-size: 13px;
+    font-size: 0.8125rem;    /* 13/16 */
+    line-height: 1.1;
+    padding: 0.45em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.1s;
+}
+.tag:focus,
+.tag:hover {
+    background-color: #C8C8C8;
+    color: #333;
+}
+.tag:before {
+    content: "#";
+    color: inherit;
+}
+// Comments
+.article-comments {
+    margin-bottom: 2em;
+}
+.article-matter-back {
+    clear: both;
+}
+.article-matter-back > * {
+    border-bottom: 1.125rem solid #D8D8D8;    /* 18/16 */
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+.article-matter-back > :last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+@media (min-width: 65em) {
+    .article-matter-back > * {
+        width: 68.864097363083164300%;    /* 679/986 */
+    }
+    .article-matter-back .hed-label {
+        float: left;
+        margin-left: -25.184094256259204712%;    /* 171 / 679 */
+        margin-top: -0.6em;
+    }
+    .article-matter-back .article-related {
+        width: 100%;
+    }
+    .article-matter-back .article-related .hed-label {
+        margin-left: -17.342799188640973630%;    /* 171 / 986 */
+    }
+}
+
+
+
+/*-
+
+Footer
+
+-*/
+.page-footer {
+    background: #31364C;
+}
+.page-footer a {
+    color: #FFF;
+}
+.page-footer a:focus,
+.page-footer a:hover {
+    color: #45BEA9;
+    text-decoration: none;
+}
+// “Main” footer blocks display side-by-side on wider screens; they’re the primary dividers in the footer
+.foot-main {
+    padding: 2em;
+    padding: 2em 4vw;
+}
+.foot-source {
+    background-size: 55% auto;
+    background-position: 100% 100%;
+}
+.foot-opennews {
+    background: #232D44;
+}
+.foot-content {
+    font-size: 1.125em;
+    line-height: 1.45;
+    margin-bottom: 2em;
+}
+// Footer logos
+.page-footer .foot-logo {
+    margin: 0 0 1em;
+}
+.foot-opennews .foot-logo {
+    margin-bottom: 0.8em;
+}
+.foot-opennews img {
+    margin-top: -6px;
+}
+.foot-source .foot-logo {
+    margin-bottom: 1em;
+}
+// “Connect” links
+.hed-foot {
+    color: #47BFF8;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.list-foot-social {
+    line-height: 1.25;
+}
+.list-foot-social li {
+    margin-bottom: 0.75em;
+}
+.list-foot-social a {
+    background-position: 0 0.25em;
+    display: block;
+    padding-left: 30px;
+}
+@media (min-width: 55em) {
+    // Two-column layout
+    .page-footer {
+        display: flex;
+    }
+    .foot-main {
+        padding: 4em;
+        padding: 4vw;
+        flex: 1 0 auto;
+    }
+    .foot-source {
+        background-size: 55% auto;
+        background-position: 100% 100%;
+        display: flex;
+        padding-left: 4.903417533432392273%;    /* 66/1346 */
+        padding-right: 4.903417533432392273%;    /* 66/1346 */
+        width: 50.520059435364041604%;    /* 680/1346 */
+    }
+    .foot-source .foot-content {
+        flex: 0 1 55%;
+        margin-bottom: 0;
+        margin-right: 10%;
+    }
+    .foot-source .link-cc {
+        margin: 4em 0 0;
+    }
+    .foot-source .hed-foot {
+        margin-bottom: 2.5em;
+        margin-top: 1.2em;
+    }
+    .list-foot-social {
+        max-width: 10em;
+    }
+    .list-foot-social a {
+        margin-left: -30px;
+    }
+    .foot-opennews {
+        background: #232D44;
+        margin-left: auto;
+        padding-left: 5.274888558692421991%;    /* 71/1346 */
+        padding-right: 6.835066864784546805%;    /* 92/1346 */
+        width: 27.786032689450222882%;    /* 374/1346 */
+    }
+}
