@@ -38,8 +38,9 @@ blockquote:after {
     content: "";
     display: inline-block;
     background: #D8D8D8;
-    height: 1rem;
-    width: 20%;
+    height: 1em;
+    min-width: 7em;
+    width: 30%;
 }
 blockquote:after {
     margin-top: 1em;
@@ -294,7 +295,7 @@ Header
 }
 // Move from a 2-up grid in the navigation menu to a centered, single row of links
 // NOTE: This may change if the number of links in the menu needs to increase.
-@media (min-width: 20em) {
+@media (min-width: 23em) {
     .site-nav-links {
         flex-wrap: nowrap;
     }
@@ -653,9 +654,15 @@ Landing page
 
 -*/
 .main-lead {
-    font-size: 1.5em;    /* 24/16 */
-    line-height: 1.20833333333333333333;    /* 29/24 */
+    font-size: 1.25em;    /* 20/16 */
+    line-height: 1.5;
     max-width: 24.08333333333333333333em;    /* 578/24 */
+}
+@media (min-width: 40em) {
+    .main-lead {
+        font-size: 1.5em;    /* 24/16 */
+        line-height: 1.20833333333333333333;    /* 29/24 */
+    }
 }
 
 
@@ -712,10 +719,15 @@ Headings
 }
 // .page-title-lead is, well, the lead/primary hed on articles + landing pages
 .page-title-lead {
-    font-size: 3em;    /* 48/16 */
+    font-size: 2em;    /* 32/16 */
     font-weight: 500;
     line-height: 1;
     margin: 0 0 0.5em;
+}
+@media (min-width: 40em) {
+    .page-title-lead {
+        font-size: 3em;    /* 48/16 */
+    }
 }
 .article-subtitle-lead {
     font-size: 1.5em;    /* 24/16 */
@@ -786,22 +798,69 @@ Lists!
 */
 // “Promo” lists. Contains (at widescreen) a 3-up list of elements
 .list-promos {
-    display: flex;
-    font-size: 1.25em;    /* 20 / 16 */
-    line-height: 1.25;    /* 25/20 */
-    justify-content: space-between;
+    font-size: 1.0625em;    /* 27 / 16 */
+    line-height: 1.25;      /* 25/20 */
 }
-.list-promos .src-promo {
-    flex: 0 1 31%;
+.src-promo {
+    margin-bottom: 2em;
+}
+@media (min-width: 25em) and (max-width: 39.99em) {
+    .src-promo {
+        border-bottom: 1px solid #C6C6C6;
+        flex: 1 0 100%;
+        margin-bottom: 2em;
+        padding-bottom: 2em;
+        width: 100%;
+    }
+    .src-promo:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .src-promo:last-child {
+        border-bottom: none;
+    }
+    .src-promo img {
+        float: left;
+        width: 33%;
+        margin-right: 5%;
+    }
+    .src-promo .hed-promo,
+    .src-promo .list-tags-short {
+        margin-left: 38%;
+    }
+    .src-promo .hed-promo {
+        font-size: 1.5em;    /* 20 / 16 */
+    }
+}
+@media (min-width: 40em) {
+    .list-promos {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-wrap: nowrap;
+    }
+    .src-promo:first-child {
+        width: inherit;
+    }
+    .src-promo {
+        flex: 0 1 31%;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 50em) {
+    .list-promos {
+        font-size: 1.25em;    /* 20 / 16 */
+    }
 }
 // “Long” (block) and “short” (inline) lists of hashtags
 .list-tags li {
     margin-bottom: 0.4em;
 }
 .list-tags-short li {
-    display: inline;
-    margin-bottom: 0;
-    margin-right: 0.4em;
+    display: inline-block;
+    margin-bottom: 0.2em;
+    margin-right: 0.1em;
 }
 // Topic lists.
 .list-topics .topic {
@@ -845,14 +904,21 @@ Lists!
     }
 }
 // In-article lists
-.article-main ol {
-    padding-left: 0;
+.article-main ol,
+.article-main ul {
+    padding-left: 1em;
 }
 .article-main ol ol {
     margin-left: 1.5em;
 }
 .article-main ul li {
     list-style: disc;
+}
+@media (min-width: 40em) {
+    .article-main ul,
+    .article-main ol {
+        padding-left: 0;
+    }
 }
 // Recently added elements
 .list-recently li {
@@ -922,17 +988,13 @@ Article front matter
 */
 .article-matter-front .list-tags li {
     display: inline;
-}
-.article-matter-front .article-date {
-    position: absolute;
-    top: 0;
-    right: 0;
+    margin-bottom: 0.1em;
 }
 // Article block - metadata
 .article-meta {
-    display: flex;
     font-size: 1.125em;    /* 18/16 */
     line-height: 1.2;
+    margin-bottom: 1em;
 }
 .article-byline {
     margin-right: 2em;
@@ -940,6 +1002,18 @@ Article front matter
 .article-date {
     color: #959595;
     margin-left: auto;
+}
+@media (min-width: 30em) {
+    .article-meta {
+        display: flex;
+        font-size: 1.125em;    /* 18/16 */
+        line-height: 1.2;
+    }
+    .article-matter-front .article-date {
+        position: absolute;
+        top: 0.5em;
+        right: 0;
+    }
 }
 @media (max-width: 64.99em) {
     // If a browser supports flexbox, visually reposition the list-tags to the bottom on smaller screens
@@ -951,6 +1025,7 @@ Article front matter
     .article-matter-front .hed-label {
         display: inline-flex;
         margin-right: auto;
+        max-width: 10em; /* TODO: Fix iOS Safari inline-flex bug */
         order: -1;
     }
     .article-matter-front .list-tags {
@@ -1012,6 +1087,9 @@ Article block - MAIN CONTENT
     font-family: map-get( $fonts, "serif" );;
 }
 // Article credits
+.article-links-relevant {
+    margin-bottom: 4em;
+}
 .article-links-relevant ul {
     line-height: 1.375;
     margin-bottom: 2em;
@@ -1061,6 +1139,8 @@ Article back matter
     float: right;
     margin-bottom: 1em;
     margin-left: 1em;
+    max-width: 130px;
+    width: 30%;
 }
 .profile-name {
     font-size: 1.5em;
@@ -1074,24 +1154,37 @@ Article back matter
 .profile-bio {
     font-family: map-get( $fonts, "serif" );;
     font-size: 1.125em;    /* 18/16 */
-    line-height: 1.66666666666666666666;    /* 30/18 */
+    line-height: 1.4;    /* 30/18 */
 }
 .wf-active .profile-bio {
     font-family: map-get( $fonts, "serif" );;
 }
+@media (min-width: 40em) {
+    .profile-bio {
+        line-height: 1.66666666666666666666;    /* 30/18 */
+    }
+}
 .profile-links {
     font-size: 0.8125;    /* 13/16 */
     clear: both;
-    display: flex;
 }
 .profile-links li {
-    margin-right: 1em;
+    margin-bottom: 0.6em;
 }
-.profile-links li:first-child {
-    flex: 1;
-}
-.profile-links li:last-child {
-    margin-right: 0;
+@media (min-width: 40em) {
+    .profile-links {
+        display: flex;
+    }
+    .profile-links li {
+        margin-bottom: 0;
+        margin-right: 1em;
+    }
+    .profile-links li:first-child {
+        flex: 1;
+    }
+    .profile-links li:last-child {
+        margin-right: 0;
+    }
 }
 .profile-links a {
     background-position: 0 50%;
@@ -1179,8 +1272,8 @@ Footer
 }
 // “Main” footer blocks display side-by-side on wider screens; they’re the primary dividers in the footer
 .foot-main {
-    padding: 1em;
-    padding: 4vw;
+    padding: 2em;
+    padding: 2em 4vw;
 }
 .foot-source {
     background-size: 55% auto;
