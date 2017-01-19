@@ -6,4 +6,3 @@
 settings.env
 node_modules
 .tm_properties
-dist
