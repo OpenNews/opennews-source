@@ -92,7 +92,36 @@ module.exports = function( grunt ) {
             }
         },
 
+        criticalcss: {
+            article: {
+                options:  {
+                    outputfile : '<%= _config.dir.output %>css/critical-article.css',
+                    filename : '<%= _config.dir.output %>css/main.css',
+                    url : 'http://local.source/article.php?static=true'
+                }
+            },
+            landing: {
+                options:  {
+                    outputfile : '<%= _config.dir.output %>css/critical-landing.css',
+                    filename : '<%= _config.dir.output %>css/main.css',
+                    url : 'http://local.source/landing-code.php?static=true'
+                }
+            }
+        },
+
         cssmin: {
+            crit_article: {
+                src: [
+                    "<%= criticalcss.article.options.outputfile %>"
+                ],
+                dest: "<%= criticalcss.article.options.outputfile %>"
+            },
+            crit_landing: {
+                src: [
+                    "<%= criticalcss.landing.options.outputfile %>"
+                ],
+                dest: "<%= criticalcss.landing.options.outputfile %>"
+            },
             css_main: {
                 src: [
                     "<%= Object.keys( sass.dist.files )[ 0 ] %>"
@@ -175,6 +204,7 @@ module.exports = function( grunt ) {
     grunt.registerTask( "build", [
         "clean",
         "sass",
+        "criticalcss",
         "cssmin",
         "concat",
         "uglify",

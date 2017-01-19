@@ -1,5 +1,6 @@
 <?php
 $rootpath = $_SERVER['DOCUMENT_ROOT'];
+$criticalcss = "critical-article.css";
 ?>
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
@@ -14,10 +15,27 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 
 <meta name="grunticon" content="/dist/svg/" />
 <meta name="fullJS" content="/dist/js/main.js" />
+<meta name="fullCSS" content="/dist/css/main.css" />
 
-<style><?php include( $rootpath . "/dist/css/main.css" ); ?></style>
+<script><?php include( $rootpath . "/dist/js/initial.js" ); ?></script>
 
-<script><?php include($rootpath . "/dist/js/initial.js"); ?></script>
+<?php
+if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
+?>
+<link href="/dist/css/main.css" rel="stylesheet" />
+<?php
+} else {
+    if ( isset( $criticalcss ) ) {
+?>
+<style><?php include( $rootpath . "/dist/css/" . $criticalcss ); ?></style>
+<?php
+    } else {
+?>
+<link href="/dist/css/main.css" rel="stylesheet" />
+<?php
+    }
+}
+?>
 
 <script>document.createElement( "picture" );</script>
 <script src="/dist/js/lib/picturefill.js" async></script>

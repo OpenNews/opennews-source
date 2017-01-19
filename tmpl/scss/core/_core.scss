@@ -1132,7 +1132,7 @@ Article back matter
 */
 // Profiles
 .profile-person {
-    margin-bottom: 2em;
+    margin-bottom: 3em;
 }
 .profile-photo {
     border-radius: 50%;
@@ -1155,6 +1155,8 @@ Article back matter
     font-family: map-get( $fonts, "serif" );;
     font-size: 1.125em;    /* 18/16 */
     line-height: 1.4;    /* 30/18 */
+    hyphens: auto;
+    margin-bottom: 1.5em;
 }
 .wf-active .profile-bio {
     font-family: map-get( $fonts, "serif" );;
@@ -1162,6 +1164,8 @@ Article back matter
 @media (min-width: 40em) {
     .profile-bio {
         line-height: 1.66666666666666666666;    /* 30/18 */
+        hyphens: inherit;
+        margin-bottom: 0;
     }
 }
 .profile-links {

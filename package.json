@@ -12,6 +12,7 @@
         "grunt-contrib-cssmin": "latest",
         "grunt-contrib-uglify": "latest",
         "grunt-contrib-watch": "latest",
+        "grunt-criticalcss": "latest",
         "grunt-grunticon": "latest",
         "grunt-sass": "^1.2.0",
         "grunt-svgmin": "4.0.0",
