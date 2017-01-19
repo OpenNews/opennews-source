@@ -31,7 +31,7 @@ Component: Search toggle
                 $searchPanel.attr( "data-enhanced-site-search", true );
 
                 // close method
-                var close = function( e ) {
+                var close = function() {
                     $searchPanel
                         .transEnd( function() {
                             $body.removeClass( transitioningClass );
@@ -57,38 +57,38 @@ Component: Search toggle
                 }
 
                 // toggle method
-                var toggle = function( e ) {
+                var toggle = function( event ) {
                     if ( $body.is( "." + openClass ) ) {
                         close();
                     } else {
                         open();
                     }
 
-                    e.preventDefault();
+                    event.preventDefault();
                 }
 
                 // Insert the “close” link
                 $searchToggle.append( screenBlock );
 
                 // Bind close, open, and toggle events to the panel
-                $searchPanel.bind( "close", close );
-                $searchPanel.bind( "open", open );
-                $searchPanel.bind( "toggle", toggle );
+                $searchPanel.on( "close", close );
+                $searchPanel.on( "open", open );
+                $searchPanel.on( "toggle", toggle );
 
                 // Bind toggle event to, well, the toggle link
-                $searchToggle.bind( "click", toggle );
+                $searchToggle.on( "click", toggle );
 
                 // When focusing on an element, close the panel if it’s open (and if the element is outside of the panel)
-                $( document ).bind( "focusin", function( e ) {
+                $( document ).on( "focusin", function( event ) {
                     if ( $body.is( "." + openClass ) ) {
-                        if ( !$( e.target ).parents( '.' + panelClass ).length ) {
+                        if ( !$( event.target ).parents( '.' + panelClass ).length ) {
                             $searchPanel.trigger( "close" );
                         }
                     }
                 } );
 
                 // Close the panel on (throttled) resize
-                $( window ).bind( "resize", SRC.utils.debounce( function() {
+                $( window ).on( "resize", SRC.utils.debounce( function() {
                     if ( $body.is( "." + openClass ) ) {
                         $searchPanel.trigger( "close" );
                     }
@@ -100,9 +100,9 @@ Component: Search toggle
     };
 
     // auto-init on enhance (which is called on domready)
-    $( document ).bind( "enhance", function( e ){
+    $( document ).on( "enhance", function( e ){
         var $sel = $( e.target ).is( initSelector ) ? $( e.target ) : $( initSelector, e.target );
         $sel[ componentName ]().attr( enhancedAttr, "true" );
     });
 
-}( shoestring ));
+}( jQuery ));

@@ -21,4 +21,4 @@
     //     SRC.utils.loadJS( "//" + SRC.config.disqus_id + ".disqus.com/count.js" );
     // }
 
-}( shoestring ) );
+}( jQuery ) );

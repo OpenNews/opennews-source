@@ -72,8 +72,7 @@ module.exports = function( grunt ) {
             },
             js_main: {
                 src: [
-                    "<%= _config.dir.templates %>js/lib/shoestring.js",
-                    "<%= _config.dir.templates %>js/lib/$.js",
+                    "<%= _config.dir.templates %>js/lib/jquery.min.js",
                     "<%= _config.dir.templates %>js/lib/transition-support.js",
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
                     "<%= _config.dir.templates %>js/navigation.js",
