@@ -14,6 +14,7 @@ $criticalcss = "critical-article.css";
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <meta name="grunticon" content="/dist/svg/" />
+<meta name="fullJS" content="/dist/js/main.js" />
 <meta name="fullCSS" content="/dist/css/main.css" />
 
 <script><?php include( $rootpath . "/dist/js/initial.js" ); ?></script>
