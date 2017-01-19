@@ -920,7 +920,71 @@ Lists!
         padding-left: 0;
     }
 }
-// Recently added elements
+// Social/share links
+.links-article-social {
+    margin: 1.5em 0;
+    position: relative;
+    text-align: center;
+}
+.links-article-social li {
+    margin: 0 0.3em;
+}
+ul.links-article-social {
+    padding-left: 0;
+}
+ul.links-article-social li {
+    list-style: none;
+    display: inline-block;
+}
+.links-article-social a {
+    background-position: 50% 50%;
+    display: block;
+    height: 70px;
+    text-align: left;
+    text-indent: -1000em;
+    transition: transform 0.2s;
+    width: 70px;
+}
+.links-article-social a:hover,
+.links-article-social a:focus {
+    transform: scale( 1.2 );
+    z-index: 1;
+}
+.links-article-social .icon-comments {
+    background-color: #F14835;
+    background-size: 90% auto;
+    color: #F14835;
+}
+.links-article-social .icon-twitter {
+    background-color: #47BFF8;
+    background-size: 32px auto;
+}
+.links-article-social .icon-facebook {
+    background-color: #2482AF;
+}
+@media (min-width: 65em) {
+    .links-article-social {
+        position: absolute;
+        top: 0;
+        margin: 0;
+        left: -25.184094256259204712%;    /* 171/679 */
+    }
+    ul.links-article-social li {
+        display: block;
+        margin: 0 0 8px;
+    }
+    .links-article-social .icon-comments,
+    .links-article-social .icon-facebook {
+        transform-origin: 100% 50%;
+    }
+    .links-article-social .icon-twitter {
+        left: 70px;
+        position: absolute;
+        top: 38px;
+        transform-origin: 0 50%;
+    }
+}
+// Recently added items
 .list-recently li {
     list-style: none;
 }
@@ -1118,6 +1182,10 @@ Article block - MAIN CONTENT
 }
 @media (min-width: 65em) {
     .article-main {
+        /* If there are any floats before .article-main—e.g., if there’s no lead figure, and the hashtag list is long—clear them. */
+        clear: left;
+        /* Positioning context needed for social links */
+        position: relative;
         width: 57.058823529411764705%;    /* 679/1190 */
     }
     .article-links-relevant {

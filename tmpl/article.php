@@ -143,7 +143,6 @@ var disqus_config = function () {
                     <li>Provide a ready-to-use environment to help you define your alert parameters, as well as encourage you to perform basic data-analysis operations on the monitored datasets before setting the alerts.</li>
                 </ol>
 
-
                 <p>About the way it works, you’ve got to think of it this way: <code>datastringer.js</code> is a sort of black box which uses user-input values, parameters, and functions, stored in <code>use_cases.json</code>. Let’s have a look at this file’s structure:</p>
 
                 <pre><code>javascript
@@ -192,6 +191,12 @@ var disqus_config = function () {
                 <p>We lost track of our audience here, and that definitely will be in our roadmap as something we need to improve. A graphical interface or a service are possibilities we will be exploring.</p>
 
                 <p>My main focus for the weeks to come will be to field-test the project and to make the software more accessible for the audience. I am very much looking forward to our 1.0 release, that I will consider ready when anyone can install Datastringer on his machine and get up and running without coding.</p>
+
+                <ul class="links-article-social">
+                    <li><a class="icon icon-comments" href="#disqus_thread">Comments</a></li>
+                    <li><a class="icon icon-twitter" href="#">Share on Twitter</a></li>
+                    <li><a class="icon icon-facebook" href="#">Share on Facebook</a></li>
+                </ul><!-- /end .links-article-social -->
             </div><!-- /end .article.main -->
 
             <div class="article-links-relevant">
@@ -253,7 +258,7 @@ var disqus_config = function () {
                     </ul>
                 </div><!-- /end .article-credits -->
 
-                <div class="mod article-comments" data-title="Comments">
+                <div class="mod article-comments" id="article-comments" data-title="Comments">
                     <div id="disqus_thread"></div>
                 </div><!-- /end .article-comments -->
 
