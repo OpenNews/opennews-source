@@ -1,6 +1,7 @@
 <?php
 $rootpath = $_SERVER['DOCUMENT_ROOT'];
 $criticalcss = "critical-article.css";
+$current_page = "community";
 ?>
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
@@ -49,7 +50,6 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 <div class="page">
 
     <?php
-    $current_page = "community";
     include($rootpath . "/inc/site-header.php");
     ?>
 

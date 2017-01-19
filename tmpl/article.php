@@ -1,6 +1,7 @@
 <?php
 $rootpath = $_SERVER['DOCUMENT_ROOT'];
 $criticalcss = "critical-article.css";
+$current_page = "articles";
 ?>
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
@@ -59,7 +60,6 @@ var disqus_config = function () {
 <div class="page">
 
     <?php
-    $current_page = "articles";
     include($rootpath . "/inc/site-header.php");
     ?>
 
