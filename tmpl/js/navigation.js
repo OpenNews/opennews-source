@@ -1,5 +1,5 @@
 /*
-Component: Search toggle
+Component: Navigation toggle
 
 // TODO: replace with collapsible?
 */
@@ -7,10 +7,10 @@ Component: Search toggle
 
     "use strict";
 
-    var componentName = "search-toggle",
+    var componentName = "nav-toggle",
         closeSelectors = "." + componentName + " .icon-close",
         pageClass = "page",
-        panelClass = "site-search",
+        panelClass = "site-nav-links",
         openClass = panelClass + "-open",
         transitioningClass = panelClass + "-transitioning",
         enhancedAttr = "data-enhanced-" + componentName,
@@ -20,23 +20,21 @@ Component: Search toggle
 
         return this.each( function() {
 
-            var $searchToggle = $( this ),
-                sHref = $searchToggle.attr( "href" ),
-                $searchPanel = $( sHref ),
+            var $navToggle = $( this ),
+                sHref = $navToggle.attr( "href" ),
+                $navPanel = $( sHref ),
                 $body = $( "body" ),
                 screenBlock = '<span class="icon icon-close" href="#">Close</span>';
 
-            if ( $searchPanel ) {
+            if ( $navPanel ) {
 
-                $searchPanel.attr( "data-enhanced-site-search", true );
+                $navPanel.attr( "data-enhanced-site-nav", true );
 
                 // close method
                 var close = function( e ) {
-                    $searchPanel
+                    $navPanel
                         .transEnd( function() {
                             $body.removeClass( transitioningClass );
-                            // send focus to the menu button
-                            $searchToggle[ 0 ].focus();
                         } );
 
                     $body
@@ -46,12 +44,10 @@ Component: Search toggle
 
                 //open method
                 var open = function() {
-                    $searchPanel
+                    $navPanel
                         .transEnd( function() {
                             $body.removeClass( transitioningClass )
                         });
-
-                    $searchPanel.find( "input[type=search]" )[ 0 ].focus();
 
                     $body.addClass( transitioningClass + " " + openClass );
                 }
@@ -68,21 +64,21 @@ Component: Search toggle
                 }
 
                 // Insert the “close” link
-                $searchToggle.append( screenBlock );
+                $navToggle.append( screenBlock );
 
                 // Bind close, open, and toggle events to the panel
-                $searchPanel.bind( "close", close );
-                $searchPanel.bind( "open", open );
-                $searchPanel.bind( "toggle", toggle );
+                $navPanel.bind( "close", close );
+                $navPanel.bind( "open", open );
+                $navPanel.bind( "toggle", toggle );
 
                 // Bind toggle event to, well, the toggle link
-                $searchToggle.bind( "click", toggle );
+                $navToggle.bind( "click", toggle );
 
                 // When focusing on an element, close the panel if it’s open (and if the element is outside of the panel)
                 $( document ).bind( "focusin", function( e ) {
                     if ( $body.is( "." + openClass ) ) {
                         if ( !$( e.target ).parents( '.' + panelClass ).length ) {
-                            $searchPanel.trigger( "close" );
+                            $navPanel.trigger( "close" );
                         }
                     }
                 } );
@@ -90,7 +86,7 @@ Component: Search toggle
                 // Close the panel on (throttled) resize
                 $( window ).bind( "resize", SRC.utils.debounce( function() {
                     if ( $body.is( "." + openClass ) ) {
-                        $searchPanel.trigger( "close" );
+                        $navPanel.trigger( "close" );
                     }
                 }, 250 ) );
             }

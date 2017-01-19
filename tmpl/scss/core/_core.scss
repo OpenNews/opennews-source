@@ -134,14 +134,9 @@ Macro-level structural elements
 .page {
     margin: 0 3.055555555555555555%;    /* 44/1440 */
 }
-.site-header,
 .page-main {
-    padding: 0 4.758364312267657992%;    /* 64/1345 */
-}
-.page-main {
-    padding-bottom: 1em;
+    padding: 1em 4.758364312267657992%;    /* 64/1345 */
     padding-bottom: 4vw;
-    padding-top: 1em;
     padding-top: 4vw;
     zoom: 1;
 }
@@ -193,116 +188,274 @@ Header
 -*/
 .site-header {
     display: flex;
-}
-.site-header > * {
-    margin: 0;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
 }
 .site-header a {
-    display: block;
+    color: #FFF;
+    text-decoration: none;
 }
-// Logo
+.header-main {
+    display: flex;
+}
+.header-main > * {
+    margin: 0;
+}
 .site-logo {
-    margin-right: 2.941176470588235294%;    /* 35/1190 */
+    flex: 1;
 }
 .site-logo a {
     display: flex;
-    height: 100%;
-    vertical-align: center;
+    justify-content: center;
+    padding: 0.7em;
 }
-// Navigation
-.site-nav,
-.site-nav-links,
-.site-nav-links li {
+.site-logo img {
+    height: 0.9em;
+}
+// Toggle links
+.header-toggle {
     display: flex;
-}
-.site-nav-links {
-    margin: 0;
-}
-.site-nav-links li {
-    margin-right: 0.5em;
-}
-.site-nav-links li:last-child {
-    margin-right: 0;
-}
-.site-nav-links a {
-    box-sizing: border-box;
-    display: block;
-    flex: 1;
-    color: #FFF;
-    line-height: 1;
-    padding: 4.125em 1em;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 2em;
     position: relative;
-    text-decoration: none;
-    min-width: 6.5625em;    /* 105/16 */
-    text-align: center;
 }
-.site-nav-links a:after {
-    background: #FFF;
-    bottom: 0;
-    content: "";
-    height: 0;
+.header-main .nav-toggle {
+    order: -1;
+}
+// Inside each toggle link is an `.icon`, whose visibility gets toggled as menus open/close
+.site-header .icon {
+    background-color: #001A33;
+    background-position: 50% 50%;
+    background-size: auto 18px;
+    display: inline-block;
+    border-radius: 0.1875em;    /* 6/32 */
+    height: 2em;
+    line-height: 1;
+    text-indent: -1000em;
+    width: 4em;
+}
+.site-header .icon-close {
+    background-color: #2676A0;
+    border-radius: 0;
+    bottom: 100%;
+    height: inherit;
     left: 0;
+    opacity: 0;
     position: absolute;
     right: 0;
-    transition: height 0.2s;
-    width: 100%;
-    z-index: 1;
+    top: 0;
+    width: inherit;
+    transition: bottom 0.2s, opacity 0.2s;
 }
-.site-nav-links a:focus:after,
-.site-nav-links a:hover:after {
-    height: 0.5em;
+.site-nav-links-open .nav-toggle .icon-close,
+.site-search-open .search-toggle .icon-close {
+    bottom: 0;
+    opacity: 1;
+}
+.nav-toggle .icon-menu {
+    background-size: auto 9px;
+}
+// Primary navigation
+.site-nav {
+    background-color: #2676A0;
+    line-height: 1.2;
+    padding: 0 0.5em;
+}
+.site-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+.site-nav-links li {
+    border-bottom: 1px solid #FFF;
+    flex: 1 0 50%;
+}
+.site-nav-links li:nth-last-child( 1 ),
+.site-nav-links li:nth-last-child( 2 ) {
+    border-bottom: none;
+}
+.site-nav-links a {
+    display: block;
+    padding: 2em 1em;
 }
 .site-nav-links a.is-active {
     color: #47BFF8;
+    cursor: text;
 }
-.site-nav-links a.is-active:after {
-    background-color: #47BFF8;
-    height: 1em;
-    bottom: -0.5em;
+.enhanced .site-nav {
+    margin: 0 -3.055555555555555555%;        /* 44/1440 */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s, opacity 0.2s;
 }
-// Link to search (the search “toggle” in enhanced browsers)
-.search-toggle {
-    background-position: 50% 50%;
-    background-size: 33px 33px;
-    margin-left: auto;
-    margin-right: 0.3em;
-    min-width: 40px;
-    padding: 1em;
-    position: relative;
-    text-indent: -1000em;
-    transition: background-position 0.2s, opacity 0.2s;
-}
-.search-toggle .icon {
-    background-position: 50% 50%;
-    background-size: 33px 33px;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    text-indent: -1000em;
-    top: 0;
-    transition: background-position 0.2s, background-size 0.4s ease-in-out, transform 0.2s, opacity 0.2s;
-}
-.search-toggle .icon-close {
-    background-size: 30px auto;
-    transform: scale( 0 );
-    opacity: 0;
-}
-.site-search-open.site-search-transitioning .search-toggle .icon-close {
-    transition-delay: 0.3s;
-}
-.site-search-open .search-toggle .icon-close {
+.site-nav-links-open .site-nav {
+    max-height: 11em;
     opacity: 1;
-    transform: scale( 1 );
 }
-.site-search-open .search-toggle .icon-search {
-    background-position: left 50% bottom -33px;
-    background-size: 0 0;
-    opacity: 0.1;
-    transition-delay: 0.2s;
+// Move from a 2-up grid in the navigation menu to a centered, single row of links
+// NOTE: This may change if the number of links in the menu needs to increase.
+@media (min-width: 20em) {
+    .site-nav-links {
+        flex-wrap: nowrap;
+    }
+    .site-nav-links li {
+        border-bottom: none;
+        flex-basis: 25%;
+    }
+    .site-nav-links a {
+        text-align: center;
+        position: relative;
+        padding: 2em 0.8em;
+    }
 }
-
-
+// Move the nav toggle off to the right, and introduce border highlights to the primary navigation
+@media (min-width: 25em) {
+    // From this point on, we’ll use `.site-logo a` to shim the height of the masthead
+    .site-logo a {
+        justify-content: initial;
+        padding: 0.8em 0;
+    }
+    // Move nav-toggle to the right, next to nav-search
+    .header-toggle + .header-toggle {
+        margin-left: 0.5em;
+    }
+    .header-main .nav-toggle {
+        order: initial;
+    }
+    // Navigation highlight bars
+    .site-nav {
+        padding: 0;
+    }
+    .site-nav-links a:after {
+        background: #FFF;
+        top: 0;
+        content: "";
+        height: 0;
+        left: 5%;
+        position: absolute;
+        right: 5%;
+        transition: height 0.2s;
+        width: 90%;
+        z-index: 1;
+    }
+    .site-nav-links a:focus:after,
+    .site-nav-links a:hover:after,
+    .site-nav-links a.is-active:after {
+        height: 0.5em;
+    }
+    .site-nav-links a.is-active:after {
+        background-color: #47BFF8;
+    }
+}
+// Move toward the “full” masthead: make the navigation visible by default, hide the navigation toggle, and position the search toggle off to the right
+@media (min-width: 45em) {
+    .site-header {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        position: relative;
+        margin: 0 4.758364312267657992%;    /* 64/1345 */
+    }
+    .header-main {
+        margin-right: 2.857142857142857142%;    /* 34/1190 */
+    }
+    .site-logo {
+        display: flex;
+        width: 17.226890756302521008%;    /* 205/1190 */
+    }
+    .site-logo a {
+        padding: 1em 0;
+    }
+    .nav-toggle {
+        display: none;
+    }
+    .search-toggle {
+        bottom: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    // Restore search icon to full size
+    .search-toggle .icon {
+        background-color: inherit;
+        background-size: 33px 33px;
+        height: 100%;
+        transition: background-position 0.2s, background-size 0.4s ease-in-out, transform 0.2s, opacity 0.2s;
+        width: 33px;
+    }
+    // Hide the close icon by default
+    .search-toggle .icon-close {
+        background-size: 30px auto;
+        transform: scale( 0 );
+        opacity: 0;
+    }
+    // Open/close states for the search toggle
+    .site-search-open.site-search-transitioning .search-toggle .icon-close {
+        transition-delay: 0.3s;
+    }
+    .site-search-open .search-toggle .icon-close {
+        opacity: 1;
+        transform: scale( 1 );
+    }
+    .site-search-open .search-toggle .icon-search {
+        background-position: left 50% bottom -33px;
+        background-size: 0 0;
+        opacity: 0.1;
+        transition-delay: 0.2s;
+    }
+    // Make the primary navigation visible by default
+    .enhanced .site-nav {
+        background: inherit;
+        margin: 0;
+        overflow: visible;
+        max-height: inherit;
+    }
+    .site-nav,
+    .site-nav-links,
+    .site-nav-links li,
+    .site-nav-links a {
+        display: flex;
+    }
+    .site-nav {
+        width: 50%;
+    }
+    .site-nav-links,
+    .site-nav-links a {
+        width: 100%;
+    }
+    .site-nav-links li,
+    .site-nav-links a {
+        justify-content: center;
+    }
+    .site-nav-links a {
+        box-sizing: border-box;
+        align-items: center;
+        padding: 0;
+    }
+    .site-nav-links a:after {
+        top: auto;
+        bottom: 0;
+    }
+    .site-nav-links a.is-active:after {
+        height: 1em;
+        bottom: -0.5em;
+    }
+}
+@media (min-width: 55em) {
+    // Bump up the vertical height of the masthead row
+    .site-logo a {
+        padding: 1.5em 0;
+    }
+    // Vertical tweak to line .nav-toggle up with the search button
+    .nav-toggle {
+        margin-right: 0.9em;
+    }
+}
+@media (min-width: 60em) {
+    // Bump up the vertical height of the masthead row
+    .site-logo a {
+        padding: 2em 0;
+    }
+}
 
 /*-
 
@@ -319,38 +472,48 @@ Site search
     clear: both;
     margin-top: 3em;
 }
-.site-search-inner {
-    display: flex;
-}
-.site-search-inner > * {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    margin: 1.5em 0;
-    padding: 0 2em;
-    width: 50%;
-}
-.article-tease {
-    border-right: 1px solid #FFF;
-    padding-left: 4.758364312267657992%;    /* 64/1345 */
-}
-.form-search {
-    padding-right: 4.758364312267657992%;    /* 64/1345 */
-}
 .hed-search {
+    font-size: 1em;
+    font-weight: normal;
     margin-bottom: 0;
 }
 .form-search .hed-search {
-    margin-bottom: 0.6em;
+    display: block;
+    margin-bottom: 0.5em;
 }
 .hed-article-tease-search {
     margin: 0;
-    font-size: 36px;
-    font-size: 2.25em;
+    font-size: 1.25em;
     line-height: 1.2;
+}
+@media (min-width: 20em) {
+    .hed-article-tease-search {
+        font-size: 1.4em;
+    }
+}
+@media (min-width: 25em) {
+    .hed-article-tease-search {
+        font-size: 1.7em;
+    }
+}
+@media (min-width: 40em) {
+    .hed-article-tease-search {
+        font-size: 1.7em;
+    }
+}
+@media (min-width: 60em) {
+    .hed-article-tease-search {
+        font-size: 2em;
+    }
+}
+@media (min-width: 70em) {
+    .hed-article-tease-search {
+        font-size: 2.25em;
+    }
 }
 .site-search img {
     float: right;
+    margin-bottom: 0.5em;
     margin-left: 0.5em;
 }
 .fields-search {
@@ -359,30 +522,71 @@ Site search
 .fields-search input {
     -webkit-appearance: none;
     border: none;
-    flex: 1;
 }
 .text-search {
     border-radius: 0.2rem 0 0 0.2rem;
     color: #5C5C5C;
-    font-size: 48px;
-    font-size: 3rem;
+    font-size: 26px;
+    font-size: 1.625rem;
     line-height: 1.3;
     padding: 0.1em 0.2em;
-    max-width: 84%;
+    flex: 1 0 auto;
+    width: 84%;
+}
+@media (min-width: 30em) {
+    .text-search {
+        font-size: 40px;
+        font-size: 2.5rem;
+    }
+}
+@media (min-width: 50em) {
+    .text-search {
+        font-size: 48px;
+        font-size: 3rem;
+    }
 }
 .btn-search {
     background-color: #00314A;
     background-position: 50% 50%;
     border-radius: 0 0.2rem 0.2rem 0;
-    background-size: 33px 33px;
+    background-size: 20px auto;
     cursor: pointer;
     text-indent: -1000em;
     transition: background-color 0.2s, background-size 0.2s;
+    flex: 0 1 16%;
 }
 .btn-search:hover,
 .btn-search:focus {
     background-color: #1896D7;
-    background-size: 36px 36px;
+    background-size: 24px auto;
+}
+@media (min-width: 50em) {
+    .btn-search {
+        background-size: 33px 33px;
+    }
+    .btn-search:hover,
+    .btn-search:focus {
+        background-size: 36px 36px;
+    }
+}
+.site-search-inner > * {
+    padding: 1em;
+}
+@media (min-width: 50em) {
+    .site-search-inner {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .site-search-inner > * {
+        box-sizing: border-box;
+        margin: 1.5em 0;
+        padding: 0 2em;
+        width: 50%;
+    }
+    .site-search .article-tease {
+        border-right: 1px solid #FFF;
+        padding-left: 4.758364312267657992%;    /* 64/1345 */
+    }
 }
 /*
 Enhanced version
@@ -418,8 +622,14 @@ Enhanced version
 .site-search-open.site-search-transitioning .site-search .btn-search {
     transition-delay: 0.5s;
 }
+
 .site-search-open .site-search .btn-search {
-    background-size: 33px 33px;
+    background-size: 20px auto;
+}
+@media (min-width: 50em) {
+    .site-search-open .site-search .btn-search {
+        background-size: 33px 33px;
+    }
 }
 
 
