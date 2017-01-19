@@ -56,11 +56,12 @@ SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
 # SITE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Hosts/domain names that are valid for this site
-# See https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['source.opennews.org'])
-# END SITE CONFIGURATION
 
 INSTALLED_APPS += ("gunicorn", )
+
+BASE_SITE_URL = 'https://source.opennews.org'
+
 
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------

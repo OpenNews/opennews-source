@@ -5,13 +5,21 @@
 {% block content %}
 <div class="authentication">
     {% if not user.is_authenticated() %}
-        Hi you need to log in
+    <script src="https://cdn.auth0.com/js/lock-passwordless-1.0.min.js"></script>
+    <script type="text/javascript">
+        var options = {"callbackURL":"{{ AUTH0_CALLBACK_URL }}"}
+        var lock = new Auth0LockPasswordless(
+            '{{AUTH0_CLIENT_ID}}',
+            '{{AUTH0_DOMAIN}}'
+        );
+    </script>
+    <button onclick="lock.magiclink(options)">Please sign in to update your organization</button>
     {% endif %}
 </div>
 
 {% if error_message %}
     <div class="toggle-buttons">
-        Log out
+        <a class="logout" href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a>
     </div>
     <p>{{ error_message }}</p>
 
@@ -20,7 +28,7 @@
     <a href="#organization" class="active">Your organization</a>
     <a href="#people">Your people</a>
     <a href="#jobs">Your job listings</a>
-    Log out
+    <a class="logout" href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a>
 </div>
 
 <div id="organization" class="admin-panel">
@@ -221,6 +229,8 @@
         {% endfor %}
     </div>
 </div>
+{% elif user.is_authenticated() %}
+<p>Sorry, no organization account found for this email address.</p>
 {% endif %}
 {% endblock content %}
 
@@ -337,7 +347,7 @@ jQuery(document).ready(function(){
     });
 
     var toggleContainer = $('.toggle-buttons');
-    toggleContainer.on('click', 'a', function(e) {
+    toggleContainer.on('click', 'a:not(.logout)', function(e) {
         e.preventDefault();
         toggleContainer.find('a').removeClass('active');
         $(this).addClass('active');

@@ -185,6 +185,21 @@ class Organization(CachingMixin, models.Model):
         return self.get_live_job_set().exists()
 
 
+class OrganizationAdmin(CachingMixin, models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    email = models.EmailField('Email address', unique=True)
+    objects = models.Manager()
+
+    class Meta:
+        ordering = ('organization', 'email',)
+        verbose_name = 'Organization Admin'
+
+    def __str__(self):
+        return '%s: %s' % (self.organization.name, self.email)
+
+
 class OrganizationLink(CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

@@ -48,6 +48,7 @@ THIRD_PARTY_APPS = (
     'taggit',
     'django_jinja',
     'storages',
+    'django_auth0',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -137,6 +138,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'django_auth0.context_processors.auth0',
                 'source.base.context_processors.globals',
             ],
         }
@@ -161,6 +163,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'django_auth0.context_processors.auth0',
                 'source.base.context_processors.globals',
             ],
         },
@@ -210,10 +213,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
+    'source.utils.auth.Auth0Backend',
+    #'django_auth0.auth_backend.Auth0Backend',
     #'allauth.account.auth_backends.AuthenticationBackend',
 )
-BROWSERID_CREATE_USER = 'source.people.utils.create_auth_user'
-LOGIN_REDIRECT_URL = '/organizations/update/'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
@@ -258,4 +261,10 @@ DEFAULT_IMAGE_SRC = 'img/missing.png'
 TIME_ZONE='America/Chicago'
 HTTP_PROTOCOL = 'https'
 BASE_SITE_URL = 'https://source.opennews.org'
+
+AUTH0_DOMAIN = env.str('AUTH0_DOMAIN', None)
+AUTH0_CLIENT_ID = env.str('AUTH0_CLIENT_ID', None)
+AUTH0_SECRET = env.str('AUTH0_SECRET', None)
+AUTH0_CALLBACK_URL = BASE_SITE_URL + '/auth/callback/'
+AUTH0_SUCCESS_URL = 'organization_update'
 
