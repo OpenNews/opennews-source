@@ -26,6 +26,7 @@ body {
     font: normal 100%/1.5 Arial, Helvetica, sans-serif;
     font-size: calc( 14px + ( 16 - 14 ) * ( ( 100vw - 300px ) / ( 1400 - 300 ) ) );
     margin: 1em;
+    margin: 5vw;
 }
 .wf-active body {
     font-family: "sofia-pro", sans-serif;
@@ -39,7 +40,7 @@ body a {
     text-align: center;
 }
 h1 {
-    margin: 5vw 0;
+    margin: 0 0 5vw;
 }
 ul,
 li,
@@ -50,6 +51,7 @@ ul {
     list-style: none;
     padding-left: 0;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 li,
 li a {
@@ -60,9 +62,12 @@ li a {
         flex-direction: row;
         flex-wrap: wrap;
     }
-    li,
     li a {
         flex: 1;
+    }
+    li {
+        box-sizing: border-box;
+        flex: 0 1 50%;
     }
 }
 li {
@@ -94,6 +99,7 @@ li a:focus {
     <ul>
         <li><a href="article.php">Article</a></li>
         <li><a href="landing-code.php">Landing (Code)</a></li>
+        <li><a href="repo-featured.php">Featured Repo</a></li>
     </ul>
 </div>
 
