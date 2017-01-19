@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="297px" height="297px" viewBox="0 0 297 297" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0.14453125" y="0" width="299.234375" height="300.5"></rect>
+        <ellipse id="path-3" cx="295.220393" cy="295.220393" rx="295.110018" ry="295.110018"></ellipse>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="search-bar" transform="translate(-1048.000000, -100.000000)">
+            <g id="Group-2">
+                <g transform="translate(1045.046875, 100.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Rectangle"></g>
+                    <g id="big-dots" opacity="0.1" mask="url(#mask-2)">
+                        <g transform="translate(0.144531, -291.500000)" id="Group-5-Copy">
+                            <g style="mix-blend-mode: multiply;" transform="translate(0.631295, 0.620511)">
+                                <mask id="mask-4" fill="white">
+                                    <use xlink:href="#path-3"></use>
+                                </mask>
+                                <g id="mask"></g>
+                                <g id="dots" mask="url(#mask-4)" fill="#47BFF8">
+                                    <g transform="translate(1.912978, 3.527347)">
+                                        <ellipse id="Oval-Copy-23" cx="240.212386" cy="290.355005" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-34" cx="240.212386" cy="400.074408" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-45" cx="240.212386" cy="506.133797" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-29" cx="293.578551" cy="345.035691" rx="24.084747" ry="24.084747"></ellipse>
+                                        <circle id="Oval-Copy-40" cx="293.578551" cy="451.453111" r="24.084747"></circle>
+                                        <ellipse id="Oval-Copy-49" cx="293.578551" cy="560.263064" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-24" cx="132.323644" cy="290.355005" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-35" cx="132.323644" cy="400.074408" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-46" cx="132.323644" cy="506.133797" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-30" cx="185.689809" cy="345.035691" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-41" cx="185.689809" cy="451.453111" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-50" cx="185.689809" cy="560.263064" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-25" cx="24.5276756" cy="290.355005" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-36" cx="24.5276756" cy="400.074408" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-31" cx="77.8938405" cy="345.035691" rx="24.084747" ry="24.084747"></ellipse>
+                                        <ellipse id="Oval-Copy-42" cx="77.8938405" cy="451.453111" rx="24.084747" ry="24.084747"></ellipse>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

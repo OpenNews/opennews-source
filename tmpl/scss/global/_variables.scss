@@ -1,0 +1,13 @@
+// Webfont map
+//
+// The loaded webfonts can be accessed through a map.
+// e.g. font-family: map-get( $fonts, "serif" );
+//
+// @type Map
+$fonts: (
+    "mono": ( Consolas, Inconsolata, "Courier New", Courier, monospace ),
+    "sans": ( "sofia-pro", sans-serif ),
+    "sans-base": ( Arial, Helvetica, sans-serif ),
+    "serif": ( "freight-text-pro", serif ),
+    "serif-base": ( Georgia, Times, serif )
+);
