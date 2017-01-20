@@ -1,0 +1,77 @@
+{% extends "code/_v2/_base_code.html" %}
+
+{% block page_main %}
+
+                <div class="content-main">
+                    <h1 class="page-title-lead">Code</h1>
+
+                    <div class="mod main-lead">
+                        <p>We collect a feed of code repositories from tech teams in news organizations and feature repos referenced in our articles or submitted by readers.</p>
+
+                        <p><a class="link-cta" href="#">Submit a repo now</a></p>
+                    </div><!-- /end .mod.main-lead -->
+
+                    <div class="mod">
+                        <h2 class="hed-label">Featured Repos</h2>
+
+                        <ul class="list-promos">
+                        {% for code in featured_repos %}
+                            <li class="src-promo">
+                                <a href="{{ code.get_absolute_url() }}">
+                                    {% if code.screenshot %}
+                                    <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200") }}" alt="{{ code.name }}" />
+                                    {% else %}
+                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ code.name }}" />
+                                    {% endif %}
+                                    <h3 class="hed-promo">{{ code.name|smartypants }}</h3>
+                                </a>
+                                <ul class="list-tags-short">{% for tag in code.tags.all() %}
+                                    <li><a class="tag" href="{{ url('code_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a></li>{% endfor %}
+                                </ul><!-- /end .list-tags-short -->
+                            </li><!-- /end .src-promo -->
+                        {% endfor %}
+                        </ul><!-- /end .list-promos -->
+
+                        {#}<p class="cta-primary"><a class="link-cta" href="#">See more</a></p>{#}
+                    </div><!-- /end .mod -->
+
+                    <div class="mod">
+                        <h2 class="hed-label">Explore All Code</h2>
+
+                        <ul class="list-topics">
+                            {% for group in object_list|groupby('sorted_grouping') %}{% if group.grouper %}
+                            <li class="topic">
+                                <h3 class="hed-topic">{{ group.grouper|title }}</h3>
+                                <ul class="list-compact">{% for code in group.list %}
+                                    <li><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a>{% if not loop.last %},{% endif %}</li>{% endfor %}
+                                </ul>
+                            </li><!-- /end .topic -->
+                            {% endif %}{% endfor %}
+                        </ul><!-- /end .list-topics -->
+                    </div><!-- /end .mod -->
+                </div><!-- /end .group.p-more -->
+
+                <div class="content-aside">
+                    <div class="mod aside-lead">
+                        <h2 class="hed-label">Recently Added</h2>
+
+                        <ol class="list-recently">
+                            {% for code in recent_repos %}
+                            <li class="item-recent">
+                                <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
+
+                                <ul>
+                                    {% for person in code.get_live_person_set() %}
+                                    <li><a class="icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                                    {% endfor %}
+                                    {% for organization in code.get_live_organization_set() %}
+                                    <li><a class="icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li><!-- /end .item-recent -->
+                            {% endfor %}
+                        </ol><!-- /end .list-recently -->
+                    </div><!-- /end .mod.aside-lead -->
+                </div><!-- /end .group-alt.p-less -->
+
+{% endblock %}

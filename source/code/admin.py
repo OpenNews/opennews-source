@@ -23,9 +23,11 @@ class CodeAdmin(AdminImageMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('people', 'organizations',)
     list_filter = ('is_live', 'is_active',)
+    list_display = ('name', 'is_live', 'is_featured', 'grouping',)
+    list_editable = ('is_live', 'is_featured', 'grouping',)
     search_fields = ('name', 'description',)
     fieldsets = (
-        ('', {'fields': (('name', 'slug'), ('is_live', 'is_active', 'seeking_contributors', 'is_featured'), 'url', 'demo_site', 'tags', 'technology_tags', 'concept_tags', 'screenshot', 'description', ('repo_last_push', 'repo_forks', 'repo_watchers'), 'repo_master_branch', 'repo_description', 'summary',)}),
+        ('', {'fields': (('name', 'slug'), ('is_live', 'is_active', 'seeking_contributors', 'is_featured'), 'url', 'demo_site', 'grouping', 'tags', 'technology_tags', 'concept_tags', 'screenshot', 'description', ('repo_last_push', 'repo_forks', 'repo_watchers'), 'repo_master_branch', 'repo_description', 'summary',)}),
         ('Related objects', {'fields': ('people', 'organizations',)}),
     )
     inlines = [CodeLinkInline,]
@@ -36,11 +38,12 @@ class CodeAdmin(AdminImageMixin, admin.ModelAdmin):
         Mirror split tagfield contents in primary `tags` model.
         See source.tags.models for further details.
         '''
-        technology_tags_list = form.cleaned_data['technology_tags']
-        concept_tags_list = form.cleaned_data['concept_tags']
-        merged_tags = technology_tags_list + concept_tags_list
-        if merged_tags:
-            form.cleaned_data['tags'] = merged_tags
+        if 'technology_tags' in form.cleaned_data:
+            technology_tags_list = form.cleaned_data['technology_tags']
+            concept_tags_list = form.cleaned_data['concept_tags']
+            merged_tags = technology_tags_list + concept_tags_list
+            if merged_tags:
+                form.cleaned_data['tags'] = merged_tags
 
         super(CodeAdmin, self).save_model(request, obj, form, change)
     

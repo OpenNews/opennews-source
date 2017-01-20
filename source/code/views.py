@@ -11,6 +11,7 @@ from source.utils.pagination import paginate
 
 class CodeList(ListView):
     model = Code
+    template_name = 'code/_v2/code_list.html'
 
     def dispatch(self, *args, **kwargs):
         self.render_json = kwargs.get('render_json', False)
@@ -19,7 +20,7 @@ class CodeList(ListView):
         return super(CodeList, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):
-        queryset = Code.live_objects.prefetch_related('organizations')
+        queryset = Code.live_objects.all()
 
         if self.tag_slugs:
             queryset, self.tags = filter_queryset_by_tags(queryset, self.tag_slugs, self.tags)
@@ -29,6 +30,22 @@ class CodeList(ListView):
     def get_context_data(self, **kwargs):
         context = super(CodeList, self).get_context_data(**kwargs)
         context['active_nav'] = 'Code'
+        
+        # FEATURED REPOS
+        featured_repos = Code.live_objects.filter(is_featured=True).order_by('?')
+        try:
+            featured_repos = featured_repos[:3]
+        except:
+            featured_repos = None
+        context['featured_repos'] = featured_repos
+
+        # RECENT REPOS
+        recent_repos = Code.live_objects.order_by('-created')
+        try:
+            recent_repos = recent_repos[:6]
+        except:
+            recent_repos = None
+        context['recent_repos'] = recent_repos
 
         if self.tags:
             context['tags'] = self.tags
