@@ -1,0 +1,216 @@
+{% extends "code/_v2/_base_code.html" %}
+
+{% block page_main %}
+
+                <div class="content-main">
+                    <h1 class="page-title-lead">Code</h1>
+
+                    <div class="mod main-lead">
+                        <p>We collect a feed of code repositories from tech teams in news organizations and feature repos referenced in our articles or submitted by readers.</p>
+
+                        <p><a class="link-cta" href="#">Submit a repo now</a></p>
+                    </div><!-- /end .mod.main-lead -->
+
+                    <div class="mod">
+                        <h2 class="hed-label">Featured Repos</h2>
+
+                        <ul class="list-promos">
+                        {% for code in featured_repos %}
+                            <li class="src-promo">
+                                <a href="{{ code.get_absolute_url() }}">
+                                    {% if code.screenshot %}
+                                    <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200") }}" alt="{{ code.name }}" />
+                                    {% else %}
+                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ code.name }}" />
+                                    {% endif %}
+                                    <h3 class="hed-promo">{{ code }}</h3>
+                                </a>
+                                <ul class="list-tags-short">{% for tag in code.tags.all() %}
+                                    <li><a class="tag" href="{{ url('code_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a></li>{% endfor %}
+                                </ul><!-- /end .list-tags-short -->
+                            </li><!-- /end .src-promo -->
+                        {% endfor %}
+                        </ul><!-- /end .list-promos -->
+
+                        {#}<p class="cta-primary"><a class="link-cta" href="#">See more</a></p>{#}
+                    </div><!-- /end .mod -->
+
+                    <div class="mod">
+                        <h2 class="hed-label">Explore All Code</h2>
+
+                        <ul class="list-topics">
+                            <li class="topic">
+                                <h3 class="hed-topic">Culture</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a>,</li>
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separate</a></li>
+                                </ul>
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Data Viz</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Mapping</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a>,</li>
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separate</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Mapping</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a>,</li>
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separate</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Mobile</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Scraping</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a>,</li>
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separate</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Culture</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a>,</li>
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separate</a></li>
+                                </ul>
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Data Viz</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Mapping</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a>,</li>
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separate</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Mapping</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a>,</li>
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separate</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                            <li class="topic">
+                                <h3 class="hed-topic">Mobile</h3>
+                                <ul class="list-compact">
+                                    <li><a href="#">bunch of</a>,</li>
+                                    <li><a href="#">comma-separated</a>,</li>
+                                    <li><a href="#">repos</a>,</li>
+                                    <li><a href="#">code links here</a></li>
+                                </ul><!-- /end .list-compact -->
+                            </li><!-- /end .topic -->
+                        </ul><!-- /end .list-topics -->
+                    </div><!-- /end .mod -->
+                </div><!-- /end .group.p-more -->
+
+                <div class="content-aside">
+                    <div class="mod aside-lead">
+                        <h2 class="hed-label">Recently Added</h2>
+
+                        <ol class="list-recently">
+                            <li class="item-recent">
+                                <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
+
+                                <ul>
+                                    <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
+                                    <li><a class="icon-company" href="#">The New York Times</a></li>
+                                </ul>
+                            </li><!-- /end .item-recent -->
+                            <li class="item-recent">
+                                <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
+
+                                <ul>
+                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
+                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                </ul>
+                            </li><!-- /end .item-recent -->
+                            <li class="item-recent">
+                                <h3 class="hed-recent"><a href="#">Elex</a></h3>
+
+                                <ul>
+                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
+                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                </ul>
+                            </li><!-- /end .item-recent -->
+                            <li class="item-recent">
+                                <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
+
+                                <ul>
+                                    <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
+                                    <li><a class="icon-company" href="#">The New York Times</a></li>
+                                </ul>
+                            </li><!-- /end .item-recent -->
+                            <li class="item-recent">
+                                <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
+
+                                <ul>
+                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
+                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                </ul>
+                            </li><!-- /end .item-recent -->
+                            <li class="item-recent">
+                                <h3 class="hed-recent"><a href="#">Elex</a></h3>
+
+                                <ul>
+                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
+                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                </ul>
+                            </li><!-- /end .item-recent -->
+                        </ol><!-- /end .list-recently -->
+                    </div><!-- /end .mod.aside-lead -->
+                </div><!-- /end .group-alt.p-less -->
+
+{% endblock %}
