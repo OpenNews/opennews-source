@@ -36,6 +36,7 @@ class Code(CachingMixin, models.Model):
     name = models.CharField(max_length=128)
     slug = models.SlugField(unique=True)
     url = models.URLField('Repository URL')
+    grouping = models.CharField(max_length=64, blank=True, help_text="The primary category where this repo will be grouped on the Code page.")
     demo_site = models.URLField('Demo site URL', blank=True)
     description = models.TextField('Description', blank=True)
     summary = models.TextField(blank=True, help_text='Short, one- or two-sentence version of description, used on list pages.')
@@ -83,6 +84,10 @@ class Code(CachingMixin, models.Model):
     @property
     def sort_letter(self):
         return self.slug[:1]
+
+    @property
+    def sorted_grouping(self):
+        return self.grouping.lower()
         
     @property
     def summary_or_description(self):

@@ -1,0 +1,9 @@
+{% extends "_v2/base.html" %}
+
+{% set active_nav = "community" %}
+
+{% block body_class %}tmpl-landing{% endblock %}
+
+{% set page_title_lead = "Code" %}
+
+{% block page_title %}Code Index{% if tags %} entries tagged: {% for tag in tags %}{{ tag.name }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %} - {{ super() }}{% endblock %}
