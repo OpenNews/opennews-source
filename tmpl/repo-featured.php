@@ -1,6 +1,6 @@
 <?php
 $rootpath = $_SERVER['DOCUMENT_ROOT'];
-$criticalcss = "critical-landing.css";
+$criticalcss = "critical-content.css";
 $current_page = "community";
 ?>
 <!DOCTYPE html>
