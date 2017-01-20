@@ -742,10 +742,12 @@ Headings
 .wf-active .article-subtitle-lead {
     font-family: map-get( $fonts, "serif" );;
 }
-// .hed-category {
-.hed-category {
+// .hed-sub is the…subhed style look I know {
+.hed-sub,
+legend {
     color: #F7786B;
     font-size: 0.8125em;    /* 13/16 */
+    font-weight: 700;
     text-transform: uppercase;
 }
 // In-article figure styles

@@ -200,14 +200,14 @@ var disqus_config = function () {
             </div><!-- /end .article.main -->
 
             <div class="article-links-relevant">
-                <h2 class="hed-category">People</h2>
+                <h2 class="hed-sub">People</h2>
 
                 <ul>
                     <li><a href="#">Clément Geiger</a></li>
                     <li><a href="#">Basile Simon-MuchLongername</a></li>
                 </ul>
 
-                <h2 class="hed-category">Organizations</h2>
+                <h2 class="hed-sub">Organizations</h2>
 
                 <ul>
                     <li><a href="#">NJ.com</a></li>

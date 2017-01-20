@@ -68,7 +68,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 </div><!-- /end .mod.main-lead -->
 
                 <div class="mod">
-                    <h2 class="hed-category hed-subhed">Related article:</h2>
+                    <h2 class="hed-sub">Related article:</h2>
                     <h3 class="hed-related related-item">
                         <a href="#">
                             How We Elex, A Long Title By Us the People Who Wrote It
