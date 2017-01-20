@@ -68,12 +68,21 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 </div><!-- /end .mod.main-lead -->
 
                 <div class="mod">
+                    <h2 class="hed-category hed-subhed">Related article:</h2>
+                    <h3 class="hed-related related-item">
+                        <a href="#">
+                            How We Elex, A Long Title By Us the People Who Wrote It
+                        </a>
+                    </h3>
+                </div>
+
+                <div class="mod">
                     <ul class="repo-meta">
                         <li>
-                            <a class="link-code-repo" href="https://github.com/newsdev/elex">Code repo</a>
+                            <a class="has-icon icon-code link-code-repo" href="https://github.com/newsdev/elex">Code repo</a>
                         </li>
                         <li>
-                            <a href="#">Demo</a>
+                            <a class="has-icon icon-link" href="#">Demo</a>
                         </li>
                         <li>
                             <span>Last push: <time datetime="2015-12-05">5 December 2015</time></span>
@@ -82,7 +91,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 </div><!-- /end .mod -->
 
                 <div class="mod">
-                    <h2 class="hed-label">Featured Repos</h2>
+                    <h2 class="hed-subhed">Featured Repos</h2>
 
                     <ul class="list-promos">
                         <li class="src-promo">

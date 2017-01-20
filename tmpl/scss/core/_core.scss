@@ -127,6 +127,7 @@ ul li {
 }
 
 
+
 /*-
 
 Macro-level structural elements
@@ -1327,24 +1328,49 @@ Article back matter
     }
 }
 
-
+// Repo metadata
 .repo-meta {
     border-top: 1px solid #D8D8D8;
-    display: flex;
-    justify-content: space-between;
+    clear: both;
+    margin-bottom: 4em;
     margin-top: 1em;
 }
-.repo-meta li:last-child {
-    flex: 1;
-    text-align: right;
-    margin-right: 0;
-}
-.repo-meta li {
-    margin-right: 2em;
-}
-.repo-meta a, .repo-meta span {
-    padding: 0.6em 0;
+.repo-meta a,
+.repo-meta span {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
     display: inline-block;
+}
+.repo-meta .has-icon,
+.repo-meta span {
+    background-position: 0 0.55em;
+    padding-left: 30px;
+}
+@media (min-width: 30em) {
+    .repo-meta {
+        display: flex;
+        justify-content: space-between;
+    }
+    .repo-meta li {
+        margin-right: 2em;
+    }
+    .repo-meta li:last-child {
+        flex: 1;
+        text-align: right;
+        margin-right: 0;
+    }
+    .repo-meta a,
+    .repo-meta span {
+        padding-top: 0.6em;
+        padding-bottom: 0.6em;
+        display: inline-block;
+    }
+    .repo-meta .has-icon {
+        background-position: 0 0.95em;
+    }
+    .repo-meta span {
+        padding-left: 0;
+    }
 }
 
 
