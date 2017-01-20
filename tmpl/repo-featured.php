@@ -67,17 +67,19 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                     <p>It can make your life better by taking care of results-reporting plumbing and letting you compete on the interesting stuff. Elex is pretty easy to use as long as you have access to AP results.</p>
                 </div><!-- /end .mod.main-lead -->
 
-                <ul class="mod repo-meta">
-                    <li>
-                        <a href="#">Code repo</a>
-                    </li>
-                    <li>
-                        <a href="#">Demo</a>
-                    </li>
-                    <li>
-                        <span>Last push: <time datetime="2015-12-05">5 December 2015</time></span>
-                    </li>
-                </ul><!-- /end .mod.repo-meta -->
+                <div class="mod">
+                    <ul class="repo-meta">
+                        <li>
+                            <a class="link-code-repo" href="https://github.com/newsdev/elex">Code repo</a>
+                        </li>
+                        <li>
+                            <a href="#">Demo</a>
+                        </li>
+                        <li>
+                            <span>Last push: <time datetime="2015-12-05">5 December 2015</time></span>
+                        </li>
+                    </ul><!-- /end .repo-meta -->
+                </div><!-- /end .mod -->
 
                 <div class="mod">
                     <h2 class="hed-label">Featured Repos</h2>
@@ -119,126 +121,6 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                     </ul><!-- /end .list-promos -->
 
                     <p class="cta-primary"><a class="link-cta" href="#">See more</a></p>
-                </div><!-- /end .mod -->
-
-                <div class="mod">
-                    <h2 class="hed-label">Explore All Code</h2>
-
-                    <ul class="list-topics">
-                        <li class="topic">
-                            <h3 class="hed-topic">Culture</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a>,</li>
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separate</a></li>
-                            </ul>
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Data Viz</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Mapping</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a>,</li>
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separate</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Mapping</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a>,</li>
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separate</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Mobile</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Scraping</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a>,</li>
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separate</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Culture</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a>,</li>
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separate</a></li>
-                            </ul>
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Data Viz</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Mapping</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a>,</li>
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separate</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Mapping</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a>,</li>
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separate</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                        <li class="topic">
-                            <h3 class="hed-topic">Mobile</h3>
-                            <ul class="list-compact">
-                                <li><a href="#">bunch of</a>,</li>
-                                <li><a href="#">comma-separated</a>,</li>
-                                <li><a href="#">repos</a>,</li>
-                                <li><a href="#">code links here</a></li>
-                            </ul><!-- /end .list-compact -->
-                        </li><!-- /end .topic -->
-                    </ul><!-- /end .list-topics -->
                 </div><!-- /end .mod -->
             </div><!-- /end .group.p-more -->
 
