@@ -101,6 +101,17 @@ ul li {
     margin-left: 0;
     padding-left: 0;
 }
+fieldset {
+    border: none;
+    padding: 1em 0;
+    margin-bottom: 1.5em;
+}
+input[type=text],
+textarea {
+    
+}
+
+
 // CC license link
 .link-cc {
     background: url("/img/cc.png") no-repeat 0 0.2em;
