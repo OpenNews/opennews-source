@@ -30,7 +30,7 @@
         // `before` [OPTIONAL] is the element the script should use as a reference for injecting our stylesheet <link> before
             // By default, loadCSS attempts to inject the link after the last stylesheet or script in the DOM. However, you might desire a more specific location in your document.
         // `media` [OPTIONAL] is the media type or query of the stylesheet. By default it will be 'all'
-        var doc = w.document;
+        var doc = win.document;
         var ss = doc.createElement( "link" );
         var ref;
         if( before ){
