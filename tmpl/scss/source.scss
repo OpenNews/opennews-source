@@ -4,4 +4,6 @@
 @import "lib/normalize";
 // Source UI
 @import "core/base";
-@import "core/core"
+@import "core/core";
+// Miscellaneous patches/overrides
+@import "core/fixes";
