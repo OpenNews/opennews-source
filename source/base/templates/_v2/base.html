@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if lt IE 9]>  <html class="ie oldie" lang="en"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+
+    <title>{% block page_title %}Source: An OpenNews project{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="grunticon" content="{{ static('base/_v2/dist/svg/') }}" />
+    <meta name="fullJS" content="{{ static('base/_v2/dist/js/main.js') }}" />
+    <meta name="fullCSS" content="{{ static('base/_v2/dist/css/main.css') }}" />
+
+    <script src="{{ static('base/_v2/dist/js/initial.js') }}"></script>
+    {#}
+    <script src="{{ static('base/_v2/dist/svg/grunticon.loader.js') }}"></script>
+    <script src="{{ static('base/_v2/js/config.js') }}"></script>
+    <script src="{{ static('base/_v2/js/utils.js') }}"></script>
+    <script src="{{ static('base/_v2/js/typekit.js') }}"></script>
+    <script src="{{ static('base/_v2/js/initial.js') }}"></script>
+    {#}
+
+    {% block head_css %}
+    <link href="{{ static('base/_v2/dist/css/main.css') }}" rel="stylesheet" />
+    {% endblock %}
+    {% if rss_link %}
+    <link rel="alternate" href="{{ rss_link }}" type="application/rss+xml" title="RSS" />
+    {% endif %}
+
+    <script>document.createElement( "picture" );</script>
+    <script src="{{ static('base/_v2/dist/js/lib/picturefill.js') }}" async></script>
+
+    <noscript><link href="{{ static('base/_v2/dist/svg/icons.fallback.css') }}" rel="stylesheet" /></noscript>
+
+    {% if not settings.DEBUG %}
+        {% block google_analytics %}
+            <script type="text/javascript">
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-35433268-15']);
+                _gaq.push(['_setDomainName', 'opennews.org']);
+                _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+        {% endblock %}
+    {% endif %}
+    {% block head_extra %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+    <div class="page">
+
+        <header>
+            <div class="site-header">
+
+                <div class="header-main">
+                    <h1 class="site-logo">
+                        <a href="/">
+                            <img src="{{ static('base/_v2/svg/logo-source.svg') }}" onerror="this.src='{{ static('base/_v2/dist/svg/png/logo-source.png') }}'; return false" alt="Source" />
+                        </a>
+                    </h1>
+
+                    <a class="header-toggle nav-toggle" href="#nav-primary">
+                        <span class="icon icon-menu">Jump to site navigation</span>
+                    </a>
+
+                    <a class="header-toggle search-toggle" href="#search">
+                        <span class="icon icon-search">Search this site</span>
+                    </a>
+                </div><!-- /end .header-main -->
+
+                {% set navigation_links = [
+                    ('/articles/', 'articles', 'Articles'),
+                    ('/guides/', 'guides', 'Guides'),
+                    ('/community/', 'community', 'Community'),
+                    ('/jobs/', 'jobs', 'Jobs'),
+                ] -%}
+                {% set active_nav = active_nav %}
+                <div class="site-nav" id="nav-primary">
+                    <ul class="site-nav-links">
+                    {% for url, id, name in navigation_links %}
+                        <li><a href="{{ url|e }}"{% if id == active_nav %} aria-describedby="current-page" class="is-active"{% endif %}>{{ name|safe|e }}</a></li>
+                    {% endfor %}
+                    </ul><!-- /end .site-nav-links -->
+                </div><!-- /end .site-nav -->
+
+            </div><!-- /end .site-header -->
+        </header>
+
+        <hr />
+
+        <main>
+            <div class="page-main">
+                {% block page_main %}{% endblock %}
+
+                {% block site_search %}
+                {% include "_v2/search/_site_search.html" %}
+                {% endblock %}
+            </div><!-- /end .page-main -->
+        </main>
+
+        <footer>
+        <div class="page-footer">
+
+            <div class="foot-main foot-source">
+                <div class="foot-content">
+                    <h2 class="foot-logo">
+                        <a href="/">
+                            <img src="{{ static('base/_v2/svg/logo-source.svg') }}" onerror="this.src='{{ static('base/_v2/dist/svg/png/logo-source.png') }}'; return false" alt="Source" />
+                        </a>
+                    </h2>
+
+                    <p>Source is an OpenNews project designed to amplify the impact of journalism code and the community of developers, designers, journalists, and editors who make it.</p>
+
+                    <p>Learn more <a href="http://www.opennews.org">about the project</a> or <a href="/contribute/">contribute your work</a>. <a href="mailto:source@opennews.org">Contact us</a>.</p>
+
+                    <p><a class="link-cc" href="https://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a></p>
+                </div><!-- /end .foot-content -->
+                <div class="foot-aside">
+                    <h3 class="hed-foot">Connect</h3>
+                    <ul class="list-foot-social">
+                        <li><a class="icon-rss" href="{{ url('homepage_feed') }}">RSS</a></li>
+                        <li><a class="icon-twitter" href="https://twitter.com/source">@source</a></li>
+                        <li><a class="icon-email" href="/subscribe/">Get our biweekly roundup email</a></li>
+                    </ul><!-- /end .list-foot-social -->
+                </div><!-- /end .foot-aside -->
+            </div><!-- /end .foot-main.foot-source -->
+
+            <div class="foot-main foot-opennews">
+                <div class="foot-content">
+                    <h2 class="foot-logo">
+                        <a href="https://opennews.org">
+                            <img src="{{ static('base/_v2/svg/logo-opennews.svg') }}" onerror="this.src='{{ static('base/_v2/dist/svg/png/logo-opennews.png') }}'; return false" alt="Source" />
+                        </a>
+                    </h2>
+
+                    <p>A multi-year partnership between Mozilla and the Knight Foundation, Knight-Mozilla OpenNews is dedicated to creating an ecosystem to help strengthen and build community around journalism on the web. More at <a href="https://opennews.org">opennews.org</a>.</p>
+                </div><!-- /end .foot-content -->
+            </div><!-- /end .foot-main.foot-opennews -->
+
+        </div><!-- /end .page-footer -->
+    </footer>
+
+</div><!-- /end .page -->
+
+<!-- Anchors used by `aria-describedby` states -->
+<div id="wayfinding" class="squelch">
+    <span id="current-page">Current page</span>
+</div>
+
+</body>
+</html>
