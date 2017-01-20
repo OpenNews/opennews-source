@@ -29,6 +29,7 @@ class CodeList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CodeList, self).get_context_data(**kwargs)
+        context['active_nav'] = 'Code'
         
         # FEATURED REPOS
         featured_repos = Code.live_objects.filter(is_featured=True).order_by('?')

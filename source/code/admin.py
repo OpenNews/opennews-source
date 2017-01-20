@@ -23,11 +23,11 @@ class CodeAdmin(AdminImageMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('people', 'organizations',)
     list_filter = ('is_live', 'is_active',)
-    list_display = ('name', 'is_live', 'is_featured',)
-    list_editable = ('is_live', 'is_featured',)
+    list_display = ('name', 'is_live', 'is_featured', 'grouping',)
+    list_editable = ('is_live', 'is_featured', 'grouping',)
     search_fields = ('name', 'description',)
     fieldsets = (
-        ('', {'fields': (('name', 'slug'), ('is_live', 'is_active', 'seeking_contributors', 'is_featured'), 'url', 'demo_site', 'tags', 'technology_tags', 'concept_tags', 'screenshot', 'description', ('repo_last_push', 'repo_forks', 'repo_watchers'), 'repo_master_branch', 'repo_description', 'summary',)}),
+        ('', {'fields': (('name', 'slug'), ('is_live', 'is_active', 'seeking_contributors', 'is_featured'), 'url', 'demo_site', 'grouping', 'tags', 'technology_tags', 'concept_tags', 'screenshot', 'description', ('repo_last_push', 'repo_forks', 'repo_watchers'), 'repo_master_branch', 'repo_description', 'summary',)}),
         ('Related objects', {'fields': ('people', 'organizations',)}),
     )
     inlines = [CodeLinkInline,]
