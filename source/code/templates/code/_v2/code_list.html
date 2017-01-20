@@ -41,7 +41,7 @@
                         <ul class="list-topics">
                             {% for group in object_list|groupby('sorted_grouping') %}{% if group.grouper %}
                             <li class="topic">
-                                <h3 class="hed-topic">{{ group.grouper|title }}</h3>
+                                <h3 class="hed-topic">{{ group.list.0.grouping }}</h3>
                                 <ul class="list-compact">{% for code in group.list %}
                                     <li><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a>{% if not loop.last %},{% endif %}</li>{% endfor %}
                                 </ul>
