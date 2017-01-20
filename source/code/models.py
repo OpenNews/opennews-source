@@ -84,6 +84,10 @@ class Code(CachingMixin, models.Model):
     @property
     def sort_letter(self):
         return self.slug[:1]
+
+    @property
+    def sorted_grouping(self):
+        return self.grouping.lower()
         
     @property
     def summary_or_description(self):
