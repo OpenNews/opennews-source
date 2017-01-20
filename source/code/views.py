@@ -29,14 +29,22 @@ class CodeList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CodeList, self).get_context_data(**kwargs)
-        context['active_nav'] = 'Code'
         
+        # FEATURED REPOS
         featured_repos = Code.live_objects.filter(is_featured=True).order_by('?')
         try:
             featured_repos = featured_repos[:3]
         except:
             featured_repos = None
         context['featured_repos'] = featured_repos
+
+        # RECENT REPOS
+        recent_repos = Code.live_objects.order_by('-created')
+        try:
+            recent_repos = recent_repos[:6]
+        except:
+            recent_repos = None
+        context['recent_repos'] = recent_repos
 
         if self.tags:
             context['tags'] = self.tags

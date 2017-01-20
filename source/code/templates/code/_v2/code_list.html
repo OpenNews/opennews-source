@@ -161,54 +161,20 @@
                         <h2 class="hed-label">Recently Added</h2>
 
                         <ol class="list-recently">
+                            {% for code in recent_repos %}
                             <li class="item-recent">
-                                <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
+                                <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
 
                                 <ul>
-                                    <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                    <li><a class="icon-company" href="#">The New York Times</a></li>
+                                    {% for person in code.get_live_person_set() %}
+                                    <li><a class="icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                                    {% endfor %}
+                                    {% for organization in code.get_live_organization_set() %}
+                                    <li><a class="icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </li><!-- /end .item-recent -->
-                            <li class="item-recent">
-                                <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
-
-                                <ul>
-                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                                </ul>
-                            </li><!-- /end .item-recent -->
-                            <li class="item-recent">
-                                <h3 class="hed-recent"><a href="#">Elex</a></h3>
-
-                                <ul>
-                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                                </ul>
-                            </li><!-- /end .item-recent -->
-                            <li class="item-recent">
-                                <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
-
-                                <ul>
-                                    <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                    <li><a class="icon-company" href="#">The New York Times</a></li>
-                                </ul>
-                            </li><!-- /end .item-recent -->
-                            <li class="item-recent">
-                                <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
-
-                                <ul>
-                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                                </ul>
-                            </li><!-- /end .item-recent -->
-                            <li class="item-recent">
-                                <h3 class="hed-recent"><a href="#">Elex</a></h3>
-
-                                <ul>
-                                    <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                    <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                                </ul>
-                            </li><!-- /end .item-recent -->
+                            {% endfor %}
                         </ol><!-- /end .list-recently -->
                     </div><!-- /end .mod.aside-lead -->
                 </div><!-- /end .group-alt.p-less -->
