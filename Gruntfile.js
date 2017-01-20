@@ -105,9 +105,9 @@ module.exports = function( grunt ) {
                     url : 'http://local.source/article.php?static=true'
                 }
             },
-            landing: {
+            content: {
                 options:  {
-                    outputfile : '<%= _config.dir.output %>css/critical-landing.css',
+                    outputfile : '<%= _config.dir.output %>css/critical-content.css',
                     filename : '<%= _config.dir.output %>css/main.css',
                     url : 'http://local.source/landing-code.php?static=true'
                 }
@@ -121,11 +121,11 @@ module.exports = function( grunt ) {
                 ],
                 dest: "<%= criticalcss.article.options.outputfile %>"
             },
-            crit_landing: {
+            crit_content: {
                 src: [
-                    "<%= criticalcss.landing.options.outputfile %>"
+                    "<%= criticalcss.content.options.outputfile %>"
                 ],
-                dest: "<%= criticalcss.landing.options.outputfile %>"
+                dest: "<%= criticalcss.content.options.outputfile %>"
             },
             css_main: {
                 src: [
