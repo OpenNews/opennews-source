@@ -1,6 +1,6 @@
 {% extends "code/_v2/_base_code.html" %}
 
-{% block page_main %}
+{% block page_main %}{# block begins inside div.page-main #}
 
                 <div class="content-main">
                     <h1 class="page-title-lead">Code</h1>
@@ -19,7 +19,7 @@
                             <li class="src-promo">
                                 <a href="{{ code.get_absolute_url() }}">
                                     {% if code.screenshot %}
-                                    <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200") }}" alt="{{ code.name }}" />
+                                    <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200", crop="center") }}" alt="{{ code.name }}" />
                                     {% else %}
                                     <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ code.name }}" />
                                     {% endif %}
@@ -41,7 +41,7 @@
                         <ul class="list-topics">
                             {% for group in object_list|groupby('sorted_grouping') %}{% if group.grouper %}
                             <li class="topic">
-                                <h3 class="hed-topic">{{ group.grouper|title }}</h3>
+                                <h3 class="hed-topic">{{ group.list.0.grouping }}</h3>
                                 <ul class="list-compact">{% for code in group.list %}
                                     <li><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a>{% if not loop.last %},{% endif %}</li>{% endfor %}
                                 </ul>

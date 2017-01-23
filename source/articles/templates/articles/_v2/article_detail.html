@@ -1,0 +1,168 @@
+{% extends "articles/_v2/_base_articles.html" %}
+
+{% block page_title %} {{ article.title }} - {{ super() }}{% endblock %}
+
+{% block head_extra %}{{ super() }}
+{% if article.article_js_header %}{{ article.article_js_header|safe }}{% endif %}
+{% endblock %}
+
+{% block body_extra %}{{ super() }}
+{% if article.article_js_footer %}{{ article.article_js_footer|safe }}{% endif %}
+{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+            <div class="article-matter-front">
+                <p class="hed-label">{{ article.section.name }}<span class="a11y">:</span></p>
+
+                <h1 class="page-title-lead">{{ article.title|typogrify }}</h1>
+
+                <h2 class="article-subtitle-lead">{{ article.subhead|typogrify }}</h2>
+
+                <ul class="list-tags">{% for tag in article.tags.all() %}
+                    <li><a class="tag" href="{{ url('article_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a></li>{% endfor %}
+                </ul><!-- /end .list-tags -->
+
+                <div class="article-meta">{% if article.get_live_author_set().exists() %}
+                    <p class="article-byline">By {% for author in article.get_live_author_set() %}{% if loop.last and not loop.first %} and {% endif %}<a href="{{ author.get_absolute_url() }}">{{ author.name()|smartypants }}</a>{% if not loop.last and loop.length != 2 %}, {% endif %}{% endfor %}</p>{% endif %}
+
+                    <p class="article-date">Posted on: <time datetime="{{ article.pubdate.strftime('%Y-%m-%d') }}">{{ article.pretty_pubdate|typogrify }}</time></p>
+                </div><!-- /end .article-meta -->
+            </div><!-- /end .article-matter-front -->
+
+            <hr />
+
+            {% if article.image %}
+            <div class="figure figure-article-lead">
+                <figure>
+                    <img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "1000") }}" alt="" />
+                    {% if article.pretty_caption %}
+                    <figcaption>
+                        <p>{{ article.pretty_caption|typogrify|safe }}</p>
+                    </figcaption>{% endif %}
+                </figure>
+            </div><!-- /end .figure.figure-article-lead -->
+            {% endif %}
+            
+            <div class="article-main">
+                {{ article.pretty_body_text|typogrify|safe }}
+                
+                {% for articleblock in article.articleblock_set.all() %}
+                <div class="article-block">
+                    <h2 id="{{ articleblock.slug }}">{{ articleblock.title|typogrify }}</h2>
+                    
+                    {# INSET IMAGES #}
+                    {% if articleblock.image and articleblock.image_presentation in ['inset-left','inset-right'] %}
+                    <div class="figure figure-article-minor">
+                        <figure>
+                            <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "420") }}" alt="" />
+                            {% if articleblock.pretty_caption %}
+                            <figcaption>
+                                <p>{{ articleblock.pretty_caption|typogrify|safe }}</p>
+                            </figcaption>{% endif %}
+                        </figure>
+                    </div><!-- /end .figure.figure-article-minor -->{% endif %}
+                    
+                    {# FULL-WIDTH IMAGE AT TOP #}
+                    {% if articleblock.image and articleblock.image_presentation == "full-width" %}
+                    <div class="figure figure-article-full">
+                        <figure>
+                            <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "1000") }}" alt="" />
+                            {% if articleblock.pretty_caption %}
+                            <figcaption>
+                                <p>{{ articleblock.pretty_caption|typogrify|safe }}</p>
+                            </figcaption>{% endif %}
+                        </figure>
+                    </div><!-- /end .figure.figure-article-full -->{% endif %}
+        
+                    {{ articleblock.pretty_body_text|typogrify|safe }}
+        
+                    {% if articleblock.image and articleblock.image_presentation == 'full-width-below' %}
+                    <div class="figure figure-article-full">
+                        <figure>
+                            <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "1000") }}" alt="" />
+                            {% if articleblock.pretty_caption %}
+                            <figcaption>
+                                <p>{{ articleblock.pretty_caption|typogrify|safe }}</p>
+                            </figcaption>{% endif %}
+                        </figure>
+                    </div><!-- /end .figure.figure-article-full -->{% endif %}
+                </div>
+                {% endfor %}
+
+                <ul class="links-article-social">
+                    <li><a class="icon icon-comments" href="#disqus_thread">Comments</a></li>
+                    <li><a class="icon icon-twitter" href="#">Share on Twitter</a></li>
+                    <li><a class="icon icon-facebook" href="#">Share on Facebook</a></li>
+                </ul><!-- /end .links-article-social -->
+            </div><!-- /end .article.main -->
+
+            <div class="article-links-relevant">
+                {% if article.get_live_person_set().exists() %}
+                <h2 class="hed-category">People</h2>
+
+                <ul>{% for person in article.get_live_person_set() %}
+                    <li><a href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>{% endfor %}
+                </ul>{% endif %}
+
+                {% if article.get_live_organization_set().exists() %}
+                <h2 class="hed-category">Organizations</h2>
+
+                <ul>{% for organization in article.get_live_organization_set() %}
+                    <li><a href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}
+                </ul>{% endif %}
+
+                {% if article.get_live_code_set().exists() %}
+                <h2 class="hed-category">Code</h2>
+
+                <ul>{% for code in article.get_live_code_set() %}
+                    <li><a href="{{ code.get_absolute_url() }}">{{ code.name|typogrify }}</a></li>{% endfor %}
+                </ul>{% endif %}
+            </div><!-- /end .article-links-relevant -->
+
+            <div class="article-matter-back">
+                {% if article.get_live_author_set().exists() %}
+                <div class="mod article-credits">
+                    <h2 class="hed-label">Credits</h2>
+
+                    <ul>{% for author in article.get_live_author_set() %}
+                        <li class="profile-person h-card">
+                            <h3 class="profile-name">
+                                <a href="{{ author.get_absolute_url() }}">
+                                    {% if author.photo %}<img class="profile-photo u-photo" src="{{ MEDIA_URL }}{{ thumbnail(author.photo, "130") }}" alt="" />{% endif %}
+                                    <cite class="p-name">{{ author.name()|smartypants }}</cite>
+                                </a>
+                            </h3>
+                            
+                            {% if author.description %}
+                            <p class="profile-bio">{{ author.description|typogrify|safe }}</p>{% endif %}
+
+                            <ul class="profile-links">
+                                {% if author.get_live_organization_set().exists() %}{% for organization in author.get_live_organization_set() %}<li><a class="p-org icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}{% endif %}
+                                {% if author.twitter_username %}<li><a class="icon-twitter-alt" href="https://twitter.com/{{ author.twitter_username }}">@{{ author }}</a></li>{% endif %}
+                                <li><a class="u-url icon-link" href="#">Visit website</a></li>
+                            </ul>
+                        </li><!-- /end .profile-person -->{% endfor %}
+                    </ul>
+                </div><!-- /end .article-credits -->
+                {% endif %}
+
+                <div class="mod article-comments" id="article-comments" data-title="Comments">
+                    <div id="disqus_thread"></div>
+                </div><!-- /end .article-comments -->
+
+                <div class="mod article-related">
+                    <h2 class="hed-label">Recently</h2>
+
+                    <ul class="list-promos">{% for recent_article in recent_articles %}
+                        <li class="src-promo">
+                            <a href="{{ recent_article.get_absolute_url() }}">
+                                {% if recent_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(recent_article.image, "300x200", crop="center") }}" alt="" />{% endif %}
+                                <h3 class="hed-promo">{{ recent_article.title|typogrify }}</h3>
+                            </a>
+                        </li><!-- /end .src-promo -->{% endfor %}
+                    </ul><!-- /end .list-promos -->
+                </div><!-- /end .article-related -->
+            </div><!-- /end .article-matter-back -->
+
+{% endblock %}

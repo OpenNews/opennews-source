@@ -60,7 +60,7 @@ class Person(CachingMixin, models.Model):
         super(Person, self).save(*args, **kwargs)
 
     def name(self):
-        return u'%s %s' % (self.first_name, self.last_name)
+        return u'{0} {1}'.format(self.first_name, self.last_name).strip()
         
     @models.permalink
     def get_absolute_url(self):

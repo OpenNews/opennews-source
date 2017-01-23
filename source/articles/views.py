@@ -130,7 +130,7 @@ class ArticleList(ListView):
 
 class ArticleDetail(DetailView):
     model = Article
-    template_name = 'articles/article_detail.html'
+    template_name = 'articles/_v2/article_detail.html'
 
     def get_queryset(self):
         if self.request.user.is_staff:
@@ -151,9 +151,12 @@ class ArticleDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDetail, self).get_context_data(**kwargs)
+        
+        recent_articles = Article.live_objects.exclude(id=self.object.id).order_by('-pubdate')[:3]
 
         context.update({
             'section': self.object.section,
+            'recent_articles': recent_articles,
         })
 
         return context
