@@ -66,45 +66,74 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 <div class="mod">
                     <h2 class="hed-label">What is the deal dot html</h2>
 
-                    <form>
+                    <p class="msg-error">Oh no! There were a few errors with your submission. Mind double-checking the form, and filling out all the required fields?</p>
+
+                    <form class="form-submit">
                         <fieldset>
                             <legend>Who are you?</legend>
-                            <p>Name <input type="text" /></p>
-
-                            <p>Email <input type="text" /></p>
+                            <p>
+                                <label for="repo-submitter-name">Name:</label>
+                                <input type="text" class="field-text" id="repo-submitter-name" />
+                            </p>
+                            <p>
+                                <label for="repo-submitter-email">Email:</label>
+                                <input type="email" class="field-text" id="repo-submitter-email" />
+                            </p>
                         </fieldset>
 
                         <fieldset>
                             <legend>What is it?</legend>
 
-                            <p><input type="text" /> is <input type="text" /> that <input type="text" />.</p>
+                            <p class="msg-error">Please complete the required fields.</p>
+
+                            <div class="form-phrase">
+                                <span class="cue squelch" role="presentation">“I’m submitting</span>
+                                <p>
+                                    <label for="repo-name">Name of your app/tool:</label>
+                                    <input type="text" class="field-text" value="" id="repo-name" />
+                                </p>
+                                <span class="cue squelch" role="presentation">, which is a</span>
+                                <p>
+                                    <label for="repo-type">What your app/tool is:</label>
+                                    <input type="text" class="field-text msg-error" value="" id="repo-type" />
+                                </p>
+                                <span class="cue squelch" role="presentation">that allows users to</span>
+                                <p>
+                                    <label for="repo-purpose">What your app/tool does, and for whom:</label>
+                                    <input type="text" class="field-text" value="" id="repo-purpose" />
+                                </p>
+                                <span class="cue squelch" role="presentation">.”</span>
+                             </div>
                         </fieldset>
 
                         <fieldset>
                             <legend>Who made it?</legend>
 
-                            <p><input type="text" /></p>
+                            <p class="form-phrase">
+                                <label for="repo-credits">The person(s) who created this:</label>
+                                <input type="text" class="field-text" id="repo-credits" />
+                            </p>
                         </fieldset>
 
                         <fieldset>
                             <legend>How easy is it to use?</legend>
 
-                            <ul class="form-chooser">
+                            <ul class="form-chooser choose-repo-difficulty">
                                 <li>
-                                    <label for="difficulty-1">Super easy</label>
-                                    <input name="repo-difficulty" id="difficulty-1" value="difficulty-1" type="radio" />
+                                    <input name="repo-difficulty" id="repo-difficulty-1" value="repo-difficulty-1" type="radio" />
+                                    <label for="repo-difficulty-1" class="icon-difficulty-1">Super easy</label>
                                 </li>
                                 <li>
-                                    <label for="difficulty-2">Pretty easy</label>
-                                    <input name="repo-difficulty" id="difficulty-2" value="difficulty-2" type="radio" />
+                                    <input name="repo-difficulty" id="repo-difficulty-2" value="repo-difficulty-2" type="radio" />
+                                    <label for="repo-difficulty-2" class="icon-difficulty-2">Pretty easy</label>
                                 </li>
                                 <li>
-                                    <label for="difficulty-3">A little tricky</label>
-                                    <input name="repo-difficulty" id="difficulty-3" value="difficulty-3" type="radio" />
+                                    <input name="repo-difficulty" id="repo-difficulty-3" value="repo-difficulty-3" type="radio" />
+                                    <label for="repo-difficulty-3" class="icon-difficulty-3">A little tricky</label>
                                 </li>
                                 <li>
-                                    <label for="difficulty-4">Kinda hard</label>
-                                    <input name="repo-difficulty" id="difficulty-4" value="difficulty-4" type="radio" />
+                                    <input name="repo-difficulty" id="repo-difficulty-4" value="repo-difficulty-4" type="radio" />
+                                    <label for="repo-difficulty-4" class="icon-difficulty-4">Kinda hard</label>
                                 </li>
                             </ul>
                         </fieldset>
@@ -112,16 +141,22 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         <fieldset>
                             <legend>Any prerequisites?</legend>
 
-                            <p><input type="text" /></p>
+                            <p class="form-phrase">
+                                <label for="repo-prerequisites">Do we need to install anything beforehand?</label>
+                                <input type="text" class="field-text" id="repo-prerequisites" />
+                            </p>
                         </fieldset>
 
                         <fieldset>
                             <legend>“It will make our lives better by…”</legend>
 
-                            <p>
-                                <textarea name="repo-desc" cols="30" rows="10"></textarea>
+                            <p class="form-phrase">
+                                <label for="repo-description">Tell us what your app or tool does.</label>
+                                <textarea name="repo-desc" cols="30" rows="10" id="repo-description"></textarea>
                             </p>
                         </fieldset>
+
+                        <p><input type="submit" value="Submit your repo" /></p>
 
                     </form>
 

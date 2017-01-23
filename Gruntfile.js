@@ -82,6 +82,7 @@ module.exports = function( grunt ) {
                     "<%= _config.dir.templates %>js/navigation.js",
                     "<%= _config.dir.templates %>js/search.js",
                     "<%= _config.dir.templates %>js/comments-disqus.js",
+                    "<%= _config.dir.templates %>js/form-phrase.js",
                     // source-misc.js is a scratch file for any miscellaneous JS that needs to be run on document.enhance
                     "<%= _config.dir.templates %>js/source-misc.js",
                     // source-init.js needs to be last.

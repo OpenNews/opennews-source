@@ -106,11 +106,172 @@ fieldset {
     padding: 1em 0;
     margin-bottom: 1.5em;
 }
-input[type=text],
+.field-text,
 textarea {
-    
+    border: 1px solid #AAA;
+}
+.field-text:focus,
+textarea:focus {
+    border-color: #555;
+}
+textarea {
+    display: block;
+    width: 100%;
 }
 
+.form-submit p,
+.enhanced .form-phrase,
+.msg-error,
+textarea {
+    max-width: 40em;
+}
+// error message
+.msg-error {
+    background-color: #FCC;
+    border: 1px solid #A00;
+}
+p.msg-error {
+    padding: 0.9em;
+}
+.enhanced input[size] {
+    max-width: 100%;
+}
+.form-submit label,
+.form-submit label + * {
+    display: block;
+}
+.form-submit label {
+    margin-bottom: 0.5em;
+}
+.enhanced p.form-phrase {
+    width: 100%;
+}
+// On smaller screens, let’s hide (JS-inserted) placeholder text by default, and make labels appear as intended
+@media (max-width: 29.99em) {
+    .enhanced .form-submit ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #FFF;
+    }
+    .enhanced .form-submit :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color: #FFF;
+       opacity: 1;
+    }
+    .enhanced .form-submit ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color: #FFF;
+       opacity: 1;
+    }
+    .enhanced .form-submit :-ms-input-placeholder { /* Internet Explorer 10+ */
+       color: #FFF;
+    }
+    .enhanced .form-submit ::placeholder {
+       color: #FFF;
+       opacity: 1;
+    }
+    .enhanced .form-submit ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #FFF;
+    }
+    .enhanced .form-submit .msg-error:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color: #FCC;
+       opacity: 1;
+    }
+    .enhanced .form-submit .msg-error::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color: #FCC;
+       opacity: 1;
+    }
+    .enhanced .form-submit .msg-error:-ms-input-placeholder { /* Internet Explorer 10+ */
+       color: #FCC;
+    }
+    .enhanced .form-submit .msg-error::placeholder {
+       color: #FCC;
+       opacity: 1;
+    }
+    .enhanced input[size],
+    .enhanced .form-submit label.a11y {
+        width: 100%;
+    }
+    .enhanced .form-submit label.a11y {
+        clip: inherit;
+        display: block;
+        height: inherit;
+        position: static;
+        white-space: inherit;
+    }
+    .enhanced .form-submit .cue {
+        display: none;
+    }
+}
+@media (min-width: 30em) {
+    .form-submit p {
+        display: flex;
+        justify-content: space-between;
+    }
+    .form-submit label {
+        margin-bottom: 0;
+        width: 25%;
+    }
+    .form-submit label + * {
+        flex: 1;
+    }
+    .enhanced p.form-phrase,
+    .enhanced .form-phrase p {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: bottom;
+    }
+    .enhanced .form-phrase {
+        line-height: 1.5;
+    }
+    .enhanced .form-phrase .field-text {
+        border-width: 0 0 1px;
+    }
+}
+
+.form-chooser {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 40em;
+}
+.form-chooser > * {
+    flex: 1 0 50%;
+    margin: 0;
+}
+.form-chooser label {
+    border-radius: 1em;
+    border: 1px solid #FFF;
+    background-position: 50% 80%;
+    background-size: 50% auto;
+    cursor: pointer;
+    flex: 1;
+    margin-bottom: 0;
+    padding: 20% 0 80%;
+    text-align: center;
+    transition: background-position 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+.form-chooser label:hover,
+.enhanced .form-chooser input:focus + label,
+.enhanced .form-chooser input:checked + label {
+    background-position: 50% 60%;
+}
+.enhanced .form-chooser input:focus + label {
+    box-shadow: inset 0 0 0.25em #D8D8D8;
+}
+.enhanced .form-chooser input {
+    position: absolute;
+    left: -1000em;
+}
+.enhanced .form-chooser input:checked + label {
+    box-shadow: inset 0 0 0.5em #5DC8D5;
+    font-weight: bold;
+}
+@media (min-width: 40em) {
+    .form-chooser {
+        flex-wrap: nowrap;
+    }
+    .form-chooser > * {
+        flex: 1 0 25%;
+        margin: 0;
+    }
+}
 
 // CC license link
 .link-cc {
