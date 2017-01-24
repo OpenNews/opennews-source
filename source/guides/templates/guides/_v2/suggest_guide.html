@@ -1,0 +1,27 @@
+{% extends "guides/_v2/_base_guides.html" %}
+
+{% block page_title %}Suggest a Guide topic - {{ super() }}{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+                <div class="content-main">
+                    <h1 class="page-title-lead">Guides</h1>
+                    
+                    {% if success == "True" %}
+                    <p>Thanks for suggesting a topic for a new Guide!</p>
+                    <p><a class="link-cta" href="{{ url('guide_suggest_guide') }}">Suggest another Guide</a></p>
+
+                    {% else %}
+                    <div class="mod main-lead">
+                        <p>Suggest a topic for a new Guide on Source.</p>
+
+                        <form action="." method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="submit">
+                        </form>
+                    </div><!-- /end .mod.main-lead -->
+                    
+                    {% endif %}
+                </div>
+{% endblock %}

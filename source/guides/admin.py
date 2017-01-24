@@ -23,6 +23,8 @@ class GuideAdmin(AdminImageMixin, admin.ModelAdmin):
     save_on_top = True
     prepopulated_fields = {'slug': ('title',)}
     list_filter = ('is_live', 'show_in_lists',)
+    list_display = ('title', 'is_live', 'show_in_lists',)
+    list_editable = ('is_live', 'show_in_lists',)
     search_fields = ('title', 'summary', 'description',)
     fieldsets = (
         ('', {'fields': (('pubdate', 'is_live', 'show_in_lists'), ('title', 'slug'), 'description', 'summary')}),
