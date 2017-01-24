@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.views.decorators.cache import cache_page
 from django.views.generic import RedirectView
 
-from .views import CodeList, CodeDetail
+from .views import CodeList, CodeDetail, CodeSuggestRepo
 from source.base.feeds import CodeFeed
 
 STANDARD_CACHE_TIME = getattr(settings, 'CACHE_MIDDLEWARE_SECONDS', 60*15)
@@ -15,6 +15,12 @@ urlpatterns = [
         view = cache_page(STANDARD_CACHE_TIME)(CodeList.as_view()),
         kwargs = {},
         name = 'code_list',
+    ),
+    url(
+        regex = '^suggest/$',
+        view = CodeSuggestRepo.as_view(),
+        kwargs  = {},
+        name = 'code_suggest_repo',
     ),
     url(
         regex = '^rss/$',

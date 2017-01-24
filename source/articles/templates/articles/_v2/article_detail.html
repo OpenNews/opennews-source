@@ -2,6 +2,25 @@
 
 {% block page_title %} {{ article.title }} - {{ super() }}{% endblock %}
 
+{% block head_open_graph %}{{ super() }}
+<!-— facebook open graph tags -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ request.build_absolute_uri() }}" />
+<meta property="og:title" content="{{ article.title }}" />
+<meta property="og:description" content="{{ article.subhead }}" />
+<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(article.image, "1200") }}" />
+ 
+<!-— twitter card tags additive with the og: tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
+<meta name="twitter:title" value="{{ article.title }}" />
+<meta name="twitter:description" value="{{ article.subhead }}" />
+<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(article.image, "600") }}" />
+<meta name="twitter:image:alt" content="{{ article.pretty_caption }}" />
+<meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
+<meta name="twitter:site" value="@source" />
+{% endblock %}
+
 {% block head_extra %}{{ super() }}
 {% if article.article_js_header %}{{ article.article_js_header|safe }}{% endif %}
 {% endblock %}

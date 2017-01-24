@@ -32,6 +32,9 @@ class Guide(CachingMixin, models.Model):
     description = models.TextField('Description', blank=True)
     summary = models.TextField(blank=True, help_text='The two-sentence version of description, to be used on list pages.')
     cover_color = models.CharField(max_length=32, blank=True, help_text='Hex code for background color of title card, e.g. `#256188`. Probably sampled from cover image.')
+    author_name = models.CharField(max_length=128, blank=True)
+    author_bio = models.TextField(blank=True)
+    author_photo = ImageField(upload_to='img/uploads/guide_author_images', blank=True, null=True)
     objects = models.Manager()
     live_objects = LiveGuideManager()
 
@@ -96,6 +99,8 @@ class GuideArticle(CachingMixin, models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, blank=True, null=True)
     external_url = models.URLField(blank=True, null=True, help_text='Paste a URL here to link to an article elsewhere (overrides `Article` URL above).')
     external_title = models.CharField(max_length=128, blank=True, help_text='Display title for link to article elsewhere (overrides `Article` title above).')
+    external_author_name = models.CharField(max_length=128, blank=True)
+    external_organization_name = models.CharField(max_length=128, blank=True)
     order = models.PositiveIntegerField(default=1, blank=True, db_index=True, help_text="A '1' will appear first, a '2' will appear second, and so on.")
     article_notes = models.TextField(blank=True, help_text="Optional field for telling readers why this article is part of this guide.")
     objects = models.Manager()

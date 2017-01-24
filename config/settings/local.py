@@ -32,6 +32,8 @@ EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND',
                     default='django.core.mail.backends.console.EmailBackend')
+                    
+EDITORIAL_EMAIL = 'ryan@opennews.org'
 
 # CACHING
 # ------------------------------------------------------------------------------

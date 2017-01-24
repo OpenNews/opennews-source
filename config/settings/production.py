@@ -62,7 +62,6 @@ INSTALLED_APPS += ("gunicorn", )
 
 BASE_SITE_URL = 'https://source.opennews.org'
 
-
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uploaded Media Files
@@ -87,8 +86,6 @@ AWS_HEADERS = {
 
 # EMAIL
 # ------------------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
-                         default='Source <noreply@source.opennews.org>')
 #EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 #MAILGUN_ACCESS_KEY = env('DJANGO_MAILGUN_API_KEY')
 #MAILGUN_SERVER_NAME = env('DJANGO_MAILGUN_SERVER_NAME')
