@@ -9,7 +9,7 @@ class GuideArticleInline(admin.StackedInline):
     extra = 1
     raw_id_fields = ('article',)
     fieldsets = (
-        ('', {'fields': ('order', 'article', 'external_url', 'external_title', 'article_notes')}),
+        ('', {'fields': ('order', 'article', 'external_url', 'external_title', 'external_author_name', 'external_organization_name', 'article_notes')}),
     )
 
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -27,6 +27,7 @@ class GuideAdmin(AdminImageMixin, admin.ModelAdmin):
     fieldsets = (
         ('', {'fields': (('pubdate', 'is_live', 'show_in_lists'), ('title', 'slug'), 'description', 'summary')}),
         ('', {'fields': ('cover_color', 'image')}),
+        ('', {'fields': ('author_name', 'author_bio', 'author_photo')}),
     )
     inlines = [GuideArticleInline,]
     
