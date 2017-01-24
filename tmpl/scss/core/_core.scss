@@ -756,10 +756,12 @@ Headings
     font-family: map-get( $fonts, "sans" );
 }
 .article-main h2 {
+    color: #F7786B;
     font-size: 1.2em;    /* 24/20 */
 }
 .article-main h3 {
-    font-size: 1.05em;
+    color: #7C8A98;
+    font-size: 1em;
 }
 .article-main h4 {
     font-size: 0.9em;

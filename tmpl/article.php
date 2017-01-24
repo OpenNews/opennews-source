@@ -127,6 +127,8 @@ var disqus_config = function () {
 
                 <h2>From Idea to Hacking</h2>
 
+                <h3>This is an example of a subhed. Subheds are good!</h3>
+
                 <p>As always, I will try my best not to fall into PR, and instead, to offer my personal view on Datastringer’s creation process, as well as what we learnt by doing it. Do head to the repo and wiki for examples, snippets, and more code-related stuff.</p>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, quaerat neque magni natus sunt autem animi soluta labore ipsa nulla quod nam itaque fugit eum delectus tenetur esse vitae fugiat.</p>
