@@ -131,7 +131,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                     <p class="cta-primary"><a class="link-cta" href="#">See more</a></p>
                 </div><!-- /end .mod -->
-            </div><!-- /end .group.p-more -->
+            </div><!-- /end .content-aside -->
 
             <div class="content-aside">
                 <div class="mod aside-lead">
@@ -205,7 +205,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                     <p><a class="link-cta" href="#">See all repos</a></p>
                 </div>
-            </div><!-- /end .group-alt.p-less -->
+            </div><!-- /end .content-aside -->
 
             <?php include($rootpath . "/inc/site-search.php"); ?>
 

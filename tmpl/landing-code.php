@@ -226,7 +226,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         </li><!-- /end .topic -->
                     </ul><!-- /end .list-topics -->
                 </div><!-- /end .mod -->
-            </div><!-- /end .group.p-more -->
+            </div><!-- /end .content-aside -->
 
             <div class="content-aside">
                 <div class="mod aside-lead">
@@ -283,7 +283,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         </li><!-- /end .item-recent -->
                     </ol><!-- /end .list-recently -->
                 </div><!-- /end .mod.aside-lead -->
-            </div><!-- /end .group-alt.p-less -->
+            </div><!-- /end .content-aside -->
 
             <?php include($rootpath . "/inc/site-search.php"); ?>
 
