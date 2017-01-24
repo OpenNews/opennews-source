@@ -34,6 +34,9 @@ module.exports = function( grunt ) {
                 options: {
                     ghostMode: false,
                     proxy: "http://local.source",
+                    ui: {
+                        port: 8081
+                    },
                     watchTask: true
                 }
             }
