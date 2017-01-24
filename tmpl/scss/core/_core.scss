@@ -235,22 +235,24 @@ p.msg-error {
     margin: 0;
 }
 .form-chooser label {
-    border-radius: 1em;
-    border: 1px solid #FFF;
     background-position: 50% 80%;
     background-size: 50% auto;
+    border-radius: 1em;
+    border: 1px solid #FFF;
+    box-shadow: inset 0 0 1px #FFF;
     cursor: pointer;
     flex: 1;
     margin-bottom: 0;
     padding: 20% 0 80%;
     text-align: center;
-    transition: background-position 0.2s, box-shadow 0.2s;
+    transition: background-position 0.2s, background-size 0.2s ease-in-out, box-shadow 0.2s;
     width: 100%;
 }
 .form-chooser label:hover,
 .enhanced .form-chooser input:focus + label,
 .enhanced .form-chooser input:checked + label {
     background-position: 50% 60%;
+    background-size: 52% auto;
 }
 .enhanced .form-chooser input:focus + label {
     box-shadow: inset 0 0 0.25em #D8D8D8;
@@ -1427,7 +1429,7 @@ Article back matter
     }
     .profile-links li {
         margin-bottom: 0;
-        margin-right: 1em;
+        margin-right: 1.5em;
     }
     .profile-links li:first-child {
         flex: 1;
@@ -1439,7 +1441,7 @@ Article back matter
 .profile-links a {
     background-position: 0 50%;
     color: inherit;
-    padding-left: 30px;
+    padding-left: 28px;
     text-decoration: none;
 }
 .profile-links a:focus,

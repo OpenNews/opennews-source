@@ -68,16 +68,16 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                     <p class="msg-error">Oh no! There were a few errors with your submission. Mind double-checking the form, and filling out all the required fields?</p>
 
-                    <form class="form-submit">
+                    <form class="form-submit" action="/submit/" method="/post/">
                         <fieldset>
                             <legend>Who are you?</legend>
                             <p>
                                 <label for="repo-submitter-name">Name:</label>
-                                <input type="text" class="field-text" id="repo-submitter-name" />
+                                <input type="text" required class="field-text" id="repo-submitter-name" />
                             </p>
                             <p>
                                 <label for="repo-submitter-email">Email:</label>
-                                <input type="email" class="field-text" id="repo-submitter-email" />
+                                <input type="email" required class="field-text" id="repo-submitter-email" />
                             </p>
                         </fieldset>
 
@@ -90,17 +90,17 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                                 <span class="cue squelch" role="presentation">“I’m submitting</span>
                                 <p>
                                     <label for="repo-name">Name of your app/tool:</label>
-                                    <input type="text" class="field-text" value="" id="repo-name" />
+                                    <input type="text" required class="field-text" value="" id="repo-name" />
                                 </p>
                                 <span class="cue squelch" role="presentation">, which is a</span>
                                 <p>
                                     <label for="repo-type">What your app/tool is:</label>
-                                    <input type="text" class="field-text msg-error" value="" id="repo-type" />
+                                    <input type="text" required class="field-text msg-error" value="" id="repo-type" />
                                 </p>
                                 <span class="cue squelch" role="presentation">that allows users to</span>
                                 <p>
                                     <label for="repo-purpose">What your app/tool does, and for whom:</label>
-                                    <input type="text" class="field-text" value="" id="repo-purpose" />
+                                    <input type="text" required class="field-text" value="" id="repo-purpose" />
                                 </p>
                                 <span class="cue squelch" role="presentation">.”</span>
                              </div>
@@ -111,29 +111,31 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                             <p class="form-phrase">
                                 <label for="repo-credits">The person(s) who created this:</label>
-                                <input type="text" class="field-text" id="repo-credits" />
+                                <input type="text" required class="field-text" id="repo-credits" />
                             </p>
                         </fieldset>
 
                         <fieldset>
                             <legend>How easy is it to use?</legend>
 
+                            <p class="msg-error">Please choose a difficulty setting.</p>
+
                             <ul class="form-chooser choose-repo-difficulty">
                                 <li>
                                     <input name="repo-difficulty" id="repo-difficulty-1" value="repo-difficulty-1" type="radio" />
-                                    <label for="repo-difficulty-1" class="icon-difficulty-1">Super easy</label>
+                                    <label for="repo-difficulty-1" required class="icon-difficulty-1">Super easy</label>
                                 </li>
                                 <li>
                                     <input name="repo-difficulty" id="repo-difficulty-2" value="repo-difficulty-2" type="radio" />
-                                    <label for="repo-difficulty-2" class="icon-difficulty-2">Pretty easy</label>
+                                    <label for="repo-difficulty-2" required class="icon-difficulty-2">Pretty easy</label>
                                 </li>
                                 <li>
                                     <input name="repo-difficulty" id="repo-difficulty-3" value="repo-difficulty-3" type="radio" />
-                                    <label for="repo-difficulty-3" class="icon-difficulty-3">A little tricky</label>
+                                    <label for="repo-difficulty-3" required class="icon-difficulty-3">A little tricky</label>
                                 </li>
                                 <li>
                                     <input name="repo-difficulty" id="repo-difficulty-4" value="repo-difficulty-4" type="radio" />
-                                    <label for="repo-difficulty-4" class="icon-difficulty-4">Kinda hard</label>
+                                    <label for="repo-difficulty-4" required class="icon-difficulty-4">Kinda hard</label>
                                 </li>
                             </ul>
                         </fieldset>
@@ -143,7 +145,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                             <p class="form-phrase">
                                 <label for="repo-prerequisites">Do we need to install anything beforehand?</label>
-                                <input type="text" class="field-text" id="repo-prerequisites" />
+                                <input type="text" required class="field-text" id="repo-prerequisites" />
                             </p>
                         </fieldset>
 
@@ -152,7 +154,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                             <p class="form-phrase">
                                 <label for="repo-description">Tell us what your app or tool does.</label>
-                                <textarea name="repo-desc" cols="30" rows="10" id="repo-description"></textarea>
+                                <textarea required name="repo-desc" cols="30" rows="10" id="repo-description"></textarea>
                             </p>
                         </fieldset>
 
@@ -161,64 +163,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                     </form>
 
                 </div><!-- /end .mod -->
-            </div><!-- /end .group.p-more -->
-
-            <div class="content-aside">
-                <div class="mod aside-lead">
-                    <h2 class="hed-label">Recently Added</h2>
-
-                    <ol class="list-recently">
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
-
-                            <ul>
-                                <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                <li><a class="icon-company" href="#">The New York Times</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
-
-                            <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Elex</a></h3>
-
-                            <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
-
-                            <ul>
-                                <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                <li><a class="icon-company" href="#">The New York Times</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
-
-                            <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Elex</a></h3>
-
-                            <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                    </ol><!-- /end .list-recently -->
-                </div><!-- /end .mod.aside-lead -->
-            </div><!-- /end .group-alt.p-less -->
+            </div><!-- /end .content-aside -->
 
             <?php include($rootpath . "/inc/site-search.php"); ?>
 
