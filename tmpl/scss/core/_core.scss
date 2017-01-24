@@ -1317,6 +1317,10 @@ Article back matter
     }
     .profile-links li:first-child {
         flex: 1;
+        text-align: right;
+    }
+    .profile-links li.link-main {
+        text-align: left;
     }
     .profile-links li:last-child {
         margin-right: 0;

@@ -234,7 +234,7 @@ var disqus_config = function () {
                             <p class="profile-bio">Hacker-journalist @BBC<em>News</em>Labs. Data-journalist @airwars_. #ddj, linked-data, infosec, drones with @TBIJ, stuff PGP: http://t.co/P1GYMem22Y</p>
 
                             <ul class="profile-links">
-                                <li><a class="p-org icon-company" href="#">BBC News</a></li>
+                                <li class="link-main"><a class="p-org icon-company" href="#">BBC News</a></li>
                                 <li><a class="icon-twitter-alt" href="#">@basilesimon</a></li>
                                 <li><a class="u-url icon-link" href="#">Visit website</a></li>
                             </ul>
@@ -250,7 +250,7 @@ var disqus_config = function () {
                             <p class="profile-bio">The Inimitable Tiff ☔ Asst. editor, @nytinteractive/@nytimes. Seattle-raised. Owner of a Dragon &amp; a Behemoth (cats). Prolly following you via matryoshka Lists.</p>
 
                             <ul class="profile-links">
-                                <li><a class="p-org icon-company" href="#">The New York Times</a></li>
+                                <li class="link-main"><a class="p-org icon-company" href="#">The New York Times</a></li>
                                 <li><a class="icon-twitter-alt" href="#">@tiffehr</a></li>
                                 <li><a class="u-url icon-link" href="#">Visit website</a></li>
                             </ul>

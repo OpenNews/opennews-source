@@ -157,7 +157,7 @@
                             <p class="profile-bio">{{ author.description|typogrify|safe }}</p>{% endif %}
 
                             <ul class="profile-links">
-                                {% if author.get_live_organization_set().exists() %}{% for organization in author.get_live_organization_set() %}<li><a class="p-org icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}{% endif %}
+                                {% if author.get_live_organization_set().exists() %}{% for organization in author.get_live_organization_set() %}<li class="link-main"><a class="p-org icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}{% endif %}
                                 {% if author.twitter_username %}<li><a class="icon-twitter-alt" href="https://twitter.com/{{ author.twitter_username }}">@{{ author }}</a></li>{% endif %}
                                 <li><a class="u-url icon-link" href="#">Visit website</a></li>
                             </ul>
