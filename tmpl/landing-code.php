@@ -237,48 +237,48 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                             <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                <li><a class="icon-company" href="#">The New York Times</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Tiff Fehr</a></li>
+                                <li><a class="has-icon icon-company" href="#">The New York Times</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Elex</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                <li><a class="icon-company" href="#">The New York Times</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Tiff Fehr</a></li>
+                                <li><a class="has-icon icon-company" href="#">The New York Times</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Elex</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                     </ol><!-- /end .list-recently -->

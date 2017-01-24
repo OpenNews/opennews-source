@@ -62,10 +62,10 @@
 
                                 <ul>
                                     {% for person in code.get_live_person_set() %}
-                                    <li><a class="icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                                    <li><a class="has-icon icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
                                     {% endfor %}
                                     {% for organization in code.get_live_organization_set() %}
-                                    <li><a class="icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                                    <li><a class="has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li><!-- /end .item-recent -->

@@ -1076,7 +1076,6 @@ ul.links-article-social li {
     color: inherit;
     display: block;
     font-size: 0.8125em;    /* 13 / 16 */
-    padding-left: 30px;
     text-decoration: none;
 }
 .item-recent li a:focus,
@@ -1408,6 +1407,8 @@ Article back matter
 .repo-meta .has-icon,
 .repo-meta span {
     background-position: 0 0.55em;
+}
+.repo-meta span {
     padding-left: 30px;
 }
 @media (min-width: 30em) {
@@ -1499,7 +1500,6 @@ Footer
 .list-foot-social a {
     background-position: 0 0.25em;
     display: block;
-    padding-left: 30px;
 }
 @media (min-width: 55em) {
     // Two-column layout

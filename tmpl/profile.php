@@ -61,10 +61,13 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 <p class="hed-label">People</p>
 
                 <div class="profile-person-lead h-card">
+
                     <h1 class="page-title-lead">
                         <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
                         <span class="p-name">Latoya Peterson</span>
                     </h1>
+
+                    <h2 class="page-title-sub"><a class="p-org icon-company" href="#">ESPN</a></h2>
 
                     <div class="mod main-lead">
                         <p>I'd rather be a cyborg than a goddess. (But why choose?) Always: @Racialicious. Latest: Deputy Editor, Digital Innovation for @ESPN 's @TheUndefeated.</p>
@@ -72,8 +75,8 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         <p><a class="link-cta" href="#">Submit profile updates or corrections</a></p>
                     </div><!-- /end .mod.main-lead -->
 
-                    <ul class="profile-links">
-                        <li><a class="p-org icon-company" href="#">ESPN</a></li>
+                    <ul class="mod profile-links">
+                        <li></li>
                         <li><a class="icon-github" href="#">GitHub</a></li>
                         <li><a class="icon-twitter-alt" href="https://twitter.com/LatoyaPeterson">@LatoyaPeterson</a></li>
                         <li><a class="u-url icon-link" href="http://latoyapeterson.com ">Visit website</a></li>
@@ -94,48 +97,48 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                             <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                <li><a class="icon-company" href="#">The New York Times</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Tiff Fehr</a></li>
+                                <li><a class="has-icon icon-company" href="#">The New York Times</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Elex</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Tiff Fehr</a></li>
-                                <li><a class="icon-company" href="#">The New York Times</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Tiff Fehr</a></li>
+                                <li><a class="has-icon icon-company" href="#">The New York Times</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
                             <h3 class="hed-recent"><a href="#">Elex</a></h3>
 
                             <ul>
-                                <li><a class="icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="icon-company" href="#">Australian Broadcasting Corporation</a></li>
+                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
+                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
                     </ol><!-- /end .list-recently -->

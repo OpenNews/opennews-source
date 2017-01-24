@@ -18,9 +18,9 @@
                 <div class="foot-aside">
                     <h3 class="hed-foot">Connect</h3>
                     <ul class="list-foot-social">
-                        <li><a class="icon-rss" href="#">RSS</a></li>
-                        <li><a class="icon-twitter" href="#">@source</a></li>
-                        <li><a class="icon-email" href="#">Get our biweekly roundup email</a></li>
+                        <li><a class="has-icon icon-rss" href="#">RSS</a></li>
+                        <li><a class="has-icon icon-twitter" href="#">@source</a></li>
+                        <li><a class="has-icon icon-email" href="#">Get our biweekly roundup email</a></li>
                     </ul><!-- /end .list-foot-social -->
                 </div><!-- /end .foot-aside -->
             </div><!-- /end .foot-main.foot-source -->
