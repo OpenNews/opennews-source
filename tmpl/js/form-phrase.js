@@ -1,13 +1,20 @@
 /*
 Component: Inline phrase forms
+---
+Inside each .form-phrase block, we’ve got stuff that looks like this:
 
-In which this:
+    <span class="cue squelch" role="presentation">“I’m submitting</span>
+    <p>
+        <label for="repo-name">Name of your app/tool:</label>
+        <input type="text" value="" id="repo-name" />
+    </p>
+    <span class="cue squelch" role="presentation">, which is a</span>
 
-```[label1]: [input1] <span class="squelch">is a</span> [label2]: [input2]```
+This script will
 
-gets turned (accessibly) into this:
-
-```[input1 placeholder="label1"] <span>is a</span> [input2 placeholder="label2"]```
+1. Show the text of each`span` to sighted users, 
+2. Accessibly hide the `label` from view, and
+3. Use the text inside each `label` as the `placeholder` for its corresponding `input[type=text]`.
 */
 (function( $ ) {
 
@@ -21,32 +28,44 @@ gets turned (accessibly) into this:
 
     $.fn[ componentName ] = function() {
 
+        // Let’s find each .form-phrase block on the page
         return this.each( function() {
 
+            // Look for all `label`s and `.squelch` elements inside this `.form-phrase` block
             var $phrase = $( this ),
                 $labels = $( "label", $phrase ),
                 $spans = $( ".squelch", $phrase );
 
+            // Process our `label`s
             if ( $labels.length ) {
                 $labels.each( function() {
+                    // Grab the text inside the label, and find the `input` associated with it (by using the `for="[id]"` attribute)
                     var $label = $( this ),
-                        placeholder = $label.text(),
+                        labelText = $label.text(),
                         $target = $( "#" + $label.attr( "for" ) );
 
-                    if ( placeholder.slice( -1 ) === ":" ) {
-                        placeholder = placeholder.substring( 0, placeholder.length - 1 );
+                    // If the last character in `labelText` is a `:`, clip it off
+                    // NOTE: if other characters need to be trimmed from the end, this could be expanded
+                    if ( labelText.slice( -1 ) === ":" ) {
+                        labelText = labelText.substring( 0, labelText.length - 1 );
                     }
 
                     if ( $target.length ) {
+                        // Assign `labelText` to the target input as its placeholder, and set its `size` to the length of the placeholder (to minimize clipping)
                         $target
-                            .attr( "placeholder", placeholder )
-                            .attr( "size", placeholder.length );
+                            .attr( "placeholder", labelText )
+                            .attr( "size", labelText.length );
+
+                        // Accessibly “hide” the label
                         $label.addClass( a11yClass );
                     }
                 } )
             }
+
+            // Process our `span`s
             if ( $spans.length ) {
                 $spans.each( function() {
+                    // Remove `.squelch` from the `span` to make it visible
                     $( this ).removeClass( hideClass );
                 } );
             }
