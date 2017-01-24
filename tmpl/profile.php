@@ -60,13 +60,17 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                 <p class="hed-label">People</p>
 
-                <div class="profile-person h-card">
+                <div class="profile-person-lead h-card">
                     <h1 class="page-title-lead">
                         <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
                         <span class="p-name">Latoya Peterson</span>
                     </h1>
 
-                    <p class="profile-bio">I'd rather be a cyborg than a goddess. (But why choose?) Always: @Racialicious. Latest: Deputy Editor, Digital Innovation for @ESPN 's @TheUndefeated.</p>
+                    <div class="mod main-lead">
+                        <p>I'd rather be a cyborg than a goddess. (But why choose?) Always: @Racialicious. Latest: Deputy Editor, Digital Innovation for @ESPN 's @TheUndefeated.</p>
+
+                        <p><a class="link-cta" href="#">Submit profile updates or corrections</a></p>
+                    </div><!-- /end .mod.main-lead -->
 
                     <ul class="profile-links">
                         <li><a class="p-org icon-company" href="#">ESPN</a></li>
@@ -135,7 +139,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                             </ul>
                         </li><!-- /end .item-recent -->
                     </ol><!-- /end .list-recently -->
-                </div><!-- /end .mod.aside-lead -->
+                </div><!-- /end .mod -->
             </div><!-- /end .content-aside -->
 
             <?php include($rootpath . "/inc/site-search.php"); ?>

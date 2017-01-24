@@ -134,7 +134,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
             </div><!-- /end .content-aside -->
 
             <div class="content-aside">
-                <div class="mod aside-lead">
+                <div class="mod">
                     <h2 class="hed-label">Filed Under</h2>
 
                     <ul class="list-tags">
@@ -147,7 +147,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         <li><a class="tag" href="#">teens</a></li>
                     </ul><!-- /end .list-tags -->
 
-                </div><!-- /end .mod.aside-lead -->
+                </div><!-- /end .mod -->
 
                 <div class="mod">
                     <h2 class="hed-label">Newest Repos</h2>
