@@ -1,0 +1,26 @@
+{% extends "code/_v2/_base_code.html" %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+                <div class="content-main">
+                    <h1 class="page-title-lead">Code</h1>
+                    
+                    {% if success == "True" %}
+                    <p>Thanks for letting us know about this project!</p>
+                    <p><a class="link-cta" href="{{ url('code_suggest_repo') }}">Suggest another repo</a></p>
+
+                    {% else %}
+                    <div class="mod main-lead">
+                        <p>Let us know about a repo.</p>
+
+                        <form action="." method="POST">
+                            {% csrf_token %}
+                            <input name="repo" type="text">
+                            <input name="what" type="text">
+                            <input type="submit">
+                        </form>
+                    </div><!-- /end .mod.main-lead -->
+                    
+                    {% endif %}
+                </div>
+{% endblock %}

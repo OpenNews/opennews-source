@@ -2,10 +2,12 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
-from django.views.generic import ListView, DetailView
+from django.template.loader import render_to_string
+from django.views.generic import ListView, DetailView, View
 
 from .models import Code
 from source.tags.utils import filter_queryset_by_tags
+from source.utils.email import send_multipart_email
 from source.utils.pagination import paginate
 
 
@@ -92,3 +94,56 @@ class CodeDetail(DetailView):
         queryset = Code.live_objects.prefetch_related('codelink_set', 'people', 'organizations', 'article_set')
         
         return queryset
+
+
+class CodeSuggestRepo(View):
+    '''
+    Readers can suggest a repository to add to the Code list, generating
+    an email to the editorial team.
+    '''
+    template_name = "code/_v2/suggest_repo.html"
+    
+    def get(self, request, *args, **kwargs):
+        '''
+        Render the suggestion form.
+        '''
+        context = {}
+        
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        '''
+        Process the submitted form, send email to editorial staff,
+        give reader a success message. (Form validation happens in
+        the template.)
+        '''
+        context = {}
+        data=request.POST
+        
+        email_context = {
+            'repo_name': data.get('repo', ''),
+            'what': data.get('what', ''),
+        }
+        
+        # render text and html versions of email body
+        # both plain txt for now
+        text_content = render_to_string(
+            'code/_v2/emails/suggest_repo.txt',
+            email_context,
+        )
+        html_content = render_to_string(
+            'code/_v2/emails/suggest_repo.txt',
+            email_context
+        )
+
+        send_multipart_email(
+            subject = 'Source: Repo submission from a reader',
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = settings.EDITORIAL_EMAIL,
+            text_content = text_content,
+            html_content = html_content
+        )
+
+        context.update({'success': 'True'})
+        return render(request, self.template_name, context)
+        
