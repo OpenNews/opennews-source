@@ -101,6 +101,7 @@ li a:focus {
         <li><a href="landing-code.php">Landing (Code)</a></li>
         <li><a href="repo-featured.php">Featured Repo</a></li>
         <li><a href="repo-submit.php">Submit Repo</a></li>
+        <li><a href="profile.php">Person Profile</a></li>
     </ul>
 </div>
 
