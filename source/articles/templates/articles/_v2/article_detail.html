@@ -145,7 +145,7 @@
                     <h2 class="hed-label">Credits</h2>
 
                     <ul>{% for author in article.get_live_author_set() %}
-                        <li class="profile-person h-card">
+                        <li class="profile-person profile-person-article h-card">
                             <h3 class="profile-name">
                                 <a href="{{ author.get_absolute_url() }}">
                                     {% if author.photo %}<img class="profile-photo u-photo" src="{{ MEDIA_URL }}{{ thumbnail(author.photo, "130") }}" alt="" />{% endif %}

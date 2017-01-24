@@ -60,35 +60,105 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                 <p class="hed-label">People</p>
 
-                <div class="profile-person-lead h-card">
-
+                <div class="profile-person profile-person-lead h-card">
                     <h1 class="page-title-lead">
                         <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
                         <span class="p-name">Latoya Peterson</span>
                     </h1>
 
-                    <h2 class="page-title-sub"><a class="p-org icon-company" href="#">ESPN</a></h2>
+                    <div class="profile-main">
+                        <h2 class="page-title-sub"><a class="p-org has-icon icon-company" href="#">ESPN</a></h2>
 
-                    <div class="mod main-lead">
-                        <p>I'd rather be a cyborg than a goddess. (But why choose?) Always: @Racialicious. Latest: Deputy Editor, Digital Innovation for @ESPN 's @TheUndefeated.</p>
+                        <div class="mod main-lead profile-bio">
+                            <p>I'd rather be a cyborg than a goddess. (But why choose?) Always: @Racialicious. Latest: Deputy Editor, Digital Innovation for @ESPN 's @TheUndefeated.</p>
 
-                        <p><a class="link-cta" href="#">Submit profile updates or corrections</a></p>
-                    </div><!-- /end .mod.main-lead -->
+                            <p><a class="link-cta" href="#">Submit profile updates or corrections</a></p>
+                        </div><!-- /end .mod.main-lead.profile-bio -->
+                    </div><!-- /end .profile-main -->
 
-                    <ul class="mod profile-links">
-                        <li></li>
-                        <li><a class="icon-github" href="#">GitHub</a></li>
-                        <li><a class="icon-twitter-alt" href="https://twitter.com/LatoyaPeterson">@LatoyaPeterson</a></li>
-                        <li><a class="u-url icon-link" href="http://latoyapeterson.com ">Visit website</a></li>
-                    </ul>
+                    <div class="profile-aside">
+                        <ul class="profile-links">
+                            <li><a class="has-icon icon-github" href="#">GitHub</a></li>
+                            <li><a class="has-icon icon-twitter-alt" href="https://twitter.com/LatoyaPeterson">@LatoyaPeterson</a></li>
+                            <li><a class="has-icon icon-link u-url" href="http://latoyapeterson.com ">Visit website</a></li>
+                        </ul>
+                    </div>
                 </div><!-- /end .profile-person -->
 
                 <div class="mod">
                     <h2 class="hed-label">Latoya’s work on Source</h2>
+
+                    <h3 class="hed-sub">Code</h3>
+
+                    <ol class="list">
+                        <li>
+                            <a class="has-icon icon-code" href="#">Lunchbox</a>
+                        </li>
+                    </ol>
+
+                    <h3 class="hed-sub">Projects</h3>
+
+                    <ol class="list">
+                        <li>
+                            <a class="has-icon icon-doc" href="#">Mapping Inspiration: A Q&amp;A with Latoya Peterson</a>
+                        </li>
+                        <li>
+                            <a class="has-icon icon-doc" href="#">SRCCON: How Not to Skew Data with Statistics</a>
+                        </li>
+                        <li>
+                            <a class="has-icon icon-doc" href="#">Meet KeyBlur and America’s Slow Lane</a>
+                        </li>
+                    </ol>
+
+                    <h3 class="hed-sub">Articles by Latoya</h3>
+
+                    <ol class="list-articles">
+                        <li>
+                            <a href="#">
+                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <h3 class="hed-article-title">Just One Thing: A Year in Review, Part 2</h3>
+                                <h4 class="hed-article-subhed">Appreciation of usefulness and bar-raising at the end of a long, complicated year</h4>
+
+                                <div class="summary">
+                                    <p>As we did last year, we’ve asked a couple of dozen people from all around the news-nerd community to tell us about one thing—article, feature, app, tool, or something else entirely—that they loved in 2015. This week, we’re publishing their responses, from interactives to project management software.</p>
+                                </div><!-- /end .summary -->
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <h3 class="hed-article-title">Mapping Inspiration: A Q&amp;A with Latoya Peterson</h3>
+                                <h4 class="hed-article-subhed">How Peterson works with Fusion’s interactive team to make beautiful things happen</h4>
+                                <div class="summary">
+                                    <p>Latoya Peterson creates all kinds of groundbreaking digital work with Fusion (including an incredible documentary series, Girl Gamers, which just launched). We spoke with Peterson about her Mental Map project, an interactive series that traces and celebrates creative roots. The first, released this spring, featured artist and illustrator Carl Jones. The next one, with Alexis Ohanian of Reddit, launched today. <span class="link-cta">Read more</span></p>
+                                </div>
+                            </a>
+                        </li>
+                    </ol>
                 </div><!-- /end .mod -->
             </div><!-- /end .content-aside -->
 
             <div class="content-aside">
+                <div class="mod">
+                    <h2 class="hed-label">New Source Job Listings</h2>
+
+                    <ol class="list-recently">
+                        <li class="item-recent">
+                            <h3 class="hed-recent"><a href="#">Principal Software Engineer</a></h3>
+
+                            <p><a class="has-icon icon-company" href="#">BBC News</a></p>
+                            </ul>
+                        </li><!-- /end .item-recent -->
+                        <li class="item-recent">
+                            <h3 class="hed-recent"><a href="#">Newsroom Developer</a></h3>
+
+                            <p><a class="has-icon icon-company" href="#">The Financial Times</a></p>
+                        </li><!-- /end .item-recent -->
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="#">See all jobs</a></p>
+                </div><!-- /end .mod -->
+
                 <div class="mod">
                     <h2 class="hed-label">Recently Added Code Repos</h2>
 
@@ -117,31 +187,9 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                                 <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
                             </ul>
                         </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
-
-                            <ul>
-                                <li><a class="has-icon icon-profile" href="#">Tiff Fehr</a></li>
-                                <li><a class="has-icon icon-company" href="#">The New York Times</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
-
-                            <ul>
-                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
-                        <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Elex</a></h3>
-
-                            <ul>
-                                <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
-                                <li><a class="has-icon icon-company" href="#">Australian Broadcasting Corporation</a></li>
-                            </ul>
-                        </li><!-- /end .item-recent -->
                     </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="#">See all repos</a></p>
                 </div><!-- /end .mod -->
             </div><!-- /end .content-aside -->
 

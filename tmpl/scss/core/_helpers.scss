@@ -1,3 +1,4 @@
+// Accessibility helpers
 .a11y,
 .enhanced hr {
     clip: rect( 1px 1px 1px 1px ); /* IE 6/7 */
@@ -8,11 +9,12 @@
     white-space: nowrap; /* per https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe */
     width: 1px;
 }
-
 .squelch {
     display: none;
 }
 
+// Elements/links with icons
 .has-icon {
+    display: inline-block;
     padding-left: 30px;
 }

@@ -95,7 +95,9 @@ p:last-child,
 ul:last-child {
     margin-bottom: 0;
 }
+ol,
 ul,
+ol li,
 ul li {
     list-style: none;
     margin-left: 0;
