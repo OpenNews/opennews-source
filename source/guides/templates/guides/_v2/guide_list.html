@@ -17,12 +17,12 @@
                         {% for guide in object_list %}
                             <li class="src-promo">
                                 <a href="{{ guide.get_absolute_url() }}">
-                                    {% if guide.screenshot %}
-                                    <img src="{{ MEDIA_URL }}{{ thumbnail(guide.screenshot, "300x200", crop="center") }}" alt="{{ code.name }}" />
+                                    {% if guide.image %}
+                                    <img src="{{ MEDIA_URL }}{{ thumbnail(guide.image, "300x200", crop="center") }}" alt="{{ guide.title }}" />
                                     {% else %}
-                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ guide.name }}" />
+                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ guide.title }}" />
                                     {% endif %}
-                                    <h3 class="hed-promo">{{ guide }}</h3>
+                                    <h3 class="hed-promo">{{ guide.title }}</h3>
                                 </a>
                             </li><!-- /end .src-promo -->
                         {% endfor %}
