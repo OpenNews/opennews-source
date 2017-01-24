@@ -1,2 +1,1 @@
-Repo name: {{ repo_name }}
-What: {{ what }}
+Name: {{ name }}

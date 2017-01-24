@@ -1,5 +1,7 @@
 {% extends "code/_v2/_base_code.html" %}
 
+{% block page_title %}Suggest a repo - {{ super() }}{% endblock %}
+
 {% block page_main %}{# block begins inside div.page-main #}
 
                 <div class="content-main">
@@ -13,10 +15,9 @@
                     <div class="mod main-lead">
                         <p>Let us know about a repo.</p>
 
-                        <form action="." method="POST">
+                        <form action="." method="post">
                             {% csrf_token %}
-                            <input name="repo" type="text">
-                            <input name="what" type="text">
+                            {{ form }}
                             <input type="submit">
                         </form>
                     </div><!-- /end .mod.main-lead -->
