@@ -191,17 +191,43 @@ p.msg-error {
 Macro-level structural elements
 
 -*/
+// If a browser doesn’t support media queries, they get a centered, 500px-wide design.
 .page {
-    margin: 0 3.055555555555555555%;    /* 44/1440 */
-    max-width: 87.5em;
+    margin: 0 auto;
+    width: 500px;
 }
+/*
+If a browser DOES support media queries, then the “proper” layout is restored.
+*/
+@media (min-width: 0) {
+    .page {
+        margin: 0 3.055555555555555555%;    /* 44/1440 */
+        max-width: 87.5em;
+        width: inherit;
+    }
+}
+// .page-main is the white area where most of the design appears.
 .page-main {
+    background-color: #FFF;
+    background-position: 100% 0;
+    color: #4D4D4D;
     padding: 1em 4.758364312267657992%;    /* 64/1345 */
     padding-bottom: 4vw;
     padding-top: 4vw;
+    position: relative;
     zoom: 1;
 }
-// On wider screens, let’s center the design
+.page-main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.oldie .page-main {
+    padding: 1em;
+}
+/*
+On wider screens, let’s center the design
+*/
 @media (min-width: 90em) {
     .page {
         margin: 0 auto;
@@ -211,11 +237,39 @@ Macro-level structural elements
         padding-top: 4em;
     }
 }
-.page-main:after {
-    content: "";
-    display: table;
-    clear: both;
+
+
+
+/*-
+
+Main section (in white)
+
+-*/
+.page-main {
 }
+.page-main,
+.site-search {
+    background-size: 30% auto;
+}
+@media (min-width: 60em) {
+    .page-main,
+    .site-search {
+        background-size: 25% auto;
+    }
+}
+.tmpl-article .page-main {
+    background-position: -1000px 0;
+}
+@media (min-width: 60em) {
+    .tmpl-article .page-main {
+        background-position: 0 0;
+        background-size: 20% auto;
+    }
+}
+
+/*
+.content-main and .content-aside are used for 2-col layouts on wider screens, at a 75/25 split
+*/
 .content-main {
     margin-bottom: 4em;
 }
@@ -261,10 +315,12 @@ Macro-level structural elements
 Header
 
 -*/
-.site-header {
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
+@media (min-width: 0) {
+    .site-header {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
 }
 .site-header a {
     color: #FFF;
@@ -272,8 +328,15 @@ Header
 }
 .header-main {
     display: flex;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+.enhanced .header-main {
+    text-align: left;
+    margin-bottom: 0;
 }
 .header-main > * {
+    display: inline-block;
     margin: 0;
 }
 .site-logo {
@@ -296,17 +359,24 @@ Header
     position: relative;
 }
 .header-main .nav-toggle {
-    order: -1;
+    -ms-flex-order: -1;
+     -webkit-order: -1;
+             order: -1;
 }
 // Inside each toggle link is an `.icon`, whose visibility gets toggled as menus open/close
 .site-header .icon {
+    background-position: -1000px 0;
     background-color: #001A33;
-    background-position: 50% 50%;
     background-size: auto 18px;
     display: inline-block;
     border-radius: 0.1875em;    /* 6/32 */
-    height: 2em;
+    padding: 0.5em;
     line-height: 1;
+}
+.enhanced .site-header .icon {
+    background-position: 50% 50%;
+    height: 2em;
+    padding: 0;
     text-indent: -1000em;
     width: 4em;
 }
@@ -338,6 +408,8 @@ Header
     padding: 0 0.5em;
 }
 .site-nav-links {
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
 }
@@ -351,7 +423,12 @@ Header
 }
 .site-nav-links a {
     display: block;
-    padding: 2em 1em;
+    padding: 1em;
+}
+@media (min-width: 0) {
+    .site-nav-links a {
+        padding: 2em 1em;
+    }
 }
 .site-nav-links a.is-active {
     color: #47BFF8;
@@ -395,7 +472,9 @@ Header
         margin-left: 0.5em;
     }
     .header-main .nav-toggle {
-        order: initial;
+        -ms-flex-order: initial;
+         -webkit-order: initial;
+                 order: initial;
     }
     // Navigation highlight bars
     .site-nav {
@@ -432,13 +511,17 @@ Header
     }
     .header-main {
         margin-right: 2.857142857142857142%;    /* 34/1190 */
+        width: 12.268907563025210084%;    /* 146/1190 */
     }
     .site-logo {
         display: flex;
-        width: 17.226890756302521008%;    /* 205/1190 */
     }
     .site-logo a {
         padding: 1em 0;
+    }
+    .site-logo img {
+        display: block;
+        width: 100%;
     }
     .nav-toggle {
         display: none;
@@ -532,6 +615,8 @@ Header
     }
 }
 
+
+
 /*-
 
 Site search
@@ -545,7 +630,16 @@ Site search
     background-color: #22759F;
     background-position: 100% 0;
     clear: both;
-    margin-top: 3em;
+    margin: 3em -1em 0;
+    zoom: 1;
+}
+.enhanced .site-search {
+    margin: 0;
+}
+.site-search:after {
+    content: "";
+    clear: both;
+    display: table;
 }
 .hed-search {
     font-size: 1em;
@@ -708,37 +802,6 @@ Enhanced version
 }
 
 
-
-/*-
-
-Main section (in white)
-
--*/
-.page-main {
-    background-color: #FFF;
-    background-position: 100% 0;
-    color: #4D4D4D;
-    position: relative;
-}
-.page-main,
-.site-search {
-    background-size: 30% auto;
-}
-@media (min-width: 60em) {
-    .page-main,
-    .site-search {
-        background-size: 25% auto;
-    }
-}
-.tmpl-article .page-main {
-    background-position: -1000px 0;
-}
-@media (min-width: 60em) {
-    .tmpl-article .page-main {
-        background-position: 0 0;
-        background-size: 20% auto;
-    }
-}
 
 /*-
 
@@ -990,7 +1053,9 @@ Lists!
     }
 }
 
-// Lead promo
+/*
+Lead promo
+*/
 .promo-lead {
     border-bottom: 1px solid #D8D8D8;
     padding-bottom: 3em;
@@ -1009,6 +1074,7 @@ Lists!
     margin: 0 0 0.5em;
 }
 .promo-pic {
+    display: block;
     float: right;
     margin: 0 0 1em 1em;
     width: 40%;
@@ -1044,17 +1110,18 @@ Lists!
         display: flex;
         justify-content: space-between;
     }
+    .promo-pic,
+    .promo-main {
+        flex: 0 0 47.5%;
+    }
     .promo-pic {
         float: none;
         margin: 0;
-        width: inherit;
-    }
-    .promo-lead > * {
-        flex: 0 0 47.5%;
     }
     .promo-main {
         display: flex;
         flex-direction: column;
+        max-width: 100%;
     }
     .promo-main > * {
         flex: 0 1 auto;
@@ -1065,7 +1132,10 @@ Lists!
         font-size: 2.4em;
     }
 }
-// “About Source” block
+
+/*
+“About Source” block
+*/
 .promo-src-about {
     background-color: #492350;
     background-position: 100% 100%;
@@ -1166,19 +1236,20 @@ a:hover .hed-promo {
 @media (min-width: 40em) {
     .list-promos {
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
     }
     .list-promos:after {
         content: "";
-    }
-    .src-promo:first-child {
-        width: inherit;
+        display: block;
     }
     .src-promo,
     .list-promos:after {
-        flex: 0 1 31%;
+        flex: 0 1 30%;
+        margin-right: 3%;
         margin-bottom: 0;
+    }
+    .src-promo:first-child {
+        width: inherit;
     }
     .tmpl-home .src-promo {
         margin-bottom: 2em;
@@ -1191,6 +1262,7 @@ a:hover .hed-promo {
     .tmpl-home .src-promo,
     .tmpl-home .list-promos:after {
         flex: 0 1 21%;
+        margin-right: 4%;
     }
     .tmpl-home .hed-promo {
         font-size: 0.9em;
@@ -1453,11 +1525,15 @@ Article front matter
         display: inline-flex;
         margin-right: auto;
         max-width: 10em; /* BUGFIX: iOS Safari inline-flex bug */
-        order: -1;
+        -ms-flex-order: -1;
+         -webkit-order: -1;
+                 order: -1;
     }
     .article-matter-front .list-tags {
         margin-bottom: 1.5em;
-        order: 2;
+        -ms-flex-order: 2;
+         -webkit-order: 2;
+                 order: 2;
     }
 }
 @media (min-width: 65em) {

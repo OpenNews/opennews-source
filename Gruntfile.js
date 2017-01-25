@@ -172,6 +172,28 @@ module.exports = function( grunt ) {
             }
         },
 
+        postcss: {
+            options: {
+                map: is_dev,
+                processors: [
+                    require( "autoprefixer" )({
+                        browsers: [
+                            "Android 2.3",
+                            "Chrome >= 20",
+                            "Firefox >= 24",
+                            "Explorer >= 10",
+                            "iOS >= 6",
+                            "Opera >= 12",
+                            "Safari >= 6"
+                        ]
+                    })
+                ]
+            },
+            dist: {
+                src: "<%= Object.keys( sass.dist.files )[ 0 ] %>"
+            }
+        },
+
         sass: {
             options: {
                 outputStyle: "nested",
@@ -208,14 +230,14 @@ module.exports = function( grunt ) {
                 files: [
                     "<%= _config.dir.templates %>svg/**/*"
                 ],
-                tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
+                tasks: [ "grunticon", "sass", "postcss", "cssmin", "concat", "uglify", "bsReload" ]
             },
             templates: {
                 files: [
                     "Gruntfile.js",
                     "<%= _config.dir.templates %>**/*",
                 ],
-                tasks: [ "sass", "cssmin", "concat", "uglify", "bsReload" ]
+                tasks: [ "sass", "postcss", "cssmin", "concat", "uglify", "bsReload" ]
             },
         }
     } );
@@ -223,6 +245,7 @@ module.exports = function( grunt ) {
     grunt.registerTask( "build", [
         "clean",
         "sass",
+        "postcss",
         "criticalcss",
         "cssmin",
         "concat",
