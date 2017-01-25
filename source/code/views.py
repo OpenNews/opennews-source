@@ -14,7 +14,7 @@ from source.utils.pagination import paginate
 
 class CodeList(ListView):
     model = Code
-    template_name = 'code/_v2/code_list.html'
+    #template_name = 'code/_v2/code_list.html'
 
     def dispatch(self, *args, **kwargs):
         self.render_json = kwargs.get('render_json', False)
@@ -102,7 +102,7 @@ class CodeSuggestRepo(View):
     Readers can suggest a repository to add to the Code list, generating
     an email to the editorial team.
     '''
-    template_name = "code/_v2/suggest_repo.html"
+    #template_name = "code/_v2/suggest_repo.html"
     
     def get(self, request, *args, **kwargs):
         '''

@@ -8,7 +8,7 @@ from .models import Guide
 
 class GuideList(ListView):
     model = Guide
-    template_name = "guides/_v2/guide_list.html"
+    #template_name = "guides/_v2/guide_list.html"
 
     def dispatch(self, *args, **kwargs):
         self.render_json = kwargs.get('render_json', False)
@@ -29,7 +29,7 @@ class GuideList(ListView):
 
 class GuideDetail(DetailView):
     model = Guide
-    template_name = "guides/_v2/guide_detail.html"
+    #template_name = "guides/_v2/guide_detail.html"
 
     def get_queryset(self):
         if self.request.user.is_staff:
@@ -46,7 +46,7 @@ class GuideSuggestGuide(View):
     Readers can suggest a new Guide, generating
     an email to the editorial team.
     '''
-    template_name = "guides/_v2/suggest_guide.html"
+    #template_name = "guides/_v2/suggest_guide.html"
     
     def get(self, request, *args, **kwargs):
         '''

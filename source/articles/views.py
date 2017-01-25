@@ -130,7 +130,7 @@ class ArticleList(ListView):
 
 class ArticleDetail(DetailView):
     model = Article
-    template_name = 'articles/_v2/article_detail.html'
+    #template_name = 'articles/_v2/article_detail.html'
 
     def get_queryset(self):
         if self.request.user.is_staff:
