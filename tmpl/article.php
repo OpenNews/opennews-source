@@ -5,7 +5,7 @@ $current_page = "articles";
 ?>
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
-<!--[if lt IE 9]>  <html class="ie oldie" lang="en"> <![endif]-->
+<!--[if lte IE 9]>  <html class="ie oldie" lang="en"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 <meta charset="utf-8" />

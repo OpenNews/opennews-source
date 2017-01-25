@@ -113,10 +113,13 @@ p.msg-error {
     display: flex;
     flex-wrap: wrap;
     max-width: 40em;
+    zoom: 1;
 }
 .form-chooser > * {
+    float: left;
     flex: 1 0 50%;
     margin: 0;
+    width: 50%;
 }
 .form-chooser label {
     background-position: 50% 80%;
@@ -124,6 +127,7 @@ p.msg-error {
     border-radius: 1em;
     border: 1px solid #FFF;
     box-shadow: inset 0 0 1px #FFF;
+    box-sizing: border-box;
     cursor: pointer;
     flex: 1;
     margin-bottom: 0;
@@ -156,6 +160,7 @@ p.msg-error {
     .form-chooser > * {
         flex: 1 0 25%;
         margin: 0;
+        width: 25%;
     }
 }
 
@@ -348,6 +353,7 @@ Header
     padding: 0.7em;
 }
 .site-logo img {
+    display: block;
     height: 0.9em;
 }
 // Toggle links
@@ -413,6 +419,9 @@ Header
     display: flex;
     flex-wrap: wrap;
 }
+.oldie .site-nav-links {
+    display: block;
+}
 .site-nav-links li {
     border-bottom: 1px solid #FFF;
     flex: 1 0 50%;
@@ -441,8 +450,11 @@ Header
     transition: max-height 0.2s, opacity 0.2s;
 }
 .site-nav-links-open .site-nav {
-    max-height: 11em;
+    max-height: 22em;
     opacity: 1;
+}
+.supports-flex .site-nav-links-open .site-nav {
+    max-height: 11em;
 }
 // Move from a 2-up grid in the navigation menu to a centered, single row of links
 // NOTE: This may change if the number of links in the menu needs to increase.
@@ -451,6 +463,7 @@ Header
         flex-wrap: nowrap;
     }
     .site-nav-links li {
+        float: left;
         border-bottom: none;
         flex-basis: 25%;
     }
@@ -464,6 +477,7 @@ Header
 @media (min-width: 25em) {
     // From this point on, we’ll use `.site-logo a` to shim the height of the masthead
     .site-logo a {
+        display: inline-block;
         justify-content: initial;
         padding: 0.8em 0;
     }
@@ -515,6 +529,10 @@ Header
     }
     .site-logo {
         display: flex;
+    }
+    .oldie .site-logo {
+        display: block;
+        text-align: center;
     }
     .site-logo a {
         padding: 1em 0;
@@ -615,6 +633,54 @@ Header
     }
 }
 
+/*
+IE 9 fixes (I know, I know.)
+*/
+@media (min-width: 30em) {
+    .oldie {
+        .site-header:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .site-header .site-logo {
+            margin: 0;
+        }
+        .site-header .site-logo img {
+            width: 150px;
+        }
+        .site-header a {
+            display: block;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            vertical-align: middle;
+        }
+        .site-header a.nav-toggle {
+            display: none;
+        }
+        .site-header .icon-search {
+            background-color: inherit;
+            background-position: 50% 50%;
+            display: block;
+        }
+        .site-nav {
+            background: inherit;
+            margin: 0;
+            overflow: visible;
+            max-height: inherit;
+            margin-left: -2em;
+            width: 100%;
+        }
+        .site-nav li {
+            float: left;
+            margin-right: 1em;
+        }
+        .site-nav a {
+            display: block;
+            padding: 2em;
+        }
+    }
+}
 
 
 /*-
