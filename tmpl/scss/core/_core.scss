@@ -717,12 +717,16 @@ Main section (in white)
 .page-main {
     background-color: #FFF;
     background-position: 100% 0;
-    background-size: 30% auto;
     color: #4D4D4D;
     position: relative;
 }
+.page-main,
+.site-search {
+    background-size: 30% auto;
+}
 @media (min-width: 60em) {
-    .page-main {
+    .page-main,
+    .site-search {
         background-size: 25% auto;
     }
 }
@@ -996,7 +1000,7 @@ Lists!
     display: inline-flex;
     flex: 0 1 auto;
     margin-right: auto;
-    max-width: 10em; /* TODO: Fix iOS Safari inline-flex bug */
+    max-width: 10em; /* BUGFIX: iOS Safari inline-flex bug */
 }
 .hed-promo-lead {
     font-size: 1.4em;
@@ -1443,7 +1447,7 @@ Article front matter
     .article-matter-front .hed-label {
         display: inline-flex;
         margin-right: auto;
-        max-width: 10em; /* TODO: Fix iOS Safari inline-flex bug */
+        max-width: 10em; /* BUGFIX: iOS Safari inline-flex bug */
         order: -1;
     }
     .article-matter-front .list-tags {
@@ -1779,112 +1783,3 @@ Repo metadata
 }
 
 
-/*-
-
-Footer
-
--*/
-.page-footer {
-    background: #31364C;
-}
-.page-footer a {
-    color: #FFF;
-}
-.page-footer a:focus,
-.page-footer a:hover {
-    color: map-get( $colors, "link-on" );
-    text-decoration: none;
-}
-// “Main” footer blocks display side-by-side on wider screens; they’re the primary dividers in the footer
-.foot-main {
-    padding: 2em;
-    padding: 2em 4vw;
-}
-.foot-source {
-    background-size: 55% auto;
-    background-position: 100% 100%;
-}
-.foot-opennews {
-    background: #232D44;
-}
-.foot-content {
-    font-size: 1.125em;
-    line-height: 1.45;
-    margin-bottom: 2em;
-}
-.foot-content > * {
-    max-width: 28em;
-}
-// Footer logos
-.page-footer .foot-logo {
-    margin: 0 0 1em;
-}
-.foot-opennews .foot-logo {
-    margin-bottom: 0.8em;
-}
-.foot-opennews img {
-    margin-top: -6px;
-}
-.foot-source .foot-logo {
-    margin-bottom: 1em;
-}
-// “Connect” links
-.hed-foot {
-    color: #47BFF8;
-    font-size: 13px;
-    text-transform: uppercase;
-}
-.list-foot-social {
-    line-height: 1.25;
-}
-.list-foot-social li {
-    margin-bottom: 0.75em;
-}
-.list-foot-social a {
-    background-position: 0 0.25em;
-    display: block;
-}
-@media (min-width: 55em) {
-    // Two-column layout
-    .page-footer {
-        display: flex;
-    }
-    .foot-main {
-        padding: 4em;
-        padding: 4vw;
-        flex: 1 0 auto;
-    }
-    .foot-source {
-        background-size: 55% auto;
-        background-position: 100% 100%;
-        display: flex;
-        padding-left: 4.903417533432392273%;    /* 66/1346 */
-        padding-right: 4.903417533432392273%;    /* 66/1346 */
-        width: 50.520059435364041604%;    /* 680/1346 */
-    }
-    .foot-source .foot-content {
-        flex: 0 1 55%;
-        margin-bottom: 0;
-        margin-right: 10%;
-    }
-    .foot-source .link-cc {
-        margin: 4em 0 0;
-    }
-    .foot-source .hed-foot {
-        margin-bottom: 2.5em;
-        margin-top: 1.2em;
-    }
-    .list-foot-social {
-        max-width: 10em;
-    }
-    .list-foot-social a {
-        margin-left: -30px;
-    }
-    .foot-opennews {
-        background: #232D44;
-        margin-left: auto;
-        padding-left: 5.274888558692421991%;    /* 71/1346 */
-        padding-right: 6.835066864784546805%;    /* 92/1346 */
-        width: 27.786032689450222882%;    /* 374/1346 */
-    }
-}
