@@ -97,11 +97,12 @@ li a:focus {
     <h1>Source 2017 Redesign</h1>
 
     <ul>
-        <li><a href="article.php">Article</a></li>
-        <li><a href="landing-code.php">Landing (Code)</a></li>
+        <li><a href="home.php">Home</a></li>
         <li><a href="repo-featured.php">Featured Repo</a></li>
         <li><a href="repo-submit.php">Submit Repo</a></li>
         <li><a href="profile.php">Person Profile</a></li>
+        <li><a href="article.php">Article</a></li>
+        <li><a href="landing-code.php">Landing (Code)</a></li>
     </ul>
 </div>
 

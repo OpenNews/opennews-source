@@ -45,12 +45,17 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
 <script>
 // If there are Disqus-specific variables to be included, uncomment this block and add them below.
-/*
+var disqus_shortname = SRC.config.disqus_id;
+
 var disqus_config = function () {
-    this.page.url = PAGE_URL;
-    this.page.identifier = PAGE_IDENTIFIER; identifier variable
+    this.callbacks.onReady = [function( comment ) {
+        $( document ).trigger( "comments-loaded" );
+    } ];
+    this.callbacks.onNewComment = [function( comment ) { 
+        $( document ).trigger( "comments-new" );
+    }];
 };
-*/
+
 </script>
 
 </head>

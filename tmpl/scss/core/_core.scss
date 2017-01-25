@@ -193,12 +193,23 @@ Macro-level structural elements
 -*/
 .page {
     margin: 0 3.055555555555555555%;    /* 44/1440 */
+    max-width: 87.5em;
 }
 .page-main {
     padding: 1em 4.758364312267657992%;    /* 64/1345 */
     padding-bottom: 4vw;
     padding-top: 4vw;
     zoom: 1;
+}
+// On wider screens, let’s center the design
+@media (min-width: 90em) {
+    .page {
+        margin: 0 auto;
+    }
+    .page-main {
+        padding-bottom: 4em;
+        padding-top: 4em;
+    }
 }
 .page-main:after {
     content: "";
@@ -217,6 +228,10 @@ Macro-level structural elements
     .content-aside {
         float: right;
         width: 21.176470588235294117%;    /* 252/1190 */
+    }
+    .tmpl-home .content-main {
+        float: none;
+        width: inherit;
     }
 }
 
@@ -772,7 +787,7 @@ Headings
 }
 // .hed-label - little red headlines, they look like labels, naming things is difficult
 .hed-label {
-    background-color: #F04736;
+    background-color: map-get( $colors, "src-red" );
     color: #FFF;
     display: inline-block;
     font-size: 0.8125em;    /* 13/16 */
@@ -914,7 +929,7 @@ Lists!
 }
 .list-articles a .hed-article-title,
 .list-articles a .link-cta {
-    color: #469ABC;
+    color: map-get( $colors, "link-default" );
     text-decoration: underline;
     transition: color 0.2s;
 }
@@ -922,14 +937,14 @@ Lists!
 .list-articles a:hover .hed-article-title,
 .list-articles a:focus .link-cta,
 .list-articles a:hover .link-cta {
-    color: #45BEA9;
+    color: map-get( $colors, "link-on" );
     text-decoration: none;
 }
 .list-articles .hed-article-subhed {
     font-size: 1.25em;
     font-weight: normal;
     line-height: 1.25;
-    margin: 0 0 0.75em;
+    margin: 0.3em 0 0.75em;
 }
 .list-articles .summary {
     font-family: map-get( $fonts, "serif-base" );
@@ -968,6 +983,33 @@ Lists!
 .src-promo {
     margin-bottom: 2em;
 }
+.src-promo a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.src-promo img {
+    display: block;
+    margin-bottom: 0.4em;
+}
+.label-promo {
+    color: map-get( $colors, "src-red" );
+    display: block;
+    font-size: 0.75em;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-bottom: 0.4em;
+}
+a .hed-promo {
+    color: map-get( $colors, "link-default" );
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+a:focus .hed-promo,
+a:hover .hed-promo {
+    color: map-get( $colors, "link-on" );
+    text-decoration: none;
+}
 @media (min-width: 25em) and (max-width: 39.99em) {
     .src-promo {
         border-bottom: 1px solid #C6C6C6;
@@ -1002,7 +1044,6 @@ Lists!
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        flex-wrap: nowrap;
     }
     .src-promo:first-child {
         width: inherit;
@@ -1011,10 +1052,19 @@ Lists!
         flex: 0 1 31%;
         margin-bottom: 0;
     }
+    .tmpl-home .src-promo {
+        margin-bottom: 2em;
+    }
 }
 @media (min-width: 50em) {
     .list-promos {
         font-size: 1.25em;    /* 20 / 16 */
+    }
+    .tmpl-home .src-promo {
+        flex: 0 1 21%;
+    }
+    .tmpl-home .hed-promo {
+        font-size: 0.9em;
     }
 }
 // “Long” (block) and “short” (inline) lists of hashtags
@@ -1108,6 +1158,7 @@ ul.links-article-social li {
     display: block;
     height: 70px;
     text-align: left;
+    text-decoration: none;
     text-indent: -1000em;
     transition: transform 0.2s;
     width: 70px;
@@ -1121,6 +1172,16 @@ ul.links-article-social li {
     background-color: #F14835;
     background-size: 90% auto;
     color: #F14835;
+    font-family: map-get( $fonts, "sans-base" );
+}
+.wf-active .links-article-social .icon-comments {
+    font-family: map-get( $fonts, "sans" );
+}
+.links-article-social .icon-comments.comments-loaded {
+    display: block;
+    text-indent: 0;
+    text-align: center;
+    line-height: 67px;
 }
 .links-article-social .icon-twitter {
     background-color: #47BFF8;
@@ -1179,7 +1240,7 @@ ul.links-article-social li {
 }
 .item-recent a:focus,
 .item-recent a:hover {
-    color: #45BEA9;
+    color: map-get( $colors, "link-on" );
 }
 .item-recent .has-icon {
     background-position: 0 0.2em;
@@ -1410,7 +1471,7 @@ Profiles
 }
 .profile-links a:focus,
 .profile-links a:hover {
-    color: #45BEA9;
+    color: map-get( $colors, "link-on" );
 }
 // In-article variant
 .profile-person-article .profile-name {
@@ -1611,7 +1672,7 @@ Footer
 }
 .page-footer a:focus,
 .page-footer a:hover {
-    color: #45BEA9;
+    color: map-get( $colors, "link-on" );
     text-decoration: none;
 }
 // “Main” footer blocks display side-by-side on wider screens; they’re the primary dividers in the footer

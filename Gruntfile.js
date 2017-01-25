@@ -85,6 +85,7 @@ module.exports = function( grunt ) {
                     "<%= _config.dir.templates %>js/navigation.js",
                     "<%= _config.dir.templates %>js/search.js",
                     "<%= _config.dir.templates %>js/comments-disqus.js",
+                    "<%= _config.dir.templates %>js/count-disqus.js",
                     "<%= _config.dir.templates %>js/form-phrase.js",
                     // source-misc.js is a scratch file for any miscellaneous JS that needs to be run on document.enhance
                     "<%= _config.dir.templates %>js/source-misc.js",
@@ -114,6 +115,13 @@ module.exports = function( grunt ) {
                     outputfile : '<%= _config.dir.output %>css/critical-content.css',
                     filename : '<%= _config.dir.output %>css/main.css',
                     url : 'http://local.source/landing-code.php?static=true'
+                }
+            },
+            home: {
+                options:  {
+                    outputfile : '<%= _config.dir.output %>css/critical-home.css',
+                    filename : '<%= _config.dir.output %>css/main.css',
+                    url : 'http://local.source/home.php?static=true'
                 }
             }
         },

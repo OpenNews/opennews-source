@@ -45,7 +45,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
 </head>
 
-<body class="tmpl-landing">
+<body>
 
 <div class="page">
 

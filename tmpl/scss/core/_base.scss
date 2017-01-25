@@ -21,13 +21,13 @@ Base element styles
 
 -*/
 a {
-    color: #469ABC;
+    color: map-get( $colors, "link-default" );
     text-decoration: underline;
     transition: color 0.1s;
 }
 a:hover,
 a:focus {
-    color: #45BEA9;
+    color: map-get( $colors, "link-on" );
     text-decoration: none;
 }
 blockquote {

@@ -11,14 +11,9 @@
             // If Disqus successfully loads, prepend a headline (e.g., `<h2>Comments</h2>`) to its container.
             var title = $comments.parent().attr( "data-title" );
             $comments.prepend( hed_markup.split( '{title}' ).join( title ) );
+
+            SRC.utils.loadJS( "//" + SRC.config.disqus_id + ".disqus.com/count.js" );
         } );
     }
-
-    // Any links to #disqus_thread? If so, load count.js.
-    // var $commentlink = $( "a[href='#disqus_thread']" );
-    //
-    // if ( $commentlink.length ) {
-    //     SRC.utils.loadJS( "//" + SRC.config.disqus_id + ".disqus.com/count.js" );
-    // }
 
 }( jQuery ) );
