@@ -551,7 +551,7 @@ Header
         top: 0;
     }
     // Restore search icon to full size
-    .search-toggle .icon {
+    .enhanced .search-toggle .icon {
         background-color: inherit;
         background-size: 33px 33px;
         height: 100%;
@@ -657,6 +657,13 @@ IE 9 fixes (I know, I know.)
         }
         .site-header a.nav-toggle {
             display: none;
+        }
+        .site-header a.header-toggle {
+            bottom: auto;
+            height: 33px;
+            position: absolute;
+            right: 1em;
+            top: 0;
         }
         .site-header .icon-search {
             background-color: inherit;
