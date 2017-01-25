@@ -223,15 +223,12 @@ Macro-level structural elements
     .content-main {
         float: left;
         margin-bottom: 0;
+        max-width: 60em;
         width: 74.285714285714285714%;    /* 884/1190 */
     }
     .content-aside {
         float: right;
         width: 21.176470588235294117%;    /* 252/1190 */
-    }
-    .tmpl-home .content-main {
-        float: none;
-        width: inherit;
     }
 }
 
