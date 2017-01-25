@@ -162,6 +162,8 @@ module.exports = function( grunt ) {
                     compressPNG: true,
                     cssprefix: ".icon-",
                     customselectors: {
+                        "dots-corner-red-topright": [ ".page-main" ],
+                        "dots-corner-red-topleft": [ ".tmpl-article .page-main" ],
                         "dots-footer": [ ".foot-source" ],
                         "dots-search": [ ".site-search" ]
                     },

@@ -45,7 +45,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
 <script>
 // If there are Disqus-specific variables to be included, uncomment this block and add them below.
-var disqus_shortname = SRC.config.disqus_id;
+var disqus_shortname = "sourcedev";
 
 var disqus_config = function () {
     this.callbacks.onReady = [function( comment ) {

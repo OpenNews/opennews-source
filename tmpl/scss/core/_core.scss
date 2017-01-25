@@ -719,11 +719,25 @@ Main section (in white)
 -*/
 .page-main {
     background-color: #FFF;
+    background-position: 100% 0;
+    background-size: 30% auto;
     color: #4D4D4D;
     position: relative;
 }
-
-
+@media (min-width: 60em) {
+    .page-main {
+        background-size: 25% auto;
+    }
+}
+.tmpl-article .page-main {
+    background-position: -1000px 0;
+}
+@media (min-width: 60em) {
+    .tmpl-article .page-main {
+        background-position: 0 0;
+        background-size: 20% auto;
+    }
+}
 
 /*-
 
