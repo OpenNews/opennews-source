@@ -1,0 +1,65 @@
+{% extends "guides/_v2/_base_guides.html" %}
+
+{% block page_title %}{{ guide.title }} - {{ super() }}{% endblock %}
+
+{% block body_class %}tmpl-article{% endblock %}
+
+{% block head_open_graph %}{{ super() }}
+<!-— facebook open graph tags -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ request.build_absolute_uri() }}" />
+<meta property="og:title" content="{{ guide.title }}" />
+<meta property="og:description" content="{{ guide.summary_or_description }}" />
+<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(guide.image, "1200") }}" />
+ 
+<!-— twitter card tags additive with the og: tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
+<meta name="twitter:title" value="{{ guide.title }}" />
+<meta name="twitter:description" value="{{ guide.summary_or_description }}" />
+<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(guide.image, "600") }}" />
+<meta name="twitter:image:alt" content="{{ guide.pretty_caption }}" />
+<meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
+<meta name="twitter:site" value="@source" />
+{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+            <div class="article-matter-front">
+                <p class="hed-label">Guides<span class="a11y">:</span></p>
+
+                <h1 class="page-title-lead">{{ guide.title|typogrify }}</h1>
+
+                <h2 class="article-subtitle-lead">{{ guide.description_or_summary|typogrify }}</h2>
+
+                <div class="article-meta">{% if guide.author_name %}
+                    <p class="article-byline">By {{ guide.author_name }}</p>{% endif %}
+
+                    <p class="article-date">Posted on: <time datetime="{{ guide.pubdate.strftime('%Y-%m-%d') }}">{{ guide.pretty_pubdate|typogrify }}</time></p>
+                </div><!-- /end .article-meta -->
+            </div><!-- /end .article-matter-front -->
+
+            <hr />
+
+            {% if guide.image %}
+            <div class="figure figure-article-lead">
+                <figure>
+                    <img src="{{ MEDIA_URL }}{{ thumbnail(guide.image, "1000") }}" alt="" />
+                    {% if guide.pretty_caption %}
+                    <figcaption>
+                        <p>{{ guide.pretty_caption|typogrify|safe }}</p>
+                    </figcaption>{% endif %}
+                </figure>
+            </div><!-- /end .figure.figure-article-lead -->
+            {% endif %}
+
+            <div class="article-main">
+            {% for guidearticle in guide.get_live_article_set() %}
+                    {% if guidearticle.external_title %}
+                        <h2><a href="{{ guidearticle.external_url }}">{{ guidearticle.external_title|typogrify }}</a></h2>
+                    {% else %}
+                        <h2><a href="{{ guidearticle.article.get_absolute_url() }}">{{ guidearticle.article }}</a></h2>
+                    {% endif %}
+            {% endfor %}
+            </div>
+{% endblock %}

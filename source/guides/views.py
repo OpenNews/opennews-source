@@ -29,6 +29,7 @@ class GuideList(ListView):
 
 class GuideDetail(DetailView):
     model = Guide
+    template_name = "guides/_v2/guide_detail.html"
 
     def get_queryset(self):
         if self.request.user.is_staff:
