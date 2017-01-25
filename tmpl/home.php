@@ -147,12 +147,6 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
                     </a>
                 </li><!-- /end .src-promo -->
-                <li class="src-promo">
-                    <a href="#">
-                        <img src="/img/fpo/article-teaser.jpg" alt="" />
-                        <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
-                    </a>
-                </li><!-- /end .src-promo -->
             </ul><!-- /end .list-promos -->
 
             <?php include($rootpath . "/inc/site-search.php"); ?>
