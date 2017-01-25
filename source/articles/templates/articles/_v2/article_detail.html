@@ -160,7 +160,7 @@
                             <ul class="profile-links">
                                 {% if author.get_live_organization_set().exists() %}{% for organization in author.get_live_organization_set() %}<li><a class="p-org icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}{% endif %}
                                 {% if author.twitter_username %}<li><a class="icon-twitter-alt" href="https://twitter.com/{{ author.twitter_username }}">@{{ author }}</a></li>{% endif %}
-                                <li><a class="u-url icon-link" href="#">Visit website</a></li>
+                                {% if author.get_website() %}<li><a class="u-url icon-link" href="{{ author.get_website() }}">Visit website</a></li>{% endif %}
                             </ul>
                         </li><!-- /end .profile-person -->{% endfor %}
                     </ul>
