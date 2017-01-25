@@ -42,8 +42,10 @@
 
 .icon-doc { background-image: url('png/doc.png'); background-repeat: no-repeat; }
 
+.tmpl-article .page-main,
 .icon-dots-corner-red-topleft { background-image: url('png/dots-corner-red-topleft.png'); background-repeat: no-repeat; }
 
+.page-main,
 .icon-dots-corner-red-topright { background-image: url('png/dots-corner-red-topright.png'); background-repeat: no-repeat; }
 
 .foot-source,

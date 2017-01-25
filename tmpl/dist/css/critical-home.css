@@ -121,6 +121,8 @@ ul li {
   padding-bottom: 4vw;
   padding-top: 4vw;
   background-color: #FFF;
+  background-position: 100% 0;
+  background-size: 30% auto;
   color: #4D4D4D;
   position: relative;
 }
@@ -141,26 +143,6 @@ ul li {
   content: '';
   display: table;
   clear: both;
-}
-
-.content-main {
-  margin-bottom: 4em;
-}
-
-@media (min-width: 60em) {
-  .content-main {
-    float: left;
-    margin-bottom: 0px;
-    width: 74.28571428571429%;
-    margin-bottom: 0;
-    width: 74.285714285714285714%;
-    /* 884/1190 */
-  }
-
-  .tmpl-home .content-main {
-    float: none;
-    width: inherit;
-  }
 }
 
 .site-header {
@@ -424,110 +406,40 @@ ul li {
 
 .page-main {
   background-color: rgb(255, 255, 255);
+  background-size: 30%;
   color: rgb(77, 77, 77);
   position: relative;
+  background-position: 100% 0px;
   padding: 1em 4.758364312267657992%;
   /* 64/1345 */
   padding-bottom: 4vw;
   padding-top: 4vw;
   zoom: 1;
   background-color: #FFF;
+  background-position: 100% 0;
+  background-size: 30% auto;
   color: #4D4D4D;
 }
 
-.list-promos {
-  font-size: 1.0625em;
-  line-height: 1.25;
-  /* 27 / 16 */
-}
-
-.src-promo {
-  margin-bottom: 2em;
-}
-
-.src-promo a {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.src-promo img {
-  display: block;
-  margin-bottom: 0.4em;
-}
-
-a .hed-promo {
-  color: rgb(70, 154, 188);
-  text-decoration: underline;
-  transition: color 0.2s;
-  -webkit-transition: color 0.2s;
-  color: #469ABC;
-}
-
-@media (max-width: 39.99em) and (min-width: 25em) {
-  .src-promo {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(198, 198, 198);
-    margin-bottom: 2em;
-    padding-bottom: 2em;
-    width: 100%;
-  }
-
-  .src-promo::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
-
-  .src-promo img {
-    float: left;
-    width: 33%;
-    margin-right: 5%;
-  }
-
-  .src-promo .hed-promo {
-    margin-left: 38%;
-  }
-
-  .src-promo .hed-promo {
-    font-size: 1.5em;
+@media (min-width: 60em) {
+  .page-main {
+    background-size: 25%;
+    background-size: 25% auto;
   }
 }
 
-@media (min-width: 40em) {
-  .list-promos {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  .src-promo:first-child {
-    width: inherit;
-  }
-
-  .src-promo {
-    margin-bottom: 0px;
-    flex: 0 1 31%;
-    margin-bottom: 0;
-  }
-
-  .tmpl-home .src-promo {
-    margin-bottom: 2em;
-  }
+.promo-lead {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(216, 216, 216);
+  padding-bottom: 3em;
+  margin-bottom: 3em;
+  border-bottom: 1px solid #D8D8D8;
 }
 
 @media (min-width: 50em) {
-  .list-promos {
-    font-size: 1.25em;
-    /* 20 / 16 */
-  }
-
-  .tmpl-home .src-promo {
-    flex: 0 1 21%;
-  }
-
-  .tmpl-home .hed-promo {
-    font-size: 0.9em;
+  .promo-lead {
+    display: flex;
+    justify-content: space-between;
   }
 }
