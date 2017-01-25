@@ -147,7 +147,7 @@ p.msg-error {
 }
 .enhanced .form-chooser input:checked + label {
     box-shadow: inset 0 0 0.5em #5DC8D5;
-    font-weight: bold;
+    font-weight: 500;
 }
 @media (min-width: 40em) {
     .form-chooser {
@@ -975,6 +975,112 @@ Lists!
     }
 }
 
+// Lead promo
+.promo-lead {
+    border-bottom: 1px solid #D8D8D8;
+    padding-bottom: 3em;
+    margin-bottom: 3em;
+}
+.promo-main .hed-label {
+    display: inline-flex;
+    flex: 0 1 auto;
+    margin-right: auto;
+    max-width: 10em; /* TODO: Fix iOS Safari inline-flex bug */
+}
+.hed-promo-lead {
+    font-size: 1.4em;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 0.5em;
+}
+.promo-pic {
+    float: right;
+    margin: 0 0 1em 1em;
+    width: 40%;
+}
+.hed-promo-lead a {
+    text-decoration: none;
+}
+.hed-promo-lead a:focus,
+.hed-promo-lead a:hover {
+    text-decoration: underline;
+}
+.hed-promo-subhead {
+    font-size: 1.2em;
+    font-weight: normal;
+    line-height: 1.3;
+    flex: 1;
+}
+.promo-byline {
+    clear: right;
+    flex: 0 1 auto;
+    margin-top: auto;
+}
+@media (min-width: 30em) {
+    .hed-promo-lead {
+        font-size: 1.8em;
+    }
+    .hed-promo-subhead {
+        font-size: 1.5em;
+    }
+}
+@media (min-width: 50em) {
+    .promo-lead {
+        display: flex;
+        justify-content: space-between;
+    }
+    .promo-pic {
+        float: none;
+        margin: 0;
+        width: inherit;
+    }
+    .promo-lead > * {
+        flex: 0 0 47.5%;
+    }
+    .promo-main {
+        display: flex;
+        flex-direction: column;
+    }
+    .promo-main > * {
+        flex: 0 1 auto;
+    }
+}
+@media (min-width: 60em) {
+    .hed-promo-lead {
+        font-size: 2.4em;
+    }
+}
+// “About Source” block
+.promo-src-about {
+    background-color: #492350;
+    background-position: 100% 100%;
+    background-size: auto 40%;
+    color: #FFF;
+    font-size: 1.4em;
+    margin: -3rem -5.3% 3rem;
+    padding: 2.3em 5.3%;
+    transition: background-size 0.2s;
+}
+@media (min-width: 40em) {
+    .promo-src-about {
+        background-size: auto 70%;
+    }
+}
+@media (min-width: 50em) {
+    .promo-src-about {
+        background-size: auto 100%;
+    }
+}
+.promo-src-about > * {
+    max-width: 27em;
+}
+.promo-src-about a {
+    color: #FFF;
+}
+.promo-src-about a:focus,
+.promo-src-about a:hover {
+    color: #8CDBF0;
+}
 // “Promo” lists. Contains (at widescreen) a 3-up grid of elements
 .list-promos {
     font-size: 1.0625em;    /* 27 / 16 */
@@ -1000,6 +1106,9 @@ Lists!
     text-transform: uppercase;
     margin-bottom: 0.4em;
 }
+.hed-promo {
+    font-weight: 500;
+}
 a .hed-promo {
     color: map-get( $colors, "link-default" );
     text-decoration: underline;
@@ -1010,7 +1119,7 @@ a:hover .hed-promo {
     color: map-get( $colors, "link-on" );
     text-decoration: none;
 }
-@media (min-width: 25em) and (max-width: 39.99em) {
+@media (min-width: 23em) and (max-width: 39.99em) {
     .src-promo {
         border-bottom: 1px solid #C6C6C6;
         flex: 1 0 100%;
@@ -1036,7 +1145,7 @@ a:hover .hed-promo {
         margin-left: 38%;
     }
     .src-promo .hed-promo {
-        font-size: 1.5em;    /* 20 / 16 */
+        font-size: 1.25em;    /* 20 / 16 */
     }
 }
 @media (min-width: 40em) {
@@ -1691,6 +1800,9 @@ Footer
     font-size: 1.125em;
     line-height: 1.45;
     margin-bottom: 2em;
+}
+.foot-content > * {
+    max-width: 28em;
 }
 // Footer logos
 .page-footer .foot-logo {

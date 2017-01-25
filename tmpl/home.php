@@ -55,90 +55,105 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
     <main>
         <div class="page-main">
 
-            <div class="content-main">
+            <div class="promo-lead">
+                <a class="promo-pic" href="#">
+                    <img src="/img/fpo/promo-lead.jpg" alt="" />
+                </a>
+                <div class="promo-main">
+                    <p class="hed-label">The Latest</p>
 
-                <div class="promo-lead">
-                    
-                </div>
+                    <h1 class="hed-promo-lead"><a href="#">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</a></h1>
 
-                <ul class="list-promos">
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <span class="label-promo">In Source Guides</span>
-                            <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <span class="label-promo">In Source Jobs</span>
-                            <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                    <li class="src-promo">
-                        <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
-                            <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
-                        </a>
-                    </li><!-- /end .src-promo -->
-                </ul><!-- /end .list-promos -->
+                    <h2 class="hed-promo-subhead">A survey of 221 newsrooms showed me that there’s lots of work to do. <a class="link-cta" href="#">Read more</a></h2>
 
-            </div><!-- /end .content-aside -->
+                    <p class="promo-byline">
+                        By <a href="#">Sandhya Kambhampati</a>, <a href="#">Daisy Contreras</a>, <a href="#">Grace Donnelly</a>, <a href="#">Lorraine Forte</a>, <a href="#">Alex Fryer</a>, <a href="#">Jonathan Gibby</a>, <a href="#">Max Herman</a>, <a href="#">Alex Hernandez</a>, <a href="#">Emily Jan</a>, <a href="#">Matt Kiefer</a>, <a href="#">Ryan Nagle</a>, <a href="#">Jonah Newman</a>, <a href="#">Stacey Rupolo</a>, <a href="#">Libby Sander</a>, <a href="#">Adam Schweigert</a>, <a href="#">Julia Smith</a>, <a href="#">Susan Smith Richardson</a>
+                    </p>
+                </div><!-- /end .promo-main -->
+            </div><!-- /end .promo-lead -->
+
+            <div class="promo-src-about icon-dots-white">
+                <p>Source amplifies the impact of journalism code and the community of developers, designers, journalists, and editors who make it.</p>
+
+                <p><a href="#">Learn more about us</a>, and <a href="#">contribute your work</a>.</p>
+            </div><!-- /end .promo-src-about -->
+
+            <ul class="list-promos">
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <span class="label-promo">Source Guides:</span>
+                        <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <span class="label-promo">Source Jobs:</span>
+                        <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+                <li class="src-promo">
+                    <a href="#">
+                        <img src="/img/fpo/article-teaser.jpg" alt="" />
+                        <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
+                    </a>
+                </li><!-- /end .src-promo -->
+            </ul><!-- /end .list-promos -->
 
             <?php include($rootpath . "/inc/site-search.php"); ?>
 
