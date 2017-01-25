@@ -34,7 +34,7 @@ class OrganizationLinkInline(admin.StackedInline):
     model = OrganizationLink
     extra = 1
     fieldsets = (
-        ('', {'fields': (('name', 'url'),)}),
+        ('', {'fields': (('name', 'url',),)}),
     )
     
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -48,10 +48,7 @@ class OrganizationAdminInline(admin.StackedInline):
     model = OrganizationAdmin
     extra = 1
     fieldsets = (
-        ('', {
-            'fields': ('email',),
-            'description': 'This email address will be able to log in and manage job postings for this organization.',
-        }),
+        ('', {'fields': ('email',),}),
     )
 
 class OrganizationAdmin(AdminImageMixin, admin.ModelAdmin):

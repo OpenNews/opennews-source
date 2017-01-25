@@ -82,7 +82,12 @@ class Person(CachingMixin, models.Model):
 
     def get_live_code_set(self):
         return self.code_set.filter(is_live=True)
-
+        
+    def get_website(self):
+        try:
+            return self.personlink_set.all()[0].url
+        except:
+            return None
 
 class PersonLink(CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -95,6 +100,7 @@ class PersonLink(CachingMixin, models.Model):
     class Meta:
         ordering = ('person', 'name',)
         verbose_name = 'Person Link'
+        verbose_name_plural = 'Person Links - The first item will be linked as "Visit Website" in author bios'
 
     def __str__(self):
         return '%s: %s' % (self.person.name, self.name)
@@ -195,6 +201,8 @@ class OrganizationAdmin(CachingMixin, models.Model):
     class Meta:
         ordering = ('organization', 'email',)
         verbose_name = 'Organization Admin'
+        verbose_name_plural = 'Organization Admins - These email addresses will be able to log in and manage job postings for this organization'
+        
 
     def __str__(self):
         return '%s: %s' % (self.organization.name, self.email)

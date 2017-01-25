@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.views.decorators.cache import cache_page
 
-from .views import GuideList, GuideDetail
+from .views import GuideList, GuideDetail, GuideSuggestGuide
 from source.base.feeds import GuideFeed
 
 STANDARD_CACHE_TIME = getattr(settings, 'CACHE_MIDDLEWARE_SECONDS', 60*15)
@@ -14,6 +14,12 @@ urlpatterns = [
         view = cache_page(STANDARD_CACHE_TIME)(GuideList.as_view()),
         kwargs = {},
         name = 'guide_list',
+    ),
+    url(
+        regex = '^suggest/$',
+        view = GuideSuggestGuide.as_view(),
+        kwargs  = {},
+        name = 'guide_suggest_guide',
     ),
     url(
         regex = '^rss/$',

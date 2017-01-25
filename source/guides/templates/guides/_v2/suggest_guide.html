@@ -1,19 +1,19 @@
-{% extends "code/_v2/_base_code.html" %}
+{% extends "guides/_v2/_base_guides.html" %}
 
-{% block page_title %}Suggest a repo - {{ super() }}{% endblock %}
+{% block page_title %}Suggest a Guide topic - {{ super() }}{% endblock %}
 
 {% block page_main %}{# block begins inside div.page-main #}
 
                 <div class="content-main">
-                    <h1 class="page-title-lead">Code</h1>
+                    <h1 class="page-title-lead">Guides</h1>
                     
                     {% if success == "True" %}
-                    <p>Thanks for letting us know about this project!</p>
-                    <p><a class="link-cta" href="{{ url('code_suggest_repo') }}">Suggest another repo</a></p>
+                    <p>Thanks for suggesting a topic for a new Guide!</p>
+                    <p><a class="link-cta" href="{{ url('guide_suggest_guide') }}">Suggest another Guide</a></p>
 
                     {% else %}
                     <div class="mod main-lead">
-                        <p>Let us know about a repo.</p>
+                        <p>Suggest a topic for a new Guide on Source.</p>
 
                         <form action="." method="post">
                             {% csrf_token %}
