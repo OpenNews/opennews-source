@@ -897,9 +897,10 @@ Landing page
 
 /*-
 
-Article
+Content styles
 
 -*/
+
 /*
 Headings
 */
@@ -979,7 +980,10 @@ legend {
     font-weight: 700;
     text-transform: uppercase;
 }
-// In-article figure styles
+
+/*
+Figure styles
+*/
 .figure {
     font-family: map-get( $fonts, "serif" );;
     margin-bottom: 2em;
