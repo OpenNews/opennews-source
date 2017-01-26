@@ -1475,6 +1475,8 @@ ul.links-article-social li {
         display: block;
         margin: 0 0 8px;
     }
+}
+@media (min-width: 90em) {
     .links-article-social .icon-comments,
     .links-article-social .icon-facebook {
         transform-origin: 100% 50%;
