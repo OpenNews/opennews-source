@@ -1803,11 +1803,11 @@ Profiles
     }
 }
 // On profile pages, we’ll move to a 2-column layout on wider screens
-.profile-person-lead {
-    max-width: 50em;
-}
 .profile-person-lead .profile-bio {
     clear: right;
+}
+.profile-person-lead .page-title-lead {
+    max-width: 18em;
 }
 @media (min-width: 30em) {
     .profile-person-lead .profile-bio {
@@ -1815,24 +1815,16 @@ Profiles
     }
 }
 @media (min-width: 40em) {
-    .profile-person-lead {
-        zoom: 1;
+    .profile-links {
+        display: flex;
+        max-width: 40em;
     }
-    .profile-person-lead:after {
-        content: "";
-        clear: both;
-        display: table;
+    .supports-flex .profile-links {
+        border-top: 1px solid #D8D8D8;
+        padding-top: 0.5em;
     }
-    .profile-person-lead .profile-main {
-        float: left;
-        width: 65%;
-    }
-    .profile-person-lead .profile-aside {
-        clear: right;
-        float: right;
-        max-width: 130px;
-        max-width: 8.125rem;
-        width: 30%;
+    .profile-links li {
+        margin-right: 2em;
     }
 }
 

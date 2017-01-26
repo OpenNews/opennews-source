@@ -32,23 +32,20 @@
                         <span class="p-name">{{ person.name() }}</span>
                     </h1>
 
-                    <div class="profile-main">{% if person.get_live_organization_set().exists() %}
-                        <h2 class="page-title-sub">{% for organization in person.get_live_organization_set() %}<a class="p-org has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a>{% endfor %}</h2>{% endif %}
+                    {% if person.get_live_organization_set().exists() %}
+                    <h2 class="page-title-sub">{% for organization in person.get_live_organization_set() %}<a class="p-org has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a>{% endfor %}</h2>{% endif %}
 
-                        <div class="mod main-lead profile-bio">
-                            <p>{{ person.get_bio()|safe }}</p>
+                    <div class="mod main-lead profile-bio">
+                        <p>{{ person.get_bio()|safe }}</p>
 
-                            <p><a class="link-cta" href="mailto:source@opennews.org">Submit profile updates or corrections</a></p>
-                        </div><!-- /end .mod.main-lead.profile-bio -->
-                    </div><!-- /end .profile-main -->
+                        <p><a class="link-cta" href="mailto:source@opennews.org">Submit profile updates or corrections</a></p>
+                    </div><!-- /end .mod.main-lead.profile-bio -->
 
-                    <div class="profile-aside">
-                        <ul class="profile-links">
-                            {% if person.github_username %}<li><a class="has-icon icon-github" href="{{ person.github_username }}">GitHub</a></li>{% endif %}
-                            {% if person.twitter_username %}<li><a class="has-icon icon-twitter-alt" href="https://twitter.com/{{ person.twitter_username }}">@{{ person.twitter_username }}</a></li>{% endif %}
-                            {% if person.get_website() %}<li><a class="has-icon icon-link u-url" href="{{ person.get_website() }}">Visit website</a></li>{% endif %}
-                        </ul>
-                    </div>
+                    <ul class="profile-links">
+                        {% if person.github_username %}<li><a class="has-icon icon-github" href="{{ person.github_username }}">GitHub</a></li>{% endif %}
+                        {% if person.twitter_username %}<li><a class="has-icon icon-twitter-alt" href="https://twitter.com/{{ person.twitter_username }}">@{{ person.twitter_username }}</a></li>{% endif %}
+                        {% if person.get_website() %}<li><a class="has-icon icon-link u-url" href="{{ person.get_website() }}">Visit website</a></li>{% endif %}
+                    </ul>
                 </div><!-- /end .profile-person -->
 
                 <div class="mod">
