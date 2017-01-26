@@ -20,6 +20,7 @@ from .models import Person, Organization, OrganizationAdmin
 from caching.config import NO_CACHE
 from source.articles.models import Article
 from source.code.models import Code
+from source.jobs.models import Job
 from source.utils.json import render_json_to_response
 
 USER_DEBUG = getattr(settings, 'USER_DEBUG', False)
@@ -77,11 +78,31 @@ class PersonList(ListView):
 
 class PersonDetail(DetailView):
     model = Person
+    template_name = 'people/_v2/person_detail.html'
 
     def get_queryset(self):
         queryset = Person.live_objects.prefetch_related('personlink_set', 'organizations', 'code_set', 'article_set', 'article_authors')
         
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(PersonDetail, self).get_context_data(**kwargs)
+        
+        recent_jobs = Job.live_objects.order_by('-listing_start_date', '-created')
+        try:
+            recent_jobs = recent_jobs[:2]
+        except:
+            recent_jobs = None
+        context['recent_jobs'] = recent_jobs
+
+        recent_repos = Code.live_objects.order_by('-created')
+        try:
+            recent_repos = recent_repos[:3]
+        except:
+            recent_repos = None
+        context['recent_repos'] = recent_repos
+        
+        return context
         
 class PersonSearchJson(View):
     def get_queryset(self):

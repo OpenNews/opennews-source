@@ -1,0 +1,132 @@
+{% extends "people/_v2/_base_community.html" %}
+
+{% block page_title %}{{ person.name() }}'s profile - {{ super() }}{% endblock %}
+
+{% block head_open_graph %}{{ super() }}
+<!-— facebook open graph tags -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ request.build_absolute_uri() }}" />
+<meta property="og:title" content="{{ person.name() }}" />
+{#}<meta property="og:description" content="{{ article.subhead }}" />{#}
+{% if person.photo %}<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />{% endif %}
+ 
+<!-— twitter card tags additive with the og: tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
+<meta name="twitter:title" value="{{ person.name() }}" />
+{#}<meta name="twitter:description" value="{{ article.subhead }}" />{#}
+{% if person.photo %}<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />{% endif %}
+<meta name="twitter:image:alt" content="{{ person.name() }}" />
+<meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
+<meta name="twitter:site" value="@source" />
+{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+            <div class="content-main">
+
+                <p class="hed-label">People</p>
+
+                <div class="profile-person profile-person-lead h-card">
+                    <h1 class="page-title-lead">{% if person.photo %}
+                        <img class="profile-photo u-photo" src="{{ MEDIA_URL }}{{ thumbnail(person.photo, "130") }}" alt="" />{% endif %}
+                        <span class="p-name">{{ person.name() }}</span>
+                    </h1>
+
+                    <div class="profile-main">{% if person.get_live_organization_set().exists() %}
+                        <h2 class="page-title-sub">{% for organization in person.get_live_organization_set() %}<a class="p-org has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a>{% endfor %}</h2>{% endif %}
+
+                        <div class="mod main-lead profile-bio">
+                            <p>{{ person.get_bio()|safe }}</p>
+
+                            <p><a class="link-cta" href="mailto:source@opennews.org">Submit profile updates or corrections</a></p>
+                        </div><!-- /end .mod.main-lead.profile-bio -->
+                    </div><!-- /end .profile-main -->
+
+                    <div class="profile-aside">
+                        <ul class="profile-links">
+                            {% if person.github_username %}<li><a class="has-icon icon-github" href="{{ person.github_username }}">GitHub</a></li>{% endif %}
+                            {% if person.twitter_username %}<li><a class="has-icon icon-twitter-alt" href="https://twitter.com/{{ person.twitter_username }}">@{{ person.twitter_username }}</a></li>{% endif %}
+                            {% if person.get_website() %}<li><a class="has-icon icon-link u-url" href="{{ person.get_website() }}">Visit website</a></li>{% endif %}
+                        </ul>
+                    </div>
+                </div><!-- /end .profile-person -->
+
+                <div class="mod">
+                    <h2 class="hed-label">{{ person.first_name }}’s work on Source</h2>
+
+                    {% if person.get_live_code_set().exists() %}
+                    <h3 class="hed-sub">Code</h3>
+
+                    <ol class="list">{% for code in person.get_live_code_set() %}
+                        <li>
+                            <a class="has-icon icon-code" href="{{ code.get_absolute_url() }}">{{ code.name|typogrify }}</a>
+                        </li>{% endfor %}
+                    </ol>{% endif %}
+
+                    {% if person.get_live_article_set().exists() %}
+                    <h3 class="hed-sub">Projects</h3>
+
+                    <ol class="list">{% for article in person.get_live_article_set() %}
+                        <li>
+                            <a class="has-icon icon-doc" href="{{ article.get_absolute_url() }}">{{ article.title|typogrify }}</a>
+                        </li>{% endfor %}
+                    </ol>{% endif %}
+
+                    {% if person.get_live_article_authored_set().exists() %}
+                    <h3 class="hed-sub">Articles by {{ person.first_name }}</h3>
+
+                    <ol class="list-articles">{% for article in person.get_live_article_authored_set() %}
+                        <li>
+                            <a href="{{ article.get_absolute_url() }}">
+                                {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="{{ article.title }}" />{% endif %}
+                                <h3 class="hed-article-title">{{ article.title|typogrify }}</h3>
+                                <h4 class="hed-article-subhed">{{ article.subhead|typogrify }}</h4>
+
+                                <div class="summary">
+                                    <p>{{ article.summary|typogrify|safe }}</p>
+                                </div><!-- /end .summary -->
+                            </a>
+                        </li>{% endfor %}
+                    </ol>{% endif %}
+                </div><!-- /end .mod -->
+            </div><!-- /end .content-aside -->
+
+            <div class="content-aside">{% if recent_jobs %}
+                <div class="mod">
+                    <h2 class="hed-label">New Source Job Listings</h2>
+
+                    <ol class="list-recently">{% for job in recent_jobs %}
+                        <li class="item-recent">
+                            <h3 class="hed-recent"><a href="{{ url('job_list') }}#job-{{ job.pk }}">{{ job.name }}</a></h3>
+
+                            <p><a class="has-icon icon-company" href="{{ job.organization.get_absolute_url() }}">{{ job.organization.name }}</a></p>
+                            </ul>
+                        </li><!-- /end .item-recent -->{% endfor %}
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="{{ url('job_list') }}">See all jobs</a></p>
+                </div><!-- /end .mod -->{% endif %}
+
+                {% if recent_repos %}
+                <div class="mod">
+                    <h2 class="hed-label">Recently Added Code Repos</h2>
+
+                    <ol class="list-recently">{% for code in recent_repos %}
+                        <li class="item-recent">
+                                <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
+
+                                <ul>
+                                    {% for person in code.get_live_person_set() %}
+                                    <li><a class="has-icon icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                                    {% endfor %}
+                                    {% for organization in code.get_live_organization_set() %}
+                                    <li><a class="has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                        </li><!-- /end .item-recent -->{% endfor %}
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="{{ url('code_list') }}">See all repos</a></p>
+                </div><!-- /end .mod -->{% endif %}
+            </div><!-- /end .content-aside -->
+{% endblock %}

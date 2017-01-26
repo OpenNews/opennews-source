@@ -88,6 +88,9 @@ class Person(CachingMixin, models.Model):
             return self.personlink_set.all()[0].url
         except:
             return None
+            
+    def get_bio(self):
+        return self.description or self.twitter_bio or ''
 
 class PersonLink(CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
