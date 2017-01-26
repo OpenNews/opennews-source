@@ -1048,6 +1048,12 @@ Lists!
 .wf-active .list .has-icon {
     background-position: 0 0.3em;
 }
+.hed-sub + .list {
+    margin-top: 0;
+}
+.list + .hed-sub {
+    margin-top: 4em;
+}
 // Article lists. Basically just a list of headlines, with associated thumbs on the right
 .list-articles {
     margin: 2em 0;
