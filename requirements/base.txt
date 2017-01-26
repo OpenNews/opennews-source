@@ -5,6 +5,7 @@
 boto==2.42.0
 certifi==2015.11.20.1
 Django==1.10.1
+django-anymail==0.7
 django-appconf==1.0.1
 django-auth0==0.0.3
 django-autoslug==1.9.3
