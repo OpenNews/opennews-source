@@ -253,6 +253,7 @@ ul li {
 }
 
 .site-logo img {
+  display: block;
   height: 0.9em;
 }
 
@@ -358,6 +359,7 @@ ul li {
   }
 
   .site-nav-links li {
+    float: left;
     border-bottom-style: none;
     -webkit-flex-basis: 25%;
     border-bottom: none;
@@ -374,6 +376,7 @@ ul li {
 
 @media (min-width: 25em) {
   .site-logo a {
+    display: inline-block;
     padding: 0.8em 0px;
     -webkit-box-pack: initial;
     -webkit-justify-content: initial;
@@ -469,21 +472,6 @@ ul li {
     bottom: 0;
     right: 0;
     top: 0;
-  }
-
-  .search-toggle .icon {
-    background-color: inherit;
-    -webkit-background-size: 33px;
-    background-size: 33px;
-    height: 100%;
-    transition: background-position 0.2s, opacity 0.2s, -webkit-background-size 0.4s ease-in-out, -webkit-transform 0.2s;
-    -webkit-transition: background-position 0.2s, opacity 0.2s, -webkit-background-size 0.4s ease-in-out, -webkit-transform 0.2s;
-    width: 33px;
-    -webkit-background-size: 33px 33px;
-    background-size: 33px 33px;
-    -o-transition: background-position 0.2s, background-size 0.4s ease-in-out, opacity 0.2s, -o-transform 0.2s;
-    transition: background-position 0.2s, background-size 0.4s ease-in-out, transform 0.2s, opacity 0.2s;
-    transition: background-position 0.2s, background-size 0.4s ease-in-out, transform 0.2s, opacity 0.2s, -webkit-background-size 0.4s ease-in-out, -webkit-transform 0.2s, -o-transform 0.2s;
   }
 
   .site-nav,
@@ -595,6 +583,7 @@ ul li {
 }
 
 .promo-pic {
+  display: block;
   float: right;
   margin: 0px 0px 1em 1em;
   width: 40%;
@@ -647,7 +636,8 @@ ul li {
     justify-content: space-between;
   }
 
-  .promo-lead > * {
+  .promo-pic,
+  .promo-main {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 47.5%;
     -ms-flex: 0 0 47.5%;
@@ -665,6 +655,7 @@ ul li {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
+    max-width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
