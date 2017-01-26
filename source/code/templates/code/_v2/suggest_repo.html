@@ -4,24 +4,112 @@
 
 {% block page_main %}{# block begins inside div.page-main #}
 
-                <div class="content-main">
-                    <h1 class="page-title-lead">Code</h1>
-                    
-                    {% if success == "True" %}
-                    <p>Thanks for letting us know about this project!</p>
-                    <p><a class="link-cta" href="{{ url('code_suggest_repo') }}">Suggest another repo</a></p>
+            <div class="content-main">
+                {% if success == "True" %}
+                <h1 class="page-title-lead">Thank you!</h1>
+                <p>We appreciate you letting us know about this project, and we&rsquo;ll get in touch if we have any questions.</p>
+                <p><a class="link-cta" href="{{ url('code_suggest_repo') }}">Suggest another repo</a></p>
 
-                    {% else %}
-                    <div class="mod main-lead">
-                        <p>Let us know about a repo.</p>
+                {% else %}
+                
+                <h1 class="page-title-lead">Submit Repo</h1>
 
-                        <form action="." method="post">
-                            {% csrf_token %}
-                            {{ form }}
-                            <input type="submit">
-                        </form>
-                    </div><!-- /end .mod.main-lead -->
+                <div class="mod main-lead">
+                    <p>Give us your codes. Give us them.</p>
+                </div><!-- /end .mod.main-lead -->
+
+                <div class="mod">
+                    <h2 class="hed-label">What is the deal dot html</h2>
+
+                    {% if form.errors %}<p class="msg-error">Oh no! There were a few errors with your submission. Mind double-checking the form, and filling out all the required fields?</p>{% endif %}
                     
-                    {% endif %}
-                </div>
+                    {% if form.non_field_errors() %}<p class="msg-error">{{ form.non_field_errors() }}</p>{% endif %}
+
+                    <form class="form-submit" action="." method="post">
+                        {% csrf_token %}
+                        <fieldset>
+                            <legend>Who are you?</legend>
+                            <p>
+                                <label for="{{ form.repo_submitter_name.id_for_label }}">Name:</label>
+                                    {% if form.repo_submitter_name.errors %}{{ form.repo_submitter_name|add_class('field-text msg-error') }}{% else %}{{ form.repo_submitter_name|add_class('field-text') }}{% endif %}
+                            </p>
+                            <p>
+                                <label for="{{ form.repo_submitter_email.id_for_label }}">Email:</label>
+                                    {% if form.repo_submitter_email.errors %}{{ form.repo_submitter_email|add_class('field-text msg-error') }}{% else %}{{ form.repo_submitter_email|add_class('field-text') }}{% endif %}
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>What is it?</legend>
+
+                            {% if form.repo_name.errors or form.repo_type.errors or form.repo_purpose.errors %}<p class="msg-error">Please complete the required fields.</p>{% endif %}
+
+                            <div class="form-phrase">
+                                <span class="cue squelch" role="presentation">&ldquo;I’m submitting</span>
+                                <p>
+                                    <label for="{{ form.repo_name.id_for_label }}">Name of your app/tool:</label>
+                                    {% if form.repo_name.errors %}{{ form.repo_name|add_class('field-text msg-error') }}{% else %}{{ form.repo_name|add_class('field-text') }}{% endif %}
+                                </p>
+                                <span class="cue squelch" role="presentation">, which is a</span>
+                                <p>
+                                    <label for="{{ form.repo_type.id_for_label }}">What your app/tool is:</label>
+                                    {% if form.repo_type.errors %}{{ form.repo_type|add_class('field-text msg-error') }}{% else %}{{ form.repo_type|add_class('field-text') }}{% endif %}
+                                </p>
+                                <span class="cue squelch" role="presentation">that allows users to</span>
+                                <p>
+                                    <label for="{{ form.repo_purpose.id_for_label }}">What your app/tool does, and for whom:</label>
+                                    {% if form.repo_purpose.errors %}{{ form.repo_purpose|add_class('field-text msg-error') }}{% else %}{{ form.repo_purpose|add_class('field-text') }}{% endif %}
+                                </p>
+                                <span class="cue squelch" role="presentation">.&rdquo;</span>
+                             </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Who made it?</legend>
+
+                            <p class="form-phrase">
+                                <label for="{{ form.repo_credits.id_for_label }}">The person(s) who created this:</label>
+                                    {% if form.repo_credits.errors %}{{ form.repo_credits|add_class('field-text msg-error') }}{% else %}{{ form.repo_credits|add_class('field-text') }}{% endif %}
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>How easy is it to use?</legend>
+
+                            {% if form.repo_difficulty.errors %}<p class="msg-error">Please choose a difficulty setting.</p>{% endif %}
+
+                            <ul class="form-chooser choose-repo-difficulty">{% for choice in form.repo_difficulty.field.choices %}
+                                <li>
+                                    <input name="{{ form.repo_difficulty.name }}" id="{{ form.repo_difficulty.auto_id }}_{{ choice.0 }}" value="{{ choice.0 }}" type="radio" />
+                                    <label for="{{ form.repo_difficulty.auto_id }}_{{ choice.0 }}" class="icon-difficulty-{{ choice.0 }}">{{ choice.1 }}</label>
+                                </li>{% endfor %}
+                            </ul>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Any prerequisites?</legend>
+
+                            <p class="form-phrase">
+                                <label for="{{ form.repo_prerequisites.id_for_label }}">Do we need to install anything beforehand?</label>
+                                {% if form.repo_prerequisites.errors %}{{ form.repo_prerequisites|add_class('field-text msg-error') }}{% else %}{{ form.repo_prerequisites|add_class('field-text') }}{% endif %}
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>&ldquo;It will make our lives better by&hellip;&rdquo;</legend>
+
+                            <p class="form-phrase">
+                                <label for="{{ form.repo_description.id_for_label }}">Tell us what your app or tool does.</label>
+                                {{ form.repo_description }}
+                            </p>
+                        </fieldset>
+
+                        <p><input type="submit" value="Submit your repo" /></p>
+
+                    </form>
+
+                </div><!-- /end .mod -->
+                {% endif %}
+            </div><!-- /end .content-aside -->
+
 {% endblock %}

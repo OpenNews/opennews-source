@@ -94,10 +94,10 @@ DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
 ADMINS = [
-    ('Ryan Pitts', 'ryan.a.pitts@gmail.com'),
+    ('Ryan Pitts', 'ryan@opennews.org'),
 ]
 MANAGERS = ADMINS
-EDITORIAL_EMAIL = 'source@opennews.org'
+EDITORIAL_EMAIL = ['ryan@opennews.org', 'source@opennews.org']
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------

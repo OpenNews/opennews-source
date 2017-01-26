@@ -1,1 +1,13 @@
-Name: {{ name }}
+Name: {{ data.repo_submitter_name }}
+Email: {{ data.repo_submitter_email }}
+
+Repo name: {{ data.repo_name }}
+Repo type: {{ data.repo_type }}
+Repo purpose: {{ data.repo_purpose }}
+Repo credit: {{ data.repo_credits }}
+
+Difficulty: {{ data.repo_difficulty }}
+Prerequisites: {{ data.repo_prerequisites }}
+
+Description:
+{{ data.repo_description }}
