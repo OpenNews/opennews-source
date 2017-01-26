@@ -53,8 +53,7 @@
                     <div class="mod">
                         <h2 class="hed-label">Recently Added</h2>
 
-                        <ol class="list-recently">
-                            {% for code in recent_repos %}
+                        <ol class="list-recently">{% for code in recent_repos %}
                             <li class="item-recent">
                                 <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
 

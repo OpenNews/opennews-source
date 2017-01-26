@@ -90,11 +90,31 @@ class CodeList(ListView):
 
 class CodeDetail(DetailView):
     model = Code
+    template_name = 'code/_v2/code_detail.html'
 
     def get_queryset(self):
         queryset = Code.live_objects.prefetch_related('codelink_set', 'people', 'organizations', 'article_set')
         
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(CodeDetail, self).get_context_data(**kwargs)
+        
+        recent_repos = Code.live_objects.order_by('-created')
+        try:
+            recent_repos = recent_repos[:6]
+        except:
+            recent_repos = None
+        context['recent_repos'] = recent_repos
+
+        featured_repos = Code.live_objects.filter(is_featured=True).exclude(pk=self.object.pk).order_by('?')
+        try:
+            featured_repos = featured_repos[:3]
+        except:
+            featured_repos = None
+        context['featured_repos'] = featured_repos
+        
+        return context
 
 
 class CodeSuggestRepo(View):

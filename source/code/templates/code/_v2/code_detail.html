@@ -1,0 +1,114 @@
+{% extends "code/_v2/_base_code.html" %}
+
+{% block page_title %}{{ code.name }} - {{ super() }}{% endblock %}
+
+{% block head_open_graph %}{{ super() }}
+<!-— facebook open graph tags -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ request.build_absolute_uri() }}" />
+<meta property="og:title" content="{{ code.name }}" />
+<meta property="og:description" content="{{ code.summary_or_description }}" />{% if code.screenshot %}
+<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />{% endif %}
+ 
+<!-— twitter card tags additive with the og: tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
+<meta name="twitter:title" value="{{ code.name }}" />
+<meta name="twitter:description" value="{{ code.summary_or_description }}" />{% if code.screenshot %}
+<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />{% endif %}
+<meta name="twitter:image:alt" content="{{ code.name }}" />
+<meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
+<meta name="twitter:site" value="@source" />
+{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+            <div class="content-main">
+                <p class="hed-label">Featured Code</p>
+
+                <h1 class="page-title-lead">{{ code.name|smartypants }}</h1>
+
+                <div class="mod main-lead">
+                    {% if code.description_or_summary %}{{ code.description_or_summary|linebreaks|typogrify|safe }}{% endif %}
+                </div><!-- /end .mod.main-lead -->
+
+                {% if code.get_live_article_set().exists() %}
+                <div class="mod">
+                    <h2 class="hed-sub">Related article{{ code.get_live_article_set()|length|dj_pluralize }}:</h2>{% for article in code.get_live_article_set() %}
+                    <h3 class="hed-related related-item">
+                        <a href="{{ article.get_absolute_url() }}">
+                            {{ article.title|typogrify }}
+                        </a>
+                    </h3>{% endfor %}
+                </div>{% endif %}
+
+                <div class="mod">
+                    <ul class="repo-meta">
+                        <li>
+                            <a class="has-icon icon-code link-code-repo" href="{{ code.url }}{% if code.repo_master_branch and code.repo_master_branch != 'master' %}/tree/{{ code.repo_master_branch }}{% endif %}">Code repo</a>
+                        </li>{% if code.demo_site %}
+                        <li>
+                            <a class="has-icon icon-link" href="{{ code.demo_site }}">Demo</a>
+                        </li>{% endif %}{% if code.repo_last_push %}
+                        <li>
+                            <span>Last push: <time datetime="{{ code.repo_last_push.strftime('%Y-%m-%d') }}">{{ dj_date(code.repo_last_push, "l, F j, Y") }}</time></span>
+                        </li>{% endif %}
+                    </ul><!-- /end .repo-meta -->
+                </div><!-- /end .mod -->
+
+                <div class="mod">
+                    <h2 class="hed-subhed">Featured Repos</h2>
+
+                    <ul class="list-promos">{% for code in featured_repos %}
+                        <li class="src-promo">
+                            <a href="{{ code.get_absolute_url() }}">
+                                {% if code.screenshot %}
+                                <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200", crop="center") }}" alt="{{ code.name }}" />
+                                {% else %}
+                                <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ code.name }}" />
+                                {% endif %}
+                                <h3 class="hed-promo">{{ code.name|smartypants }}</h3>
+                            </a>
+                            <ul class="list-tags-short">{% for tag in code.tags.all() %}
+                                <li><a class="tag" href="{{ url('code_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a></li>{% endfor %}
+                            </ul><!-- /end .list-tags-short -->
+                        </li><!-- /end .src-promo -->{% endfor %}
+                    </ul><!-- /end .list-promos -->
+
+                    <p class="cta-primary"><a class="link-cta" href="{{ url('code_list') }}">See more</a></p>
+                </div><!-- /end .mod -->
+            </div><!-- /end .content-aside -->
+
+            <div class="content-aside">
+                <div class="mod">
+                    <h2 class="hed-label">Filed Under</h2>
+
+                    <ul class="list-tags">{% for tag in code.tags.all() %}
+                        <li><a class="tag" href="{{ url('code_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a></li>{% endfor %}
+                    </ul><!-- /end .list-tags -->
+
+                </div><!-- /end .mod -->
+
+                <div class="mod">
+                    <h2 class="hed-label">Newest Repos</h2>
+
+                    <ol class="list-recently">{% for code in recent_repos %}
+                        <li class="item-recent">
+                            <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
+
+                            <ul>
+                                {% for person in code.get_live_person_set() %}
+                                <li><a class="has-icon icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                                {% endfor %}
+                                {% for organization in code.get_live_organization_set() %}
+                                <li><a class="has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li><!-- /end .item-recent -->{% endfor %}
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="{{ url('code_list') }}">See all repos</a></p>
+                </div>
+            </div><!-- /end .content-aside -->
+
+{% endblock %}
