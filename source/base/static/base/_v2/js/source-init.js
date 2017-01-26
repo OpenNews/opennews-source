@@ -7,4 +7,4 @@
     $( "[data-set] > *" ).appendAround();
 
   });
-}( shoestring ));
+}( jQuery ));

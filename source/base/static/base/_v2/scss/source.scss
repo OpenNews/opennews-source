@@ -3,5 +3,9 @@
 // Third-party libraries
 @import "lib/normalize";
 // Source UI
+@import "core/helpers";
 @import "core/base";
-@import "core/core"
+@import "core/core";
+@import "core/footer";
+// Miscellaneous patches/overrides
+@import "core/fixes";

@@ -67,15 +67,15 @@ Component: Navigation toggle
                 $navToggle.append( screenBlock );
 
                 // Bind close, open, and toggle events to the panel
-                $navPanel.bind( "close", close );
-                $navPanel.bind( "open", open );
-                $navPanel.bind( "toggle", toggle );
+                $navPanel.on( "close", close );
+                $navPanel.on( "open", open );
+                $navPanel.on( "toggle", toggle );
 
                 // Bind toggle event to, well, the toggle link
-                $navToggle.bind( "click", toggle );
+                $navToggle.on( "click", toggle );
 
                 // When focusing on an element, close the panel if it’s open (and if the element is outside of the panel)
-                $( document ).bind( "focusin", function( e ) {
+                $( document ).on( "focusin", function( e ) {
                     if ( $body.is( "." + openClass ) ) {
                         if ( !$( e.target ).parents( '.' + panelClass ).length ) {
                             $navPanel.trigger( "close" );
@@ -84,7 +84,7 @@ Component: Navigation toggle
                 } );
 
                 // Close the panel on (throttled) resize
-                $( window ).bind( "resize", SRC.utils.debounce( function() {
+                $( window ).on( "resize", SRC.utils.debounce( function() {
                     if ( $body.is( "." + openClass ) ) {
                         $navPanel.trigger( "close" );
                     }
@@ -96,9 +96,9 @@ Component: Navigation toggle
     };
 
     // auto-init on enhance (which is called on domready)
-    $( document ).bind( "enhance", function( e ){
+    $( document ).on( "enhance", function( e ){
         var $sel = $( e.target ).is( initSelector ) ? $( e.target ) : $( initSelector, e.target );
         $sel[ componentName ]().attr( enhancedAttr, "true" );
     });
 
-}( shoestring ));
+}( jQuery ));
