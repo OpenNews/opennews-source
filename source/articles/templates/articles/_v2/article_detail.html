@@ -146,7 +146,7 @@
                     <h2 class="hed-label">Credits</h2>
 
                     <ul>{% for author in article.get_live_author_set() %}
-                        <li class="profile-person h-card">
+                        <li class="profile-person profile-person-article h-card">
                             <h3 class="profile-name">
                                 <a href="{{ author.get_absolute_url() }}">
                                     {% if author.photo %}<img class="profile-photo u-photo" src="{{ MEDIA_URL }}{{ thumbnail(author.photo, "130") }}" alt="" />{% endif %}
@@ -158,7 +158,7 @@
                             <p class="profile-bio">{{ author.description|typogrify|safe }}</p>{% endif %}
 
                             <ul class="profile-links">
-                                {% if author.get_live_organization_set().exists() %}{% for organization in author.get_live_organization_set() %}<li><a class="p-org icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}{% endif %}
+                                {% if author.get_live_organization_set().exists() %}{% for organization in author.get_live_organization_set() %}<li class="link-main"><a class="p-org icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}{% endif %}
                                 {% if author.twitter_username %}<li><a class="icon-twitter-alt" href="https://twitter.com/{{ author.twitter_username }}">@{{ author }}</a></li>{% endif %}
                                 {% if author.get_website() %}<li><a class="u-url icon-link" href="{{ author.get_website() }}">Visit website</a></li>{% endif %}
                             </ul>

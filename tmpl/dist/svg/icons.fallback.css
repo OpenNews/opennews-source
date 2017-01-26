@@ -1,11 +1,51 @@
+.icon-1f604 { background-image: url('png/1f604.png'); background-repeat: no-repeat; }
+
+.icon-1f605 { background-image: url('png/1f605.png'); background-repeat: no-repeat; }
+
+.icon-1f607 { background-image: url('png/1f607.png'); background-repeat: no-repeat; }
+
+.icon-1f608 { background-image: url('png/1f608.png'); background-repeat: no-repeat; }
+
+.icon-1f613 { background-image: url('png/1f613.png'); background-repeat: no-repeat; }
+
+.icon-1f615 { background-image: url('png/1f615.png'); background-repeat: no-repeat; }
+
+.icon-204-link { background-image: url('png/204-link.png'); background-repeat: no-repeat; }
+
+.icon-385-embed2 { background-image: url('png/385-embed2.png'); background-repeat: no-repeat; }
+
+.icon-433-github { background-image: url('png/433-github.png'); background-repeat: no-repeat; }
+
 .icon-close { background-image: url('png/close.png'); background-repeat: no-repeat; }
+
+.icon-code { background-image: url('png/code.png'); background-repeat: no-repeat; }
 
 .icon-comments { background-image: url('png/comments.png'); background-repeat: no-repeat; }
 
 .icon-company { background-image: url('png/company.png'); background-repeat: no-repeat; }
 
+.icon-difficulty-1 { background-image: url('png/difficulty-1.png'); background-repeat: no-repeat; }
+
+.icon-difficulty-1a { background-image: url('png/difficulty-1a.png'); background-repeat: no-repeat; }
+
+.icon-difficulty-2 { background-image: url('png/difficulty-2.png'); background-repeat: no-repeat; }
+
+.icon-difficulty-2a { background-image: url('png/difficulty-2a.png'); background-repeat: no-repeat; }
+
+.icon-difficulty-3 { background-image: url('png/difficulty-3.png'); background-repeat: no-repeat; }
+
+.icon-difficulty-4 { background-image: url('png/difficulty-4.png'); background-repeat: no-repeat; }
+
+.icon-difficulty-a1 { background-image: url('png/difficulty-a1.png'); background-repeat: no-repeat; }
+
+.icon-difficulty-a2 { background-image: url('png/difficulty-a2.png'); background-repeat: no-repeat; }
+
+.icon-doc { background-image: url('png/doc.png'); background-repeat: no-repeat; }
+
+.tmpl-article .page-main,
 .icon-dots-corner-red-topleft { background-image: url('png/dots-corner-red-topleft.png'); background-repeat: no-repeat; }
 
+.page-main,
 .icon-dots-corner-red-topright { background-image: url('png/dots-corner-red-topright.png'); background-repeat: no-repeat; }
 
 .foot-source,
@@ -14,9 +54,13 @@
 .site-search,
 .icon-dots-search { background-image: url('png/dots-search.png'); background-repeat: no-repeat; }
 
+.icon-dots-white { background-image: url('png/dots-white.png'); background-repeat: no-repeat; }
+
 .icon-email { background-image: url('png/email.png'); background-repeat: no-repeat; }
 
 .icon-facebook { background-image: url('png/facebook.png'); background-repeat: no-repeat; }
+
+.icon-github { background-image: url('png/github.png'); background-repeat: no-repeat; }
 
 .icon-link { background-image: url('png/link.png'); background-repeat: no-repeat; }
 

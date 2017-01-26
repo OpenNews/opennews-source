@@ -34,6 +34,9 @@ module.exports = function( grunt ) {
                 options: {
                     ghostMode: false,
                     proxy: "http://local.source",
+                    ui: {
+                        port: 8081
+                    },
                     watchTask: true
                 }
             }
@@ -72,13 +75,20 @@ module.exports = function( grunt ) {
             },
             js_main: {
                 src: [
-                    "<%= _config.dir.templates %>js/lib/shoestring.js",
-                    "<%= _config.dir.templates %>js/lib/$.js",
+                    // jquery.min.js needs to be first
+                    "<%= _config.dir.templates %>js/lib/jquery.min.js",
+                    // Miscellaneous modules/libraries can be loaded here, in preferred order of execution
                     "<%= _config.dir.templates %>js/lib/transition-support.js",
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
+                    "<%= _config.dir.templates %>js/lib/ajaxsend.js",
+                    "<%= _config.dir.templates %>js/lib/repo.js",
                     "<%= _config.dir.templates %>js/navigation.js",
                     "<%= _config.dir.templates %>js/search.js",
                     "<%= _config.dir.templates %>js/comments-disqus.js",
+                    "<%= _config.dir.templates %>js/count-disqus.js",
+                    "<%= _config.dir.templates %>js/form-phrase.js",
+                    // source-misc.js is a scratch file for any miscellaneous JS that needs to be run on document.enhance
+                    "<%= _config.dir.templates %>js/source-misc.js",
                     // source-init.js needs to be last.
                     "<%= _config.dir.templates %>js/source-init.js"
                 ],
@@ -100,11 +110,18 @@ module.exports = function( grunt ) {
                     url : 'http://local.source/article.php?static=true'
                 }
             },
-            landing: {
+            content: {
                 options:  {
-                    outputfile : '<%= _config.dir.output %>css/critical-landing.css',
+                    outputfile : '<%= _config.dir.output %>css/critical-content.css',
                     filename : '<%= _config.dir.output %>css/main.css',
                     url : 'http://local.source/landing-code.php?static=true'
+                }
+            },
+            home: {
+                options:  {
+                    outputfile : '<%= _config.dir.output %>css/critical-home.css',
+                    filename : '<%= _config.dir.output %>css/main.css',
+                    url : 'http://local.source/home.php?static=true'
                 }
             }
         },
@@ -116,11 +133,11 @@ module.exports = function( grunt ) {
                 ],
                 dest: "<%= criticalcss.article.options.outputfile %>"
             },
-            crit_landing: {
+            crit_content: {
                 src: [
-                    "<%= criticalcss.landing.options.outputfile %>"
+                    "<%= criticalcss.content.options.outputfile %>"
                 ],
-                dest: "<%= criticalcss.landing.options.outputfile %>"
+                dest: "<%= criticalcss.content.options.outputfile %>"
             },
             css_main: {
                 src: [
@@ -145,11 +162,35 @@ module.exports = function( grunt ) {
                     compressPNG: true,
                     cssprefix: ".icon-",
                     customselectors: {
+                        "dots-corner-red-topright": [ ".page-main" ],
+                        "dots-corner-red-topleft": [ ".tmpl-article .page-main" ],
                         "dots-footer": [ ".foot-source" ],
                         "dots-search": [ ".site-search" ]
                     },
                     enhanceSVG: true
                 }
+            }
+        },
+
+        postcss: {
+            options: {
+                map: is_dev,
+                processors: [
+                    require( "autoprefixer" )({
+                        browsers: [
+                            "Android 2.3",
+                            "Chrome >= 20",
+                            "Firefox >= 24",
+                            "Explorer >= 10",
+                            "iOS >= 6",
+                            "Opera >= 12",
+                            "Safari >= 6"
+                        ]
+                    })
+                ]
+            },
+            dist: {
+                src: "<%= Object.keys( sass.dist.files )[ 0 ] %>"
             }
         },
 
@@ -189,14 +230,14 @@ module.exports = function( grunt ) {
                 files: [
                     "<%= _config.dir.templates %>svg/**/*"
                 ],
-                tasks: [ "grunticon", "sass", "cssmin", "concat", "uglify", "bsReload" ]
+                tasks: [ "grunticon", "sass", "postcss", "cssmin", "concat", "uglify", "bsReload" ]
             },
             templates: {
                 files: [
                     "Gruntfile.js",
                     "<%= _config.dir.templates %>**/*",
                 ],
-                tasks: [ "sass", "cssmin", "concat", "uglify", "bsReload" ]
+                tasks: [ "sass", "postcss", "cssmin", "concat", "uglify", "bsReload" ]
             },
         }
     } );
@@ -204,6 +245,7 @@ module.exports = function( grunt ) {
     grunt.registerTask( "build", [
         "clean",
         "sass",
+        "postcss",
         "criticalcss",
         "cssmin",
         "concat",

@@ -5,7 +5,7 @@ $current_page = "articles";
 ?>
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
-<!--[if lt IE 9]>  <html class="ie oldie" lang="en"> <![endif]-->
+<!--[if lte IE 9]>  <html class="ie oldie" lang="en"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
@@ -45,12 +45,17 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
 <script>
 // If there are Disqus-specific variables to be included, uncomment this block and add them below.
-/*
+var disqus_shortname = "sourcedev";
+
 var disqus_config = function () {
-    this.page.url = PAGE_URL;
-    this.page.identifier = PAGE_IDENTIFIER; identifier variable
+    this.callbacks.onReady = [function( comment ) {
+        $( document ).trigger( "comments-loaded" );
+    } ];
+    this.callbacks.onNewComment = [function( comment ) { 
+        $( document ).trigger( "comments-new" );
+    }];
 };
-*/
+
 </script>
 
 </head>
@@ -127,6 +132,8 @@ var disqus_config = function () {
 
                 <h2>From Idea to Hacking</h2>
 
+                <h3>This is an example of a subhed. Subheds are good!</h3>
+
                 <p>As always, I will try my best not to fall into PR, and instead, to offer my personal view on Datastringer’s creation process, as well as what we learnt by doing it. Do head to the repo and wiki for examples, snippets, and more code-related stuff.</p>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, quaerat neque magni natus sunt autem animi soluta labore ipsa nulla quod nam itaque fugit eum delectus tenetur esse vitae fugiat.</p>
@@ -200,14 +207,14 @@ var disqus_config = function () {
             </div><!-- /end .article.main -->
 
             <div class="article-links-relevant">
-                <h2 class="hed-category">People</h2>
+                <h2 class="hed-sub">People</h2>
 
                 <ul>
                     <li><a href="#">Clément Geiger</a></li>
                     <li><a href="#">Basile Simon-MuchLongername</a></li>
                 </ul>
 
-                <h2 class="hed-category">Organizations</h2>
+                <h2 class="hed-sub">Organizations</h2>
 
                 <ul>
                     <li><a href="#">NJ.com</a></li>
@@ -223,7 +230,7 @@ var disqus_config = function () {
                     <h2 class="hed-label">Credits</h2>
 
                     <ul>
-                        <li class="profile-person h-card">
+                        <li class="profile-person profile-person-article h-card">
                             <h3 class="profile-name">
                                 <a href="#">
                                     <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
@@ -234,12 +241,12 @@ var disqus_config = function () {
                             <p class="profile-bio">Hacker-journalist @BBC<em>News</em>Labs. Data-journalist @airwars_. #ddj, linked-data, infosec, drones with @TBIJ, stuff PGP: http://t.co/P1GYMem22Y</p>
 
                             <ul class="profile-links">
-                                <li><a class="p-org icon-company" href="#">BBC News</a></li>
+                                <li class="link-main"><a class="p-org icon-company" href="#">BBC News</a></li>
                                 <li><a class="icon-twitter-alt" href="#">@basilesimon</a></li>
                                 <li><a class="u-url icon-link" href="#">Visit website</a></li>
                             </ul>
                         </li><!-- /end .profile-person -->
-                        <li class="profile-person h-card">
+                        <li class="profile-person profile-person-article h-card">
                             <h3 class="profile-name">
                                 <a href="#">
                                     <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
@@ -250,7 +257,7 @@ var disqus_config = function () {
                             <p class="profile-bio">The Inimitable Tiff ☔ Asst. editor, @nytinteractive/@nytimes. Seattle-raised. Owner of a Dragon &amp; a Behemoth (cats). Prolly following you via matryoshka Lists.</p>
 
                             <ul class="profile-links">
-                                <li><a class="p-org icon-company" href="#">The New York Times</a></li>
+                                <li class="link-main"><a class="p-org icon-company" href="#">The New York Times</a></li>
                                 <li><a class="icon-twitter-alt" href="#">@tiffehr</a></li>
                                 <li><a class="u-url icon-link" href="#">Visit website</a></li>
                             </ul>

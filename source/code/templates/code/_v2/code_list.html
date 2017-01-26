@@ -47,10 +47,10 @@
                             {% endif %}{% endfor %}
                         </ul><!-- /end .list-topics -->
                     </div><!-- /end .mod -->
-                </div><!-- /end .group.p-more -->
+                </div><!-- /end .content-aside -->
 
                 <div class="content-aside">
-                    <div class="mod aside-lead">
+                    <div class="mod">
                         <h2 class="hed-label">Recently Added</h2>
 
                         <ol class="list-recently">
@@ -60,16 +60,16 @@
 
                                 <ul>
                                     {% for person in code.get_live_person_set() %}
-                                    <li><a class="icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                                    <li><a class="has-icon icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
                                     {% endfor %}
                                     {% for organization in code.get_live_organization_set() %}
-                                    <li><a class="icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                                    <li><a class="has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li><!-- /end .item-recent -->
                             {% endfor %}
                         </ol><!-- /end .list-recently -->
-                    </div><!-- /end .mod.aside-lead -->
-                </div><!-- /end .group-alt.p-less -->
+                    </div><!-- /end .mod -->
+                </div><!-- /end .content-aside -->
 
 {% endblock %}

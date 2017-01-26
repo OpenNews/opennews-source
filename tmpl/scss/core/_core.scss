@@ -1,106 +1,169 @@
-body {
-    background: #232C50;
-    color: #FFF;
-    font: normal 100%/1.5 map-get( $fonts, "sans-base" );
-    font-size: calc( 14px + ( 16 - 14 ) * ( ( 100vw - 300px ) / ( 1400 - 300 ) ) );
-    margin: 0;
-}
-.wf-active body {
-    font-family: map-get( $fonts, "sans" );
-}
-
-* {
-    margin-top: 0;
-}
-
-
-
 /*-
 
-Base element styles
+Form elements
 
 -*/
-a {
-    color: #469ABC;
-    text-decoration: underline;
-    transition: color 0.1s;
+.form-submit p,
+.enhanced .form-phrase,
+.msg-error,
+textarea {
+    max-width: 40em;
 }
-a:hover,
-a:focus {
-    color: #45BEA9;
-    text-decoration: none;
+// error message
+.msg-error {
+    background-color: #FCC;
+    border: 1px solid #A00;
 }
-blockquote {
-    margin: 1.5em;
+p.msg-error {
+    padding: 0.9em;
 }
-blockquote:before,
-blockquote:after {
-    content: "";
-    display: inline-block;
-    background: #D8D8D8;
-    height: 1em;
-    min-width: 7em;
-    width: 30%;
-}
-blockquote:after {
-    margin-top: 1em;
-}
-blockquote:before {
-    margin-bottom: 0.75em;
-}
-code {
-    color: #469A56;
-    font-family: map-get( $fonts, "mono" );
-    font-size: 0.8125em;
-}
-figure {
-    margin: 0;
-}
-img {
+.enhanced input[size] {
     max-width: 100%;
 }
-pre {
-    background: #545454;
-    border: 6px solid #F5F5F5,
-            1px solid #E2E2E2;
-    padding: 1em;
-    font-size: 0.85em;
-    overflow: auto;
+.form-submit label,
+.form-submit label + * {
+    display: block;
 }
-@media (min-width: 50em) {
-    pre {
-        font-size: 18px;
-        font-size: 1.125rem;
+.form-submit label {
+    margin-bottom: 0.5em;
+}
+.enhanced p.form-phrase {
+    width: 100%;
+}
+// On smaller screens, let’s hide (JS-inserted) placeholder text by default, and make labels appear as intended
+@media (max-width: 29.99em) {
+    .enhanced .form-submit ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #FFF;
+    }
+    .enhanced .form-submit :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color: #FFF;
+       opacity: 1;
+    }
+    .enhanced .form-submit ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color: #FFF;
+       opacity: 1;
+    }
+    .enhanced .form-submit :-ms-input-placeholder { /* Internet Explorer 10+ */
+       color: #FFF;
+    }
+    .enhanced .form-submit ::placeholder {
+       color: #FFF;
+       opacity: 1;
+    }
+    .enhanced .form-submit ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #FFF;
+    }
+    .enhanced .form-submit .msg-error:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color: #FCC;
+       opacity: 1;
+    }
+    .enhanced .form-submit .msg-error::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color: #FCC;
+       opacity: 1;
+    }
+    .enhanced .form-submit .msg-error:-ms-input-placeholder { /* Internet Explorer 10+ */
+       color: #FCC;
+    }
+    .enhanced .form-submit .msg-error::placeholder {
+       color: #FCC;
+       opacity: 1;
+    }
+    .enhanced input[size],
+    .enhanced .form-submit label.a11y {
+        width: 100%;
+    }
+    .enhanced .form-submit label.a11y {
+        clip: inherit;
+        display: block;
+        height: inherit;
+        position: static;
+        white-space: inherit;
+    }
+    .enhanced .form-submit .cue {
+        display: none;
     }
 }
-@media (min-width: 60em) {
-    pre {
-        margin-left: -1em;
-        margin-left: calc( -1 * ( 1em + 7px) );
-        margin-right: -1em;
-        margin-right: calc( -1 * ( 1em + 7px) );
+@media (min-width: 30em) {
+    .form-submit p {
+        display: flex;
+        justify-content: space-between;
+    }
+    .form-submit label {
+        margin-bottom: 0;
+        width: 25%;
+    }
+    .form-submit label + * {
+        flex: 1;
+    }
+    .enhanced p.form-phrase,
+    .enhanced .form-phrase p {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: bottom;
+    }
+    .enhanced .form-phrase {
+        line-height: 1.5;
+    }
+    .enhanced .form-phrase .field-text {
+        border-width: 0 0 1px;
     }
 }
-pre code {
-    color: #FFF;
-    font-size: 0.9em;
+
+.form-chooser {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 40em;
+    zoom: 1;
 }
-ol,
-p,
-ul {
-    margin-top: 0;
+.form-chooser > * {
+    float: left;
+    flex: 1 0 50%;
+    margin: 0;
+    width: 50%;
 }
-ol:last-child,
-p:last-child,
-ul:last-child {
+.form-chooser label {
+    background-position: 50% 80%;
+    background-size: 50% auto;
+    border-radius: 1em;
+    border: 1px solid #FFF;
+    box-shadow: inset 0 0 1px #FFF;
+    box-sizing: border-box;
+    cursor: pointer;
+    flex: 1;
     margin-bottom: 0;
+    padding: 20% 0 80%;
+    text-align: center;
+    transition: background-position 0.2s, background-size 0.2s ease-in-out, box-shadow 0.2s;
+    width: 100%;
 }
-ul,
-ul li {
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0;
+.form-chooser label:hover,
+.enhanced .form-chooser input:focus + label,
+.enhanced .form-chooser input:checked + label {
+    background-position: 50% 60%;
+    background-size: 52% auto;
 }
+.enhanced .form-chooser input:focus + label {
+    box-shadow: inset 0 0 0.25em #D8D8D8;
+}
+.enhanced .form-chooser input {
+    position: absolute;
+    left: -1000em;
+}
+.enhanced .form-chooser input:checked + label {
+    box-shadow: inset 0 0 0.5em #5DC8D5;
+    font-weight: 500;
+}
+@media (min-width: 40em) {
+    .form-chooser {
+        flex-wrap: nowrap;
+    }
+    .form-chooser > * {
+        flex: 1 0 25%;
+        margin: 0;
+        width: 25%;
+    }
+}
+
 // CC license link
 .link-cc {
     background: url("/img/cc.png") no-repeat 0 0.2em;
@@ -127,18 +190,36 @@ ul li {
 }
 
 
+
 /*-
 
 Macro-level structural elements
 
 -*/
+// If a browser doesn’t support media queries, they get a centered, 500px-wide design.
 .page {
-    margin: 0 3.055555555555555555%;    /* 44/1440 */
+    margin: 0 auto;
+    width: 500px;
 }
+/*
+If a browser DOES support media queries, then the “proper” layout is restored.
+*/
+@media (min-width: 0) {
+    .page {
+        margin: 0 3.055555555555555555%;    /* 44/1440 */
+        max-width: 87.5em;
+        width: inherit;
+    }
+}
+// .page-main is the white area where most of the design appears.
 .page-main {
+    background-color: #FFF;
+    background-position: 100% 0;
+    color: #4D4D4D;
     padding: 1em 4.758364312267657992%;    /* 64/1345 */
     padding-bottom: 4vw;
     padding-top: 4vw;
+    position: relative;
     zoom: 1;
 }
 .page-main:after {
@@ -146,6 +227,54 @@ Macro-level structural elements
     display: table;
     clear: both;
 }
+.oldie .page-main {
+    padding: 1em;
+}
+/*
+On wider screens, let’s center the design
+*/
+@media (min-width: 90em) {
+    .page {
+        margin: 0 auto;
+    }
+    .page-main {
+        padding-bottom: 4em;
+        padding-top: 4em;
+    }
+}
+
+
+
+/*-
+
+Main section (in white)
+
+-*/
+.page-main {
+}
+.page-main,
+.site-search {
+    background-size: 30% auto;
+}
+@media (min-width: 60em) {
+    .page-main,
+    .site-search {
+        background-size: 25% auto;
+    }
+}
+.tmpl-article .page-main {
+    background-position: -1000px 0;
+}
+@media (min-width: 60em) {
+    .tmpl-article .page-main {
+        background-position: 0 0;
+        background-size: 20% auto;
+    }
+}
+
+/*
+.content-main and .content-aside are used for 2-col layouts on wider screens, at a 75/25 split
+*/
 .content-main {
     margin-bottom: 4em;
 }
@@ -153,6 +282,7 @@ Macro-level structural elements
     .content-main {
         float: left;
         margin-bottom: 0;
+        max-width: 60em;
         width: 74.285714285714285714%;    /* 884/1190 */
     }
     .content-aside {
@@ -178,6 +308,9 @@ Macro-level structural elements
     .content-main .mod {
         margin-bottom: 4em;
     }
+    .content-aside .mod {
+        margin-bottom: 5em;
+    }
 }
 
 
@@ -187,10 +320,12 @@ Macro-level structural elements
 Header
 
 -*/
-.site-header {
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
+@media (min-width: 0) {
+    .site-header {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
 }
 .site-header a {
     color: #FFF;
@@ -198,8 +333,15 @@ Header
 }
 .header-main {
     display: flex;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+.enhanced .header-main {
+    text-align: left;
+    margin-bottom: 0;
 }
 .header-main > * {
+    display: inline-block;
     margin: 0;
 }
 .site-logo {
@@ -211,6 +353,7 @@ Header
     padding: 0.7em;
 }
 .site-logo img {
+    display: block;
     height: 0.9em;
 }
 // Toggle links
@@ -222,17 +365,24 @@ Header
     position: relative;
 }
 .header-main .nav-toggle {
-    order: -1;
+    -ms-flex-order: -1;
+     -webkit-order: -1;
+             order: -1;
 }
 // Inside each toggle link is an `.icon`, whose visibility gets toggled as menus open/close
 .site-header .icon {
+    background-position: -1000px 0;
     background-color: #001A33;
-    background-position: 50% 50%;
     background-size: auto 18px;
     display: inline-block;
     border-radius: 0.1875em;    /* 6/32 */
-    height: 2em;
+    padding: 0.5em;
     line-height: 1;
+}
+.enhanced .site-header .icon {
+    background-position: 50% 50%;
+    height: 2em;
+    padding: 0;
     text-indent: -1000em;
     width: 4em;
 }
@@ -264,8 +414,13 @@ Header
     padding: 0 0.5em;
 }
 .site-nav-links {
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
+}
+.oldie .site-nav-links {
+    display: block;
 }
 .site-nav-links li {
     border-bottom: 1px solid #FFF;
@@ -277,7 +432,12 @@ Header
 }
 .site-nav-links a {
     display: block;
-    padding: 2em 1em;
+    padding: 1em;
+}
+@media (min-width: 0) {
+    .site-nav-links a {
+        padding: 2em 1em;
+    }
 }
 .site-nav-links a.is-active {
     color: #47BFF8;
@@ -290,8 +450,11 @@ Header
     transition: max-height 0.2s, opacity 0.2s;
 }
 .site-nav-links-open .site-nav {
-    max-height: 11em;
+    max-height: 22em;
     opacity: 1;
+}
+.supports-flex .site-nav-links-open .site-nav {
+    max-height: 11em;
 }
 // Move from a 2-up grid in the navigation menu to a centered, single row of links
 // NOTE: This may change if the number of links in the menu needs to increase.
@@ -300,6 +463,7 @@ Header
         flex-wrap: nowrap;
     }
     .site-nav-links li {
+        float: left;
         border-bottom: none;
         flex-basis: 25%;
     }
@@ -313,6 +477,7 @@ Header
 @media (min-width: 25em) {
     // From this point on, we’ll use `.site-logo a` to shim the height of the masthead
     .site-logo a {
+        display: inline-block;
         justify-content: initial;
         padding: 0.8em 0;
     }
@@ -321,7 +486,9 @@ Header
         margin-left: 0.5em;
     }
     .header-main .nav-toggle {
-        order: initial;
+        -ms-flex-order: initial;
+         -webkit-order: initial;
+                 order: initial;
     }
     // Navigation highlight bars
     .site-nav {
@@ -358,13 +525,21 @@ Header
     }
     .header-main {
         margin-right: 2.857142857142857142%;    /* 34/1190 */
+        width: 12.268907563025210084%;    /* 146/1190 */
     }
     .site-logo {
         display: flex;
-        width: 17.226890756302521008%;    /* 205/1190 */
+    }
+    .oldie .site-logo {
+        display: block;
+        text-align: center;
     }
     .site-logo a {
         padding: 1em 0;
+    }
+    .site-logo img {
+        display: block;
+        width: 100%;
     }
     .nav-toggle {
         display: none;
@@ -376,7 +551,7 @@ Header
         top: 0;
     }
     // Restore search icon to full size
-    .search-toggle .icon {
+    .enhanced .search-toggle .icon {
         background-color: inherit;
         background-size: 33px 33px;
         height: 100%;
@@ -458,6 +633,63 @@ Header
     }
 }
 
+/*
+IE 9 fixes (I know, I know.)
+*/
+@media (min-width: 30em) {
+    .oldie {
+        .site-header:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .site-header .site-logo {
+            margin: 0;
+        }
+        .site-header .site-logo img {
+            width: 150px;
+        }
+        .site-header a {
+            display: block;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            vertical-align: middle;
+        }
+        .site-header a.nav-toggle {
+            display: none;
+        }
+        .site-header a.header-toggle {
+            bottom: auto;
+            height: 33px;
+            position: absolute;
+            right: 1em;
+            top: 0;
+        }
+        .site-header .icon-search {
+            background-color: inherit;
+            background-position: 50% 50%;
+            display: block;
+        }
+        .site-nav {
+            background: inherit;
+            margin: 0;
+            overflow: visible;
+            max-height: inherit;
+            margin-left: -2em;
+            width: 100%;
+        }
+        .site-nav li {
+            float: left;
+            margin-right: 1em;
+        }
+        .site-nav a {
+            display: block;
+            padding: 2em;
+        }
+    }
+}
+
+
 /*-
 
 Site search
@@ -471,7 +703,16 @@ Site search
     background-color: #22759F;
     background-position: 100% 0;
     clear: both;
-    margin-top: 3em;
+    margin: 3em -1em 0;
+    zoom: 1;
+}
+.enhanced .site-search {
+    margin: 0;
+}
+.site-search:after {
+    content: "";
+    clear: both;
+    display: table;
 }
 .hed-search {
     font-size: 1em;
@@ -637,19 +878,6 @@ Enhanced version
 
 /*-
 
-Main section (in white)
-
--*/
-.page-main {
-    background-color: #FFF;
-    color: #4D4D4D;
-    position: relative;
-}
-
-
-
-/*-
-
 Landing page
 
 -*/
@@ -694,10 +922,12 @@ Headings
     font-family: map-get( $fonts, "sans" );
 }
 .article-main h2 {
+    color: #F7786B;
     font-size: 1.2em;    /* 24/20 */
 }
 .article-main h3 {
-    font-size: 1.05em;
+    color: #7C8A98;
+    font-size: 1em;
 }
 .article-main h4 {
     font-size: 0.9em;
@@ -708,7 +938,7 @@ Headings
 }
 // .hed-label - little red headlines, they look like labels, naming things is difficult
 .hed-label {
-    background-color: #F04736;
+    background-color: map-get( $colors, "src-red" );
     color: #FFF;
     display: inline-block;
     font-size: 0.8125em;    /* 13/16 */
@@ -729,6 +959,9 @@ Headings
         font-size: 3em;    /* 48/16 */
     }
 }
+.page-title-sub .has-icon {
+    background-position: 0 0.45em;
+}
 .article-subtitle-lead {
     font-size: 1.5em;    /* 24/16 */
     font-family: map-get( $fonts, "serif" );;
@@ -738,10 +971,12 @@ Headings
 .wf-active .article-subtitle-lead {
     font-family: map-get( $fonts, "serif" );;
 }
-// .hed-category {
-.hed-category {
+// .hed-sub is the…subhed style look I know {
+.hed-sub,
+legend {
     color: #F7786B;
     font-size: 0.8125em;    /* 13/16 */
+    font-weight: 700;
     text-transform: uppercase;
 }
 // In-article figure styles
@@ -796,7 +1031,215 @@ Headings
 /*
 Lists!
 */
-// “Promo” lists. Contains (at widescreen) a 3-up list of elements
+// Generic lists!
+.list {
+    margin: 2em 0;
+}
+.list {
+    line-height: 1.4;
+}
+.list li {
+    margin-bottom: 0.5em;
+}
+.wf-active .list .has-icon {
+    background-position: 0 0.3em;
+}
+// Article lists. Basically just a list of headlines, with associated thumbs on the right
+.list-articles {
+    margin: 2em 0;
+    max-width: 50em;
+}
+.list-articles img {
+    float: right;
+    margin-left: 1em;
+    margin-right: 0;
+    width: 35%;
+}
+.list-articles li {
+    border-bottom: 1px solid #D8D8D8;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    zoom: 1;
+}
+.list-articles li:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.list-articles li:last-child {
+    border-bottom: none;
+}
+.list-articles a {
+    color: inherit;
+    text-decoration: none;
+}
+.list-articles .hed-article-title {
+    font-size: 1.4em;
+    line-height: 1.3;
+    margin: 0;
+}
+.list-articles a .hed-article-title,
+.list-articles a .link-cta {
+    color: map-get( $colors, "link-default" );
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.list-articles a:focus .hed-article-title,
+.list-articles a:hover .hed-article-title,
+.list-articles a:focus .link-cta,
+.list-articles a:hover .link-cta {
+    color: map-get( $colors, "link-on" );
+    text-decoration: none;
+}
+.list-articles .hed-article-subhed {
+    font-size: 1.25em;
+    font-weight: normal;
+    line-height: 1.25;
+    margin: 0.3em 0 0.75em;
+}
+.list-articles .summary {
+    font-family: map-get( $fonts, "serif-base" );
+    position: relative;
+    font-size: 1.1em;
+}
+.wf-active .list-articles .summary {
+    font-family: map-get( $fonts, "serif" );
+}
+.list-articles .hed-article-subhed + .summary:before {
+    content: "";
+    display: block;
+    height: 3px;
+    margin: 1.5em 0 0.5em;
+    max-width: 10em;
+    width: 20%;
+    background: #D8D8D8;
+}
+@media (min-width: 40em) {
+    .list-articles a > * {
+        margin-right: 30%;
+    }
+    .list-articles img {
+        float: right;
+        margin-left: 1em;
+        margin-right: 0;
+        width: 25%;
+    }
+}
+
+/*
+Lead promo
+*/
+.promo-lead {
+    border-bottom: 1px solid #D8D8D8;
+    padding-bottom: 3em;
+    margin-bottom: 3em;
+}
+.promo-main .hed-label {
+    display: inline-flex;
+    flex: 0 1 auto;
+    margin-right: auto;
+    max-width: 10em; /* BUGFIX: iOS Safari inline-flex bug */
+}
+.hed-promo-lead {
+    font-size: 1.4em;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 0.5em;
+}
+.promo-pic {
+    display: block;
+    float: right;
+    margin: 0 0 1em 1em;
+    width: 40%;
+}
+.hed-promo-lead a {
+    text-decoration: none;
+}
+.hed-promo-lead a:focus,
+.hed-promo-lead a:hover {
+    text-decoration: underline;
+}
+.hed-promo-subhead {
+    font-size: 1.2em;
+    font-weight: normal;
+    line-height: 1.3;
+    flex: 1;
+}
+.promo-byline {
+    clear: right;
+    flex: 0 1 auto;
+    margin-top: auto;
+}
+@media (min-width: 30em) {
+    .hed-promo-lead {
+        font-size: 1.8em;
+    }
+    .hed-promo-subhead {
+        font-size: 1.5em;
+    }
+}
+@media (min-width: 50em) {
+    .promo-lead {
+        display: flex;
+        justify-content: space-between;
+    }
+    .promo-pic,
+    .promo-main {
+        flex: 0 0 47.5%;
+    }
+    .promo-pic {
+        float: none;
+        margin: 0;
+    }
+    .promo-main {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+    }
+    .promo-main > * {
+        flex: 0 1 auto;
+    }
+}
+@media (min-width: 60em) {
+    .hed-promo-lead {
+        font-size: 2.4em;
+    }
+}
+
+/*
+“About Source” block
+*/
+.promo-src-about {
+    background-color: #492350;
+    background-position: 100% 100%;
+    background-size: auto 40%;
+    color: #FFF;
+    font-size: 1.4em;
+    margin: -3rem -5.3% 3rem;
+    padding: 2.3em 5.3%;
+    transition: background-size 0.2s;
+}
+@media (min-width: 40em) {
+    .promo-src-about {
+        background-size: auto 70%;
+    }
+}
+@media (min-width: 50em) {
+    .promo-src-about {
+        background-size: auto 100%;
+    }
+}
+.promo-src-about > * {
+    max-width: 27em;
+}
+.promo-src-about a {
+    color: #FFF;
+}
+.promo-src-about a:focus,
+.promo-src-about a:hover {
+    color: #8CDBF0;
+}
+// “Promo” lists. Contains (at widescreen) a 3-up grid of elements
 .list-promos {
     font-size: 1.0625em;    /* 27 / 16 */
     line-height: 1.25;      /* 25/20 */
@@ -804,7 +1247,37 @@ Lists!
 .src-promo {
     margin-bottom: 2em;
 }
-@media (min-width: 25em) and (max-width: 39.99em) {
+.src-promo a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.src-promo img {
+    display: block;
+    margin-bottom: 0.4em;
+}
+.label-promo {
+    color: map-get( $colors, "src-red" );
+    display: block;
+    font-size: 0.75em;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-bottom: 0.4em;
+}
+.hed-promo {
+    font-weight: 500;
+}
+a .hed-promo {
+    color: map-get( $colors, "link-default" );
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+a:focus .hed-promo,
+a:hover .hed-promo {
+    color: map-get( $colors, "link-on" );
+    text-decoration: none;
+}
+@media (min-width: 23em) and (max-width: 39.99em) {
     .src-promo {
         border-bottom: 1px solid #C6C6C6;
         flex: 1 0 100%;
@@ -830,27 +1303,42 @@ Lists!
         margin-left: 38%;
     }
     .src-promo .hed-promo {
-        font-size: 1.5em;    /* 20 / 16 */
+        font-size: 1.25em;    /* 20 / 16 */
     }
 }
 @media (min-width: 40em) {
     .list-promos {
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
-        flex-wrap: nowrap;
+    }
+    .list-promos:after {
+        content: "";
+        display: block;
+    }
+    .src-promo,
+    .list-promos:after {
+        flex: 0 1 30%;
+        margin-right: 3%;
+        margin-bottom: 0;
     }
     .src-promo:first-child {
         width: inherit;
     }
-    .src-promo {
-        flex: 0 1 31%;
-        margin-bottom: 0;
+    .tmpl-home .src-promo {
+        margin-bottom: 2em;
     }
 }
 @media (min-width: 50em) {
     .list-promos {
         font-size: 1.25em;    /* 20 / 16 */
+    }
+    .tmpl-home .src-promo,
+    .tmpl-home .list-promos:after {
+        flex: 0 1 21%;
+        margin-right: 4%;
+    }
+    .tmpl-home .hed-promo {
+        font-size: 0.9em;
     }
 }
 // “Long” (block) and “short” (inline) lists of hashtags
@@ -911,6 +1399,9 @@ Lists!
 .article-main ol ol {
     margin-left: 1.5em;
 }
+.article-main ol li {
+    list-style: decimal;
+}
 .article-main ul li {
     list-style: disc;
 }
@@ -941,6 +1432,7 @@ ul.links-article-social li {
     display: block;
     height: 70px;
     text-align: left;
+    text-decoration: none;
     text-indent: -1000em;
     transition: transform 0.2s;
     width: 70px;
@@ -954,6 +1446,16 @@ ul.links-article-social li {
     background-color: #F14835;
     background-size: 90% auto;
     color: #F14835;
+    font-family: map-get( $fonts, "sans-base" );
+}
+.wf-active .links-article-social .icon-comments {
+    font-family: map-get( $fonts, "sans" );
+}
+.links-article-social .icon-comments.comments-loaded {
+    display: block;
+    text-indent: 0;
+    text-align: center;
+    line-height: 67px;
 }
 .links-article-social .icon-twitter {
     background-color: #47BFF8;
@@ -1007,17 +1509,18 @@ ul.links-article-social li {
 .item-recent li {
     margin-bottom: 0.5em;
 }
-.item-recent li a {
+.item-recent a {
+    font-size: 0.8125em;    /* 13 / 16 */
+}
+.item-recent a:focus,
+.item-recent a:hover {
+    color: map-get( $colors, "link-on" );
+}
+.item-recent .has-icon {
     background-position: 0 0.2em;
     color: inherit;
     display: block;
-    font-size: 0.8125em;    /* 13 / 16 */
-    padding-left: 30px;
     text-decoration: none;
-}
-.item-recent li a:focus,
-.item-recent li a:hover {
-    color: #45BEA9;
 }
 // At lower breakpoints, let’s move to 2- and 3-col layouts. (But not above 60em, because at that point, we’ll be in the sidebar.)
 @media (min-width: 30em) and (max-width: 59.99em) {
@@ -1044,9 +1547,14 @@ ul.links-article-social li {
     }
 }
 
-/*
+
+
+/*-
+
 Structural elements for article
-*/
+
+-*/
+
 /*
 Article front matter
 */
@@ -1089,12 +1597,16 @@ Article front matter
     .article-matter-front .hed-label {
         display: inline-flex;
         margin-right: auto;
-        max-width: 10em; /* TODO: Fix iOS Safari inline-flex bug */
-        order: -1;
+        max-width: 10em; /* BUGFIX: iOS Safari inline-flex bug */
+        -ms-flex-order: -1;
+         -webkit-order: -1;
+                 order: -1;
     }
     .article-matter-front .list-tags {
         margin-bottom: 1.5em;
-        order: 2;
+        -ms-flex-order: 2;
+         -webkit-order: 2;
+                 order: 2;
     }
 }
 @media (min-width: 65em) {
@@ -1105,6 +1617,7 @@ Article front matter
     .article-matter-front .list-tags {
         float: left;
         margin-left: -17.342799188640973630%;    /* 171 / 986 */
+        max-width: 15%;
     }
     .article-matter-front .hed-label {
         margin-top: 0.9em;
@@ -1195,10 +1708,17 @@ Article block - MAIN CONTENT
         margin-left: 0;
     }
 }
-/*
+
+
+
+/*-
+
 Article back matter
+
+-*/
+/*
+Profiles
 */
-// Profiles
 .profile-person {
     margin-bottom: 3em;
 }
@@ -1208,33 +1728,11 @@ Article back matter
     margin-bottom: 1em;
     margin-left: 1em;
     max-width: 130px;
+    max-width: 8.125rem;
     width: 30%;
-}
-.profile-name {
-    font-size: 1.5em;
-    font-weight: normal;
-    line-height: 1.2;
-    margin-bottom: 0.3em;
 }
 .profile-name cite {
     font-style: normal;
-}
-.profile-bio {
-    font-family: map-get( $fonts, "serif" );;
-    font-size: 1.125em;    /* 18/16 */
-    line-height: 1.4;    /* 30/18 */
-    hyphens: auto;
-    margin-bottom: 1.5em;
-}
-.wf-active .profile-bio {
-    font-family: map-get( $fonts, "serif" );;
-}
-@media (min-width: 40em) {
-    .profile-bio {
-        line-height: 1.66666666666666666666;    /* 30/18 */
-        hyphens: inherit;
-        margin-bottom: 0;
-    }
 }
 .profile-links {
     font-size: 0.8125;    /* 13/16 */
@@ -1243,32 +1741,94 @@ Article back matter
 .profile-links li {
     margin-bottom: 0.6em;
 }
-@media (min-width: 40em) {
-    .profile-links {
-        display: flex;
-    }
-    .profile-links li {
-        margin-bottom: 0;
-        margin-right: 1em;
-    }
-    .profile-links li:first-child {
-        flex: 1;
-    }
-    .profile-links li:last-child {
-        margin-right: 0;
-    }
-}
 .profile-links a {
     background-position: 0 50%;
     color: inherit;
-    padding-left: 30px;
+    padding-left: 28px;
     text-decoration: none;
 }
 .profile-links a:focus,
 .profile-links a:hover {
-    color: #45BEA9;
+    color: map-get( $colors, "link-on" );
 }
-// Hashtag: hashtags
+// In-article variant
+.profile-person-article .profile-name {
+    font-size: 1.5em;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 0.3em;
+}
+.profile-person-article .profile-bio {
+    font-family: map-get( $fonts, "serif" );;
+    font-size: 1.125em;    /* 18/16 */
+    line-height: 1.4;    /* 30/18 */
+    margin-bottom: 1.5em;
+    hyphens: auto;
+}
+.wf-active .profile-person-article .profile-bio {
+    font-family: map-get( $fonts, "serif" );;
+}
+@media (min-width: 40em) {
+    .profile-person-article .profile-bio {
+        line-height: 1.66666666666666666666;    /* 30/18 */
+        hyphens: inherit;
+        margin-bottom: 0;
+    }
+    .profile-person-article .profile-links {
+        display: flex;
+    }
+    .profile-person-article .profile-links li {
+        margin-bottom: 0;
+        margin-right: 1.5em;
+    }
+    .profile-person-article .profile-links li:first-child {
+        flex: 1;
+        text-align: right;
+    }
+    .profile-person-article .profile-links li.link-main {
+        text-align: left;
+    }
+    .profile-person-article .profile-links li:last-child {
+        margin-right: 0;
+    }
+}
+// On profile pages, we’ll move to a 2-column layout on wider screens
+.profile-person-lead {
+    max-width: 50em;
+}
+.profile-person-lead .profile-bio {
+    clear: right;
+}
+@media (min-width: 30em) {
+    .profile-person-lead .profile-bio {
+        clear: none;
+    }
+}
+@media (min-width: 40em) {
+    .profile-person-lead {
+        zoom: 1;
+    }
+    .profile-person-lead:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .profile-person-lead .profile-main {
+        float: left;
+        width: 65%;
+    }
+    .profile-person-lead .profile-aside {
+        clear: right;
+        float: right;
+        max-width: 130px;
+        max-width: 8.125rem;
+        width: 30%;
+    }
+}
+
+/*
+Hashtag: hashtags
+*/
 .tag {
     background-color: #D8D8D8;
     border-radius: 0.45em;
@@ -1291,7 +1851,10 @@ Article back matter
     content: "#";
     color: inherit;
 }
-// Comments
+
+/*
+Comments
+*/
 .article-comments {
     margin-bottom: 2em;
 }
@@ -1324,112 +1887,53 @@ Article back matter
     }
 }
 
-
-
-/*-
-
-Footer
-
--*/
-.page-footer {
-    background: #31364C;
+/*
+Repo metadata
+*/
+.repo-meta {
+    border-top: 1px solid #D8D8D8;
+    clear: both;
+    margin-bottom: 4em;
+    margin-top: 1em;
 }
-.page-footer a {
-    color: #FFF;
+.repo-meta a,
+.repo-meta span {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    display: inline-block;
 }
-.page-footer a:focus,
-.page-footer a:hover {
-    color: #45BEA9;
-    text-decoration: none;
+.repo-meta .has-icon,
+.repo-meta span {
+    background-position: 0 0.55em;
 }
-// “Main” footer blocks display side-by-side on wider screens; they’re the primary dividers in the footer
-.foot-main {
-    padding: 2em;
-    padding: 2em 4vw;
-}
-.foot-source {
-    background-size: 55% auto;
-    background-position: 100% 100%;
-}
-.foot-opennews {
-    background: #232D44;
-}
-.foot-content {
-    font-size: 1.125em;
-    line-height: 1.45;
-    margin-bottom: 2em;
-}
-// Footer logos
-.page-footer .foot-logo {
-    margin: 0 0 1em;
-}
-.foot-opennews .foot-logo {
-    margin-bottom: 0.8em;
-}
-.foot-opennews img {
-    margin-top: -6px;
-}
-.foot-source .foot-logo {
-    margin-bottom: 1em;
-}
-// “Connect” links
-.hed-foot {
-    color: #47BFF8;
-    font-size: 13px;
-    text-transform: uppercase;
-}
-.list-foot-social {
-    line-height: 1.25;
-}
-.list-foot-social li {
-    margin-bottom: 0.75em;
-}
-.list-foot-social a {
-    background-position: 0 0.25em;
-    display: block;
+.repo-meta span {
     padding-left: 30px;
 }
-@media (min-width: 55em) {
-    // Two-column layout
-    .page-footer {
+@media (min-width: 30em) {
+    .repo-meta {
         display: flex;
+        justify-content: space-between;
     }
-    .foot-main {
-        padding: 4em;
-        padding: 4vw;
-        flex: 1 0 auto;
+    .repo-meta li {
+        margin-right: 2em;
     }
-    .foot-source {
-        background-size: 55% auto;
-        background-position: 100% 100%;
-        display: flex;
-        padding-left: 4.903417533432392273%;    /* 66/1346 */
-        padding-right: 4.903417533432392273%;    /* 66/1346 */
-        width: 50.520059435364041604%;    /* 680/1346 */
+    .repo-meta li:last-child {
+        flex: 1;
+        text-align: right;
+        margin-right: 0;
     }
-    .foot-source .foot-content {
-        flex: 0 1 55%;
-        margin-bottom: 0;
-        margin-right: 10%;
+    .repo-meta a,
+    .repo-meta span {
+        padding-top: 0.6em;
+        padding-bottom: 0.6em;
+        display: inline-block;
     }
-    .foot-source .link-cc {
-        margin: 4em 0 0;
+    .repo-meta .has-icon {
+        background-position: 0 0.95em;
     }
-    .foot-source .hed-foot {
-        margin-bottom: 2.5em;
-        margin-top: 1.2em;
-    }
-    .list-foot-social {
-        max-width: 10em;
-    }
-    .list-foot-social a {
-        margin-left: -30px;
-    }
-    .foot-opennews {
-        background: #232D44;
-        margin-left: auto;
-        padding-left: 5.274888558692421991%;    /* 71/1346 */
-        padding-right: 6.835066864784546805%;    /* 92/1346 */
-        width: 27.786032689450222882%;    /* 374/1346 */
+    .repo-meta span {
+        padding-left: 0;
     }
 }
+
+
