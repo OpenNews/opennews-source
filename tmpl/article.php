@@ -130,6 +130,15 @@ var disqus_config = function () {
 
                 <p>As always, I will try my best not to fall into PR, and instead, to offer my personal view on Datastringer’s creation process, as well as what we learnt by doing it. Do head to the repo and wiki for examples, snippets, and more code-related stuff.</p>
 
+                <blockquote class="twitter-tweet" data-cards="hidden" data-lang="en">
+                    <p dir="ltr" lang="en">transcription service ←→ google app script → google doc (+18 factcheckers) ←→ server → s3 → embedded widget<a href="https://t.co/Dzt3a0O4rL">https://t.co/Dzt3a0O4rL</a></p>
+                    — David Eads (@eads) <a href="https://twitter.com/eads/status/780578980957151232">September 27, 2016</a>
+                </blockquote>
+
+                <p>That’s what <a href="#">Datastringer</a> aims to do. It was built to be as simple as possible, and very much journalism-oriented. The idea is not new in itself, it’s basically a monitoring tool. However, Datastringer wants to:</p>
+
+                <p>As always, I will try my best not to fall into PR, and instead, to offer my personal view on Datastringer’s creation process, as well as what we learnt by doing it. Do head to the repo and wiki for examples, snippets, and more code-related stuff.</p>
+
                 <h2>From Idea to Hacking</h2>
 
                 <h3>This is an example of a subhed. Subheds are good!</h3>
@@ -152,14 +161,14 @@ var disqus_config = function () {
 
                 <p>About the way it works, you’ve got to think of it this way: <code>datastringer.js</code> is a sort of black box which uses user-input values, parameters, and functions, stored in <code>use_cases.json</code>. Let’s have a look at this file’s structure:</p>
 
-                <pre><code>javascript
+                <pre>javascript
   [{
     "stringer": "local-police-stringer.js",
     "parameters": ["metropolitan", "00AGGU"]
   }, {
     "stringer": "crime-stringer.js",
     "parameters": ["51.52863195218981", "-0.12342453002929688", "6", "10"]
-  }]</code></pre>
+  }]</pre>
 
                 <p>The day before August 16, e.g. one day before the Knight-Mozilla Fellowship deadline, and three days before our presentation to the News Labs, Clément came to London for a final sprint. We worked all day on the project and on our caffeine-per-gram-of-blood level. Until this key moment when, while writing the documentation, I asked Clément for help.</p>
 
