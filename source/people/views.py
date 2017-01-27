@@ -19,15 +19,15 @@ from .models import Person, Organization, OrganizationAdmin
 
 from caching.config import NO_CACHE
 from source.articles.models import Article
-from source.code.models import Code
-from source.jobs.models import Job
+from source.code.models import Code, get_recent_repos
+from source.jobs.models import Job, get_recent_jobs
 from source.utils.json import render_json_to_response
 
 USER_DEBUG = getattr(settings, 'USER_DEBUG', False)
 
 
 class CommunityList(TemplateView):
-    template_name = 'people/community_list.html'
+    template_name = 'people/_v2/community_index.html'
 
     def get_context_data(self, **kwargs):
         context = super(CommunityList, self).get_context_data(**kwargs)
@@ -66,6 +66,9 @@ class CommunityList(TemplateView):
         organizations = Organization.objects.filter(id__in=organization_ids)
         context['organizations'] = organizations
 
+        context['recent_jobs'] = get_recent_jobs(2)
+        context['recent_repos'] = get_recent_repos(3)
+
         return context
         
 class PersonList(ListView):
@@ -80,19 +83,8 @@ class PersonList(ListView):
     def get_context_data(self, **kwargs):
         context = super(PersonList, self).get_context_data(**kwargs)
         
-        recent_jobs = Job.live_objects.order_by('-listing_start_date', '-created')
-        try:
-            recent_jobs = recent_jobs[:2]
-        except:
-            recent_jobs = None
-        context['recent_jobs'] = recent_jobs
-
-        recent_repos = Code.live_objects.order_by('-created')
-        try:
-            recent_repos = recent_repos[:3]
-        except:
-            recent_repos = None
-        context['recent_repos'] = recent_repos
+        context['recent_jobs'] = get_recent_jobs(2)
+        context['recent_repos'] = get_recent_repos(3)
         
         return context
 
@@ -108,19 +100,8 @@ class PersonDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PersonDetail, self).get_context_data(**kwargs)
         
-        recent_jobs = Job.live_objects.order_by('-listing_start_date', '-created')
-        try:
-            recent_jobs = recent_jobs[:2]
-        except:
-            recent_jobs = None
-        context['recent_jobs'] = recent_jobs
-
-        recent_repos = Code.live_objects.order_by('-created')
-        try:
-            recent_repos = recent_repos[:3]
-        except:
-            recent_repos = None
-        context['recent_repos'] = recent_repos
+        context['recent_jobs'] = get_recent_jobs(2)
+        context['recent_repos'] = get_recent_repos(3)
         
         return context
         
