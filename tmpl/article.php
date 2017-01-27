@@ -106,6 +106,13 @@ var disqus_config = function () {
             </div><!-- /end .figure.figure-article-minor -->
 
             <div class="article-main">
+                <ul>
+                    <li><strong>December 1:</strong> <a href="http://www.meetup.com/ONA-Philly/events/235469614/">WordCamp <span class="caps">U.S.</span> Journo Meetup</a> (Philadelphia, <span class="caps">PA</span>)</li>
+                    <li><strong>December 2-4:</strong> <a href="https://2016.us.wordcamp.org/">WordCamp <span class="caps">US</span></a> (Philadelphia, <span class="caps">PA</span>)</li>
+                    <li><strong>December 3:</strong> <a href="http://www.rosalux.de/event/56358">Unboxing: Data, Algorithms, and Democracy</a> (Berlin and live&nbsp;stream)</li>
+                    <li><strong>December 3:</strong> <a href="http://www.meetup.com/ONA-LA/events/235752032/">Excellence in Journalism Day</a> (Los Angeles, <span class="caps">CA</span>)</li>
+                </ul>
+
                 <p>Journalists always relied on sources to do their job. Sources very often provide journalists with stories, as well as quotes and interviews. Big agencies like <a href="#">Reuters</a> and <a href="#">AP</a> do that too: they are fed wire reports from local journalists on the ground, everywhere on the globe. These people are called stringers.</p>
 
                 <p>Picture yourself as a local journalist. You love local police stories, there’s always something to write about, and your audience cares a lot about them. You get these stories by calling your sources in the force in the morning, and by receiving press releases every once in a while. How fantastic would it be if you could have a little piece of software you could tell what you’re looking for, then let it do the leg-work and alert you when it finds something worth your attention?</p>
