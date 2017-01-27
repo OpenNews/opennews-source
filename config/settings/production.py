@@ -21,8 +21,6 @@ from .common import *  # noqa
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-# Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # This ensures that Django will be able to detect a secure connection
@@ -61,6 +59,8 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['source.opennews.org']
 INSTALLED_APPS += ("gunicorn", )
 
 BASE_SITE_URL = 'https://source.opennews.org'
+
+ENGAGE_ROBOTS = False
 
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
