@@ -22,6 +22,31 @@
 {% endblock %}
 
 {% block head_extra %}{{ super() }}
+<script>
+    var disqus_shortname = "source-opennews";
+    var disqus_config = function () {
+        this.page.url = '//{{ request.get_host() }}{{ article.get_absolute_url() }}';
+        this.page.identifier = 'article_detail_{{ article.pk }}';
+        this.page.title = '{{ article.title }} - Source';
+        
+        this.callbacks.onReady = [function( comment ) {
+            $( document ).trigger( "comments-loaded" );
+        } ];
+        this.callbacks.onNewComment = [function( comment ) { 
+            $( document ).trigger( "comments-new" );
+        }];
+    };
+    
+    (function() {
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//'+ disqus_shortname + '.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
 {% if article.article_js_header %}{{ article.article_js_header|safe }}{% endif %}
 {% endblock %}
 
