@@ -28,11 +28,17 @@ SECRET_KEY = env("DJANGO_SECRET_KEY", default='!kl8xt91apv&7m*9px=j7%y*vr*8%k_q7
 
 # Mail settings
 # ------------------------------------------------------------------------------
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND',
-                    default='django.core.mail.backends.console.EmailBackend')
-                    
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
+#EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = env("MAILGUN_SMTP_LOGIN")
+EMAIL_HOST_PASSWORD = env("MAILGUN_SMTP_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EDITORIAL_EMAIL = 'ryan@opennews.org'
 
 # CACHING

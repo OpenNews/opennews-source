@@ -148,7 +148,7 @@ class CodeSuggestRepo(FormView):
             email_context,
         )
         html_content = render_to_string(
-            'code/_v2/emails/suggest_repo.txt',
+            'code/_v2/emails/suggest_repo.html',
             email_context
         )
 

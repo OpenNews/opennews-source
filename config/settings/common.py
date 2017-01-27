@@ -49,7 +49,6 @@ THIRD_PARTY_APPS = (
     'django_jinja',
     'storages',
     'django_auth0',
-    'anymail',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
