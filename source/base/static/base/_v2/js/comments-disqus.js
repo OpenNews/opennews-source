@@ -11,8 +11,6 @@
             // If Disqus successfully loads, prepend a headline (e.g., `<h2>Comments</h2>`) to its container.
             var title = $comments.parent().attr( "data-title" );
             $comments.prepend( hed_markup.split( '{title}' ).join( title ) );
-
-            SRC.utils.loadJS( "//" + SRC.config.disqus_id + ".disqus.com/count.js" );
         } );
     }
 
