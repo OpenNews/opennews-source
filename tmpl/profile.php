@@ -66,23 +66,19 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         <span class="p-name">Latoya Peterson</span>
                     </h1>
 
-                    <div class="profile-main">
-                        <h2 class="page-title-sub"><a class="p-org has-icon icon-company" href="#">ESPN</a></h2>
+                    <h2 class="page-title-sub"><a class="p-org has-icon icon-company" href="#">ESPN</a></h2>
 
-                        <div class="mod main-lead profile-bio">
-                            <p>I'd rather be a cyborg than a goddess. (But why choose?) Always: @Racialicious. Latest: Deputy Editor, Digital Innovation for @ESPN 's @TheUndefeated.</p>
+                    <div class="mod main-lead profile-bio">
+                        <p>I'd rather be a cyborg than a goddess. (But why choose?) Always: @Racialicious. Latest: Deputy Editor, Digital Innovation for @ESPN 's @TheUndefeated.</p>
 
-                            <p><a class="link-cta" href="#">Submit profile updates or corrections</a></p>
-                        </div><!-- /end .mod.main-lead.profile-bio -->
-                    </div><!-- /end .profile-main -->
+                        <p><a class="link-cta" href="#">Submit profile updates or corrections</a></p>
+                    </div><!-- /end .mod.main-lead.profile-bio -->
 
-                    <div class="profile-aside">
-                        <ul class="profile-links">
-                            <li><a class="has-icon icon-github" href="#">GitHub</a></li>
-                            <li><a class="has-icon icon-twitter-alt" href="https://twitter.com/LatoyaPeterson">@LatoyaPeterson</a></li>
-                            <li><a class="has-icon icon-link u-url" href="http://latoyapeterson.com ">Visit website</a></li>
-                        </ul>
-                    </div>
+                    <ul class="profile-links">
+                        <li><a class="has-icon icon-github" href="#">GitHub</a></li>
+                        <li><a class="has-icon icon-twitter-alt" href="https://twitter.com/LatoyaPeterson">@LatoyaPeterson</a></li>
+                        <li><a class="has-icon icon-link u-url" href="http://latoyapeterson.com ">Visit website</a></li>
+                    </ul>
                 </div><!-- /end .profile-person -->
 
                 <div class="mod">
