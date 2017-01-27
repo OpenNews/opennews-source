@@ -29,7 +29,7 @@
                 <div class="profile-person profile-person-lead h-card">
                     <h1 class="page-title-lead">{% if person.photo %}
                         <img class="profile-photo u-photo" src="{{ MEDIA_URL }}{{ thumbnail(person.photo, "130") }}" alt="" />{% endif %}
-                        <span class="p-name">{{ person.name() }}</span>
+                        <span class="p-name">{{ person.name()|smartypants }}</span>
                     </h1>
 
                     {% if person.get_live_organization_set().exists() %}
@@ -86,7 +86,7 @@
                         </li>{% endfor %}
                     </ol>{% endif %}
                 </div><!-- /end .mod -->
-            </div><!-- /end .content-aside -->
+            </div><!-- /end .content-main -->
 
             <div class="content-aside">{% if recent_jobs %}
                 <div class="mod">

@@ -1,0 +1,74 @@
+{% extends "people/_v2/_base_community.html" %}
+
+{% block page_title %}People - {{ super() }}{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+            <div class="content-main">
+                <h1 class="page-title-lead">People</h1>
+
+                <div class="mod main-lead">
+                    <p>The community of developers, designers, and data analysts doing journalism through code.</p>
+                </div><!-- /end .mod.main-lead -->
+                
+                <div class="mod">
+                    <h2 class="hed-label">Our Community</h2>
+
+                    <ul class="list-promos">
+                    {% for person in object_list %}
+                        <li class="src-promo">
+                            <a href="{{ person.get_absolute_url() }}">
+                                {% if person.photo %}
+                                <img src="{{ MEDIA_URL }}{{ thumbnail(person.photo, "300x200", crop="center") }}" alt="{{ person.name() }}" />
+                                {% else %}
+                                <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ person.name() }}" />
+                                {% endif %}
+                                <h3 class="hed-promo">{{ person.name()|smartypants }}</h3>
+                                <ul class="profile-links">
+                                    <li class="has-icon icon-company">{% for organization in person.get_live_organization_set() %}{{ organization.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}</li>
+                                </ul>
+                            </a>
+                        </li><!-- /end .src-promo -->
+                    {% endfor %}
+                    </ul><!-- /end .list-promos -->
+                </div><!-- /end .mod -->
+            </div><!-- /end .content-main -->
+
+            <div class="content-aside">{% if recent_jobs %}
+                <div class="mod">
+                    <h2 class="hed-label">New Source Job Listings</h2>
+
+                    <ol class="list-recently">{% for job in recent_jobs %}
+                        <li class="item-recent">
+                            <h3 class="hed-recent"><a href="{{ url('job_list') }}#job-{{ job.pk }}">{{ job.name }}</a></h3>
+
+                            <p><a class="has-icon icon-company" href="{{ job.organization.get_absolute_url() }}">{{ job.organization.name }}</a></p>
+                            </ul>
+                        </li><!-- /end .item-recent -->{% endfor %}
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="{{ url('job_list') }}">See all jobs</a></p>
+                </div><!-- /end .mod -->{% endif %}
+
+                {% if recent_repos %}
+                <div class="mod">
+                    <h2 class="hed-label">Recently Added Code Repos</h2>
+
+                    <ol class="list-recently">{% for code in recent_repos %}
+                        <li class="item-recent">
+                                <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
+
+                                <ul>
+                                    {% for person in code.get_live_person_set() %}
+                                    <li><a class="has-icon icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                                    {% endfor %}
+                                    {% for organization in code.get_live_organization_set() %}
+                                    <li><a class="has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                        </li><!-- /end .item-recent -->{% endfor %}
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="{{ url('code_list') }}">See all repos</a></p>
+                </div><!-- /end .mod -->{% endif %}
+            </div><!-- /end .content-aside -->
+{% endblock %}
