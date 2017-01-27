@@ -4,8 +4,9 @@ from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.views.generic import ListView, DetailView, View
+from django.views.generic.edit import FormView
 
-from .forms import SuggestRepoForm
+from .forms import SuggestRepoForm, REPO_DIFFICULTY_CHOICES
 from .models import Code
 from source.tags.utils import filter_queryset_by_tags
 from source.utils.email import send_multipart_email
@@ -117,57 +118,48 @@ class CodeDetail(DetailView):
         return context
 
 
-class CodeSuggestRepo(View):
+class CodeSuggestRepo(FormView):
     '''
     Readers can suggest a repository to add to the Code list, generating
     an email to the editorial team.
     '''
     template_name = "code/_v2/suggest_repo.html"
+    form_class = SuggestRepoForm
     
-    def get(self, request, *args, **kwargs):
-        '''
-        Render the suggestion form.
-        '''
-        context = {
-            'form': SuggestRepoForm()
+    def form_valid(self, form, **kwargs):
+        context = self.get_context_data(**kwargs)
+        
+        data=form.cleaned_data
+        
+        # human-friendly version of `repo_difficulty` form value
+        try:
+            data['repo_difficulty'] = dict(REPO_DIFFICULTY_CHOICES)[data['repo_difficulty']]
+        except:
+            pass
+        
+        email_context = {
+            'data': data
         }
-        
-        return render(request, self.template_name, context)
+    
+        # render text and html versions of email body
+        # both plain txt for now
+        text_content = render_to_string(
+            'code/_v2/emails/suggest_repo.txt',
+            email_context,
+        )
+        html_content = render_to_string(
+            'code/_v2/emails/suggest_repo.html',
+            email_context
+        )
 
-    def post(self, request, *args, **kwargs):
-        '''
-        Process the submitted form, send email to editorial staff,
-        give reader a success message. (Form validation happens in
-        the template.)
-        '''
-        context = {}
-        form = SuggestRepoForm(request.POST)
-        if form.is_valid():
-            data=form.cleaned_data
-        
-            email_context = {
-                'name': data.get('name', ''),
-            }
-        
-            # render text and html versions of email body
-            # both plain txt for now
-            text_content = render_to_string(
-                'code/_v2/emails/suggest_repo.txt',
-                email_context,
-            )
-            html_content = render_to_string(
-                'code/_v2/emails/suggest_repo.txt',
-                email_context
-            )
+        send_multipart_email(
+            subject = 'Source: Repo submission from a reader',
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = settings.EDITORIAL_EMAIL,
+            text_content = text_content,
+            html_content = html_content
+        )
 
-            send_multipart_email(
-                subject = 'Source: Repo submission from a reader',
-                from_email = settings.DEFAULT_FROM_EMAIL,
-                to = settings.EDITORIAL_EMAIL,
-                text_content = text_content,
-                html_content = html_content
-            )
+        context.update({'success': 'True'})
 
-            context.update({'success': 'True'})
-        return render(request, self.template_name, context)
-        
+        return render(self.request, self.template_name, context)

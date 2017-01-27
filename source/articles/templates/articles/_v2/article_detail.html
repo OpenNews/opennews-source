@@ -22,6 +22,31 @@
 {% endblock %}
 
 {% block head_extra %}{{ super() }}
+<script>
+    var disqus_shortname = "source-opennews";
+    var disqus_config = function () {
+        this.page.url = '//{{ request.get_host() }}{{ article.get_absolute_url() }}';
+        this.page.identifier = 'article_detail_{{ article.pk }}';
+        this.page.title = '{{ article.title }} - Source';
+        
+        this.callbacks.onReady = [function( comment ) {
+            $( document ).trigger( "comments-loaded" );
+        } ];
+        this.callbacks.onNewComment = [function( comment ) { 
+            $( document ).trigger( "comments-new" );
+        }];
+    };
+    
+    (function() {
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//'+ disqus_shortname + '.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
 {% if article.article_js_header %}{{ article.article_js_header|safe }}{% endif %}
 {% endblock %}
 
@@ -119,21 +144,21 @@
 
             <div class="article-links-relevant">
                 {% if article.get_live_person_set().exists() %}
-                <h2 class="hed-category">People</h2>
+                <h2 class="hed-sub">People</h2>
 
                 <ul>{% for person in article.get_live_person_set() %}
                     <li><a href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>{% endfor %}
                 </ul>{% endif %}
 
                 {% if article.get_live_organization_set().exists() %}
-                <h2 class="hed-category">Organizations</h2>
+                <h2 class="hed-sub">Organizations</h2>
 
                 <ul>{% for organization in article.get_live_organization_set() %}
                     <li><a href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>{% endfor %}
                 </ul>{% endif %}
 
                 {% if article.get_live_code_set().exists() %}
-                <h2 class="hed-category">Code</h2>
+                <h2 class="hed-sub">Code</h2>
 
                 <ul>{% for code in article.get_live_code_set() %}
                     <li><a href="{{ code.get_absolute_url() }}">{{ code.name|typogrify }}</a></li>{% endfor %}

@@ -33,6 +33,9 @@ a:focus {
 blockquote {
     margin: 1.5em;
 }
+blockquote > * {
+    display: block;
+}
 blockquote:before,
 blockquote:after {
     content: "";
@@ -48,9 +51,12 @@ blockquote:after {
 blockquote:before {
     margin-bottom: 0.75em;
 }
+pre,
+code {
+    font-family: map-get( $fonts, "mono" );
+}
 code {
     color: #469A56;
-    font-family: map-get( $fonts, "mono" );
     font-size: 0.8125em;
 }
 figure {
@@ -63,14 +69,15 @@ pre {
     background: #545454;
     border: 6px solid #F5F5F5,
             1px solid #E2E2E2;
+    color: #FFF;
     padding: 1em;
-    font-size: 0.85em;
+    font-size: 0.75em;
     overflow: auto;
 }
 @media (min-width: 50em) {
     pre {
-        font-size: 18px;
-        font-size: 1.125rem;
+        font-size: 16px;
+        font-size: 1rem;
     }
 }
 @media (min-width: 60em) {
@@ -82,8 +89,8 @@ pre {
     }
 }
 pre code {
-    color: #FFF;
-    font-size: 0.9em;
+    color: inherit;
+    font-size: 1em;
 }
 ol,
 p,

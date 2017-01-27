@@ -21,8 +21,6 @@ from .common import *  # noqa
 
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-# Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # This ensures that Django will be able to detect a secure connection
@@ -62,6 +60,8 @@ INSTALLED_APPS += ("gunicorn", )
 
 BASE_SITE_URL = 'https://source.opennews.org'
 
+ENGAGE_ROBOTS = False
+
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uploaded Media Files
@@ -86,9 +86,14 @@ AWS_HEADERS = {
 
 # EMAIL
 # ------------------------------------------------------------------------------
-#EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-#MAILGUN_ACCESS_KEY = env('DJANGO_MAILGUN_API_KEY')
-#MAILGUN_SERVER_NAME = env('DJANGO_MAILGUN_SERVER_NAME')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = env("MAILGUN_SMTP_LOGIN")
+EMAIL_HOST_PASSWORD = env("MAILGUN_SMTP_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default='[Source] ')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 

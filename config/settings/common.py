@@ -87,17 +87,16 @@ FIXTURE_DIRS = (
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
                          default='Source <source@opennews.org>')
 
 # MANAGER CONFIGURATION
 # ------------------------------------------------------------------------------
 ADMINS = [
-    ('Ryan Pitts', 'ryan.a.pitts@gmail.com'),
+    ('Ryan Pitts', 'ryan@opennews.org'),
 ]
 MANAGERS = ADMINS
-EDITORIAL_EMAIL = 'source@opennews.org'
+EDITORIAL_EMAIL = ['ryan@opennews.org', 'source@opennews.org']
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -242,7 +241,6 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-DEBUG = env.bool('DJANGO_DEBUG', False)
 TWITTER_CONSUMER_KEY = env.str('TWITTER_CONSUMER_KEY', None)
 TWITTER_CONSUMER_SECRET = env.str('TWITTER_CONSUMER_SECRET', None)
 TWITTER_ACCESS_TOKEN = env.str('TWITTER_ACCESS_TOKEN', None)
