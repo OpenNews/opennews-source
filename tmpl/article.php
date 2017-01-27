@@ -45,17 +45,11 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
 <script>
 // If there are Disqus-specific variables to be included, uncomment this block and add them below.
-var disqus_shortname = "sourcedev";
-
 var disqus_config = function () {
-    this.callbacks.onReady = [function( comment ) {
-        $( document ).trigger( "comments-loaded" );
-    } ];
-    this.callbacks.onNewComment = [function( comment ) { 
-        $( document ).trigger( "comments-new" );
-    }];
+    this.page.url = '//opennews-source-staging.herokuapp.com/articles/introducing-agate/';
+    this.page.identifier = 'article_detail_475';
+    this.page.title = 'Introducing agate: a Better Data Analysis Library for Journalists - Source';
 };
-
 </script>
 
 </head>
@@ -216,7 +210,7 @@ var disqus_config = function () {
                 <p>My main focus for the weeks to come will be to field-test the project and to make the software more accessible for the audience. I am very much looking forward to our 1.0 release, that I will consider ready when anyone can install Datastringer on his machine and get up and running without coding.</p>
 
                 <ul class="links-article-social">
-                    <li><a class="icon icon-comments" href="#disqus_thread">Comments</a></li>
+                    <li><a class="icon icon-comments" data-disqus-identifier="article_detail_475" href="#disqus_thread">Comments</a></li>
                     <li><a class="icon icon-twitter" href="#">Share on Twitter</a></li>
                     <li><a class="icon icon-facebook" href="#">Share on Facebook</a></li>
                 </ul><!-- /end .links-article-social -->
