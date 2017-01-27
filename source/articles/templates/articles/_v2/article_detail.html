@@ -27,13 +27,6 @@
         this.page.url = '//{{ request.get_host() }}{{ article.get_absolute_url() }}';
         this.page.identifier = 'article_detail_{{ article.pk }}';
         this.page.title = '{{ article.title }} - Source';
-        
-        this.callbacks.onReady = [function( comment ) {
-            $( document ).trigger( "comments-loaded" );
-        } ];
-        this.callbacks.onNewComment = [function( comment ) { 
-            $( document ).trigger( "comments-new" );
-        }];
     };
 </script>
 
@@ -126,7 +119,7 @@
                 {% endfor %}
 
                 <ul class="links-article-social">
-                    <li><a class="icon icon-comments" href="#disqus_thread">Comments</a></li>
+                    <li><a class="icon icon-comments" href="#disqus_thread" data-disqus-identifier="article_detail_{{ article.pk }}">Comments</a></li>
                     <li><a class="icon icon-twitter" href="#">Share on Twitter</a></li>
                     <li><a class="icon icon-facebook" href="#">Share on Facebook</a></li>
                 </ul><!-- /end .links-article-social -->

@@ -4,7 +4,7 @@
 
     // Any links to #disqus_thread? If so, load count.js.
     var utils = SRC.utils,
-        $commentlink = $( "a[href~='#disqus_thread']" ),
+        $commentlink = $( "a[href='#disqus_thread']" ),
         countScript = "https://" + SRC.config.disqus_id + ".disqus.com/count.js",
         commentsClass = "comments-loaded";
 
@@ -51,7 +51,7 @@
         var html = $link.html(),
             count = parseInt( html );
 
-        if ( typeof count === "number" ) {
+        if ( typeof count === "number" && !isNaN( count ) ) {
             var prettyCount = prettifyNumber( count );
 
             $link.html( prettyCount );
@@ -61,20 +61,22 @@
         }
     };
 
+    SRC.utils.updateCount = updateCount;
+
     if ( $commentlink.length ) {
         // Load the count.js script
-        SRC.utils.loadJS( countScript );
+        SRC.utils.loadJS( countScript, function() {
+            if ( DISQUSWIDGETS ) {
+                DISQUSWIDGETS.getCount( {
+                    reset: true
+                } );
 
-        $( document ).on( "comments-loaded", function( $link ) {
-            // NOTE: There should be a less hacky way to time this, but Disqus’ events seem to be locked up pretty tight. So until then, we’re using `setTimeout` to avoid any race conditions.
-            setTimeout( function() {
-                updateCount( $link );
-            }, 1000 );
-        }( $commentlink ) );
-
-        $( document ).on( "comments-new", function( $link ) {
-            updateCount( $link );
-        }( $commentlink ) );
+                // NOTE: There should be a less hacky way to time this, but Disqus’ events seem to be locked up pretty tight. So until a better way emerges, we’re using `.on( "load" )` to avoid any race conditions.
+                $( window ).on( "load", function() {
+                    updateCount( $commentlink );
+                } );
+            }
+        } );
     }
 
 }( jQuery ) );
