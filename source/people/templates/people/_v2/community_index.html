@@ -1,0 +1,58 @@
+{% extends "people/_v2/_base_community.html" %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+            <div class="content-main">
+                <h1 class="page-title-lead">Community</h1>
+
+                <div class="mod main-lead">
+                    <p>Who&rsquo;s doing the work, and where they&rsquo;re doing it.</p>
+                </div><!-- /end .mod.main-lead -->
+                
+                <div class="mod">
+                    <h2 class="hed-label">People</h2>
+
+                    <ul class="list-promos">
+                    {% for person in people %}
+                        <li class="src-promo">
+                            <a href="{{ person.get_absolute_url() }}">
+                                {% if person.photo %}
+                                <img src="{{ MEDIA_URL }}{{ thumbnail(person.photo, "300x200", crop="center") }}" alt="{{ person.name() }}" />
+                                {% else %}
+                                <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ person.name() }}" />
+                                {% endif %}
+                                <h3 class="hed-promo">{{ person.name()|smartypants }}</h3>
+                                <ul class="profile-links">
+                                    <li class="has-icon icon-company">{% for organization in person.get_live_organization_set() %}{{ organization.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}</li>
+                                </ul>
+                            </a>
+                        </li><!-- /end .src-promo -->
+                    {% endfor %}
+                    </ul><!-- /end .list-promos -->
+
+                    <p class="cta-primary"><a class="link-cta" href="{{ url('person_list') }}">See more people</a></p>
+                </div><!-- /end .mod -->
+
+                <div class="mod">
+                    <h2 class="hed-label">Organizations</h2>
+
+                    <ul class="list-promos">
+                    {% for organization in organizations %}
+                        <li class="src-promo">
+                            <a href="{{ organization.get_absolute_url() }}">
+                                {% if organization.logo %}
+                                <img src="{{ MEDIA_URL }}{{ thumbnail(organization.logo, "300x200", crop="center") }}" alt="{{ organization.name }}" />
+                                {% else %}
+                                <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ organization.name }}" />
+                                {% endif %}
+                                <h3 class="hed-promo">{{ organization.name|smartypants }}</h3>
+                            </a>
+                        </li><!-- /end .src-promo -->
+                    {% endfor %}
+                    </ul><!-- /end .list-promos -->
+
+                    <p class="cta-primary"><a class="link-cta" href="{{ url('organization_list') }}">See more organizations</a></p>
+                </div><!-- /end .mod -->
+            </div><!-- /end .content-main -->
+
+            {% include "people/_v2/_community_aside.html" %}
+{% endblock %}
