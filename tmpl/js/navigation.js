@@ -1,7 +1,5 @@
 /*
 Component: Navigation toggle
-
-// TODO: replace with collapsible?
 */
 (function( $ ) {
 
@@ -10,9 +8,9 @@ Component: Navigation toggle
     var componentName = "nav-toggle",
         closeSelectors = "." + componentName + " .icon-close",
         pageClass = "page",
-        panelClass = "site-nav-links",
-        openClass = panelClass + "-open",
-        transitioningClass = panelClass + "-transitioning",
+        panelClass = "site-nav",
+        openClass = "is-" + panelClass + "-open",
+        transitioningClass = "is-transitioning",
         enhancedAttr = "data-enhanced-" + componentName,
         initSelector = "." + componentName + ":not([" + enhancedAttr + "])";
 
@@ -24,69 +22,27 @@ Component: Navigation toggle
                 sHref = $navToggle.attr( "href" ),
                 $navPanel = $( sHref ),
                 $body = $( "body" ),
-                screenBlock = '<span class="icon icon-close" href="#">Close</span>';
+                closeStr = '<span class="icon icon-close" href="#">Close</span>';
 
             if ( $navPanel ) {
+                $( ".header-main .nav-toggle" ).append( closeStr );
 
-                $navPanel.attr( "data-enhanced-site-nav", true );
+                $( ".site-nav" ).on( "expand", function() {
+                    $body.addClass( openClass );
 
-                // close method
-                var close = function( e ) {
-                    $navPanel
-                        .transEnd( function() {
-                            $body.removeClass( transitioningClass );
-                        } );
-
-                    $body
-                        .removeClass( openClass )
-                        .addClass( transitioningClass );
-                }
-
-                //open method
-                var open = function() {
-                    $navPanel
-                        .transEnd( function() {
-                            $body.removeClass( transitioningClass )
-                        });
-
-                    $body.addClass( transitioningClass + " " + openClass );
-                }
-
-                // toggle method
-                var toggle = function( e ) {
-                    if ( $body.is( "." + openClass ) ) {
-                        close();
-                    } else {
-                        open();
+                    if ( $( ".site-search" ).is( ".collapsible-expanded" ) ) {
+                        $( ".site-search .collapsible-header" ).trigger( "click" );
                     }
+                } );
 
-                    e.preventDefault();
-                }
-
-                // Insert the “close” link
-                $navToggle.append( screenBlock );
-
-                // Bind close, open, and toggle events to the panel
-                $navPanel.on( "close", close );
-                $navPanel.on( "open", open );
-                $navPanel.on( "toggle", toggle );
-
-                // Bind toggle event to, well, the toggle link
-                $navToggle.on( "click", toggle );
-
-                // When focusing on an element, close the panel if it’s open (and if the element is outside of the panel)
-                $( document ).on( "focusin", function( e ) {
-                    if ( $body.is( "." + openClass ) ) {
-                        if ( !$( e.target ).parents( '.' + panelClass ).length ) {
-                            $navPanel.trigger( "close" );
-                        }
-                    }
+                $( ".site-nav" ).on( "collapse", function() {
+                    $body.removeClass( openClass );
                 } );
 
                 // Close the panel on (throttled) resize
                 $( window ).on( "resize", SRC.utils.debounce( function() {
-                    if ( $body.is( "." + openClass ) ) {
-                        $navPanel.trigger( "close" );
+                    if ( $( "." + panelClass ).is( ".collapsible-expanded" ) ) {
+                        $( "." + panelClass + " .collapsible-header" ).trigger( "click" );
                     }
                 }, 250 ) );
             }

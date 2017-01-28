@@ -1,7 +1,5 @@
 /*
 Component: Search toggle
-
-// TODO: replace with collapsible?
 */
 (function( $ ) {
 
@@ -11,8 +9,8 @@ Component: Search toggle
         closeSelectors = "." + componentName + " .icon-close",
         pageClass = "page",
         panelClass = "site-search",
-        openClass = panelClass + "-open",
-        transitioningClass = panelClass + "-transitioning",
+        openClass = "is-" + panelClass + "-open",
+        transitioningClass = "is-transitioning",
         enhancedAttr = "data-enhanced-" + componentName,
         initSelector = "." + componentName + ":not([" + enhancedAttr + "])";
 
@@ -24,73 +22,27 @@ Component: Search toggle
                 sHref = $searchToggle.attr( "href" ),
                 $searchPanel = $( sHref ),
                 $body = $( "body" ),
-                screenBlock = '<span class="icon icon-close" href="#">Close</span>';
+                closeStr = '<span class="icon icon-close" href="#">Close</span>';
 
             if ( $searchPanel ) {
+                $( ".header-main .search-toggle" ).append( closeStr );
 
-                $searchPanel.attr( "data-enhanced-site-search", true );
+                $( "." + panelClass ).on( "expand", function() {
+                    $body.addClass( openClass );
 
-                // close method
-                var close = function() {
-                    $searchPanel
-                        .transEnd( function() {
-                            $body.removeClass( transitioningClass );
-                            // send focus to the menu button
-                            $searchToggle[ 0 ].focus();
-                        } );
-
-                    $body
-                        .removeClass( openClass )
-                        .addClass( transitioningClass );
-                }
-
-                //open method
-                var open = function() {
-                    $searchPanel
-                        .transEnd( function() {
-                            $body.removeClass( transitioningClass )
-                        });
-
-                    $searchPanel.find( "input[type=search]" )[ 0 ].focus();
-
-                    $body.addClass( transitioningClass + " " + openClass );
-                }
-
-                // toggle method
-                var toggle = function( event ) {
-                    if ( $body.is( "." + openClass ) ) {
-                        close();
-                    } else {
-                        open();
+                    if ( $( ".site-nav" ).is( ".collapsible-expanded" ) ) {
+                        $( ".site-nav .collapsible-header" ).trigger( "click" );
                     }
+                } );
 
-                    event.preventDefault();
-                }
-
-                // Insert the “close” link
-                $searchToggle.append( screenBlock );
-
-                // Bind close, open, and toggle events to the panel
-                $searchPanel.on( "close", close );
-                $searchPanel.on( "open", open );
-                $searchPanel.on( "toggle", toggle );
-
-                // Bind toggle event to, well, the toggle link
-                $searchToggle.on( "click", toggle );
-
-                // When focusing on an element, close the panel if it’s open (and if the element is outside of the panel)
-                $( document ).on( "focusin", function( event ) {
-                    if ( $body.is( "." + openClass ) ) {
-                        if ( !$( event.target ).parents( '.' + panelClass ).length ) {
-                            $searchPanel.trigger( "close" );
-                        }
-                    }
+                $( "." + panelClass ).on( "collapse", function() {
+                    $body.removeClass( openClass );
                 } );
 
                 // Close the panel on (throttled) resize
                 $( window ).on( "resize", SRC.utils.debounce( function() {
-                    if ( $body.is( "." + openClass ) ) {
-                        $searchPanel.trigger( "close" );
+                    if ( $( "." + panelClass ).is( ".collapsible-expanded" ) ) {
+                        $( "." + panelClass + " .collapsible-header" ).trigger( "click" );
                     }
                 }, 250 ) );
             }

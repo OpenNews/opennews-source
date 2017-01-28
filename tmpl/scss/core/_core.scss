@@ -386,7 +386,7 @@ Header
     text-indent: -1000em;
     width: 4em;
 }
-.site-header .icon-close {
+.enhanced .site-header .icon-close {
     background-color: #2676A0;
     border-radius: 0;
     bottom: 100%;
@@ -399,8 +399,8 @@ Header
     width: inherit;
     transition: bottom 0.2s, opacity 0.2s;
 }
-.site-nav-links-open .nav-toggle .icon-close,
-.site-search-open .search-toggle .icon-close {
+.is-site-nav-open .nav-toggle .icon-close,
+.is-site-search-open .search-toggle .icon-close {
     bottom: 0;
     opacity: 1;
 }
@@ -414,8 +414,6 @@ Header
     padding: 0 0.5em;
 }
 .site-nav-links {
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
     flex-wrap: wrap;
 }
@@ -443,17 +441,21 @@ Header
     color: #47BFF8;
     cursor: text;
 }
-.enhanced .site-nav {
+.site-nav.collapsible-enhanced {
     margin: 0 -3.055555555555555555%;        /* 44/1440 */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s, opacity 0.2s;
 }
-.site-nav-links-open .site-nav {
+.site-nav.collapsible-enhanced .site-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+.site-nav.collapsible-enhanced.collapsible-expanded {
     max-height: 22em;
     opacity: 1;
 }
-.supports-flex .site-nav-links-open .site-nav {
+.supports-flex .site-nav.collapsible-expanded {
     max-height: 11em;
 }
 // Move from a 2-up grid in the navigation menu to a centered, single row of links
@@ -467,6 +469,9 @@ Header
         border-bottom: none;
         flex-basis: 25%;
     }
+    .site-nav.collapsible-enhanced .site-nav-links {
+        max-height: 5em;
+    }
     .site-nav-links a {
         text-align: center;
         position: relative;
@@ -477,7 +482,7 @@ Header
 @media (min-width: 25em) {
     // From this point on, we’ll use `.site-logo a` to shim the height of the masthead
     .site-logo a {
-        display: inline-block;
+        display: block;
         justify-content: initial;
         padding: 0.8em 0;
     }
@@ -550,6 +555,9 @@ Header
         right: 0;
         top: 0;
     }
+    .site-nav.collapsible-enhanced .site-nav-links {
+        max-height: inherit;
+    }
     // Restore search icon to full size
     .enhanced .search-toggle .icon {
         background-color: inherit;
@@ -565,14 +573,12 @@ Header
         opacity: 0;
     }
     // Open/close states for the search toggle
-    .site-search-open.site-search-transitioning .search-toggle .icon-close {
+    .is-site-search-open .search-toggle .icon-close {
         transition-delay: 0.3s;
-    }
-    .site-search-open .search-toggle .icon-close {
         opacity: 1;
         transform: scale( 1 );
     }
-    .site-search-open .search-toggle .icon-search {
+    .is-site-search-open .search-toggle .icon-search {
         background-position: left 50% bottom -33px;
         background-size: 0 0;
         opacity: 0.1;
@@ -706,9 +712,6 @@ Site search
     margin: 3em -1em 0;
     zoom: 1;
 }
-.enhanced .site-search {
-    margin: 0;
-}
 .site-search:after {
     content: "";
     clear: both;
@@ -834,8 +837,9 @@ Site search
 Enhanced version
 */
 // Hide the search panel by default, and position it at the top of .page-main
-.enhanced .site-search {
+.site-search.collapsible-enhanced {
     left: 0;
+    margin: 0;
     margin-top: 0;
     max-height: 0;
     opacity: 0.5;
@@ -847,29 +851,30 @@ Enhanced version
     transform: translateZ( 0 );
     z-index: 1;
 }
+// Override “off” state for search collapsible’s content (our actual form)
+.site-search.collapsible-enhanced.collapsible-collapsed .collapsible-content {
+    display: flex;
+}
 .tmpl-article .page-main .site-search {
     margin-left: 0;
 }
 // Expanded/“open” state for the search panel
-.site-search-open .site-search {
+.site-search.collapsible-expanded {
     opacity: 1;
     max-height: 20em;
-}
-.site-search-open.site-search-transitioning .site-search {
+    transition: max-height 0.2s, opacity 0.2s;
     transition-delay: 0.3s;
 }
-.site-search[ data-enhanced-site-search ] .btn-search {
+.site-search.collapsible-enhanced .btn-search {
     background-size: 0 0;
-}
-.site-search-open.site-search-transitioning .site-search .btn-search {
     transition-delay: 0.5s;
 }
-
-.site-search-open .site-search .btn-search {
+.site-search.collapsible-enhanced.collapsible-expanded .btn-search {
     background-size: 20px auto;
+    transition-delay: 0;
 }
 @media (min-width: 50em) {
-    .site-search-open .site-search .btn-search {
+    .site-search.collapsible-enhanced.collapsible-expanded .btn-search {
         background-size: 33px 33px;
     }
 }
