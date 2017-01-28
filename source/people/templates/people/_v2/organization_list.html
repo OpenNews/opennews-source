@@ -1,0 +1,47 @@
+{% extends "people/_v2/_base_community.html" %}
+
+{% block page_title %}Organizations - {{ super() }}{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+            <div class="content-main">
+                <h1 class="page-title-lead">Organizations</h1>
+
+                <div class="mod main-lead">
+                    <p>Where our community works.</p>
+                </div><!-- /end .mod.main-lead -->
+                
+                <div class="mod">
+                    <ul>{% for organization in object_list %}
+                        <li class="profile-person profile-person-article">
+                            <h3 class="profile-name">
+                                <a href="{{ organization.get_absolute_url() }}">
+                                    <cite class="p-name">{{ organization.name|smartypants }}</cite>
+                                </a>
+                            </h3>
+                            
+                            <ul class="profile-links">
+                                {% if organization.location_string_city %}<li class="link-main p-org icon-company">{{ organization.location_string_city }}</li>{% endif %}
+                                {% if organization.twitter_username %}<li><a class="icon-twitter-alt" href="https://twitter.com/{{ organization.twitter_username }}">@{{ organization.twitter_username }}</a></li>{% endif %}
+                                {% if organization.github_username %}<li><a class="icon-github" href="https://github.com/{{ organization.github_username }}">{{ organization.github_username }}</a></li>{% endif %}
+                            </ul>
+                        </li><!-- /end .profile-person -->{% endfor %}
+                    </ul>
+                    
+                    <ul class="list-promos">
+                    {% for organization in object_list %}
+                        <li class="src-promo">
+                            <a href="{{ organization.get_absolute_url() }}">
+                                <h3 class="hed-promo">{{ organization.name|smartypants }}</h3>
+                                <ul class="profile-links">
+                                    <li class="link-main">{{ organization.location_string_city }}</li>
+                                    <li class="has-icon icon-company">Open jobs!</li>
+                                </ul>
+                            </a>
+                        </li><!-- /end .src-promo -->
+                    {% endfor %}
+                    </ul><!-- /end .list-promos -->
+                </div><!-- /end .mod -->
+            </div><!-- /end .content-main -->
+
+            {% include "people/_v2/_community_aside.html" %}
+{% endblock %}

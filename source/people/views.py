@@ -128,11 +128,20 @@ class PersonSearchJson(View):
 
 class OrganizationList(ListView):
     model = Organization
+    template_name = 'people/_v2/organization_list.html'
 
     def get_queryset(self):
         queryset = Organization.live_objects.exclude(show_in_lists=False).all()
         
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(OrganizationList, self).get_context_data(**kwargs)
+        
+        context['recent_jobs'] = get_recent_jobs(2)
+        context['recent_repos'] = get_recent_repos(3)
+        
+        return context
 
 class OrganizationDetail(DetailView):
     model = Organization
