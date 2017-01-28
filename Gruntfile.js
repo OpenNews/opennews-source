@@ -240,7 +240,7 @@ module.exports = function( grunt ) {
                     "Gruntfile.js",
                     "<%= _config.dir.templates %>**/*",
                 ],
-                tasks: [ "sass", "postcss", "cssmin", "concat", "bsReload" ]
+                tasks: [ "sass", "postcss", "cssmin", "concat", "uglify", "bsReload" ]
             },
         }
     } );
