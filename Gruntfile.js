@@ -81,6 +81,8 @@ module.exports = function( grunt ) {
                     "<%= _config.dir.templates %>js/lib/transition-support.js",
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
                     "<%= _config.dir.templates %>js/lib/ajaxsend.js",
+                    "<%= _config.dir.templates %>js/lib/collapsible.js",
+                    "<%= _config.dir.templates %>js/lib/collapsible.externaltoggle.js",
                     "<%= _config.dir.templates %>js/lib/repo.js",
                     "<%= _config.dir.templates %>js/navigation.js",
                     "<%= _config.dir.templates %>js/search.js",
@@ -238,7 +240,7 @@ module.exports = function( grunt ) {
                     "Gruntfile.js",
                     "<%= _config.dir.templates %>**/*",
                 ],
-                tasks: [ "sass", "postcss", "cssmin", "concat", "uglify", "bsReload" ]
+                tasks: [ "sass", "postcss", "cssmin", "concat", "bsReload" ]
             },
         }
     } );
