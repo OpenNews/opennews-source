@@ -27,16 +27,19 @@ Component: Search toggle
             if ( $searchPanel ) {
                 $( ".header-main .search-toggle" ).append( closeStr );
 
+                // When the panel is closed, remove the “is-open” class from the body element.
+                $( "." + panelClass ).on( "collapse", function() {
+                    $body.removeClass( openClass );
+                } );
+
+                // When the panel is opened, add the “is-open” class to the body element.        
                 $( "." + panelClass ).on( "expand", function() {
                     $body.addClass( openClass );
 
+                    // If the primary nav is open, close it.
                     if ( $( ".site-nav" ).is( ".collapsible-expanded" ) ) {
                         $( ".site-nav .collapsible-header" ).trigger( "click" );
                     }
-                } );
-
-                $( "." + panelClass ).on( "collapse", function() {
-                    $body.removeClass( openClass );
                 } );
 
                 // Close the panel on (throttled) resize

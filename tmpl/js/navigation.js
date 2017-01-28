@@ -25,18 +25,22 @@ Component: Navigation toggle
                 closeStr = '<span class="icon icon-close" href="#">Close</span>';
 
             if ( $navPanel ) {
+                // Insert the close icon
                 $( ".header-main .nav-toggle" ).append( closeStr );
 
-                $( ".site-nav" ).on( "expand", function() {
+                // When the panel is closed, remove the “is-open” class from the body element.
+                $( "." + panelClass ).on( "collapse", function() {
+                    $body.removeClass( openClass );
+                } );
+
+                // When the panel is opened, add the “is-open” class to the body element.
+                $( "." + panelClass ).on( "expand", function() {
                     $body.addClass( openClass );
 
+                    // If search is open, close it.
                     if ( $( ".site-search" ).is( ".collapsible-expanded" ) ) {
                         $( ".site-search .collapsible-header" ).trigger( "click" );
                     }
-                } );
-
-                $( ".site-nav" ).on( "collapse", function() {
-                    $body.removeClass( openClass );
                 } );
 
                 // Close the panel on (throttled) resize
