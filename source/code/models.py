@@ -213,3 +213,12 @@ def clear_caches_for_code(sender, instance, **kwargs):
             'code_list_by_tag',
             kwargs = { 'tag_slugs': tag.slug }
         ))
+
+def get_recent_repos(num):
+    recent_repos = Code.live_objects.order_by('-created')
+    try:
+        recent_repos = recent_repos[:num]
+    except:
+        recent_repos = None
+    
+    return recent_repos

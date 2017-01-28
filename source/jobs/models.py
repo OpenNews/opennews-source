@@ -138,3 +138,13 @@ def clear_caches_for_job(instance):
     # clear caches for related organization
     if instance.organization:
         expire_page_cache(instance.organization.get_absolute_url())
+
+def get_recent_jobs(num):
+    recent_jobs = Job.live_objects.order_by('-listing_start_date', '-created')
+    try:
+        recent_jobs = recent_jobs[:num]
+    except:
+        recent_jobs = None
+        
+    return recent_jobs
+    
