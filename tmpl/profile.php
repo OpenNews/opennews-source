@@ -140,13 +140,13 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                     <ol class="list-recently">
                         <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Principal Software Engineer</a></h3>
+                            <h3 class="hed-aside"><a href="#">Principal Software Engineer</a></h3>
 
                             <p><a class="has-icon icon-company" href="#">BBC News</a></p>
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Newsroom Developer</a></h3>
+                            <h3 class="hed-aside"><a href="#">Newsroom Developer</a></h3>
 
                             <p><a class="has-icon icon-company" href="#">The Financial Times</a></p>
                         </li><!-- /end .item-recent -->
@@ -160,7 +160,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                     <ol class="list-recently">
                         <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Stat Index</a></h3>
+                            <h3 class="hed-aside"><a href="#">Stat Index</a></h3>
 
                             <ul>
                                 <li><a class="has-icon icon-profile" href="#">Tiff Fehr</a></li>
@@ -168,7 +168,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Narrative Charts</a></h3>
+                            <h3 class="hed-aside"><a href="#">Narrative Charts</a></h3>
 
                             <ul>
                                 <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
@@ -176,7 +176,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                             </ul>
                         </li><!-- /end .item-recent -->
                         <li class="item-recent">
-                            <h3 class="hed-recent"><a href="#">Elex</a></h3>
+                            <h3 class="hed-aside"><a href="#">Elex</a></h3>
 
                             <ul>
                                 <li><a class="has-icon icon-profile" href="#">Simon Elvery</a></li>
