@@ -561,12 +561,8 @@ ul li {
 }
 
 .promo-lead {
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(216, 216, 216);
   padding-bottom: 3em;
   margin-bottom: 3em;
-  border-bottom: 1px solid #D8D8D8;
 }
 
 .promo-main .hed-label {
@@ -691,14 +687,15 @@ ul li {
   -webkit-background-size: auto 40%;
   background-size: auto 40%;
   color: rgb(255, 255, 255);
-  font-size: 1.4em;
-  margin: -3rem -5.3% 3rem;
+  font-size: 1.3em;
+  margin: -3rem 0px 3rem;
   padding: 2.3em 5.3%;
   transition: background-size 0.2s, -webkit-background-size 0.2s;
   -webkit-transition: background-size 0.2s, -webkit-background-size 0.2s;
   background-position: 100% 100%;
   background-color: #492350;
   color: #FFF;
+  margin: -3rem 0 3rem;
   -webkit-transition: -webkit-background-size 0.2s;
   transition: -webkit-background-size 0.2s;
   -o-transition: background-size 0.2s;
@@ -720,5 +717,10 @@ ul li {
 }
 
 .promo-src-about > * {
-  max-width: 27em;
+  max-width: 40em;
+}
+
+.promo-src-about a {
+  color: rgb(255, 255, 255);
+  color: #FFF;
 }
