@@ -4,7 +4,7 @@
 
         <ol class="list-recently">{% for job in recent_jobs %}
             <li class="item-recent">
-                <h3 class="hed-recent"><a href="{{ url('job_list') }}#job-{{ job.pk }}">{{ job.name }}</a></h3>
+                <h3 class="hed-aside"><a href="{{ url('job_list') }}#job-{{ job.pk }}">{{ job.name }}</a></h3>
 
                 <p><a class="has-icon icon-company" href="{{ job.organization.get_absolute_url() }}">{{ job.organization.name }}</a></p>
                 </ul>
@@ -20,7 +20,7 @@
 
         <ol class="list-recently">{% for code in recent_repos %}
             <li class="item-recent">
-                    <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
+                    <h3 class="hed-aside"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
 
                     <ul>
                         {% for person in code.get_live_person_set() %}

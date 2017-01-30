@@ -55,7 +55,7 @@
 
                         <ol class="list-recently">{% for code in recent_repos %}
                             <li class="item-recent">
-                                <h3 class="hed-recent"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
+                                <h3 class="hed-aside"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
 
                                 <ul>
                                     {% for person in code.get_live_person_set() %}
