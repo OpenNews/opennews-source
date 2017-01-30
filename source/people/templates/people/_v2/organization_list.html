@@ -12,15 +12,15 @@
                 
                 <div class="mod">
                     <ul>{% for organization in object_list %}
-                        <li class="profile-person profile-person-article">
+                        <li class="profile">
                             <h3 class="profile-name">
                                 <a href="{{ organization.get_absolute_url() }}">
-                                    <cite class="p-name">{{ organization.name|smartypants }}</cite>
+                                    {{ organization.name|smartypants }}
                                 </a>
                             </h3>
                             
                             <ul class="profile-links">
-                                {% if organization.location_string_city %}<li class="link-main p-org icon-company">{{ organization.location_string_city }}</li>{% endif %}
+                                {% if organization.location_string_city %}<li class="has-icon icon-location">{{ organization.location_string_city }}</li>{% endif %}
                                 {% if organization.twitter_username %}<li><a class="icon-twitter-alt" href="https://twitter.com/{{ organization.twitter_username }}">@{{ organization.twitter_username }}</a></li>{% endif %}
                                 {% if organization.github_username %}<li><a class="icon-github" href="https://github.com/{{ organization.github_username }}">{{ organization.github_username }}</a></li>{% endif %}
                             </ul>
