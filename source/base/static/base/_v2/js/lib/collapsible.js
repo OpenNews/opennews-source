@@ -86,34 +86,47 @@
 
 			this.header.addClass( this.options.headerClass );
 
-			if( this.options.instructions ){
-				this.header.attr( "title", this.options.instructions );
-			}
-
-			var id = "collapsible-" + idInt;
-
-			this.header.attr( "role", "button" );
-
-			this.header.attr( "aria-haspopup", "true" );
-
-			this.header.attr( "aria-controls", id );
-
-			this.header.attr( "tabindex", "0" );
-
-			this.content.attr( "role", "menu" );
+			this._addA11yAttrs();
 
 			this.content.addClass( this.options.contentClass );
 
-			this.content.attr( "id", id );
 		},
+
+		_addA11yAttrs: function(){
+			this.header.attr( "role", "button" );
+			this.header.attr( "tabindex", "0" );
+			if( this.options.instructions ){
+				this.header.attr( "title", this.options.instructions );
+			}
+		},
+
+		_removeA11yAttrs: function(){
+			this.header.removeAttr( "role" );
+			this.header.removeAttr( "tabindex" );
+			this.header.removeAttr( "title" );
+		},
+
+		_isNonInteractive: function(){
+			var computedContent = window.getComputedStyle( this.content[ 0 ], null );
+			var computedHeader = window.getComputedStyle( this.header[ 0 ], null );
+			return computedContent.getPropertyValue( "display" ) !== "none" && computedContent.getPropertyValue( "visibility" ) !== "hidden" && computedHeader.getPropertyValue( "cursor" ) === "default";
+		},
+
+		_checkInteractivity: function(){
+			if( this._isNonInteractive() ){
+				this._removeA11yAttrs();
+			}
+			else{
+				this._addA11yAttrs();
+			}
+		},
+
 
 		_bindEvents: function(){
 			var self = this;
 
 			this.header
-				// use the tappy plugin if it's available
-				// tap can't be namespaced yet without special events api: https://github.com/filamentgroup/tappy/issues/22
-				.bind( ( window.tappy ? "tap" : "click" ), function( e ){
+				.bind( ( "click" ), function( e ){
 					self.toggle( e.target );
 					e.preventDefault();
 				})
@@ -130,6 +143,18 @@
 			else {
 				this._expand();
 			}
+
+
+			this._checkInteractivity();
+			var resizepoll;
+			$( window ).bind( "resize", function(){
+				if( resizepoll ){
+					clearTimeout( resizepoll );
+				}
+				resizepoll = setTimeout( function(){
+					self._checkInteractivity.call( self );
+				}, 150 );
+			} );
 		},
 
 		collapsed: false,
@@ -138,9 +163,8 @@
 		_expand: function() {
 			this.element.removeClass( this.options.collapsedClass );
 			this.element.addClass( this.options.expandedClass );
-			this.collapsed = false;
 			this.header.attr( "aria-expanded", "true" );
-			this.content.attr( "aria-hidden", "false" );
+			this.collapsed = false;
 		},
 
 		expand: function () {
@@ -153,9 +177,8 @@
 		_collapse: function() {
 			this.element.addClass( this.options.collapsedClass );
 			this.element.removeClass( this.options.expandedClass );
-			this.collapsed = true;
 			this.header.attr( "aria-expanded", "false" );
-			this.content.attr( "aria-hidden", "true" );
+			this.collapsed = true;
 		},
 
 		collapse: function() {
