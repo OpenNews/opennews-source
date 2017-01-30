@@ -68,11 +68,11 @@
                         </a>
                     </h1>
 
-                    <a class="header-toggle nav-toggle" href="#nav-primary">
+                    <a data-collapsible-target class="header-toggle nav-toggle" href="#nav-primary">
                         <span class="icon icon-menu">Jump to site navigation</span>
                     </a>
 
-                    <a class="header-toggle search-toggle" href="#search">
+                    <a data-collapsible-target class="header-toggle search-toggle" href="#search">
                         <span class="icon icon-search">Search this site</span>
                     </a>
                 </div><!-- /end .header-main -->
@@ -84,7 +84,7 @@
                     ('/jobs/', 'jobs', 'Jobs'),
                 ] -%}
                 {% set active_nav = active_nav %}
-                <div class="site-nav" id="nav-primary">
+                <div class="site-nav collapsible collapsible-collapsed" id="nav-primary">
                     <ul class="site-nav-links">
                     {% for url, id, name in navigation_links %}
                         <li><a href="{{ url|e }}"{% if id == active_nav %} aria-describedby="current-page" class="is-active"{% endif %}>{{ name|safe|e }}</a></li>

@@ -1,4 +1,8 @@
-            <div class="site-search" id="search">
+            <div class="site-search collapsible collapsible-collapsed" id="search">
+                <h2 class="a11y">
+                    <span class="icon icon-search">Search this site</span>
+                </h2>
+
                 <div class="site-search-inner">
                     <form class="form-search">
                         <label class="hed-search" for="text-search">Search SOURCE:</label>

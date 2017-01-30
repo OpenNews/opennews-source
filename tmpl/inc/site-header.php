@@ -11,16 +11,20 @@ $is_active = ' aria-describedby="current-page" class="is-active"';
                     </a>
                 </h1>
 
-                <a class="header-toggle nav-toggle" href="#nav-primary">
+                <a data-collapsible-target class="header-toggle nav-toggle" href="#nav-primary">
                     <span class="icon icon-menu">Jump to site navigation</span>
                 </a>
 
-                <a class="header-toggle search-toggle" href="#search">
+                <a data-collapsible-target class="header-toggle search-toggle" href="#search">
                     <span class="icon icon-search">Search this site</span>
                 </a>
             </div><!-- /end .header-main -->
 
-            <div class="site-nav" id="nav-primary">
+            <div class="site-nav collapsible collapsible-collapsed" id="nav-primary">
+                <h2 class="a11y" href="#nav-primary">
+                    <span class="icon icon-menu">Navigation</span>
+                </h2>
+
                 <ul class="site-nav-links">
                     <li><a href="#"<?php if ( $current_page == "articles" ) { echo $is_active; }?>>Articles</a></li>
                     <li><a href="#"<?php if ( $current_page == "guides" ) { echo $is_active; }?>>Guides</a></li>

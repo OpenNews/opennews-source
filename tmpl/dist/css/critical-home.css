@@ -52,6 +52,15 @@ hr {
   height: 0;
 }
 
+.a11y {
+  clip: rect(1px 1px 1px 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .squelch {
   display: none;
 }
@@ -314,10 +323,10 @@ ul li {
 }
 
 .site-nav-links {
-  display: -webkit-box;
-  -webkit-flex-wrap: wrap;
-  display: -ms-flexbox;
   display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -376,7 +385,7 @@ ul li {
 
 @media (min-width: 25em) {
   .site-logo a {
-    display: inline-block;
+    display: block;
     padding: 0.8em 0px;
     -webkit-box-pack: initial;
     -webkit-justify-content: initial;
