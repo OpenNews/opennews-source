@@ -1805,14 +1805,14 @@ Profiles
     }
 }
 // On profile pages, we’ll move to a 2-column layout on wider screens
-.profile-person-lead .profile-bio {
+.profile-lead .profile-bio {
     clear: right;
 }
-.profile-person-lead .page-title-lead {
+.profile-lead .page-title-lead {
     max-width: 18em;
 }
 @media (min-width: 30em) {
-    .profile-person-lead .profile-bio {
+    .profile-lead .profile-bio {
         clear: none;
     }
 }
