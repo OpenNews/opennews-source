@@ -103,6 +103,7 @@ li a:focus {
         <li><a href="profile.php">Person Profile</a></li>
         <li><a href="article.php">Article</a></li>
         <li><a href="landing-code.php">Landing (Code)</a></li>
+        <li><a href="list-orgs.php">List: Organizations</a></li>
     </ul>
 </div>
 

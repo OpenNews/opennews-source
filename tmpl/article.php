@@ -240,7 +240,7 @@ var disqus_config = function () {
                     <h2 class="hed-label">Credits</h2>
 
                     <ul>
-                        <li class="profile-person profile-person-article h-card">
+                        <li class="profile h-card">
                             <h3 class="profile-name">
                                 <a href="#">
                                     <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
@@ -256,7 +256,7 @@ var disqus_config = function () {
                                 <li><a class="u-url icon-link" href="#">Visit website</a></li>
                             </ul>
                         </li><!-- /end .profile-person -->
-                        <li class="profile-person profile-person-article h-card">
+                        <li class="profile h-card">
                             <h3 class="profile-name">
                                 <a href="#">
                                     <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />

@@ -60,7 +60,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                 <a class="hed-label" href="#">People</a>
 
-                <div class="profile-person profile-person-lead h-card">
+                <div class="profile profile-lead h-card">
                     <h1 class="page-title-lead">
                         <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
                         <span class="p-name">Latoya Peterson</span>
