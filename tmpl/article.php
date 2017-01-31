@@ -65,7 +65,7 @@ var disqus_config = function () {
     <main>
         <div class="page-main">
             <div class="article-matter-front">
-                <p class="hed-label">Project<span class="a11y">:</span></p>
+                <a class="hed-label" href="#">Project<span class="a11y">:</span></a>
 
                 <h1 class="page-title-lead">From the BBC News Labs: Datastringer</h1>
 
