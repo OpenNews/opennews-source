@@ -4,7 +4,7 @@ Form elements
 
 -*/
 .form-submit p,
-.enhanced .form-phrase,
+.form-phrase[data-enhanced-form-phrase],
 .msg-error,
 textarea {
     max-width: 40em;
@@ -95,16 +95,16 @@ p.msg-error {
     .form-submit label + * {
         flex: 1;
     }
-    .enhanced p.form-phrase,
-    .enhanced .form-phrase p {
+    [data-enhanced-form-phrase] p.form-phrase,
+    .form-phrase[data-enhanced-form-phrase] p {
         display: inline-block;
         margin-bottom: 0;
         vertical-align: bottom;
     }
-    .enhanced .form-phrase {
+    .form-phrase[data-enhanced-form-phrase] {
         line-height: 1.5;
     }
-    .enhanced .form-phrase .field-text {
+    .form-phrase[data-enhanced-form-phrase] .field-text {
         border-width: 0 0 1px;
     }
 }
