@@ -185,7 +185,10 @@
                     <ul class="list-promos">{% for recent_article in recent_articles %}
                         <li class="src-promo">
                             <a href="{{ recent_article.get_absolute_url() }}">
-                                {% if recent_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(recent_article.image, "300x200", crop="center") }}" alt="" />{% endif %}
+                                {% if recent_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(recent_article.image, "300x200", crop="center") }}" alt="{{ recent_article.title }}" />
+                                {% else %}
+                                <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ article.title }}" />
+                                {% endif %}
                                 <h3 class="hed-promo">{{ recent_article.title|typogrify }}</h3>
                             </a>
                         </li><!-- /end .src-promo -->{% endfor %}
