@@ -22,7 +22,7 @@ module.exports = function( grunt ) {
         _config: {
             dir: {
                 templates: "tmpl/",
-                output: "tmpl/dist/"
+                output: "source/base/static/base/_v2/dist/"
             }
         },
 
@@ -57,9 +57,26 @@ module.exports = function( grunt ) {
         clean: {
             dist: [
                 "<%= _config.dir.output %>css/**/*",
+                "source/base/static/base/_v2/img/**/*",
                 "<%= _config.dir.output %>js/**/*"
             ]
         },
+
+        copy: {
+            images: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= _config.dir.templates %>/img/',
+                        src: [
+                            '**'
+                        ],
+                        dest: 'source/base/static/base/_v2/img/'
+                    },
+                ],
+            }
+        },
+
 
         concat: {
             js_initial: {
