@@ -22,7 +22,7 @@ module.exports = function( grunt ) {
         _config: {
             dir: {
                 templates: "tmpl/",
-                output: "tmpl/dist/"
+                output: "source/base/static/base/_v2/dist/"
             }
         },
 
@@ -57,9 +57,26 @@ module.exports = function( grunt ) {
         clean: {
             dist: [
                 "<%= _config.dir.output %>css/**/*",
+                "source/base/static/base/_v2/img/**/*",
                 "<%= _config.dir.output %>js/**/*"
             ]
         },
+
+        copy: {
+            images: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= _config.dir.templates %>/img/',
+                        src: [
+                            '**'
+                        ],
+                        dest: 'source/base/static/base/_v2/img/'
+                    },
+                ],
+            }
+        },
+
 
         concat: {
             js_initial: {
@@ -78,7 +95,6 @@ module.exports = function( grunt ) {
                     // jquery.min.js needs to be first
                     "<%= _config.dir.templates %>js/lib/jquery.min.js",
                     // Miscellaneous modules/libraries can be loaded here, in preferred order of execution
-                    "<%= _config.dir.templates %>js/lib/transition-support.js",
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
                     "<%= _config.dir.templates %>js/lib/ajaxsend.js",
                     "<%= _config.dir.templates %>js/lib/collapsible.js",
@@ -240,7 +256,7 @@ module.exports = function( grunt ) {
                     "Gruntfile.js",
                     "<%= _config.dir.templates %>**/*",
                 ],
-                tasks: [ "sass", "postcss", "cssmin", "concat", "uglify", "bsReload" ]
+                tasks: [ "sass", "postcss", "cssmin", "concat", "uglify", "copy", "bsReload" ]
             },
         }
     } );
@@ -253,6 +269,7 @@ module.exports = function( grunt ) {
         "cssmin",
         "concat",
         "uglify",
+        "copy",
         "grunticon",
         "browserSync",
         "watch"

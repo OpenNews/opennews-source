@@ -7,7 +7,10 @@ $is_active = ' aria-describedby="current-page" class="is-active"';
             <div class="header-main">
                 <h1 class="site-logo">
                     <a href="/">
-                        <img src="/svg/logo-source.svg" onerror="this.src='/dist/svg/png/logo-source.png'; return false" alt="Source" />
+                        <picture>
+                            <source srcset="/source/base/static/base/_v2/svg/logo-source.svg" type="image/svg+xml" />
+                            <img src="/source/base/static/base/_v2/dist/svg/png/logo-source.png" alt="Source" />
+                        </picture>
                     </a>
                 </h1>
 

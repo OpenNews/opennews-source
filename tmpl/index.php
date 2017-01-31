@@ -16,7 +16,7 @@ $rootpath = $_SERVER['DOCUMENT_ROOT'];
 window.SRC = {};
 window.SRC.config = {};
 SRC.config.typekit = "jyd1gcb";
-<?php include( $rootpath . "/js/typekit.js" ); ?>
+<?php include( $rootpath . "/tmpl/js/typekit.js" ); ?>
 </script>
 
 <style>

@@ -14,34 +14,34 @@ $current_page = "community";
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="grunticon" content="/dist/svg/" />
-<meta name="fullJS" content="/dist/js/main.js" />
-<meta name="fullCSS" content="/dist/css/main.css" />
+<meta name="grunticon" content="/source/base/static/base/_v2/dist/svg/" />
+<meta name="fullJS" content="/source/base/static/base/_v2/dist/js/main.js" />
+<meta name="fullCSS" content="/source/base/static/base/_v2/dist/css/main.css" />
 
-<script><?php include( $rootpath . "/dist/js/initial.js" ); ?></script>
+<script><?php include( $rootpath . "/source/base/static/base/_v2/dist/js/initial.js" ); ?></script>
 
 <?php
 if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 ?>
-<link href="/dist/css/main.css" rel="stylesheet" />
+<link href="/source/base/static/base/_v2/dist/css/main.css" rel="stylesheet" />
 <?php
 } else {
     if ( isset( $criticalcss ) ) {
 ?>
-<style><?php include( $rootpath . "/dist/css/" . $criticalcss ); ?></style>
+<style><?php include( $rootpath . "/source/base/static/base/_v2/dist/css/" . $criticalcss ); ?></style>
 <?php
     } else {
 ?>
-<link href="/dist/css/main.css" rel="stylesheet" />
+<link href="/source/base/static/base/_v2/dist/css/main.css" rel="stylesheet" />
 <?php
     }
 }
 ?>
 
 <script>document.createElement( "picture" );</script>
-<script src="/dist/js/lib/picturefill.js" async></script>
+<script src="/source/base/static/base/_v2/dist/js/lib/picturefill.js" async></script>
 
-<noscript><link href="/dist/svg/icons.fallback.css" rel="stylesheet" /></noscript>
+<noscript><link href="/source/base/static/base/_v2/dist/svg/icons.fallback.css" rel="stylesheet" /></noscript>
 
 </head>
 
@@ -50,7 +50,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 <div class="page">
 
     <?php
-    include($rootpath . "/inc/site-header.php");
+    include($rootpath . "/tmpl/inc/site-header.php");
     ?>
 
     <main>
@@ -62,7 +62,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
                 <div class="profile profile-lead h-card">
                     <h1 class="page-title-lead">
-                        <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
+                        <img class="profile-photo u-photo" src="/tmpl/img/avatar.jpg" alt="" />
                         <span class="p-name">Latoya Peterson</span>
                     </h1>
 
@@ -111,7 +111,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                     <ol class="list-articles">
                         <li>
                             <a href="#">
-                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                                 <h3 class="hed-article-title">Just One Thing: A Year in Review, Part 2</h3>
                                 <h4 class="hed-article-subhed">Appreciation of usefulness and bar-raising at the end of a long, complicated year</h4>
 
@@ -122,7 +122,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                         </li>
                         <li>
                             <a href="#">
-                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                                 <h3 class="hed-article-title">Mapping Inspiration: A Q&amp;A with Latoya Peterson</h3>
                                 <h4 class="hed-article-subhed">How Peterson works with Fusion’s interactive team to make beautiful things happen</h4>
                                 <div class="summary">
@@ -189,12 +189,12 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 </div><!-- /end .mod -->
             </div><!-- /end .content-aside -->
 
-            <?php include($rootpath . "/inc/site-search.php"); ?>
+            <?php include($rootpath . "/tmpl/inc/site-search.php"); ?>
 
         </div><!-- /end .page-main -->
     </main>
 
-    <?php include($rootpath . "/inc/site-footer.php"); ?>
+    <?php include($rootpath . "/tmpl/inc/site-footer.php"); ?>
 
 </div><!-- /end .page -->
 

@@ -5,7 +5,10 @@
                 <div class="foot-content">
                     <h2 class="foot-logo">
                         <a href="/">
-                            <img src="/svg/logo-source.svg" onerror="this.src='/dist/svg/png/logo-source.png'; return false" alt="Source" />
+                            <picture>
+                                <source srcset="/source/base/static/base/_v2/svg/logo-source.svg" type="image/svg+xml" />
+                                <img src="/source/base/static/base/_v2/dist/svg/png/logo-source.png" alt="Source" />
+                            </picture>
                         </a>
                     </h2>
 
@@ -13,7 +16,7 @@
 
                     <p>Learn more <a href="#">about the project</a> or <a href="#">contribute your work</a>. <a href="#">Contact us</a>.</p>
 
-                    <p><a class="link-cc" href="https://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a></p>
+                    <p><a class="link-cc" href="https://creativecommons.org/licenses/by/3.0/"><img src="/source/base/static/base/_v2/img/cc.png" alt="" />CC Attribution 3.0</a></p>
                 </div><!-- /end .foot-content -->
                 <div class="foot-aside">
                     <h3 class="hed-foot">Connect</h3>
@@ -29,7 +32,10 @@
                 <div class="foot-content">
                     <h2 class="foot-logo">
                         <a href="https://opennews.org">
-                            <img src="/svg/logo-opennews.svg" onerror="this.src='/dist/svg/png/logo-opennews.png'; return false" alt="Source" />
+                            <picture>
+                                <source srcset="/source/base/static/base/_v2/svg/logo-opennews.svg" type="image/svg+xml" />
+                                <img src="/source/base/static/base/_v2/dist/svg/png/logo-opennews.png" alt="Knight-Mozilla OpenNews" />
+                            </picture>
                         </a>
                     </h2>
 
