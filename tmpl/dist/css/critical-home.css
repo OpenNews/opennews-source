@@ -547,15 +547,16 @@ ul li {
 }
 
 .hed-label {
-  background-color: rgb(240, 71, 54);
+  background-color: rgb(165, 44, 32);
   color: rgb(255, 255, 255);
   display: inline-block;
   font-size: 0.8125em;
   font-weight: 700;
   line-height: 1;
   padding: 1em 1.2em;
+  margin-bottom: 1em;
   text-transform: uppercase;
-  background-color: #F04736;
+  background-color: #A52C20;
   color: #FFF;
   /* 13/16 */
 }
