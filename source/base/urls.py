@@ -16,7 +16,7 @@ FEED_CACHE_TIME = getattr(settings, 'FEED_CACHE_SECONDS', 60*15)
 BASE_URLS = [
     url(
         regex = '^$',
-        view = cache_page(STANDARD_CACHE_TIME)(HomepageView.as_view(template_name='homepage.html')),
+        view = cache_page(STANDARD_CACHE_TIME)(HomepageView.as_view()),
         kwargs = {},
         name = 'homepage',
     ),

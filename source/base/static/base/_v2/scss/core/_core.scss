@@ -215,7 +215,7 @@ If a browser DOES support media queries, then the “proper” layout is restore
 .page-main {
     background-color: #FFF;
     background-position: 100% 0;
-    color: #4D4D4D;
+    color: map-get( $colors, "src-text-default" );
     padding: 1em 4.758364312267657992%;    /* 64/1345 */
     padding-bottom: 4vw;
     padding-top: 4vw;
@@ -944,14 +944,28 @@ Headings
 }
 // .hed-label - little red headlines, they look like labels, naming things is difficult
 .hed-label {
-    background-color: map-get( $colors, "src-red" );
+    background-color: map-get( $colors, "src-red-dark" );
     color: #FFF;
     display: inline-block;
     font-size: 0.8125em;    /* 13/16 */
     font-weight: 700;
     line-height: 1;
     padding: 1em 1.2em;
+    margin-bottom: 1em;
     text-transform: uppercase;
+}
+a.hed-label {
+    background-color: map-get( $colors, "src-red" );
+    text-decoration: none;
+    transition: 0.2s background-color;
+}
+a.hed-label:after {
+    content: " »";
+}
+a.hed-label:focus,
+a.hed-label:hover {
+    background-color: map-get( $colors, "src-red-dark" );
+    color: #FFF;
 }
 // .page-title-lead is, well, the lead/primary hed on articles + landing pages
 .page-title-lead {
@@ -1145,7 +1159,6 @@ Lists!
 Lead promo
 */
 .promo-lead {
-    border-bottom: 1px solid #D8D8D8;
     padding-bottom: 3em;
     margin-bottom: 3em;
 }
@@ -1229,8 +1242,8 @@ Lead promo
     background-position: 100% 100%;
     background-size: auto 40%;
     color: #FFF;
-    font-size: 1.4em;
-    margin: -3rem -5.3% 3rem;
+    font-size: 1.3em;
+    margin: -3rem 0 3rem;
     padding: 2.3em 5.3%;
     transition: background-size 0.2s;
 }
@@ -1245,7 +1258,7 @@ Lead promo
     }
 }
 .promo-src-about > * {
-    max-width: 27em;
+    max-width: 40em;
 }
 .promo-src-about a {
     color: #FFF;
@@ -1336,6 +1349,9 @@ a:hover .hed-promo {
         margin-right: 3%;
         margin-bottom: 0;
     }
+    .src-promo:nth-child( 3n ) {
+        margin-right: 0;
+    }
     .src-promo:first-child {
         width: inherit;
     }
@@ -1346,14 +1362,6 @@ a:hover .hed-promo {
 @media (min-width: 50em) {
     .list-promos {
         font-size: 1.25em;    /* 20 / 16 */
-    }
-    .tmpl-home .src-promo,
-    .tmpl-home .list-promos:after {
-        flex: 0 1 21%;
-        margin-right: 4%;
-    }
-    .tmpl-home .hed-promo {
-        font-size: 0.9em;
     }
 }
 // “Long” (block) and “short” (inline) lists of hashtags
@@ -1516,9 +1524,6 @@ ul.links-article-social li {
     margin-bottom: 1em;
     padding-bottom: 1em;
 }
-.hed-aside {
-    margin-bottom: 0.5em;
-}
 .item-recent:last-child {
     border-bottom: none;
     margin-bottom: 0;
@@ -1532,6 +1537,13 @@ ul.links-article-social li {
 .item-recent a:focus,
 .item-recent a:hover {
     color: map-get( $colors, "link-on" );
+}
+.hed-aside {
+    line-height: 1.15;
+    margin-bottom: 0.5em;
+}
+.hed-aside a {
+    font-size: 1em;
 }
 .item-recent .has-icon {
     background-position: 0 0.2em;
@@ -1736,7 +1748,7 @@ Article back matter
 /*
 Profiles
 */
-.profile-person {
+.profile {
     margin-bottom: 3em;
 }
 .profile-photo {
@@ -1748,12 +1760,19 @@ Profiles
     max-width: 8.125rem;
     width: 30%;
 }
+.profile-name {
+    font-size: 1.5em;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 0.3em;
+}
 .profile-name cite {
     font-style: normal;
 }
 .profile-links {
-    font-size: 0.8125;    /* 13/16 */
     clear: both;
+    color: #777;
+    font-size: 0.8125;    /* 13/16 */
 }
 .profile-links li {
     margin-bottom: 0.6em;
@@ -1762,50 +1781,40 @@ Profiles
     background-position: 0 50%;
     color: inherit;
     padding-left: 28px;
-    text-decoration: none;
 }
 .profile-links a:focus,
 .profile-links a:hover {
     color: map-get( $colors, "link-on" );
 }
 // In-article variant
-.profile-person-article .profile-name {
-    font-size: 1.5em;
-    font-weight: normal;
-    line-height: 1.2;
-    margin-bottom: 0.3em;
-}
-.profile-person-article .profile-bio {
+.tmpl-article .profile-bio {
     font-family: map-get( $fonts, "serif" );;
     font-size: 1.125em;    /* 18/16 */
     line-height: 1.4;    /* 30/18 */
     margin-bottom: 1.5em;
     hyphens: auto;
 }
-.wf-active .profile-person-article .profile-bio {
+.wf-active .tmpl-article .profile-bio {
     font-family: map-get( $fonts, "serif" );;
 }
 @media (min-width: 40em) {
-    .profile-person-article .profile-bio {
+    .tmpl-article .profile-bio {
         line-height: 1.66666666666666666666;    /* 30/18 */
         hyphens: inherit;
         margin-bottom: 0;
     }
-    .profile-person-article .profile-links {
+    .tmpl-article .profile-links {
         display: flex;
     }
-    .profile-person-article .profile-links li {
+    .tmpl-article .profile-links li {
         margin-bottom: 0;
         margin-right: 1.5em;
     }
-    .profile-person-article .profile-links li:first-child {
+    .tmpl-article .profile-links li.link-main {
         flex: 1;
-        text-align: right;
-    }
-    .profile-person-article .profile-links li.link-main {
         text-align: left;
     }
-    .profile-person-article .profile-links li:last-child {
+    .tmpl-article .profile-links li:last-child {
         margin-right: 0;
     }
 }
@@ -1830,6 +1839,11 @@ Profiles
         border-top: 1px solid #D8D8D8;
         padding-top: 0.5em;
     }
+    .supports-flex .hed-promo + .profile-links,
+    .supports-flex .profile-name + .profile-links {
+        border-top: none;
+        margin-top: 0.5em;
+    }
     .profile-links li {
         margin-right: 2em;
     }
@@ -1841,7 +1855,7 @@ Hashtag: hashtags
 .tag {
     background-color: #D8D8D8;
     border-radius: 0.45em;
-    color: #4D4D4D;
+    color: map-get( $colors, "src-text-default" );
     display: inline-block;
     font-size: 13px;
     font-size: 0.8125rem;    /* 13/16 */
