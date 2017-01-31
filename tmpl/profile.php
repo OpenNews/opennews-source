@@ -58,7 +58,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
             <div class="content-main">
 
-                <p class="hed-label">People</p>
+                <a class="hed-label" href="#">People</a>
 
                 <div class="profile-person profile-person-lead h-card">
                     <h1 class="page-title-lead">

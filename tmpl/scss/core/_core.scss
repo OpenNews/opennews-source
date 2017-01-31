@@ -944,14 +944,28 @@ Headings
 }
 // .hed-label - little red headlines, they look like labels, naming things is difficult
 .hed-label {
-    background-color: map-get( $colors, "src-red" );
+    background-color: map-get( $colors, "src-red-dark" );
     color: #FFF;
     display: inline-block;
     font-size: 0.8125em;    /* 13/16 */
     font-weight: 700;
     line-height: 1;
     padding: 1em 1.2em;
+    margin-bottom: 1em;
     text-transform: uppercase;
+}
+a.hed-label {
+    background-color: map-get( $colors, "src-red" );
+    text-decoration: none;
+    transition: 0.2s background-color;
+}
+a.hed-label:after {
+    content: " »";
+}
+a.hed-label:focus,
+a.hed-label:hover {
+    background-color: map-get( $colors, "src-red-dark" );
+    color: #FFF;
 }
 // .page-title-lead is, well, the lead/primary hed on articles + landing pages
 .page-title-lead {
