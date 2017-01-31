@@ -95,7 +95,6 @@ module.exports = function( grunt ) {
                     // jquery.min.js needs to be first
                     "<%= _config.dir.templates %>js/lib/jquery.min.js",
                     // Miscellaneous modules/libraries can be loaded here, in preferred order of execution
-                    "<%= _config.dir.templates %>js/lib/transition-support.js",
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
                     "<%= _config.dir.templates %>js/lib/ajaxsend.js",
                     "<%= _config.dir.templates %>js/lib/collapsible.js",
