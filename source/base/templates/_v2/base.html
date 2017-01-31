@@ -88,6 +88,10 @@
                 ] -%}
                 {% set active_nav = active_nav %}
                 <div class="site-nav collapsible collapsible-collapsed" id="nav-primary">
+                    <h2 class="a11y" href="#nav-primary">
+                        <span class="icon icon-menu">Navigation</span>
+                    </h2>
+
                     <ul class="site-nav-links">
                     {% for url, id, name in navigation_links %}
                         <li><a href="{{ url|e }}"{% if id == active_nav %} aria-describedby="current-page" class="is-active"{% endif %}>{{ name|safe|e }}</a></li>
