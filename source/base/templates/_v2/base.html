@@ -64,7 +64,10 @@
                 <div class="header-main">
                     <h1 class="site-logo">
                         <a href="/">
-                            <img src="{{ static('base/_v2/svg/logo-source.svg') }}" onerror="this.src='{{ static('base/_v2/dist/svg/png/logo-source.png') }}'; return false" alt="Source" />
+                            <picture>
+                                <source srcset="{{ static('base/_v2/svg/logo-source.svg') }}" type="image/svg+xml" />
+                                <img src="{{ static('base/_v2/dist/svg/png/logo-source.png') }}" alt="Source" />
+                            </picture>
                         </a>
                     </h1>
 
@@ -114,7 +117,10 @@
                 <div class="foot-content">
                     <h2 class="foot-logo">
                         <a href="/">
-                            <img src="{{ static('base/_v2/svg/logo-source.svg') }}" onerror="this.src='{{ static('base/_v2/dist/svg/png/logo-source.png') }}'; return false" alt="Source" />
+                            <picture>
+                                <source srcset="{{ static('base/_v2/svg/logo-source.svg') }}" type="image/svg+xml" />
+                                <img src="{{ static('base/_v2/dist/svg/png/logo-source.png') }}" alt="Source" />
+                            </picture>
                         </a>
                     </h2>
 
@@ -122,7 +128,7 @@
 
                     <p>Learn more <a href="http://www.opennews.org">about the project</a> or <a href="/contribute/">contribute your work</a>. <a href="mailto:source@opennews.org">Contact us</a>.</p>
 
-                    <p><a class="link-cc" href="https://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a></p>
+                    <p><a class="link-cc" href="https://creativecommons.org/licenses/by/3.0/"><img src="{{ static('base/static/base/_v2/img/cc.png') }}" alt="" />CC Attribution 3.0</a></p>
                 </div><!-- /end .foot-content -->
                 <div class="foot-aside">
                     <h3 class="hed-foot">Connect</h3>
@@ -138,7 +144,10 @@
                 <div class="foot-content">
                     <h2 class="foot-logo">
                         <a href="https://opennews.org">
-                            <img src="{{ static('base/_v2/svg/logo-opennews.svg') }}" onerror="this.src='{{ static('base/_v2/dist/svg/png/logo-opennews.png') }}'; return false" alt="Source" />
+                            <picture>
+                                <source srcset="{{ static('base/_v2/svg/logo-opennews.svg') }}" type="image/svg+xml" />
+                                <img src="{{ static('base/_v2/dist/svg/png/logo-opennews.png') }}" alt="Knight-Mozilla OpenNews" />
+                            </picture>
                         </a>
                     </h2>
 

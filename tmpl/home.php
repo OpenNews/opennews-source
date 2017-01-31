@@ -13,34 +13,34 @@ $criticalcss = "critical-home.css";
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="grunticon" content="/dist/svg/" />
-<meta name="fullJS" content="/dist/js/main.js" />
-<meta name="fullCSS" content="/dist/css/main.css" />
+<meta name="grunticon" content="/source/base/static/base/_v2/dist/svg/" />
+<meta name="fullJS" content="/source/base/static/base/_v2/dist/js/main.js" />
+<meta name="fullCSS" content="/source/base/static/base/_v2/dist/css/main.css" />
 
-<script><?php include( $rootpath . "/dist/js/initial.js" ); ?></script>
+<script><?php include( $rootpath . "/source/base/static/base/_v2/dist/js/initial.js" ); ?></script>
 
 <?php
 if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 ?>
-<link href="/dist/css/main.css" rel="stylesheet" />
+<link href="/source/base/static/base/_v2/dist/css/main.css" rel="stylesheet" />
 <?php
 } else {
     if ( isset( $criticalcss ) ) {
 ?>
-<style><?php include( $rootpath . "/dist/css/" . $criticalcss ); ?></style>
+<style><?php include( $rootpath . "/source/base/static/base/_v2/dist/css/" . $criticalcss ); ?></style>
 <?php
     } else {
 ?>
-<link href="/dist/css/main.css" rel="stylesheet" />
+<link href="/source/base/static/base/_v2/dist/css/main.css" rel="stylesheet" />
 <?php
     }
 }
 ?>
 
 <script>document.createElement( "picture" );</script>
-<script src="/dist/js/lib/picturefill.js" async></script>
+<script src="/source/base/static/base/_v2/dist/js/lib/picturefill.js" async></script>
 
-<noscript><link href="/dist/svg/icons.fallback.css" rel="stylesheet" /></noscript>
+<noscript><link href="/source/base/static/base/_v2/dist/svg/icons.fallback.css" rel="stylesheet" /></noscript>
 
 </head>
 
@@ -49,7 +49,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 <div class="page">
 
     <?php
-    include($rootpath . "/inc/site-header.php");
+    include($rootpath . "/tmpl/inc/site-header.php");
     ?>
 
     <main>
@@ -57,7 +57,7 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
             <div class="promo-lead">
                 <a class="promo-pic" href="#">
-                    <img src="/img/fpo/promo-lead.jpg" alt="" />
+                    <img src="/tmpl/img/fpo/promo-lead.jpg" alt="" />
                 </a>
                 <div class="promo-main">
                     <p class="hed-label">The Latest</p>
@@ -82,55 +82,55 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 <ul class="list-promos">
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
                         </a>
                     </li><!-- /end .src-promo -->
                     <li class="src-promo">
                         <a href="#">
-                            <img src="/img/fpo/article-teaser.jpg" alt="" />
+                            <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                             <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
                         </a>
                     </li><!-- /end .src-promo -->
@@ -183,12 +183,12 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 
             </div>
 
-            <?php include($rootpath . "/inc/site-search.php"); ?>
+            <?php include($rootpath . "/tmpl/inc/site-search.php"); ?>
 
         </div><!-- /end .page-main -->
     </main>
 
-    <?php include($rootpath . "/inc/site-footer.php"); ?>
+    <?php include($rootpath . "/tmpl/inc/site-footer.php"); ?>
 
 </div><!-- /end .page -->
 

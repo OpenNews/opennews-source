@@ -16,7 +16,7 @@
                         <h2 class="hed-search">From our Archives:</h2>
                         <h3 class="hed-article-tease-search">
                             <a href="#">
-                                <img class="thumb" src="/img/fpo/article-thumb.jpg" alt="" />
+                                <img class="thumb" src="/tmpl/img/fpo/article-thumb.jpg" alt="" />
                                 From the BBC News Labs: Datastringer
                             </a>
                         </h3>

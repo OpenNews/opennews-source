@@ -14,34 +14,34 @@ $current_page = "articles";
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta name="grunticon" content="/dist/svg/" />
-<meta name="fullJS" content="/dist/js/main.js" />
-<meta name="fullCSS" content="/dist/css/main.css" />
+<meta name="grunticon" content="/source/base/static/base/_v2/dist/svg/" />
+<meta name="fullJS" content="/source/base/static/base/_v2/dist/js/main.js" />
+<meta name="fullCSS" content="/source/base/static/base/_v2/dist/css/main.css" />
 
-<script><?php include( $rootpath . "/dist/js/initial.js" ); ?></script>
+<script><?php include( $rootpath . "/source/base/static/base/_v2/dist/js/initial.js" ); ?></script>
 
 <?php
 if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
 ?>
-<link href="/dist/css/main.css" rel="stylesheet" />
+<link href="/source/base/static/base/_v2/dist/css/main.css" rel="stylesheet" />
 <?php
 } else {
     if ( isset( $criticalcss ) ) {
 ?>
-<style><?php include( $rootpath . "/dist/css/" . $criticalcss ); ?></style>
+<style><?php include( $rootpath . "/source/base/static/base/_v2/dist/css/" . $criticalcss ); ?></style>
 <?php
     } else {
 ?>
-<link href="/dist/css/main.css" rel="stylesheet" />
+<link href="/source/base/static/base/_v2/dist/css/main.css" rel="stylesheet" />
 <?php
     }
 }
 ?>
 
 <script>document.createElement( "picture" );</script>
-<script src="/dist/js/lib/picturefill.js" async></script>
+<script src="/source/base/static/base/_v2/dist/js/lib/picturefill.js" async></script>
 
-<noscript><link href="/dist/svg/icons.fallback.css" rel="stylesheet" /></noscript>
+<noscript><link href="/source/base/static/base/_v2/dist/svg/icons.fallback.css" rel="stylesheet" /></noscript>
 
 <script>
 // If there are Disqus-specific variables to be included, uncomment this block and add them below.
@@ -59,7 +59,7 @@ var disqus_config = function () {
 <div class="page">
 
     <?php
-    include($rootpath . "/inc/site-header.php");
+    include($rootpath . "/tmpl/inc/site-header.php");
     ?>
 
     <main>
@@ -92,7 +92,7 @@ var disqus_config = function () {
 
             <div class="figure figure-article-lead">
                 <figure>
-                    <img src="/img/fpo/article-lead.jpg" alt="" />
+                    <img src="/tmpl/img/fpo/article-lead.jpg" alt="" />
                     <figcaption>
                         <p>Our printed ballot guide for voters to take to the polls—a product of the testing described in this article.</p>
                     </figcaption>
@@ -175,7 +175,7 @@ var disqus_config = function () {
 
                 <div class="figure figure-article-minor">
                     <figure>
-                        <img src="/img/fpo/article-inset.jpg" alt="" />
+                        <img src="/tmpl/img/fpo/article-inset.jpg" alt="" />
                         <figcaption>
                             <p>Clément drawing explanations on the windows.</p>
                         </figcaption>
@@ -196,7 +196,7 @@ var disqus_config = function () {
 
                 <div class="figure figure-article-full">
                     <figure>
-                        <img src="/img/fpo/article-full.jpg" alt="" />
+                        <img src="/tmpl/img/fpo/article-full.jpg" alt="" />
                         <figcaption>
                             <p>Our printed ballot guide for voters to take to the polls—a product of the testing described in this article.</p>
                         </figcaption>
@@ -243,7 +243,7 @@ var disqus_config = function () {
                         <li class="profile h-card">
                             <h3 class="profile-name">
                                 <a href="#">
-                                    <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
+                                    <img class="profile-photo u-photo" src="/tmpl/img/avatar.jpg" alt="" />
                                     <cite class="p-name">Basile Simon</cite>
                                 </a>
                             </h3>
@@ -259,7 +259,7 @@ var disqus_config = function () {
                         <li class="profile h-card">
                             <h3 class="profile-name">
                                 <a href="#">
-                                    <img class="profile-photo u-photo" src="/img/avatar.jpg" alt="" />
+                                    <img class="profile-photo u-photo" src="/tmpl/img/avatar.jpg" alt="" />
                                     <cite class="p-name">Tiff Fehr</cite>
                                 </a>
                             </h3>
@@ -285,19 +285,19 @@ var disqus_config = function () {
                     <ul class="list-promos">
                         <li class="src-promo">
                             <a href="#">
-                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                                 <h3 class="hed-promo">How NPR Fact-Checks The Debate, Live</h3>
                             </a>
                         </li><!-- /end .src-promo -->
                         <li class="src-promo">
                             <a href="#">
-                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                                 <h3 class="hed-promo">Event Round-Up, Oct 17</h3>
                             </a>
                         </li><!-- /end .src-promo -->
                         <li class="src-promo">
                             <a href="#">
-                                <img src="/img/fpo/article-teaser.jpg" alt="" />
+                                <img src="/tmpl/img/fpo/article-teaser.jpg" alt="" />
                                 <h3 class="hed-promo">What I Learned from Researching Newsroom On-boarding and Off-Boarding Processes</h3>
                             </a>
                         </li><!-- /end .src-promo -->
@@ -305,12 +305,12 @@ var disqus_config = function () {
                 </div><!-- /end .article-related -->
             </div><!-- /end .article-matter-back -->
 
-            <?php include($rootpath . "/inc/site-search.php"); ?>
+            <?php include($rootpath . "/tmpl/inc/site-search.php"); ?>
 
         </div><!-- /end .page-main -->
     </main>
 
-    <?php include($rootpath . "/inc/site-footer.php"); ?>
+    <?php include($rootpath . "/tmpl/inc/site-footer.php"); ?>
 
 </div><!-- /end .page -->
 
