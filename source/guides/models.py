@@ -141,3 +141,13 @@ def clear_caches_for_guide(sender, instance, **kwargs):
     for article in instance.get_live_article_set():
         if article.article:
             expire_page_cache(article.article.get_absolute_url())
+
+def get_random_guides(num):
+    random_guides = Guide.live_objects.order_by('?')
+    try:
+        random_guides = random_guides[:num]
+    except:
+        random_guides = None
+        
+    return random_guides
+    

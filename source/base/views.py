@@ -8,34 +8,33 @@ from haystack.views import SearchView
 from source.articles.models import Article
 from source.articles.views import ArticleList
 from source.code.models import Code
+from source.guides.models import get_random_guides
+from source.jobs.models import get_recent_jobs
 from source.people.models import Organization, Person
 from source.utils.json import render_json_to_response
 
 
-class HomepageView(ArticleList):
-    '''
-    Gets standard list of articles from articles.views.ArticleList, then adds
-    recent code additions to context for homepage aside block.
-    '''
-    def get_homepage_aside_context(self, context):
-        code_list = Code.live_objects.order_by('-created').prefetch_related('people', 'organizations')
+class HomepageView(ListView):
+    model = Article
+    template_name = '_v2/homepage.html'
+
+    def get_promo_article(self):
+        promo_article = Article.live_objects.filter(show_in_lists=True, is_featured=True).latest()
         
-        # wrap in try/except in case code_list is empty
-        try:
-            code_list = code_list[:15]
-        except:
-            pass
+        return promo_article
         
-        context.update({
-            'homepage_code_list': code_list,
-        })
-        
-        return ''
+    def get_queryset(self):
+        promo_article = self.get_promo_article()
+        queryset = Article.live_objects.filter(show_in_lists=True).exclude(id=promo_article.id)[:9]
+            
+        return queryset
     
     def get_context_data(self, **kwargs):
-        context = super(ArticleList, self).get_context_data(**kwargs)
-        self.get_standard_context(context)
-        self.get_homepage_aside_context(context)
+        context = super(HomepageView, self).get_context_data(**kwargs)
+        
+        context['promo_article'] = self.get_promo_article()
+        context['recent_jobs'] = get_recent_jobs(3)
+        context['random_guides'] = get_random_guides(3)
         
         return context
 

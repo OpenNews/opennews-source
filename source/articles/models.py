@@ -54,6 +54,7 @@ class Article(CachingMixin, models.Model):
     
     class Meta:
         ordering = ('-pubdate','title',)
+        get_latest_by = 'pubdate'
         
     def __str__(self):
         return '%s' % self.title

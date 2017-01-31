@@ -1,0 +1,74 @@
+{% extends "_v2/base.html" %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+            <div class="promo-lead">
+                <a class="promo-pic" href="{{ promo_article.get_absolute_url() }}">
+                    {% if promo_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(promo_article.image, "900x900", crop="center") }}" alt="{{ promo_article.title }}" />
+                    {% else %}
+                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ promo_article.title }}" />
+                    {% endif %}
+                </a>
+                <div class="promo-main">
+                    <p class="hed-label">The Latest</p>
+
+                    <h1 class="hed-promo-lead"><a href="{{ promo_article.get_absolute_url() }}">{{ promo_article.title|typogrify }}</a></h1>
+
+                    <h2 class="hed-promo-subhead">{{ promo_article.subhead|typogrify }} <a class="link-cta" href="{{ promo_article.get_absolute_url() }}">Read more</a></h2>
+
+                    <p class="promo-byline">{% if promo_article.get_live_author_set().exists() %}
+                        By {% for author in promo_article.get_live_author_set() %}{% if loop.last and not loop.first %} and {% endif %}<a href="{{ author.get_absolute_url() }}">{{ author.name()|smartypants }}</a>{% if not loop.last and loop.length != 2 %}, {% endif %}{% endfor %}
+                    {% endif %}</p>
+                </div><!-- /end .promo-main -->
+            </div><!-- /end .promo-lead -->
+
+            <div class="promo-src-about icon-dots-white">
+                <p>Source amplifies the impact of journalism code and the community of developers, designers, journalists, and editors who make it.</p>
+
+                <p><a href="https://opennews.org">Learn more about us</a>, and <a href="mailto:source@opennews.org">contribute your work</a>.</p>
+            </div><!-- /end .promo-src-about -->
+
+            <div class="content-main">
+                <ul class="list-promos">{% for article in object_list %}
+                    <li class="src-promo">
+                        <a href="{{ article.get_absolute_url() }}">
+                            {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="{{ article.title }}" />
+                            {% else %}
+                            <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ article.title }}" />
+                            {% endif %}
+                            <h3 class="hed-promo">{{ article.title|typogrify }}</h3>
+                        </a>
+                    </li><!-- /end .src-promo -->{% endfor %}
+                </ul><!-- /end .list-promos -->
+            </div>
+
+            <div class="content-aside">{% if recent_jobs %}
+                <div class="mod">
+                    <h2 class="hed-label">New Source Job Listings</h2>
+
+                    <ol class="list-recently">{% for job in recent_jobs %}
+                        <li class="item-recent">
+                            <h3 class="hed-aside"><a href="{{ url('job_list') }}#job-{{ job.pk }}">{{ job.name }}</a></h3>
+
+                            <p><a class="has-icon icon-company" href="{{ job.organization.get_absolute_url() }}">{{ job.organization.name }}</a></p>
+                        </li><!-- /end .item-recent -->{% endfor %}
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="{{ url('job_list') }}">See all jobs</a></p>
+                </div><!-- /end .mod -->{% endif %}
+
+                {% if random_guides %}
+                <div class="mod">
+                    <h2 class="hed-label">Source Guides</h2>
+
+                    <ol>{% for guide in random_guides %}
+                        <li>
+                            <h3 class="hed-aside"><a href="{{ guide.get_absolute_url() }}">{{ guide.title }}</a></h3>
+                        </li><!-- /end .item-recent -->{% endfor %}
+                    </ol><!-- /end .list-recently -->
+
+                    <p><a class="link-cta" href="{{ url('guide_list') }}">See all guides</a></p>
+                </div><!-- /end .mod -->{% endif %}
+            </div>
+
+{% endblock %}
