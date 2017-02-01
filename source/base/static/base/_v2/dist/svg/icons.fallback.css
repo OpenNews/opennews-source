@@ -74,7 +74,11 @@
 
 .icon-nav-close { background-image: url('png/nav-close.png'); background-repeat: no-repeat; }
 
+.icon-next { background-image: url('png/next.png'); background-repeat: no-repeat; }
+
 .icon-person { background-image: url('png/person.png'); background-repeat: no-repeat; }
+
+.icon-prev { background-image: url('png/prev.png'); background-repeat: no-repeat; }
 
 .icon-profile { background-image: url('png/profile.png'); background-repeat: no-repeat; }
 
