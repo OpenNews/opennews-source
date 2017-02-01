@@ -26,8 +26,8 @@
 
                 <div class="profile profile-lead h-card">
                     <h1 class="page-title-lead">{% if organization.logo %}
-                        <img class="profile-photo u-photo" src="{{ MEDIA_URL }}{{ thumbnail(organization.logo, "130") }}" alt="" />{% endif %}
-                        <span class="p-name">{{ organization.name|smartypants }}</span>
+                        <img class="u-logo" src="{{ MEDIA_URL }}{{ thumbnail(organization.logo, "130") }}" alt="" />{% endif %}
+                        <span class="p-name org">{{ organization.name|smartypants }}</span>
                     </h1>
                     
                     <div class="mod main-lead profile-bio">
