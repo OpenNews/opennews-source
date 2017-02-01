@@ -1286,6 +1286,11 @@ Lead promo
     display: block;
     margin-bottom: 0.4em;
 }
+.src-promo p {
+    clear: both;
+    color: #777;
+    display: block;
+}
 .label-promo {
     color: map-get( $colors, "src-red" );
     display: block;
@@ -1295,7 +1300,13 @@ Lead promo
     margin-bottom: 0.4em;
 }
 .hed-promo {
+    font-size: 1.25em;    /* 20 / 16 */
     font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 0.5em;
+}
+.hed-promo:last-child {
+    margin-bottom: 0;
 }
 a .hed-promo {
     color: map-get( $colors, "link-default" );
@@ -1311,7 +1322,6 @@ a:hover .hed-promo {
     .src-promo {
         border-bottom: 1px solid #C6C6C6;
         flex: 1 0 100%;
-        margin-bottom: 2em;
         padding-bottom: 2em;
         width: 100%;
     }
@@ -1329,11 +1339,11 @@ a:hover .hed-promo {
         margin-right: 5%;
     }
     .src-promo .hed-promo,
-    .src-promo .list-tags-short {
+    .src-promo .list-tags-short,
+    .src-promo .profile-links,
+    .src-promo p {
+        clear: none;
         margin-left: 38%;
-    }
-    .src-promo .hed-promo {
-        font-size: 1.25em;    /* 20 / 16 */
     }
 }
 @media (min-width: 40em) {
@@ -1349,7 +1359,6 @@ a:hover .hed-promo {
     .list-promos:after {
         flex: 0 1 30%;
         margin-right: 3%;
-        margin-bottom: 0;
     }
     .src-promo:nth-child( 3n ) {
         margin-right: 0;
@@ -1357,13 +1366,25 @@ a:hover .hed-promo {
     .src-promo:first-child {
         width: inherit;
     }
-    .tmpl-home .src-promo {
-        margin-bottom: 2em;
+    .src-promo .hed-promo {
+        margin-bottom: 0;
+    }
+    .src-promo .hed-promo + *,
+    .src-promo .list-tags-short {
+        margin-top: 0.5em;
+    }
+}
+@media (min-width: 45em) {
+    .src-promo p {
+        font-size: 0.8125em;    /* 13/16 */
     }
 }
 @media (min-width: 50em) {
     .list-promos {
         font-size: 1.25em;    /* 20 / 16 */
+    }
+    .src-promo .hed-promo {
+        font-size: 1.1em;
     }
 }
 // “Long” (block) and “short” (inline) lists of hashtags
@@ -1541,6 +1562,7 @@ ul.links-article-social li {
     color: map-get( $colors, "link-on" );
 }
 .hed-aside {
+    font-weight: 500;
     line-height: 1.15;
     margin-bottom: 0.5em;
 }
@@ -1548,7 +1570,6 @@ ul.links-article-social li {
     font-size: 1em;
 }
 .item-recent .has-icon {
-    background-position: 0 0.2em;
     color: inherit;
     display: block;
     text-decoration: none;
@@ -1774,7 +1795,7 @@ Profiles
 .profile-links {
     clear: both;
     color: #777;
-    font-size: 0.8125;    /* 13/16 */
+    font-size: 0.8125em;    /* 13/16 */
 }
 .profile-links li {
     margin-bottom: 0.6em;
@@ -1803,7 +1824,6 @@ Profiles
     .tmpl-article .profile-bio {
         line-height: 1.66666666666666666666;    /* 30/18 */
         hyphens: inherit;
-        margin-bottom: 0;
     }
     .tmpl-article .profile-links {
         display: flex;
@@ -1836,6 +1856,9 @@ Profiles
     .profile-links {
         display: flex;
         max-width: 40em;
+    }
+    .profile .profile-links {
+        max-width: inherit;
     }
     .supports-flex .profile-links {
         border-top: 1px solid #D8D8D8;

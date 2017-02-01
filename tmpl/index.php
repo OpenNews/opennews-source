@@ -104,6 +104,7 @@ li a:focus {
         <li><a href="article.php">Article</a></li>
         <li><a href="landing-code.php">Landing (Code)</a></li>
         <li><a href="list-orgs.php">List: Organizations</a></li>
+        <li><a href="list-people.php">List: People</a></li>
     </ul>
 </div>
 
