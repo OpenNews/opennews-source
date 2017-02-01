@@ -26,20 +26,6 @@
                             </ul>
                         </li><!-- /end .profile-person -->{% endfor %}
                     </ul>
-                    
-                    <ul class="list-promos">
-                    {% for organization in object_list %}
-                        <li class="src-promo">
-                            <a href="{{ organization.get_absolute_url() }}">
-                                <h3 class="hed-promo">{{ organization.name|smartypants }}</h3>
-                                <ul class="profile-links">
-                                    <li class="link-main">{{ organization.location_string_city }}</li>
-                                    <li class="has-icon icon-company">Open jobs!</li>
-                                </ul>
-                            </a>
-                        </li><!-- /end .src-promo -->
-                    {% endfor %}
-                    </ul><!-- /end .list-promos -->
                 </div><!-- /end .mod -->
             </div><!-- /end .content-main -->
 
