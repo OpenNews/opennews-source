@@ -1786,14 +1786,16 @@ Profiles
 .profile {
     margin-bottom: 3em;
 }
-.profile-photo {
-    border-radius: 50%;
+.profile img {
     float: right;
     margin-bottom: 1em;
     margin-left: 1em;
     max-width: 130px;
     max-width: 8.125rem;
     width: 30%;
+}
+.profile-photo {
+    border-radius: 50%;
 }
 .profile-name {
     font-size: 1.5em;
