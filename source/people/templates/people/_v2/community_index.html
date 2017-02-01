@@ -21,9 +21,7 @@
                                 <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ person.name() }}" />
                                 {% endif %}
                                 <h3 class="hed-promo">{{ person.name()|smartypants }}</h3>
-                                <ul class="profile-links">
-                                    <li class="has-icon icon-company">{% for organization in person.get_live_organization_set() %}{{ organization.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}</li>
-                                </ul>
+                                <p class="has-icon icon-company">{% for organization in person.get_live_organization_set() %}{{ organization.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
                             </a>
                         </li><!-- /end .src-promo -->
                     {% endfor %}

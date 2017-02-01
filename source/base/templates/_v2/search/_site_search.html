@@ -20,7 +20,7 @@
                                     {% else %}
                                     <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ random_article.title }}" />
                                     {% endif %}
-                                    {{ random_article.title|typogrify }}
+                                    {{ random_article.title|smartypants }}
                                 </a>
                             </h3>
                         </div><!-- /end .article-tease -->
