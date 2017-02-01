@@ -729,9 +729,10 @@ Site search
     margin-bottom: 0.5em;
 }
 .hed-article-tease-search {
-    margin: 0;
     font-size: 1.25em;
+    hyphens: auto;
     line-height: 1.2;
+    margin: 0;
 }
 @media (min-width: 20em) {
     .hed-article-tease-search {
@@ -753,15 +754,12 @@ Site search
         font-size: 2em;
     }
 }
-@media (min-width: 70em) {
-    .hed-article-tease-search {
-        font-size: 2.25em;
-    }
-}
 .site-search img {
     float: right;
     margin-bottom: 0.5em;
     margin-left: 0.5em;
+    max-height: 80px;
+    max-height: 5rem;
 }
 .fields-search {
     display: flex;
