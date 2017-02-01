@@ -3,20 +3,24 @@
                         <span class="icon icon-search">Search this site</span>
                     </h2>
                     <div class="site-search-inner">
-                        <form class="form-search">
+                        <form class="form-search" method="get" action="{{ url('haystack_search') }}">
                             <label class="hed-search" for="text-search">Search SOURCE:</label>
                             <p class="fields-search">
-                                <input class="text-search" id="text-search" type="search" value="" />
+                                <input class="text-search" id="text-search" type="search" name="q" value="" />
                                 <input class="btn-search icon-search" type="submit" value="Search" />
                             </p><!-- /end .fields-search -->
                         </form><!-- /end .form-search -->
 
                         <div class="article-tease">
                             <h2 class="hed-search">From our Archives:</h2>
+                            {% set random_article = get_random_articles(1, 90) %}
                             <h3 class="hed-article-tease-search">
-                                <a href="#">
-                                    <img class="thumb" src="{{ static('base/_v2/img/fpo/article-thumb.jpg') }}" alt="" />
-                                    From the BBC News Labs: Datastringer
+                                <a href="{{ random_article.get_absolute_url() }}">
+                                    {% if random_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(random_article.image, "300x200", crop="center") }}" alt="{{ random_article.title }}" />
+                                    {% else %}
+                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ random_article.title }}" />
+                                    {% endif %}
+                                    {{ random_article.title|typogrify }}
                                 </a>
                             </h3>
                         </div><!-- /end .article-tease -->

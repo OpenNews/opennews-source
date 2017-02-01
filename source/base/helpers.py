@@ -18,6 +18,8 @@ from sorl.thumbnail.shortcuts import get_thumbnail
 from typogrify.filters import typogrify as dj_typogrify,\
     smartypants as dj_smartypants
 
+from source.articles.models import Article
+
 logger = logging.getLogger('base.helpers')
 
 @library.filter
@@ -129,3 +131,19 @@ def append_attr(field, attr):
 @library.filter
 def add_class(field, css_class):
     return append_attr(field, 'class:' + css_class)
+
+@library.global_function
+def get_random_articles(num, recent_days=None):
+    random_articles = Article.live_objects.all()
+    if recent_days:
+        cutoff = datetime.datetime.today() - datetime.timedelta(recent_days)
+        random_articles = random_articles.filter(pubdate__gte=cutoff)
+    random_articles = random_articles.order_by('?')
+
+    try:
+        if num == 1:
+            return random_articles[0]
+        else:
+            return random_articles[:num]
+    except:
+        return None
