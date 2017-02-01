@@ -31,12 +31,13 @@
                     </h1>
 
                     {% if person.get_live_organization_set().exists() %}
-                    <h2 class="page-title-sub">{% for organization in person.get_live_organization_set() %}<a class="p-org has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a>{% endfor %}</h2>{% endif %}
+                    <p class="has-icon icon-company">{% for organization in person.get_live_organization_set() %}<a href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+                    {% endif %}
 
                     <div class="mod main-lead profile-bio">
                         <p>{{ person.get_bio()|safe }}</p>
 
-                        <p><a class="link-cta" href="mailto:source@opennews.org">Submit profile updates or corrections</a></p>
+                        <p><a class="link-cta" href="mailto:source@opennews.org?subject=Source profile page for {{ person.name() }}">Submit profile updates or corrections</a></p>
                     </div><!-- /end .mod.main-lead.profile-bio -->
 
                     <ul class="profile-links">
