@@ -1999,3 +1999,73 @@ Repo metadata
 }
 
 
+/*-
+
+Pagination
+
+-*/
+.nav-pages {
+    text-align: center;
+    margin: 2em 0;
+}
+.nav-pages a,
+.nav-pages ol,
+.nav-pages li {
+    display: inline-block;
+}
+.nav-pages ol,
+.nav-pages li {
+    margin: 0;
+    padding: 0;
+}
+.nav-pages ol {
+    font-weight: bold;
+}
+.nav-pages a {
+    padding: 0.4em;
+    text-decoration: none;
+}
+.nav-pages a:hover,
+.nav-pages a:focus {
+    text-decoration: underline;
+}
+.nav-pages .is-active {
+    color: map-get( $colors, "src-text-default" );
+    cursor: default;
+}
+.nav-pages ol {
+    margin: 0 1em;
+}
+.nav-pages li {
+    margin: 0 0.4em;
+    vertical-align: -0.5em;
+}
+.nav-pages .nav {
+    background-position: 50% 50%;
+    background-color: map-get( $colors, "link-default" );
+    display: block;
+    height: 2.5em;
+    margin: 0 auto;
+    padding: 0;
+    text-indent: -1000em;
+    transition: background-color 0.2s, background-position 0.2s;
+    width: 2.5em;
+}
+@media (min-width: 30em) {
+    .nav-pages .nav {
+        display: inline-block;
+        margin: 0;
+    }
+}
+.nav-pages .nav:hover,
+.nav-pages .nav:focus {
+    background-color: map-get( $colors, "link-on" );
+}
+.nav-pages .icon-prev:focus,
+.nav-pages .icon-prev:hover {
+    background-position: 30% 50%;
+}
+.nav-pages .icon-next:focus,
+.nav-pages .icon-next:hover {
+    background-position: 70% 50%;
+}

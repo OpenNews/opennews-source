@@ -66,6 +66,24 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                 <div class="mod">
                     <h2 class="hed-label">Our Community</h2>
 
+                    <div class="nav-pages">
+                        <nav>
+                            <a class="nav icon-prev" href="#">Previous page</a>
+
+                            <ol>
+                                <li><a href="#"><span class="a11y">Page</span> 1</a></li>
+                                <li><a class="is-active" href="#"><span class="a11y">Page</span> 2</a></li>
+                                <li><a href="#"><span class="a11y">Page</span> 3</a></li>
+                                <li><a href="#"><span class="a11y">Page</span> 4</a></li>
+                                <li><a href="#"><span class="a11y">Page</span> 5</a></li>
+                                <li>…</li>
+                                <li><a href="#"><span class="a11y">Page</span> 12</a></li>
+                            </ol>
+
+                            <a class="nav icon-next" href="#">Next page</a>
+                        </nav>
+                    </div>
+
                     <ul class="list-promos">
         
                         <li class="src-promo">
