@@ -145,11 +145,20 @@ class OrganizationList(ListView):
 
 class OrganizationDetail(DetailView):
     model = Organization
+    template_name = 'people/_v2/organization_detail.html'
 
     def get_queryset(self):
         queryset = Organization.live_objects.prefetch_related('organizationlink_set')
         
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(OrganizationDetail, self).get_context_data(**kwargs)
+        
+        context['recent_jobs'] = get_recent_jobs(2)
+        context['recent_repos'] = get_recent_repos(3)
+        
+        return context
 
 class PersonUpdate(View):
     template_name = "people/person_update.html"

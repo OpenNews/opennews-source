@@ -7,14 +7,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{{ request.build_absolute_uri() }}" />
 <meta property="og:title" content="{{ person.name() }}" />
-{#}<meta property="og:description" content="{{ article.subhead }}" />{#}
 {% if person.photo %}<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />{% endif %}
  
 <!-— twitter card tags additive with the og: tags -->
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
 <meta name="twitter:title" value="{{ person.name() }}" />
-{#}<meta name="twitter:description" value="{{ article.subhead }}" />{#}
 {% if person.photo %}<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />{% endif %}
 <meta name="twitter:image:alt" content="{{ person.name() }}" />
 <meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
@@ -24,7 +22,7 @@
 {% block page_main %}{# block begins inside div.page-main #}
             <div class="content-main">
 
-                <p class="hed-label">People</p>
+                <a class="hed-label" href="{{ url('person_list') }}">People</a>
 
                 <div class="profile profile-lead h-card">
                     <h1 class="page-title-lead">{% if person.photo %}
@@ -46,7 +44,7 @@
                         {% if person.twitter_username %}<li><a class="has-icon icon-twitter-alt" href="https://twitter.com/{{ person.twitter_username }}">@{{ person.twitter_username }}</a></li>{% endif %}
                         {% if person.get_website() %}<li><a class="has-icon icon-link u-url" href="{{ person.get_website() }}">Visit website</a></li>{% endif %}
                     </ul>
-                </div><!-- /end .profile-person -->
+                </div><!-- /end .profile -->
 
                 <div class="mod">
                     <h2 class="hed-label">{{ person.first_name }}’s work on Source</h2>
