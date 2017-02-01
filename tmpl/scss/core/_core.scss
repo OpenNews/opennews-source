@@ -441,7 +441,11 @@ Header
 }
 .site-nav-links a.is-active {
     color: #47BFF8;
-    cursor: text;
+    transition: color 0.2s;
+}
+.site-nav-links a.is-active:focus,
+.site-nav-links a.is-active:hover {
+    color: #96DDFF;
 }
 .site-nav.collapsible-enhanced {
     margin: 0 -3.055555555555555555%;        /* 44/1440 */
@@ -520,6 +524,11 @@ Header
     }
     .site-nav-links a.is-active:after {
         background-color: #47BFF8;
+        transition: background-color 0.2s, bottom 0.2s;
+    }
+    .site-nav-links a.is-active:focus:after,
+    .site-nav-links a.is-active:hover:after {
+        background-color: #96DDFF;
     }
 }
 // Move toward the “full” masthead: make the navigation visible by default, hide the navigation toggle, and position the search toggle off to the right
@@ -622,6 +631,11 @@ Header
     .site-nav-links a.is-active:after {
         height: 1em;
         bottom: -0.5em;
+    }
+    .site-nav-links a.is-active:focus:after,
+    .site-nav-links a.is-active:hover:after {
+        background-color: #96DDFF;
+        bottom: 0;
     }
 }
 @media (min-width: 55em) {
