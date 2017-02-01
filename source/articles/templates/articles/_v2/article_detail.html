@@ -1,5 +1,7 @@
 {% extends "articles/_v2/_base_articles.html" %}
 
+{% block body_class %}tmpl-article{% endblock %}
+
 {% block page_title %}{{ article.title }} - {{ super() }}{% endblock %}
 
 {% block head_open_graph %}{{ super() }}

@@ -1,0 +1,29 @@
+{% extends "articles/_v2/_base_articles.html" %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+            <div class="content-main">
+                <div class="mod">
+
+                    <h2 class="hed-label">Articles</h2>
+
+                    <ol class="list-articles">{% for article in page.object_list %}
+                        <li>
+                            <a href="{{ article.get_absolute_url() }}">
+                                {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="{{ article.title }}" />{% endif %}
+                                <h3 class="hed-article-title">{{ article.title|typogrify }}</h3>
+                                <h4 class="hed-article-subhed">{{ article.subhead|typogrify }}</h4>
+
+                                <div class="summary">
+                                    <p>{{ article.safe_summary|typogrify }}</p>
+                                </div><!-- /end .summary -->
+                            </a>
+                        </li>{% endfor %}
+                    </ol>
+
+                    {% include "_v2/utils/_paginate.html" %}
+
+                </div><!-- /end .mod -->
+            </div><!-- /end .content-main -->
+
+            {% include "articles/_v2/_articles_aside.html" %}
+{% endblock %}

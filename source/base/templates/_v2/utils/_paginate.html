@@ -1,0 +1,19 @@
+{% if page.has_previous() or page.has_next() %}
+    <div class="nav-pages">
+        <nav>
+            {% if page.has_previous() %}<a class="nav icon-prev" href="?{% if query %}q={{ query }}&amp;{% endif %}page={{ page.previous_page_number() }}">Previous page</a>{% endif %}
+{#}
+            <ol>
+                <li><a href="#"><span class="a11y">Page</span> 1</a></li>
+                <li><a class="is-active" href="#"><span class="a11y">Page</span> 2</a></li>
+                <li><a href="#"><span class="a11y">Page</span> 3</a></li>
+                <li><a href="#"><span class="a11y">Page</span> 4</a></li>
+                <li><a href="#"><span class="a11y">Page</span> 5</a></li>
+                <li>…</li>
+                <li><a href="#"><span class="a11y">Page</span> 12</a></li>
+            </ol>
+{#}
+            {% if page.has_next() %}<a class="nav icon-next" href="?{% if query %}q={{ query }}&amp;{% endif %}page={{ page.next_page_number() }}">Next page</a>{% endif %}
+        </nav>
+    </div>
+{% endif %}

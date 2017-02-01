@@ -2,6 +2,4 @@
 
 {% set active_nav = "articles" %}
 
-{% block body_class %}tmpl-article{% endblock %}
-
 {% block page_title %}{% if section %}{{ section.name }}{% else %}Articles{% endif %}{% if tags %} tagged: {% for tag in tags %}{{ tag.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %} - {{ super() }}{% endblock %}

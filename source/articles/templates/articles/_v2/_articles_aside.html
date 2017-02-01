@@ -1,0 +1,38 @@
+<div class="content-aside">{% if recent_jobs %}
+    <div class="mod">
+        <h2 class="hed-label">New Source Job Listings</h2>
+
+        <ol class="list-recently">{% for job in recent_jobs %}
+            <li class="item-recent">
+                <h3 class="hed-aside"><a href="{{ url('job_list') }}#job-{{ job.pk }}">{{ job.name|smartypants }}</a></h3>
+
+                <p><a class="has-icon icon-company" href="{{ job.organization.get_absolute_url() }}">{{ job.organization.name|smartypants }}</a></p>
+                </ul>
+            </li><!-- /end .item-recent -->{% endfor %}
+        </ol><!-- /end .list-recently -->
+
+        <p><a class="link-cta" href="{{ url('job_list') }}">See all jobs</a></p>
+    </div><!-- /end .mod -->{% endif %}
+
+    {% if recent_repos %}
+    <div class="mod">
+        <h2 class="hed-label">Recently Added Code Repos</h2>
+
+        <ol class="list-recently">{% for code in recent_repos %}
+            <li class="item-recent">
+                    <h3 class="hed-aside"><a href="{{ code.get_absolute_url() }}">{{ code.name|smartypants }}</a></h3>
+
+                    <ul>
+                        {% for person in code.get_live_person_set() %}
+                        <li><a class="has-icon icon-profile" href="{{ person.get_absolute_url() }}">{{ person.name()|smartypants }}</a></li>
+                        {% endfor %}
+                        {% for organization in code.get_live_organization_set() %}
+                        <li><a class="has-icon icon-company" href="{{ organization.get_absolute_url() }}">{{ organization.name|smartypants }}</a></li>
+                        {% endfor %}
+                    </ul>
+            </li><!-- /end .item-recent -->{% endfor %}
+        </ol><!-- /end .list-recently -->
+
+        <p><a class="link-cta" href="{{ url('code_list') }}">See all repos</a></p>
+    </div><!-- /end .mod -->{% endif %}
+</div><!-- /end .content-aside -->

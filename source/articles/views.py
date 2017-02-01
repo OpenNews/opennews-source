@@ -4,12 +4,14 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from .models import Article, Section, Category
+from source.code.models import get_recent_repos
+from source.jobs.models import get_recent_jobs
 from source.tags.utils import filter_queryset_by_tags
 from source.utils.pagination import paginate
 
 class ArticleList(ListView):
     model = Article
-    template_name = 'articles/article_list.html'
+    template_name = 'articles/_v2/article_list.html'
     section = None
     category = None
     
@@ -33,9 +35,6 @@ class ArticleList(ListView):
     def get_template_names(self):
         template_list = [self.template_name]
         if self.section:
-            # check whether template needs promo slots
-            if self.section.gets_promo_items:
-                template_list.insert(0, 'articles/article_list_with_promos.html')
             # check for template override based on section name
             template_list.insert(0, 'articles/article_list_%s.html' % self.section.name.lower())
             
@@ -124,6 +123,9 @@ class ArticleList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ArticleList, self).get_context_data(**kwargs)
         self.get_standard_context(context)
+
+        context['recent_jobs'] = get_recent_jobs(2)
+        context['recent_repos'] = get_recent_repos(3)
         
         return context
 
