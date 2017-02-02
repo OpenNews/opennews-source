@@ -90,7 +90,7 @@ var disqus_config = function () {
 
             <hr />
 
-            <div class="figure figure-article-lead">
+            <div class="figure figure-article-lead has-border">
                 <figure>
                     <img src="/tmpl/img/fpo/article-lead.jpg" alt="" />
                     <figcaption>

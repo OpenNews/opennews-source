@@ -131,3 +131,7 @@ textarea {
     border: none;
     vertical-align: middle;
 }
+.has-border img,
+img.has-border {
+    border: 1px solid #D8D8D8;
+}
