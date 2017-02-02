@@ -1028,9 +1028,6 @@ Table styles
     margin: 3em 0;
     width: 100%;
 }
-.wf-active .article-main table {
-    font-family: map-get( $fonts, "sans" );
-}
 .article-main tr:nth-child( 2n + 1 ) {
     background-color: #f9f9f9;
 }
