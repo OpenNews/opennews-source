@@ -126,21 +126,21 @@ module.exports = function( grunt ) {
                 options:  {
                     outputfile : '<%= _config.dir.output %>css/critical-article.css',
                     filename : '<%= _config.dir.output %>css/main.css',
-                    url : 'http://local.source/article.php?static=true'
+                    url : 'http://local.source/tmpl/article.php?static=true'
                 }
             },
             content: {
                 options:  {
                     outputfile : '<%= _config.dir.output %>css/critical-content.css',
                     filename : '<%= _config.dir.output %>css/main.css',
-                    url : 'http://local.source/landing-code.php?static=true'
+                    url : 'http://local.source/tmpl/landing-code.php?static=true'
                 }
             },
             home: {
                 options:  {
                     outputfile : '<%= _config.dir.output %>css/critical-home.css',
                     filename : '<%= _config.dir.output %>css/main.css',
-                    url : 'http://local.source/home.php?static=true'
+                    url : 'http://local.source/tmpl/home.php?static=true'
                 }
             }
         },
