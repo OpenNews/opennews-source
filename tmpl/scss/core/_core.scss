@@ -1015,6 +1015,32 @@ legend {
 }
 
 /*
+Table styles
+*/
+.article-main table {
+    background: #FFF;
+    border-collapse: collapse;
+    border-top: 1px solid #D8D8D8;
+    font-family: map-get( $fonts, "sans-base" );
+    font-size: 15px;
+    font-size: 0.9375rem;
+    line-height: 1.3;
+    margin: 3em 0;
+    width: 100%;
+}
+.article-main tr:nth-child( 2n + 1 ) {
+    background-color: #f9f9f9;
+}
+.article-main tbody:first-child > tr:nth-child( 1 ) > * {
+    vertical-align: bottom;
+}
+.article-main th,
+.article-main td {
+    border-bottom: 1px solid #D8D8D8;
+    padding: 0.5em 0.5em;
+}
+
+/*
 Figure styles
 */
 .figure {
@@ -1134,6 +1160,20 @@ Lists!
     color: map-get( $colors, "link-on" );
     text-decoration: none;
 }
+.list-when {
+    color: #898989;
+    float: left;
+    font-family: map-get( $fonts, "sans-base" );
+    font-size: 0.95em;
+    font-weight: 500;
+    margin-right: 0.5em;
+}
+.wf-active .list-when {
+    font-family: map-get( $fonts, "sans" );
+}
+.list-when:after {
+    content: " — ";
+}
 .list-articles .hed-article-subhed {
     font-size: 1.25em;
     font-weight: normal;
@@ -1210,7 +1250,7 @@ Lead promo
 .promo-byline {
     clear: right;
     flex: 0 1 auto;
-    margin-top: auto;
+    margin-top: 2em;
 }
 @media (min-width: 30em) {
     .hed-promo-lead {
@@ -1797,6 +1837,12 @@ Profiles
 .profile-photo {
     border-radius: 50%;
 }
+.profile .u-logo {
+    background: #FFF;
+    border: 1px solid #D8D8D8;
+    margin-left: 0.5em;
+    padding: 0.5em;
+}
 .profile-name {
     font-size: 1.5em;
     font-weight: normal;
@@ -1855,16 +1901,8 @@ Profiles
     }
 }
 // On profile pages, we’ll move to a 2-column layout on wider screens
-.profile-lead .profile-bio {
-    clear: right;
-}
 .profile-lead .page-title-lead {
     max-width: 18em;
-}
-@media (min-width: 30em) {
-    .profile-lead .profile-bio {
-        clear: none;
-    }
 }
 @media (min-width: 40em) {
     .profile-links {
