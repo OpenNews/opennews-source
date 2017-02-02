@@ -11,6 +11,31 @@
                         <p><a class="link-cta" href="{{ url('code_suggest_repo') }}">Submit a repo now</a></p>
                     </div><!-- /end .mod.main-lead -->
 
+                    {% if tags %}
+                    <div class="mod">
+                        <h2 class="hed-label">Repos tagged: {% for tag in tags %}{{ tag.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}</h2>
+                        
+                        <ul class="list-promos">
+                        {% for code in object_list %}
+                            <li class="src-promo">
+                                <a href="{{ code.get_absolute_url() }}">
+                                    {% if code.screenshot %}
+                                    <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200", crop="center") }}" alt="{{ code.name }}" />
+                                    {% else %}
+                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ code.name }}" />
+                                    {% endif %}
+                                    <h3 class="hed-promo">{{ code.name|smartypants }}</h3>
+                                </a>
+                                <ul class="list-tags-short">{% for tag in code.tags.all() %}
+                                    <li><a class="tag" href="{{ url('code_list_by_tag', tag.slug) }}">{{ tag.name|smartypants }}</a></li>{% endfor %}
+                                </ul><!-- /end .list-tags-short -->
+                            </li><!-- /end .src-promo -->
+                        {% endfor %}
+                        </ul><!-- /end .list-promos -->
+                    </div>
+                        
+                    {% else %}
+                    
                     <div class="mod">
                         <h2 class="hed-label">Featured Repos</h2>
 
@@ -47,7 +72,8 @@
                             {% endif %}{% endfor %}
                         </ul><!-- /end .list-topics -->
                     </div><!-- /end .mod -->
-                </div><!-- /end .content-aside -->
+                    {% endif %}
+                </div><!-- /end .content-main -->
 
                 <div class="content-aside">
                     <div class="mod">
