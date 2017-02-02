@@ -205,7 +205,7 @@ AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
 #MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = 'https://media.opennews.org/'
 THUMBNAIL_PRESERVE_FORMAT = True
-THUMBNAIL_DEBUG = True
+THUMBNAIL_DEBUG = DEBUG
 
 # URL Configuration
 # ------------------------------------------------------------------------------

@@ -19,8 +19,6 @@ DEBUG = env.bool('DJANGO_DEBUG', default=True)
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 TEMPLATES[1]['OPTIONS']['debug'] = DEBUG
 
-THUMBNAIL_DEBUG = False
-
 # SECRET CONFIGURATION
 # ------------------------------------------------------------------------------
 # Note: This key only used for development and testing.
