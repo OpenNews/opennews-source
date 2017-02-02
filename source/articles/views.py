@@ -56,14 +56,14 @@ class ArticleList(ListView):
         if self.section:
             context.update({
                 'section': self.section,
-                'active_nav': self.section.slug,
+                #'active_nav': self.section.slug,
                 'rss_link': reverse('article_list_by_section_feed', kwargs={'section': self.section.slug}),
             })
         elif self.category:
             context.update({
                 'category': self.category,
                 'section': self.category.section,
-                'active_nav': self.category.section.slug,
+                #'active_nav': self.category.section.slug,
                 'rss_link': reverse('article_list_by_category_feed', kwargs={'category': self.category.slug}),
             })
         elif self.tags:

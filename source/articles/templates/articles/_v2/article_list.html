@@ -4,7 +4,7 @@
             <div class="content-main">
                 <div class="mod">
 
-                    <h2 class="hed-label">Articles</h2>
+                    <h2 class="hed-label">Articles{% if tags %} tagged: {% for tag in tags %}{{ tag.name|smartypants }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</h2>
 
                     <ol class="list-articles">{% for article in page.object_list %}
                         <li>

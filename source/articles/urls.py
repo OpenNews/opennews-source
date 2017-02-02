@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls import url
 from django.views.decorators.cache import cache_page
-from django.views.generic import RedirectView
+from django.views.generic.base import RedirectView
 
 from .views import ArticleList
 from source.base.feeds import ArticleFeed
@@ -31,8 +31,8 @@ urlpatterns = [
     ),
     url(
         regex = '^tags/$',
-        view = RedirectView.as_view(),
-        kwargs  = {'url': '/articles/'},
+        view = RedirectView.as_view(url='/articles/'),
+        kwargs  = {},
         name = 'article_list_tags',
     ),
 ]
