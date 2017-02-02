@@ -63,9 +63,9 @@
                         <li class="src-promo">
                             <a href="{{ code.get_absolute_url() }}">
                                 {% if code.screenshot %}
-                                <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200", crop="center") }}" alt="{{ code.name }}" />
+                                <img src="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "300x200", crop="center") }}" alt="" />
                                 {% else %}
-                                <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ code.name }}" />
+                                <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="" />
                                 {% endif %}
                                 <h3 class="hed-promo">{{ code.name|smartypants }}</h3>
                             </a>

@@ -16,9 +16,9 @@
                             {% set random_article = get_random_articles(1, 90) %}
                             <h3 class="hed-article-tease-search">
                                 <a href="{{ random_article.get_absolute_url() }}">
-                                    {% if random_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(random_article.image, "300x200", crop="center") }}" alt="{{ random_article.title }}" />
+                                    {% if random_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(random_article.image, "300x200", crop="center") }}" alt="" />
                                     {% else %}
-                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="{{ random_article.title }}" />
+                                    <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="" />
                                     {% endif %}
                                     {{ random_article.title|smartypants }}
                                 </a>

@@ -74,7 +74,7 @@
                     <ol class="list-articles">{% for article in person.get_live_article_authored_set() %}
                         <li>
                             <a href="{{ article.get_absolute_url() }}">
-                                {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="{{ article.title }}" />{% endif %}
+                                {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="" />{% endif %}
                                 <h3 class="hed-article-title">{{ article.title|typogrify }}</h3>
                                 <h4 class="hed-article-subhed">{{ article.subhead|typogrify }}</h4>
 
