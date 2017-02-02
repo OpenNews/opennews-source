@@ -1134,6 +1134,20 @@ Lists!
     color: map-get( $colors, "link-on" );
     text-decoration: none;
 }
+.list-when {
+    color: #898989;
+    float: left;
+    font-family: map-get( $fonts, "sans-base" );
+    font-size: 0.95em;
+    font-weight: 500;
+    margin-right: 0.5em;
+}
+.wf-active .list-when {
+    font-family: map-get( $fonts, "sans" );
+}
+.list-when:after {
+    content: " — ";
+}
 .list-articles .hed-article-subhed {
     font-size: 1.25em;
     font-weight: normal;

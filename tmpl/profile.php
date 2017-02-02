@@ -116,6 +116,8 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                                 <h4 class="hed-article-subhed">Appreciation of usefulness and bar-raising at the end of a long, complicated year</h4>
 
                                 <div class="summary">
+                                    <span class="list-when"><span class="a11y">Posted on </span> <time datetime="2017-02-02">February 2, 2017</time></span>
+
                                     <p>As we did last year, we’ve asked a couple of dozen people from all around the news-nerd community to tell us about one thing—article, feature, app, tool, or something else entirely—that they loved in 2015. This week, we’re publishing their responses, from interactives to project management software.</p>
                                 </div><!-- /end .summary -->
                             </a>
@@ -126,6 +128,8 @@ if ( $_COOKIE[ "fullCSS" ] == "loaded" || $_GET[ "static" ] == "true" ) {
                                 <h3 class="hed-article-title">Mapping Inspiration: A Q&amp;A with Latoya Peterson</h3>
                                 <h4 class="hed-article-subhed">How Peterson works with Fusion’s interactive team to make beautiful things happen</h4>
                                 <div class="summary">
+                                    <span class="list-when"><span class="a11y">Posted on </span> <time datetime="2017-02-02">February 2, 2017</time></span>
+
                                     <p>Latoya Peterson creates all kinds of groundbreaking digital work with Fusion (including an incredible documentary series, Girl Gamers, which just launched). We spoke with Peterson about her Mental Map project, an interactive series that traces and celebrates creative roots. The first, released this spring, featured artist and illustrator Carl Jones. The next one, with Alexis Ohanian of Reddit, launched today. <span class="link-cta">Read more</span></p>
                                 </div>
                             </a>
