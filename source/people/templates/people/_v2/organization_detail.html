@@ -6,15 +6,15 @@
 <!-— facebook open graph tags -->
 <meta property="og:type" content="article" />
 <meta property="og:url" content="{{ request.build_absolute_uri() }}" />
-<meta property="og:title" content="{{ organization.name }}" />
-{% if organization.logo %}<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(organization.logo, "300") }}" />{% endif %}
+<meta property="og:title" content="{{ organization.name }}" />{% if organization.logo %}
+<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(organization.logo, "300") }}" />{% endif %}
  
 <!-— twitter card tags additive with the og: tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
-<meta name="twitter:title" value="{{ organization.name }}" />
-{% if organization.logo %}<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(organization.logo, "300") }}" />{% endif %}
-<meta name="twitter:image:alt" content="{{ organization.name }}" />
+<meta name="twitter:title" value="{{ organization.name }}" />{% if organization.logo %}
+<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(organization.logo, "300") }}" />
+<meta name="twitter:image:alt" content="{{ organization.name }}" />{% endif %}
 <meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
 <meta name="twitter:site" value="@source" />
 {% endblock %}

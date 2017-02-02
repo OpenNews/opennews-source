@@ -15,8 +15,8 @@
 <meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
 <meta name="twitter:title" value="{{ code.name }}" />
 <meta name="twitter:description" value="{{ code.summary_or_description }}" />{% if code.screenshot %}
-<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />{% endif %}
-<meta name="twitter:image:alt" content="{{ code.name }}" />
+<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />
+<meta name="twitter:image:alt" content="{{ code.name }}" />{% endif %}
 <meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
 <meta name="twitter:site" value="@source" />
 {% endblock %}
