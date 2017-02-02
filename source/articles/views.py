@@ -16,16 +16,15 @@ class ArticleList(ListView):
     category = None
     
     def dispatch(self, *args, **kwargs):
-        self.section = kwargs.get('section', None)
-        if self.section:
-            self.section = get_object_or_404(Section, slug=self.section)
+        self.section_kwarg = kwargs.get('section', None)
+        # possible to filter list by section, but we want /articles/
+        # to show everything
+        if self.section_kwarg and self.section_kwarg != 'articles':
+            self.section = get_object_or_404(Section, slug=self.section_kwarg)
 
-        self.category = kwargs.get('category', None)
-        if self.category:
-            self.category = get_object_or_404(Category, slug=self.category)
-            if self.category.slug == 'learning' and not self.section:
-                # redirecting this to our "Section" page for Learning
-                return HttpResponseRedirect(reverse('article_list_by_section', args=('learning',)))
+        self.category_kwarg = kwargs.get('category', None)
+        if self.category_kwarg:
+            self.category = get_object_or_404(Category, slug=self.category_kwarg)
 
         self.tag_slugs = kwargs.get('tag_slugs', None)
         self.tags = []
