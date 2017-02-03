@@ -1,27 +1,62 @@
 {% extends "guides/_v2/_base_guides.html" %}
 
-{% block page_title %}Suggest a Guide topic - {{ super() }}{% endblock %}
+{% block page_title %}Suggest a guide topic - {{ super() }}{% endblock %}
 
 {% block page_main %}{# block begins inside div.page-main #}
 
-                <div class="content-main">
-                    <h1 class="page-title-lead">Guides</h1>
-                    
-                    {% if success == "True" %}
-                    <p>Thanks for suggesting a topic for a new Guide!</p>
-                    <p><a class="link-cta" href="{{ url('guide_suggest_guide') }}">Suggest another Guide</a></p>
+            <div class="content-main">
+                {% if success == "True" %}
+                <h1 class="page-title-lead">Thank you!</h1>
+                <p>We appreciate you taking the time to suggest a guide topic, and we&rsquo;ll get in touch if we have any questions.</p>
+                <p><a class="link-cta" href="{{ url('guide_suggest_guide') }}">Suggest another guide</a></p>
 
-                    {% else %}
-                    <div class="mod main-lead">
-                        <p>Suggest a topic for a new Guide on Source.</p>
+                {% else %}
+                
+                <h1 class="page-title-lead">Suggest a guide</h1>
 
-                        <form action="." method="post">
-                            {% csrf_token %}
-                            {{ form }}
-                            <input type="submit">
-                        </form>
-                    </div><!-- /end .mod.main-lead -->
+                <div class="mod main-lead">
+                    <p>Want to make a Source guide to a topic? Tell us about what you want to make and for whom and we&rsquo;ll get right back to you.</p>
+                </div><!-- /end .mod.main-lead -->
+
+                <div class="mod">
+                    {% if form.errors %}<p class="msg-error">Oh no! There were a few errors with your submission. Mind double-checking the form, and filling out all the required fields?</p>{% endif %}
                     
-                    {% endif %}
-                </div>
+                    {% if form.non_field_errors() %}<p class="msg-error">{{ form.non_field_errors() }}</p>{% endif %}
+
+                    <form class="form-submit" action="." method="post">
+                        {% csrf_token %}
+                        <fieldset>
+                            <legend>Who are you?</legend>
+                            <p>
+                                <label for="{{ form.guide_submitter_name.id_for_label }}">Name:</label>
+                                    {% if form.guide_submitter_name.errors %}{{ form.guide_submitter_name|add_class('field-text msg-error') }}{% else %}{{ form.guide_submitter_name|add_class('field-text') }}{% endif %}
+                            </p>
+                            <p>
+                                <label for="{{ form.guide_submitter_email.id_for_label }}">Email:</label>
+                                    {% if form.guide_submitter_email.errors %}{{ form.guide_submitter_email|add_class('field-text msg-error') }}{% else %}{{ form.guide_submitter_email|add_class('field-text') }}{% endif %}
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Tell us about your topic</legend>
+                            
+                            <p class="form-phrase">
+                                <label for="{{ form.guide_description.id_for_label }}">I want to make a guide about&hellip;</label>
+                                {{ form.guide_description }}
+                            </p>
+                            
+                            <p class="form-phrase">
+                                <label for="{{ form.guide_purpose.id_for_label }}">It will be great for&hellip;</label>
+                                {{ form.guide_purpose }}
+                            </p>
+                        </fieldset>
+
+                        <p><input type="submit" value="Submit your guide topic" /></p>
+
+                    </form>
+
+                </div><!-- /end .mod -->
+                {% endif %}
+            </div><!-- /end .content-aside -->
+
 {% endblock %}

@@ -1,9 +1,13 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.views.generic import ListView, DetailView, View
+from django.views.generic.edit import FormView
 
 from .forms import SuggestGuideForm
 from .models import Guide
+from source.utils.email import send_multipart_email
 
 
 class GuideList(ListView):
@@ -41,57 +45,42 @@ class GuideDetail(DetailView):
         return queryset
 
 
-class GuideSuggestGuide(View):
+class GuideSuggestGuide(FormView):
     '''
-    Readers can suggest a new Guide, generating
+    Readers can suggest a Guide to add to the Guide list, generating
     an email to the editorial team.
     '''
     template_name = "guides/_v2/suggest_guide.html"
+    form_class = SuggestGuideForm
     
-    def get(self, request, *args, **kwargs):
-        '''
-        Render the suggestion form.
-        '''
-        context = {
-            'form': SuggestGuideForm()
+    def form_valid(self, form, **kwargs):
+        context = self.get_context_data(**kwargs)
+        
+        data=form.cleaned_data
+        
+        email_context = {
+            'data': data
         }
-        
-        return render(request, self.template_name, context)
+    
+        # render text and html versions of email body
+        # both plain txt for now
+        text_content = render_to_string(
+            'guides/_v2/emails/suggest_guide.txt',
+            email_context,
+        )
+        html_content = render_to_string(
+            'guides/_v2/emails/suggest_guide.html',
+            email_context
+        )
 
-    def post(self, request, *args, **kwargs):
-        '''
-        Process the submitted form, send email to editorial staff,
-        give reader a success message. (Form validation happens in
-        the template.)
-        '''
-        context = {}
-        form = SuggestGuideForm(request.POST)
-        if form.is_valid():
-            data=form.cleaned_data
-        
-            email_context = {
-                'name': data.get('name', ''),
-            }
-        
-            # render text and html versions of email body
-            # both plain txt for now
-            text_content = render_to_string(
-                'guides/_v2/emails/suggest_guide.txt',
-                email_context,
-            )
-            html_content = render_to_string(
-                'guides/_v2/emails/suggest_guide.txt',
-                email_context
-            )
+        send_multipart_email(
+            subject = 'Source: Guide suggestion from a reader',
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = settings.EDITORIAL_EMAIL,
+            text_content = text_content,
+            html_content = html_content
+        )
 
-            send_multipart_email(
-                subject = 'Source: Guide suggestion from a reader',
-                from_email = settings.DEFAULT_FROM_EMAIL,
-                to = settings.EDITORIAL_EMAIL,
-                text_content = text_content,
-                html_content = html_content
-            )
+        context.update({'success': 'True'})
 
-            context.update({'success': 'True'})
-        return render(request, self.template_name, context)
-        
+        return render(self.request, self.template_name, context)

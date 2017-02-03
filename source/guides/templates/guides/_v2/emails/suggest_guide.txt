@@ -1,1 +1,8 @@
-Name: {{ name }}
+Name: {{ data.guide_submitter_name }}
+Email: {{ data.guide_submitter_email }}
+
+Description:
+{{ data.guide_description }}
+
+Purpose:
+{{ data.guide_purpose }}
