@@ -24,7 +24,7 @@
                             <ul class="profile-links">
                                 {% if job.location %}<li class="has-icon icon-location">{{ job.location|smartypants }}</li>{% endif %}
                                 <li><a class="has-icon icon-company" href="{{ job.organization.get_absolute_url() }}">{{ job.organization.name|smartypants }}</a></li>
-                                {% if job.get_contact_email %}<li><a class="has-icon icon-email" href="mailto:{{ job.get_contact_email }}">Contact {{ job.contact_name|default('email', true) }}</a></li>{% endif %}
+                                {% if job.get_contact_email %}<li><a class="has-icon icon-email-alt" href="mailto:{{ job.get_contact_email }}">Contact {{ job.contact_name|default('email', true) }}</a></li>{% endif %}
                                 <li><a class="has-icon icon-link" href="#job-{{ job.pk }}">Link to this job</a></li>
                             </ul>
                         </li><!-- /end .profile-person -->{% endfor %}
