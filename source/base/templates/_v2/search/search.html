@@ -1,0 +1,79 @@
+{% extends "_v2/base.html" %}
+
+{% set active_nav = "search" %}
+
+{% block page_title %}Search - {{ super() }}{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+                <div class="content-main">
+                    <h1 class="page-title-lead">Search Source</h1>
+                    
+                    <div class="mod main-lead">
+                        <form class="form-search" method="get" action="{{ url('haystack_search') }}">
+                            <p class="fields-search">
+                                <input class="text-search" style="border: 1px solid #D8D8D8;" id="text-search" type="search" name="q" value="{{ form.q.value() }}" />
+                                <input class="btn-search icon-search" type="submit" value="Search" />
+                            </p><!-- /end .fields-search -->
+                        </form><!-- /end .form-search -->
+                    </div><!-- /end .mod.main-lead -->
+                    
+                    <div class="mod">
+                        <ol class="list-articles">{% for result in page.object_list %}
+                            <li>{% with article = result.object %}
+                                <a href="{{ article.get_absolute_url() }}">
+                                    {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="" />{% endif %}
+                                    <h3 class="hed-article-title">{{ article.title|typogrify }}</h3>
+                                    <h4 class="hed-article-subhed">By {% for author in article.get_live_author_set() %}{% if loop.last and not loop.first %} and {% endif %}<a href="{{ author.get_absolute_url() }}">{{ author.name()|smartypants }}</a>{% if not loop.last and loop.length != 2 %}, {% endif %}{% endfor %}</h4>
+
+                                    <div class="summary">
+                                        <span class="list-when"><span class="a11y">Posted on </span> <time datetime="{{ article.pubdate.strftime('%Y-%m-%d') }}">{{ article.pretty_pubdate|typogrify }}</time></span>
+                                        <p>{{ article.safe_summary|typogrify }}</p>
+                                    </div><!-- /end .summary -->
+                                </a>{% endwith %}
+                            </li>{% else %}
+                            <li>Sorry, no matching articles found.</li>{% endfor %}
+                        </ol>
+
+                        {% include "_v2/utils/_paginate.html" %}
+                    </div><!-- /end .mod -->
+                </div>
+
+                <div class="content-aside">
+
+                    {% if code_results %}
+                    <div class="mod">
+                        <h2 class="hed-label">Code Repos</h2>
+                        <ol class="list-recently">{% for result in code_results %}
+                            <li><a class="has-icon icon-github" href="{{ result.object.get_absolute_url() }}">{{ result.object.name|smartypants }}</a></li>{% endfor %}
+                        </ol>
+
+                        <p><a class="link-cta" href="{{ url('code_list') }}">See all repos</a></p>
+                    </div><!-- /end .mod -->
+                    {% endif %}
+
+                    {% if person_results %}
+                    <div class="mod">
+                        <h2 class="hed-label">People</h2>
+                        <ol class="list-recently">{% for result in person_results %}
+                            <li><a class="has-icon icon-profile" href="{{ result.object.get_absolute_url() }}">{{ result.object.name()|smartypants }}</a></li>{% endfor %}
+                        </ol>
+
+                        <p><a class="link-cta" href="{{ url('person_list') }}">See all people</a></p>
+                    </div><!-- /end .mod -->
+                    {% endif %}
+                    
+                    {% if organization_results %}
+                    <div class="mod">
+                        <h2 class="hed-label">Organizations</h2>
+                        <ol class="list-recently">{% for result in organization_results %}
+                            <li><a class="has-icon icon-company" href="{{ result.object.get_absolute_url() }}">{{ result.object.name|smartypants }}</a></li>{% endfor %}
+                        </ol>
+
+                        <p><a class="link-cta" href="{{ url('organization_list') }}">See all organizations</a></p>
+                    </div><!-- /end .mod -->
+                    {% endif %}
+                    
+                </div><!-- /end .content-aside -->
+
+{% endblock %}

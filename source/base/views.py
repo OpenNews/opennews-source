@@ -39,15 +39,24 @@ class HomepageView(ListView):
         return context
 
 class SourceSearchView(SearchView):
+    template = "_v2/search/search.html"
+    
     def get_results(self):
         '''
         Limit primary search results to Article and Code matches.
         Template gets Person and Organization matches separately,
         via `get_secondary_results`.
         '''
-        results = self.form.search().models(Article, Code)
+        results = self.form.search().models(Article)
         return results
     
+    def get_code_results(self):
+        '''
+        Get Person matches for separate handling on template.
+        '''
+        code_results = self.form.search().models(Code)
+        return code_results
+
     def get_person_results(self):
         '''
         Get Person matches for separate handling on template.
@@ -74,6 +83,7 @@ class SourceSearchView(SearchView):
         
         if self.query:
             page_context.update({
+                'code_results': self.get_code_results(),
                 'person_results': self.get_person_results(),
                 'organization_results': self.get_organization_results()
             })
