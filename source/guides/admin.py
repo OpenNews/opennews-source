@@ -29,7 +29,7 @@ class GuideAdmin(AdminImageMixin, admin.ModelAdmin):
     fieldsets = (
         ('', {'fields': (('pubdate', 'is_live', 'show_in_lists'), ('title', 'slug'), 'description', 'summary')}),
         ('', {'fields': ('cover_color', 'image')}),
-        ('', {'fields': ('author_name', 'author_bio', 'author_photo')}),
+        ('', {'fields': ('author_name', 'author_bio',)}),
     )
     inlines = [GuideArticleInline,]
     

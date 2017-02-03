@@ -32,7 +32,7 @@ class Guide(CachingMixin, models.Model):
     description = models.TextField('Description', blank=True)
     summary = models.TextField(blank=True, help_text='The two-sentence version of description, to be used on list pages.')
     cover_color = models.CharField(max_length=32, blank=True, help_text='Hex code for background color of title card, e.g. `#256188`. Probably sampled from cover image.')
-    author_name = models.CharField(max_length=128, blank=True)
+    author_name = models.CharField(max_length=128, blank=True, help_text='This field accepts HTML, so you can wrap an author\'s name in a link.')
     author_bio = models.TextField(blank=True)
     author_photo = ImageField(upload_to='img/uploads/guide_author_images', blank=True, null=True)
     objects = models.Manager()
