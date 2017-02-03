@@ -1,12 +1,17 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
+from django.template.loader import render_to_string
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormView
 
+from .forms import SuggestArticleForm
 from .models import Article, Section, Category
 from source.code.models import get_recent_repos
 from source.jobs.models import get_recent_jobs
 from source.tags.utils import filter_queryset_by_tags
+from source.utils.email import send_multipart_email
 from source.utils.pagination import paginate
 
 class ArticleList(ListView):
@@ -161,3 +166,44 @@ class ArticleDetail(DetailView):
         })
 
         return context
+
+
+class ArticleSuggestArticle(FormView):
+    '''
+    Readers can submit an Article pitch, generating
+    an email to the editorial team.
+    '''
+    template_name = "articles/_v2/suggest_article.html"
+    form_class = SuggestArticleForm
+    
+    def form_valid(self, form, **kwargs):
+        context = self.get_context_data(**kwargs)
+        
+        data=form.cleaned_data
+        
+        email_context = {
+            'data': data
+        }
+    
+        # render text and html versions of email body
+        # both plain txt for now
+        text_content = render_to_string(
+            'articles/_v2/emails/suggest_article.txt',
+            email_context,
+        )
+        html_content = render_to_string(
+            'articles/_v2/emails/suggest_article.html',
+            email_context
+        )
+
+        send_multipart_email(
+            subject = 'Source: Article suggestion from a reader',
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = settings.EDITORIAL_EMAIL,
+            text_content = text_content,
+            html_content = html_content
+        )
+
+        context.update({'success': 'True'})
+
+        return render(self.request, self.template_name, context)

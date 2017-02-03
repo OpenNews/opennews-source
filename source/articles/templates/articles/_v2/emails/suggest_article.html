@@ -1,0 +1,12 @@
+<p>
+    <strong>Name:</strong> {{ data.article_submitter_name }}<br>
+    <strong>Email:</strong> {{ data.article_submitter_email }}
+</p>
+<p>
+    <strong>Description:</strong><br>
+    {{ data.article_description }}
+</p>
+<div>
+    <p><strong>Draft:</strong></p>
+    {{ data.article_draft|e|linebreaks|safe }}
+</div>

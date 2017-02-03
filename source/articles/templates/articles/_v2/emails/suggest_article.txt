@@ -1,0 +1,8 @@
+Name: {{ data.article_submitter_name }}
+Email: {{ data.article_submitter_email }}
+
+Description:
+{{ data.article_description }}
+
+Draft:
+{{ data.article_draft|linebreaks }}

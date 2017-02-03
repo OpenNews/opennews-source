@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
 
-from .views import ArticleList
+from .views import ArticleList, ArticleSuggestArticle
 from source.base.feeds import ArticleFeed
 
 STANDARD_CACHE_TIME = getattr(settings, 'CACHE_MIDDLEWARE_SECONDS', 60*15)
@@ -34,5 +34,11 @@ urlpatterns = [
         view = RedirectView.as_view(url='/articles/'),
         kwargs  = {},
         name = 'article_list_tags',
+    ),
+    url(
+        regex = '^suggest/$',
+        view = ArticleSuggestArticle.as_view(),
+        kwargs  = {},
+        name = 'article_suggest_article',
     ),
 ]

@@ -1,0 +1,66 @@
+{% extends "articles/_v2/_base_articles.html" %}
+
+{% block page_title %}Suggest an article - {{ super() }}{% endblock %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+
+            <div class="content-main">
+                {% if success == "True" %}
+                <h1 class="page-title-lead">Thank you!</h1>
+                <p>We appreciate you taking the time to suggest an article, and we&rsquo;ll get in touch if we have any questions.</p>
+                <p><a class="link-cta" href="{{ url('article_suggest_article') }}">Suggest another article</a></p>
+
+                {% else %}
+                
+                <h1 class="page-title-lead">Suggest an article</h1>
+
+                <div class="mod main-lead">
+                    <p>We want to hear about what you&rsquo;re working on! Tell us what you want to write, and we&rsquo;ll get right back to you.</p>
+                </div><!-- /end .mod.main-lead -->
+
+                <div class="mod">
+                    {% if form.errors %}<p class="msg-error">Oh no! There were a few errors with your submission. Mind double-checking the form, and filling out all the required fields?</p>{% endif %}
+                    
+                    {% if form.non_field_errors() %}<p class="msg-error">{{ form.non_field_errors() }}</p>{% endif %}
+
+                    <form class="form-submit" action="." method="post">
+                        {% csrf_token %}
+                        <fieldset>
+                            <legend>Who are you?</legend>
+                            <p>
+                                <label for="{{ form.article_submitter_name.id_for_label }}">Name:</label>
+                                    {% if form.article_submitter_name.errors %}{{ form.article_submitter_name|add_class('field-text msg-error') }}{% else %}{{ form.article_submitter_name|add_class('field-text') }}{% endif %}
+                            </p>
+                            <p>
+                                <label for="{{ form.article_submitter_email.id_for_label }}">Email:</label>
+                                    {% if form.article_submitter_email.errors %}{{ form.article_submitter_email|add_class('field-text msg-error') }}{% else %}{{ form.article_submitter_email|add_class('field-text') }}{% endif %}
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Tell us about your topic</legend>
+                            
+                            <p class="form-phrase">
+                                <label for="{{ form.article_description.id_for_label }}">I want to write about&hellip;</label>
+                                {{ form.article_description }}
+                            </p>
+                        </fieldset>
+                            
+                        <fieldset>
+                            <legend>Do you already have a draft?</legend>
+                            
+                            <p class="form-phrase">
+                                <label for="{{ form.article_draft.id_for_label }}">It&rsquo;s fine if you don&rsquo;t, but if you have a draft you can paste it in right here&hellip;</label>
+                                {{ form.article_draft }}
+                            </p>
+                        </fieldset>
+
+                        <p><input type="submit" value="Submit your article proposal" /></p>
+
+                    </form>
+
+                </div><!-- /end .mod -->
+                {% endif %}
+            </div><!-- /end .content-aside -->
+
+{% endblock %}
