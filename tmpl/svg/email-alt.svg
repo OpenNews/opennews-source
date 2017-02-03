@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <polygon id="path-1" points="0.06 16 16 16 16 0.04 0.06 0.04"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="footer" transform="translate(-475.000000, -203.000000)">
+            <g id="connect" transform="translate(474.000000, 84.000000)">
+                <g id="email" transform="translate(0.996094, 119.622906)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M2.667,14 C2.637,14 2.607,13.998 2.578,13.994 L6.103,9.104 L5.646,8.646 L2,12.293 L2,2.744 L8,10 L14,2.744 L14,12.293 L10.354,8.646 L9.896,9.104 L13.422,13.994 C13.393,13.998 13.363,14 13.334,14 L2.667,14 Z M13.333,2 C13.458,2 13.576,2.036 13.677,2.099 L7.999,6.793 L2.322,2.099 C2.423,2.036 2.541,2 2.666,2 L13.333,2 Z M13.333,0 L2.667,0 C1.2,0 0,1.2 0,2.667 L0,13.333 C0,14.801 1.2,16 2.667,16 L13.333,16 C14.8,16 16,14.801 16,13.333 L16,2.667 C16,1.2 14.8,0 13.333,0 L13.333,0 Z" id="Fill-1" fill="#4D4D4D" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
