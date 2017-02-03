@@ -1,0 +1,59 @@
+{% extends "jobs/_v2/_base_jobs.html" %}
+
+{% block page_main %}{# block begins inside div.page-main #}
+            <div class="content-main">
+                <h1 class="page-title-lead">Jobs</h1>
+
+                <div class="mod main-lead">
+                    <p>Source Jobs publishes job listings for people who design interactive features, write code, and work with data in newsrooms.</p>
+                </div><!-- /end .mod.main-lead -->
+                
+                {% if object_list %}
+                <div class="mod">
+                    <h2 class="hed-label">Job listings</h2>
+                    <ul>{% for job in object_list %}
+                        <li class="profile" id="job-{{ job.pk }}">
+                            <h3 class="profile-name">{% if job.url %}
+                                <a href="{{ job.url }}">{{ job.job_display_name|smartypants }}</a>
+                                {% else %}
+                                {{ job.job_display_name|smartypants }}{% endif %}
+                            </h3>
+                            <h4>Posted {{ job.listing_start_date|simple_datesince }}</h4>
+                            {% if job.description %}<p>{{ job.description }}</p>{% endif %}
+                        
+                            <ul class="profile-links">
+                                {% if job.location %}<li class="has-icon icon-location">{{ job.location|smartypants }}</li>{% endif %}
+                                <li><a class="has-icon icon-company" href="{{ job.organization.get_absolute_url() }}">{{ job.organization.name|smartypants }}</a></li>
+                                {% if job.get_contact_email %}<li><a class="has-icon icon-email" href="mailto:{{ job.get_contact_email }}">Contact {{ job.contact_name|default('email', true) }}</a></li>{% endif %}
+                                <li><a class="has-icon icon-link" href="#job-{{ job.pk }}">Link to this job</a></li>
+                            </ul>
+                        </li><!-- /end .profile-person -->{% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div><!-- /end .content-main -->
+
+            <div class="content-aside">
+                <div class="mod">
+                    <h2 class="hed-label">List a job on Source</h2>
+
+                    <ol class="list-recently">
+                        <li class="item-recent">
+                            <p>If you&rsquo;ve already set up an organization profile on Source:</p>
+
+                            <ul>
+                                <li><a class="has-icon icon-profile" href="{{ url('organization_update') }}">Log in to list a new job</a></li>
+                            </ul>
+                        </li>
+                        <li class="item-recent">
+                            <p>If you don&rsquo;t have an organization profile on Source, we can help you set one up or list a job for you:</p>
+
+                            <ul>
+                                <li><a class="has-icon icon-email" href="mailto:source@opennews.org?subject=Registration for Job Listings">Contact us to set up a profile</a></li>
+                                <li><a class="has-icon icon-email" href="mailto:source@opennews.org?subject=Job Listings">Request a job listing</a></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div><!-- /end .mod -->
+            </div><!-- /end .content-aside -->
+{% endblock %}

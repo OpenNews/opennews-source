@@ -18,6 +18,7 @@ USER_DEBUG = getattr(settings, 'USER_DEBUG', False)
 
 class JobList(ListView):
     model = Job
+    template_name = "jobs/_v2/job_list.html"
 
     def dispatch(self, request, *args, **kwargs):
         self.render_json = kwargs.get('render_json', False)
