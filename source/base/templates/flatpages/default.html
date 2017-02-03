@@ -1,7 +1,18 @@
-{% extends "base.html" %}
+{% extends "_v2/base.html" %}
+
+{% block body_class %}tmpl-article{% endblock %}
+
 {% block page_title %}{{ flatpage.title }} - {{ super() }}{% endblock %}
 
-{% block content %}
-<h2>{{ flatpage.title|typogrify }}</h2>
-{{ flatpage.content|linebreaks|typogrify|safe }}
-{% endblock content %}
+{% block page_main %}
+
+    <div class="article-matter-front">
+        <h1 class="page-title-lead">{{ flatpage.title|typogrify }}</h1>
+    </div><!-- /end .article-matter-front -->
+    
+        
+    <div class="article-main">
+        {{ flatpage.content|linebreaks|typogrify|safe }}
+    </div>
+
+{% endblock %}
