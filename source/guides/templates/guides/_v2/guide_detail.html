@@ -39,8 +39,6 @@
             
             <div class="article-main">
                 {{ guide.description_or_summary|linebreaks|typogrify|safe }}
-                
-                {% if guide.author_bio %}<p><em>{{ guide.author_bio|typogrify|safe }}</em></p>{% endif %}
             </div>
             
             <div class="article-matter-back">
@@ -53,7 +51,7 @@
                             <a href="{{ guidearticle.external_url }}">
                                 <h3 class="hed-article-title">{{ guidearticle.external_title|typogrify }}</h3>
                             </a>
-                            <h4 class="hed-article-subhed">{% if external_author_name %}By {{ external_author_name }}{% if external_organization_name %}, {{ external_organization_name }}{% endif %}{% endif %}</h4>
+                            <h4 class="hed-article-subhed">{% if guidearticle.external_author_name %}By {{ guidearticle.external_author_name }}{% if guidearticle.external_organization_name %}, {{ guidearticle.external_organization_name }}{% endif %}{% endif %}</h4>
                             <div class="summary">
                                 <p>{% if guidearticle.article_notes %}{{ guidearticle.article_notes|typogrify|safe }}{% endif %}</p>
                             </div><!-- /end .summary -->
@@ -72,5 +70,13 @@
                         </li>{% endfor %}
                     </ol>
                 </div><!-- /end .mod -->
+                
+                {% if guide.author_bio %}
+                <div class="mod article-related">
+                    <h2 class="hed-label">Curation</h2>
+                    
+                    <p>{{ guide.author_bio|typogrify|safe }}</p>
+                </div><!-- /end .mod -->
+                {% endif %}
             </div>
 {% endblock %}
