@@ -242,7 +242,7 @@ class Organization(CachingMixin, models.Model):
     def admin_image_tag(self):
         if self.logo:
             return format_html(
-                '<img src="{}{}" style="height: 30px;" />',
+                '<img src="{}{}" style="height: 15px;" />',
                 settings.MEDIA_URL,
                 self.logo,
             )
