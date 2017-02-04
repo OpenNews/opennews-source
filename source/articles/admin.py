@@ -26,7 +26,8 @@ class ArticleAdmin(AdminImageMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('authors', 'people', 'organizations', 'code',)
     list_filter = ('is_live', 'category',)
-    list_display = ('title', 'pubdate', 'category', 'is_live', 'is_featured', 'show_in_lists')
+    list_display = ('title', 'pubdate', 'section', 'is_live', 'is_featured', 'show_in_lists',)
+    list_editable = ('is_live', 'is_featured', 'show_in_lists',)
     search_fields = ('title', 'body', 'summary',)
     date_hierarchy = 'pubdate'
     fieldsets = (
@@ -69,6 +70,7 @@ class CategoryInline(admin.TabularInline):
 
 class SectionAdmin(AdminImageMixin, admin.ModelAdmin):
     save_on_top = True
+    list_display = ('name','category_list',)
     prepopulated_fields = {'slug': ('name',)}
     inlines = [CategoryInline,]
 

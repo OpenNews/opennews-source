@@ -242,6 +242,9 @@ class Section(CachingMixin, models.Model):
 
     def __str__(self):
         return '%s' % (self.name)
+        
+    def category_list(self):
+        return ', '.join([category.name for category in self.category_set.all()])
 
 
 class Category(CachingMixin, models.Model):
