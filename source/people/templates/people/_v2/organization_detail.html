@@ -37,7 +37,7 @@
                     </div><!-- /end .mod.main-lead.profile-bio -->
 
                     <ul class="profile-links">
-                        {% if organization.location_string_city %}<li class="has-icon icon-location">{{ organization.location_string_city }}</li>{% endif %}
+                        {% if organization.location %}<li class="has-icon icon-location">{{ organization.location }}</li>{% endif %}
                         {% if organization.github_username %}<li><a class="has-icon icon-github" href="{{ organization.github_username }}">GitHub</a></li>{% endif %}
                         {% if organization.twitter_username %}<li><a class="has-icon icon-twitter-alt" href="https://twitter.com/{{ organization.twitter_username }}">@{{ organization.twitter_username }}</a></li>{% endif %}
                         {% if organization.homepage %}<li><a class="has-icon icon-link u-url" href="{{ organization.homepage }}">Visit website</a></li>{% endif %}

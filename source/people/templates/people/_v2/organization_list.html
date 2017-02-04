@@ -20,7 +20,7 @@
                             </h3>
                             
                             <ul class="profile-links">
-                                {% if organization.location_string_city %}<li class="has-icon icon-location">{{ organization.location_string_city }}</li>{% endif %}
+                                {% if organization.location %}<li class="has-icon icon-location">{{ organization.location }}</li>{% endif %}
                                 {% if organization.twitter_username %}<li><a class="icon-twitter-alt" href="https://twitter.com/{{ organization.twitter_username }}">@{{ organization.twitter_username }}</a></li>{% endif %}
                                 {% if organization.github_username %}<li><a class="icon-github" href="https://github.com/{{ organization.github_username }}">{{ organization.github_username }}</a></li>{% endif %}
                             </ul>

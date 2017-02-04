@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.html import format_html
 
 from caching.base import CachingManager, CachingMixin
 from sorl.thumbnail import ImageField
@@ -168,7 +169,7 @@ class Organization(CachingMixin, models.Model):
         return ",".join(_locs).replace(' ','+')
 
     @property
-    def location_string_city(self):
+    def location(self):
         _locs = []
         for _loc in [self.city, self.state, self.country]:
             if _loc: _locs.append(_loc)
@@ -192,6 +193,16 @@ class Organization(CachingMixin, models.Model):
     
     def has_open_jobs(self):
         return self.get_live_job_set().exists()
+
+    def admin_image_tag(self):
+        if self.logo:
+            return format_html(
+                '<img src="{}{}" style="height: 30px;" />',
+                settings.MEDIA_URL,
+                self.logo,
+            )
+        return None
+    admin_image_tag.short_description = 'Logo'
 
 
 class OrganizationAdmin(CachingMixin, models.Model):
