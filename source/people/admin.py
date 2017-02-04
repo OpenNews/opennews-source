@@ -22,6 +22,8 @@ class PersonAdmin(admin.ModelAdmin):
     save_on_top = True
     prepopulated_fields = {'slug': ('first_name', 'last_name')}
     list_filter = ('is_live', 'show_in_lists',)
+    list_display = ('name', 'is_live', 'show_in_lists', 'admin_email_tag', 'admin_twitter_tag', 'admin_github_tag', 'admin_image_tag',)
+    list_editable = ('is_live', 'show_in_lists',)
     filter_horizontal = ('organizations',)
     search_fields = ('first_name', 'last_name', 'description',)
     fieldsets = (
@@ -55,7 +57,8 @@ class OrganizationAdmin(AdminImageMixin, admin.ModelAdmin):
     save_on_top = True
     prepopulated_fields = {'slug': ('name',)}
     list_filter = ('is_live', 'country', 'state',)
-    list_display = ('name', 'location', 'twitter_username', 'github_username', 'admin_image_tag',)
+    list_display = ('name', 'is_live', 'show_in_lists', 'location', 'admin_twitter_tag', 'admin_github_tag', 'admin_image_tag', 'admin_count')
+    list_editable = ('is_live', 'show_in_lists',)
     search_fields = ('name', 'description', 'city', 'state', 'country',)
     fieldsets = (
         ('', {'fields': (('name', 'slug'), ('is_live', 'show_in_lists'), 'email', 'twitter_username', 'github_username', ('github_repos_num', 'github_gists_num'), 'homepage', 'logo', 'description',)}),

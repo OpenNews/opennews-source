@@ -47,6 +47,8 @@ class Person(CachingMixin, models.Model):
         return '%s %s' % (self.first_name, self.last_name)
         
     def save(self, *args, **kwargs):
+        self.first_name = self.first_name.strip()
+        self.last_name = self.last_name.strip()
         # clean up our username fields, just in case
         if self.twitter_username:
             self.twitter_username = self.twitter_username.strip()
@@ -92,6 +94,46 @@ class Person(CachingMixin, models.Model):
             
     def get_bio(self):
         return self.description or self.twitter_bio or ''
+
+    def admin_image_tag(self):
+        if self.photo:
+            return format_html(
+                '<img src="{}{}" style="height: 30px;" />',
+                settings.MEDIA_URL,
+                self.photo,
+            )
+        return None
+    admin_image_tag.short_description = 'Photo'
+
+    def admin_email_tag(self):
+        if self.email:
+            return format_html(
+                '<a href="mailto:{}">{}</a>',
+                self.email,
+                self.email,
+            )
+        return None
+    admin_email_tag.short_description = 'Email'
+
+    def admin_twitter_tag(self):
+        if self.twitter_username:
+            return format_html(
+                '<a href="https://twitter.com/{}">@{}</a>',
+                self.twitter_username,
+                self.twitter_username,
+            )
+        return None
+    admin_twitter_tag.short_description = 'Twitter'
+
+    def admin_github_tag(self):
+        if self.github_username:
+            return format_html(
+                '<a href="https://github.com/{}">{}</a>',
+                self.github_username,
+                self.github_username,
+            )
+        return None
+    admin_github_tag.short_description = 'Github'
 
 class PersonLink(CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -194,6 +236,9 @@ class Organization(CachingMixin, models.Model):
     def has_open_jobs(self):
         return self.get_live_job_set().exists()
 
+    def admin_count(self):
+        return self.organizationadmin_set.count()
+        
     def admin_image_tag(self):
         if self.logo:
             return format_html(
@@ -204,6 +249,35 @@ class Organization(CachingMixin, models.Model):
         return None
     admin_image_tag.short_description = 'Logo'
 
+    def admin_email_tag(self):
+        if self.email:
+            return format_html(
+                '<a href="mailto:{}">{}</a>',
+                self.email,
+                self.email,
+            )
+        return None
+    admin_email_tag.short_description = 'Email'
+
+    def admin_twitter_tag(self):
+        if self.twitter_username:
+            return format_html(
+                '<a href="https://twitter.com/{}">@{}</a>',
+                self.twitter_username,
+                self.twitter_username,
+            )
+        return None
+    admin_twitter_tag.short_description = 'Twitter'
+
+    def admin_github_tag(self):
+        if self.github_username:
+            return format_html(
+                '<a href="https://github.com/{}">{}</a>',
+                self.github_username,
+                self.github_username,
+            )
+        return None
+    admin_github_tag.short_description = 'Github'
 
 class OrganizationAdmin(CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
