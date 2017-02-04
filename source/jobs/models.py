@@ -9,6 +9,7 @@ from django.utils.safestring import mark_safe
 
 from caching.base import CachingManager, CachingMixin
 from sorl.thumbnail import ImageField
+from source.base.helpers import simple_datesince
 from source.people.models import Organization
 from source.utils.caching import expire_page_cache
 
@@ -33,8 +34,8 @@ class Job(CachingMixin, models.Model):
     name = models.CharField('Job name', max_length=128)
     slug = models.SlugField(unique=True)
     description = models.TextField(blank=True)
-    listing_start_date = models.DateField(default=get_today)
-    listing_end_date = models.DateField(default=get_today_plus_30)
+    listing_start_date = models.DateField('Start date', default=get_today)
+    listing_end_date = models.DateField('End date', default=get_today_plus_30)
     tweeted_at = models.DateTimeField(blank=True, null=True)
     url = models.URLField(blank=True, null=True)
     contact_name = models.CharField('Contact name', max_length=128, blank=True)
@@ -44,15 +45,15 @@ class Job(CachingMixin, models.Model):
     live_objects = LiveJobManager()
     
     class Meta:
-        ordering = ('organization','slug',)
+        ordering = ('-listing_end_date', 'organization', 'slug',)
     
     def __str__(self):
         return '%s: %s' % (self.name, self.organization)
 
-    def will_show_on_site(self):
+    def live_on_site(self):
         today = get_today()
         return (self.is_live and self.listing_start_date <= today and self.listing_end_date >= today)
-    will_show_on_site.boolean = True
+    live_on_site.boolean = True
 
     @property
     def get_list_page_url(self):
@@ -76,6 +77,10 @@ class Job(CachingMixin, models.Model):
     def pretty_expiration_date(self):
         '''pre-process for simpler template logic'''
         return dj_date(self.listing_end_date,"F j, Y")
+    
+    @property
+    def posted(self):
+        return simple_datesince(self.listing_start_date)
         
     @property
     def wrapped_job_name(self):
