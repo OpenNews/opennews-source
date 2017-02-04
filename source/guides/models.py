@@ -86,6 +86,9 @@ class Guide(CachingMixin, models.Model):
     def get_live_article_set(self):
         return self.guidearticle_set.filter(Q(article__is_live=True, article__pubdate__lte=datetime.now()) | Q(article__isnull=True))
 
+    def article_count(self):
+        return self.get_live_article_set().count()
+
     def save(self, *args, **kwargs):
         # clean up cover_color field, just in case
         self.cover_color = self.cover_color.strip('#')
