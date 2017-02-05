@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^auth/logout/', logout, name='logout'),
     url(r'^auth/', include('django_auth0.urls')),
     url(r'^en-(us|US)/', L10NRedirectView.as_view()),
-    url(r'^favicon.ico$', RedirectView.as_view(url='/static/base/_v2/img/favicon.ico')),
+    url(r'^favicon.ico$', RedirectView.as_view(url=settings.STATIC_URL+'base/_v2/img/favicon.ico')),
     # Generate a robots.txt
     url(r'^robots.txt$',
         lambda r: HttpResponse(
