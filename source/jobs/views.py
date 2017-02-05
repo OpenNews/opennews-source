@@ -1,15 +1,18 @@
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template import RequestContext
 from django.views.generic import ListView, DetailView, View
+from django.views.generic.edit import FormView
 
 from .forms import JobUpdateForm
 from .models import Job
 from source.base.helpers import dj_date
-from source.people.models import Organization
+from source.people.models import Organization, OrganizationAdmin
 from source.utils.caching import expire_page_cache
 from source.utils.json import render_json_to_response
 
@@ -66,11 +69,12 @@ class JobList(ListView):
             return render_json_to_response(jobs)
         return super(JobList, self).render_to_response(context)
 
-class JobUpdate(View):
-    form_message = ''
+class JobUpdate(FormView):
+    form_class = JobUpdateForm
+    template_name = 'jobs/_v2/job_update.html'
 
     def get_success_url(self):
-        return reverse('organization_update')
+        return reverse('job_update')
 
     def get_organization(self):
         user = self.request.user
@@ -82,87 +86,103 @@ class JobUpdate(View):
             return organization
         return None
 
-    def get_job(self, pk=None, organization=None, task=None):
+    def get_job(self, pk=None, organization=None):
         user = self.request.user
 
         if USER_DEBUG or (user.is_authenticated() and user.is_active):
             if pk and organization:
-                # allow for 'add' task
-                if task == 'add':
-                    job = get_object_or_404(Job, is_live=True, pk=pk)
-                else:
-                    # ensure that Organization admin can modify this record
-                    job = get_object_or_404(Job, is_live=True, pk=pk, organization=organization)
+                # ensure that Organization admin can modify this record
+                job = get_object_or_404(Job, is_live=True, pk=pk, organization=organization)
             return job
         return None
 
     def create_job(self, data, organization):
-        # use built-in form validation for new data
-        job_form = JobUpdateForm(data=data)
-        if job_form.is_valid():
-            job_kwargs = job_form.cleaned_data
-            job_kwargs.update({
-                'organization': organization
-            })
+        data.update({
+            'organization': organization
+        })
 
-            job = Job(**job_kwargs)
-            job.save()
+        job = Job(**data)
+        job.save()
+        
+        return job
 
-            return job
-        return None
+    def update_job(self, job, data, task=None):
+        if task == 'delete':
+            job.delete()
+            form_message = 'Job listing deleted. Add a new job?'
 
-    def process_form(self, job, data):
-        job_form = JobUpdateForm(instance=job, data=data)
-        if job_form.is_valid():
-            job_form.save()
-            form_message = 'Saved!'
         else:
-            error_message = ''
-            for field in job_form:
-                if field.errors:
-                    add_label = field.label
-                    add_errors = ', '.join([error for error in field.errors])
-                    error_message += '%s: %s ' % (add_label, add_errors)
-            form_message = error_message
+            job_form = JobUpdateForm(instance=job, data=data)
+            if job_form.is_valid():
+                job_form.save()
+                form_message = 'Saved!'
+            else:
+                error_message = ''
+                for field in job_form:
+                    if field.errors:
+                        add_label = field.label
+                        add_errors = ', '.join([error for error in field.errors])
+                        error_message += '%s: %s ' % (add_label, add_errors)
+                form_message = error_message
 
         return form_message
 
-    def post(self, request, *args, **kwargs):
-        data = request.POST
-        form_message = ''
+    def get_organization(self, user):
+        if user.is_authenticated() and user.is_active:
+            try:
+                org_admin = OrganizationAdmin.objects.get(email=user.email, organization__is_live=True)
+                return org_admin.organization
+            except OrganizationAdmin.DoesNotExist:
+                self.error_message = "Sorry, no Organization account found that matches your email address: {}".format(user.email)
+            except OrganizationAdmin.MultipleObjectsReturned:
+                self.error_message = "Uh-oh, somehow there are multiple Organization accounts attached to your email address: {}. Please contact us for cleanup.".format(user.email)
+                
+        return None
+
+    def get_context_data(self, **kwargs):
+        context = super(JobUpdate, self).get_context_data(**kwargs)
+        request = self.request
+        user = request.user
         
-        task = data['organization_task']
-        organization = self.get_organization()
+        if user.is_authenticated() and user.is_active:
+            organization = self.get_organization(user)
+            if organization:
+                context.update({
+                    'user': request.user,
+                    'organization': organization,
+                    'default_job_listing_end_date': datetime.today().date() + timedelta(days=30),
+                    'job': None
+                })
+                if 'job' in request.GET:
+                    job = self.get_job(request.GET['job'], organization)
+                    context.update({
+                        'job': job
+                    })
+            else:
+                context.update({
+                    'error_message': self.error_message
+                })
+            
+        return context
 
-        if task == 'create':
+    def form_valid(self, form, **kwargs):
+        job = form.data.get('job', None)
+        task = form.data.get('task', None)
+        data = form.cleaned_data
+        request = self.request
+        form_message = ''
+
+        user = request.user
+        organization = self.get_organization(user)
+
+        if not job:
             job = self.create_job(data, organization)
-            form_message = 'Created'
+            form_message = 'New job posted to <a href="{}">Source listings</a>. Add another?'.format(reverse('job_list'))
         else:
-            job = self.get_job(data['job'], organization, task)
-            if task == 'update':
-                form_message = self.process_form(job, data)
-            elif task == 'remove':
-                job.delete()
-                expire_page_cache(reverse('job_list'))
-                expire_page_cache(organization.get_absolute_url())
-                form_message = 'Removed'
+            job = self.get_job(job, organization)
+            form_message = self.update_job(job, data, task)
 
-        if request.is_ajax():
-            result = {
-                'message': form_message,
-                'job': {
-                    'name': job.name,
-                    'pk': job.pk,
-                    'contact_name': job.contact_name,
-                    'email': job.email,
-                    'description': job.description,
-                    'location': job.location,
-                    'url': job.url,
-                    'listing_end_date': job.listing_end_date
-                }
-            }
-            return render_json_to_response(result)
-
-        # if for some reason we're not hitting via ajax
+        expire_page_cache(reverse('job_list'))
+        expire_page_cache(organization.get_absolute_url())
         messages.success(request, form_message)
         return redirect(self.get_success_url())

@@ -14,12 +14,6 @@ urlpatterns = [
         name = 'organization_list',
     ),
     url(
-        regex = '^update/$',
-        view = OrganizationUpdate.as_view(),
-        kwargs = {},
-        name = 'organization_update',
-    ),
-    url(
         regex = '^(?P<slug>[-\w]+)/$',
         view = cache_page(STANDARD_CACHE_TIME)(OrganizationDetail.as_view()),
         kwargs = {},

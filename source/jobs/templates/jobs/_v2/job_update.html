@@ -1,0 +1,142 @@
+{% extends "jobs/_v2/_base_jobs.html" %}
+
+{% block page_title %}Update Jobs - {{ super() }}{% endblock %}
+
+{% block page_main %}
+<div class="content-main">
+    <h1 class="page-title-lead">{{ organization.name }} jobs</h1>
+
+    {% if not user.is_authenticated() %}
+    <div class="mod">
+        <script src="https://cdn.auth0.com/js/lock-passwordless-1.0.min.js"></script>
+        <script type="text/javascript">
+            var options = {"callbackURL":"{{ AUTH0_CALLBACK_URL }}"}
+            var lock = new Auth0LockPasswordless(
+                '{{AUTH0_CLIENT_ID}}',
+                '{{AUTH0_DOMAIN}}'
+            );
+        </script>
+        <p>If you&rsquo;ve asked us to create an admin account so you can post jobs and manage information about your organization, log in with your email address here.</p>
+        <button onclick="lock.magiclink(options)">Log In</button>
+    </div>
+    {% endif %}
+
+    {% if error_message %}
+    <div class="mod">
+        <a class="logout" href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a>
+        <p>{{ error_message }}</p>
+    </div>
+
+    {% elif user.is_authenticated() and user.is_active and 'people.change_organization' in perms %}
+
+    <div class="mod main-lead">
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message|safe }}</p>
+            {% endfor %}
+        {% else %}
+            <p>{% if job %}Edit listing on Source: {{ job.name }}{% else %}Post a new job on Source{% endif %}</p>
+        {% endif %}
+    </div><!-- /end .mod.main-lead -->
+
+    <div class="mod">
+        {% if form.errors %}<p class="msg-error">Oh no! There were a few errors with your submission. Mind double-checking the form, and filling out all the required fields?</p>{% endif %}
+        {% for error in form.errors %}{{ error }}{% endfor %}
+        
+        <form class="form-submit" method="post" action="{{ url('job_update') }}" id="job_update_form">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            <input type="hidden" name="job" value="{{ job.pk|default('') }}">
+            <input id="job_update_task" type="hidden" name="task" value="">
+
+            <fieldset>
+                <legend>Basic details for this listing</legend>
+                
+                <p>
+                    <label for="new_job_name">Job name:</label>
+                    <input id="new_job_name" value="{{ job.name|default('') }}" type="text" name="name" maxlength="128" />
+                </p>
+                <p>
+                    <label for="new_job_location">Job location:</label>
+                    <input id="new_job_location" value="{{ job.location|default(organization.location) }}" type="text" name="location" maxlength="128" />
+                </p>
+
+                <p>
+                    <label for="new_job_url">Job page URL:</label>
+                    <input id="new_job_url" value="{{ job.url|default('') }}" type="text" name="url" maxlength="200" />
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>A couple sentences for the Source jobs page</legend>
+
+                <p>
+                    <label for="new_job_description">Job description:</label>
+                    <textarea id="new_job_description" rows="5" name="description">{{ job.description|default('') }}</textarea>
+                </p>
+            </fieldset>
+                
+            <fieldset>
+                <legend>Listings run for one month by default</legend>
+
+                <p>
+                    <label for="new_job_listing_end_date">Expiration date:</label>
+                    <input id="new_job_listing_end_date" value="{{ job.listing_end_date|default(default_job_listing_end_date) }}" type="date" name="listing_end_date" />
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact information for applicants</legend>
+
+                <p>
+                    <label for="new_job_contact_name">Contact name:</label>
+                    <input id="new_job_contact_name" value="{{ job.contact_name|default('') }}" type="text" name="contact_name" maxlength="128" />
+                </p>
+                <p>
+                    <label for="new_job_email">Contact email:</label>
+                    <input id="new_job_email" value="{{ job.contact_email|default(organization.email) }}" type="text" name="email" maxlength="75" />
+                </p>
+            </fieldset>
+
+            {% if job %}
+                <p><input type="submit" value="Update Job listing"></p>
+                <p><input type="button" value="Delete" onclick="confirmJobRemove();"></p>
+            {% else %}
+                <p><input type="submit" value="Add Job Listing"></p>
+            {% endif %}
+        </form>
+    </div>
+
+    {% elif user.is_authenticated() %}
+    <p>Sorry, no organization account found for this email address.</p>
+    {% endif %}
+</div><!-- /end .content-main -->
+
+{% if user.is_authenticated() and user.is_active and 'people.change_organization' in perms %}
+<div class="content-aside">
+    {% if organization.get_live_job_set().exists() %}
+    <div class="mod">
+        <h2 class="hed-label">Edit current job listings</h2>
+        <ol class="list-recently">{% for job in organization.get_live_job_set() %}
+            <li class="item-recent">
+                <h3 class="hed-aside">
+                    <a class="has-icon icon-doc" href="{{ url('job_update') }}?job={{ job.pk }}">{{ job.name|smartypants }}</a>
+                </h3>
+                <p class="has-icon">Posted {{ job.listing_start_date|simple_datesince }}</p>
+            </li>{% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block body_extra %}
+<script type="text/javascript">
+function confirmJobRemove(jobID) {
+    if (confirm('Are you sure you want to delete this job listing?')) {
+        document.getElementById("job_update_task").value = "delete";
+        document.getElementById("job_update_form").submit();
+    }
+}
+</script>
+{% endblock %}
