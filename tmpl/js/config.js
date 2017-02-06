@@ -10,7 +10,7 @@ window.SRC.config = {};
 Edit below.
 
 */
-SRC.config.typekit = "jyd1gcb";
+SRC.config.typekit = "mvg8obr";
 SRC.config.disqus_id = "source-opennews";
 
 var disqus_shortname = SRC.config.disqus_id;
