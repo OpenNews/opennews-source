@@ -8,11 +8,23 @@
     <h1 class="page-title-lead">Source jobs</h1>
 
     <div class="mod main-lead">
-        <p>If you&rsquo;ve asked us to create an admin account so you can post jobs and manage information about your organization, log in with your email address here.</p>
+        <p>If you have an admin account for posting jobs for your organization, log in with your email address here. We&rsquo;ll send a magic login link to your email address.</p>
+        
+        <p>If you need an account, <a href="mailto:source@opennews.org?subject=Registration for Job Listings">contact us to set up a profile</a>.</p>
+    </div>
 
+    <div class="mod">
         <form class="form-submit" action="{{ url('job_send_login_link') }}" method="post">
             {% csrf_token %}
-            <p><input type="email" value="" name="email" required></p>
+            <fieldset>
+                <legend>Log in</legend>
+
+                <p>
+                    <label for="login_email">Email address:</label>
+                    <input id="login_email" value="" type="text" name="email" maxlength="75" />
+                </p>
+            </fieldset>
+
             <p><input type="submit" value="Send me a login link"></p>
         </form>
         

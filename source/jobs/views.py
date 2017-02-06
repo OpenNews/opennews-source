@@ -14,6 +14,7 @@ from .forms import JobUpdateForm
 from .models import Job
 from source.base.helpers import dj_date
 from source.people.models import Organization, OrganizationAdmin
+from source.utils.auth import get_or_create_user
 from source.utils.caching import expire_page_cache
 from source.utils.json import render_json_to_response
 
@@ -193,7 +194,9 @@ class JobUpdate(FormView):
 class JobsSendLoginLink(View):
     def post(self, request, *args, **kwargs):
         email = request.POST.get('email')
-        user, created = User.objects.get_or_create(username=email, email=email)
+        
+        user = get_or_create_user(email)
+
         job_update_url = reverse('job_update')
         login_token = sesame_utils.get_query_string(user)
         login_link = '{}{}{}'.format(settings.BASE_SITE_URL, job_update_url, login_token)
