@@ -14,7 +14,7 @@ from .forms import JobUpdateForm
 from .models import Job
 from source.base.helpers import dj_date
 from source.people.models import Organization, OrganizationAdmin
-from source.utils.auth import get_or_create_user
+from source.utils.auth import get_or_create_user, randomize_user_password
 from source.utils.caching import expire_page_cache
 from source.utils.json import render_json_to_response
 
@@ -80,20 +80,10 @@ class JobUpdate(FormView):
     def get_success_url(self):
         return reverse('job_update')
 
-    def get_organization(self):
-        user = self.request.user
-        if user.is_authenticated() and user.is_active:
-            organization = get_object_or_404(Organization, is_live=True, email=user.email)
-            return organization
-        elif USER_DEBUG:
-            organization = get_object_or_404(Organization, is_live=True, slug='spokesman-review')
-            return organization
-        return None
-
     def get_job(self, pk=None, organization=None):
         user = self.request.user
 
-        if USER_DEBUG or (user.is_authenticated() and user.is_active):
+        if (user.is_authenticated() and user.is_active):
             if pk and organization:
                 # ensure that Organization admin can modify this record
                 job = get_object_or_404(Job, is_live=True, pk=pk, organization=organization)
@@ -134,7 +124,7 @@ class JobUpdate(FormView):
     def get_organization(self, user):
         if user.is_authenticated() and user.is_active:
             try:
-                org_admin = OrganizationAdmin.objects.get(email=user.email, organization__is_live=True)
+                org_admin = OrganizationAdmin.objects.get(email__iexact=user.email, organization__is_live=True)
                 return org_admin.organization
             except OrganizationAdmin.DoesNotExist:
                 self.error_message = "Sorry, no Organization account found that matches your email address: {}".format(user.email)
@@ -150,6 +140,7 @@ class JobUpdate(FormView):
         
         if user.is_authenticated() and user.is_active:
             organization = self.get_organization(user)
+                        
             if organization:
                 context.update({
                     'user': request.user,
