@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template import RequestContext
@@ -15,6 +16,8 @@ from source.base.helpers import dj_date
 from source.people.models import Organization, OrganizationAdmin
 from source.utils.caching import expire_page_cache
 from source.utils.json import render_json_to_response
+
+from sesame import utils as sesame_utils
 
 USER_DEBUG = getattr(settings, 'USER_DEBUG', False)
 
@@ -186,3 +189,20 @@ class JobUpdate(FormView):
         expire_page_cache(organization.get_absolute_url())
         messages.success(request, form_message)
         return redirect(self.get_success_url())
+
+class JobsSendLoginLink(View):
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get('email')
+        user, created = User.objects.get_or_create(username=email, email=email)
+        job_update_url = reverse('job_update')
+        login_token = sesame_utils.get_query_string(user)
+        login_link = '{}{}{}'.format(settings.BASE_SITE_URL, job_update_url, login_token)
+        msg = 'We just emailed you a login link! Please check your inbox.'
+        print(login_link)
+
+        if request.is_ajax():
+            result = {'message': msg}
+            return render_json_to_response(result)
+
+        messages.success(request, msg)
+        return redirect(job_update_url)

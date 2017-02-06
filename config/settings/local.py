@@ -11,7 +11,6 @@ Local settings
 from .common import *
 
 BASE_SITE_URL = 'http://127.0.0.1:8000'
-AUTH0_CALLBACK_URL = BASE_SITE_URL + '/auth/callback/'
 
 # DEBUG
 # ------------------------------------------------------------------------------

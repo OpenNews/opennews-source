@@ -48,7 +48,6 @@ THIRD_PARTY_APPS = (
     'taggit',
     'django_jinja',
     'storages',
-    'django_auth0',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -67,6 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'sesame.middleware.AuthenticationMiddleware',
 )
 
 # MIGRATIONS CONFIGURATION
@@ -140,7 +140,6 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'django_auth0.context_processors.auth0',
                 'source.base.context_processors.globals',
             ],
         }
@@ -165,7 +164,6 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'django_auth0.context_processors.auth0',
                 'source.base.context_processors.globals',
             ],
         },
@@ -216,9 +214,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'source.utils.auth.Auth0Backend',
-    #'django_auth0.auth_backend.Auth0Backend',
-    #'allauth.account.auth_backends.AuthenticationBackend',
+    'sesame.backends.ModelBackend',
 )
 
 # SLUGLIFIER
@@ -264,9 +260,4 @@ TIME_ZONE='America/Chicago'
 HTTP_PROTOCOL = 'https'
 BASE_SITE_URL = 'https://source.opennews.org'
 
-AUTH0_DOMAIN = env.str('AUTH0_DOMAIN', None)
-AUTH0_CLIENT_ID = env.str('AUTH0_CLIENT_ID', None)
-AUTH0_SECRET = env.str('AUTH0_SECRET', None)
-AUTH0_CALLBACK_URL = BASE_SITE_URL + '/auth/callback/'
-AUTH0_SUCCESS_URL = 'job_update'
-
+SESAME_MAX_AGE = 5 * 60 # 5 minutes

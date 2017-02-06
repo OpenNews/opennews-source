@@ -8,26 +8,29 @@
     <h1 class="page-title-lead">Source jobs</h1>
 
     <div class="mod main-lead">
-        <script src="https://cdn.auth0.com/js/lock-passwordless-1.0.min.js"></script>
-        <script type="text/javascript">
-            var options = {"callbackURL":"{{ AUTH0_CALLBACK_URL }}"}
-            var lock = new Auth0LockPasswordless(
-                '{{AUTH0_CLIENT_ID}}',
-                '{{AUTH0_DOMAIN}}'
-            );
-        </script>
         <p>If you&rsquo;ve asked us to create an admin account so you can post jobs and manage information about your organization, log in with your email address here.</p>
-        <button onclick="lock.magiclink(options)">Log In</button>
+
+        <form class="form-submit" action="{{ url('job_send_login_link') }}" method="post">
+            {% csrf_token %}
+            <p><input type="email" value="" name="email" required></p>
+            <p><input type="submit" value="Send me a login link"></p>
+        </form>
+        
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message|safe }}</p>
+            {% endfor %}
+        {% endif %}
     </div><!-- /end .mod.main-lead -->
     {% endif %}
 
     {% if error_message %}
     <div class="mod">
-        <a class="logout" href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a>
         <p>{{ error_message }}</p>
+        <p><a href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a></p>
     </div>
 
-    {% elif user.is_authenticated() and user.is_active and 'people.change_organization' in perms %}
+    {% elif user.is_authenticated() and user.is_active %}
 
     <h1 class="page-title-lead">{{ organization.name }} jobs</h1>
 
@@ -109,15 +112,16 @@
     </div>
 
     {% elif user.is_authenticated() %}
-    <p>Sorry, no organization account found for this email address.</p>
+        <p>Sorry, no organization account found for this email address.</p>
+        <p><a href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a></p>
     {% endif %}
 </div><!-- /end .content-main -->
 
-{% if user.is_authenticated() and user.is_active and 'people.change_organization' in perms %}
+{% if user.is_authenticated() and user.is_active %}
 <div class="content-aside">
-    {% if organization.get_live_job_set().exists() %}
     <div class="mod">
         <h2 class="hed-label">Edit current job listings</h2>
+        {% if organization.get_live_job_set().exists() %}
         <ol class="list-recently">{% for job in organization.get_live_job_set() %}
             <li class="item-recent">
                 <h3 class="hed-aside">
@@ -126,8 +130,12 @@
                 <p class="has-icon">Posted {{ job.listing_start_date|simple_datesince }}</p>
             </li>{% endfor %}
         </ol>
+        {% endif %}
+        <p>No open jobs listed right now. Use the form at left to add one!</p>
     </div>
-    {% endif %}
+    <div class="mod">
+        <p><a href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a></p>
+    </div>
 </div>
 {% endif %}
 {% endblock %}
@@ -139,6 +147,31 @@ function confirmJobRemove(jobID) {
         document.getElementById("job_update_task").value = "delete";
         document.getElementById("job_update_form").submit();
     }
+}
+
+function sendLoginLink() {
+
+    $.ajax({
+        type: "POST",
+        url: "{{ url('job_send_login_link') }}",
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+            if (response['message'] != 'Saved!' && response['message'] != 'Removed') {
+                statusMsg.addClass('error-message').hide().appendTo(submitContainer).fadeIn();
+                alertSave(statusMsg, response['message'], true);
+            } else {
+                toggleEditForm(nameContainer);
+                submitContainer.closest('.object-edit').find('h5').text(response['job']['name']);
+                nameContainer.append(statusMsg);
+                alertSave(statusMsg, response['message']);
+            }
+        },
+        error: function(response) {
+            nameContainer.append(statusMsg);
+            alertSave(statusMsg, 'Error saving...');
+        }
+    });
 }
 </script>
 {% endblock %}

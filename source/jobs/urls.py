@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.views.decorators.cache import cache_page
 
-from .views import JobList, JobUpdate
+from .views import JobList, JobUpdate, JobsSendLoginLink
 from source.base.feeds import JobFeed
 
 STANDARD_CACHE_TIME = getattr(settings, 'CACHE_MIDDLEWARE_SECONDS', 60*15)
@@ -32,5 +32,11 @@ urlpatterns = [
         view = JobUpdate.as_view(),
         kwargs = {},
         name = 'job_update',
+    ),
+    url(
+        regex = '^login/$',
+        view = JobsSendLoginLink.as_view(),
+        kwargs = {},
+        name = 'job_send_login_link',
     ),
 ]
