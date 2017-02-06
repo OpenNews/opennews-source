@@ -11,6 +11,7 @@ from django.utils.html import format_html
 from caching.base import CachingManager, CachingMixin
 from sorl.thumbnail import ImageField
 from source.base.utils import disable_for_loaddata
+from source.utils.auth import get_or_create_user
 from source.utils.caching import expire_page_cache
 
 class LivePersonManager(CachingManager):
@@ -196,6 +197,12 @@ class Organization(CachingMixin, models.Model):
             self.twitter_username = self.twitter_username.split('/')[-1]
         if '/' in self.github_username:
             self.github_username = self.github_username.split('/')[-1]
+            
+        # make sure we have User records for OrganizationAdmins
+        for admin in self.organizationadmin_set.all():
+            if admin.email:
+                get_or_create_user(admin.email)
+            
         super(Organization, self).save(*args, **kwargs)
 
     @models.permalink
