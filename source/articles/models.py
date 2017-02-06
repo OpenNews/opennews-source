@@ -62,7 +62,6 @@ class Article(CachingMixin, models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('article_detail', (), {
-            'section': self.section.slug,
             'slug': self.slug
         })
         

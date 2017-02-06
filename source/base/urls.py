@@ -1,13 +1,14 @@
 from django.conf import settings
 from django.conf.urls import include, url
 from django.views.decorators.cache import cache_page
+from django.views.generic.base import RedirectView
 
 from .feeds import ArticleFeed
 from .views import SourceSearchView, HomepageView, SlackMessageView
 from haystack.forms import SearchForm
 from haystack.query import SearchQuerySet
 from haystack.views import search_view_factory
-from source.articles.views import ArticleList, ArticleDetail
+from source.articles.views import ArticleList, ArticleDetail, ArticleRedirectView
 from source.utils.caching import ClearCache
 
 STANDARD_CACHE_TIME = getattr(settings, 'CACHE_MIDDLEWARE_SECONDS', 60*15)
@@ -63,12 +64,15 @@ BASE_URLS = [
         kwargs = {},
         name = 'article_list_by_category_feed',
     ),
+    # fallback for old section-based URLs
     url(
         regex = '^(?P<section>[-\w]+)/$',
-        view = cache_page(STANDARD_CACHE_TIME)(ArticleList.as_view()),
+        view = RedirectView.as_view(url='/articles/'),
+        #view = cache_page(STANDARD_CACHE_TIME)(ArticleList.as_view()),
         kwargs = {},
         name = 'article_list_by_section',
     ),
+    # leaving this in place for section-specific feeds
     url(
         regex = '^(?P<section>[-\w]+)/rss/$',
         view = cache_page(FEED_CACHE_TIME)(ArticleFeed()),
@@ -77,8 +81,9 @@ BASE_URLS = [
     ),
     url(
         regex = '^(?P<section>[-\w]+)/(?P<slug>[-\w]+)/$',
-        view = cache_page(STANDARD_CACHE_TIME)(ArticleDetail.as_view()),
+        view = ArticleRedirectView.as_view(),
+        #view = cache_page(STANDARD_CACHE_TIME)(ArticleDetail.as_view()),
         kwargs = {},
-        name = 'article_detail',
+        name = 'article_detail_by_section',
     ),
 ]

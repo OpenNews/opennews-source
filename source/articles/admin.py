@@ -72,6 +72,9 @@ class SectionAdmin(AdminImageMixin, admin.ModelAdmin):
     save_on_top = True
     list_display = ('name','category_list',)
     prepopulated_fields = {'slug': ('name',)}
+    fieldsets = (
+        ('', {'fields': (('name', 'slug'),)}),
+    )
     inlines = [CategoryInline,]
 
 admin.site.register(Article, ArticleAdmin)

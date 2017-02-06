@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template.loader import render_to_string
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import FormView
 
 from .forms import SuggestArticleForm
@@ -21,12 +21,6 @@ class ArticleList(ListView):
     category = None
     
     def dispatch(self, *args, **kwargs):
-        self.section_kwarg = kwargs.get('section', None)
-        # possible to filter list by section, but we want /articles/
-        # to show everything
-        if self.section_kwarg and self.section_kwarg != 'articles':
-            self.section = get_object_or_404(Section, slug=self.section_kwarg)
-
         self.category_kwarg = kwargs.get('category', None)
         if self.category_kwarg:
             self.category = get_object_or_404(Category, slug=self.category_kwarg)
@@ -38,18 +32,13 @@ class ArticleList(ListView):
 
     def get_template_names(self):
         template_list = [self.template_name]
-        if self.section:
-            # check for template override based on section name
-            template_list.insert(0, 'articles/article_list_%s.html' % self.section.name.lower())
             
         return template_list
         
     def get_queryset(self):
         queryset = Article.live_objects.filter(show_in_lists=True).prefetch_related('authors', 'people', 'organizations')
 
-        if self.section:
-            queryset = queryset.filter(category__section=self.section)
-        elif self.category:
+        if self.category:
             queryset = queryset.filter(category=self.category)
         elif self.tag_slugs:
             queryset, self.tags = filter_queryset_by_tags(queryset, self.tag_slugs, self.tags)
@@ -57,13 +46,7 @@ class ArticleList(ListView):
         return queryset
     
     def get_section_links(self, context):
-        if self.section:
-            context.update({
-                'section': self.section,
-                #'active_nav': self.section.slug,
-                'rss_link': reverse('article_list_by_section_feed', kwargs={'section': self.section.slug}),
-            })
-        elif self.category:
+        if self.category:
             context.update({
                 'category': self.category,
                 'section': self.category.section,
@@ -119,8 +102,6 @@ class ArticleList(ListView):
     def get_standard_context(self, context):
         self.get_section_links(context)
         self.paginate_list(context)
-        if self.section and self.section.gets_promo_items:
-            self.get_promo_items(context, 3)
         
         return ''
         
@@ -147,10 +128,7 @@ class ArticleDetail(DetailView):
             queryset = Article.objects.all()
         else:
             queryset = Article.live_objects.all()
-            
-        # make sure `section` kwarg matches this article's section
-        queryset = queryset.filter(category__section__slug=self.kwargs['section'])
-
+        
         queryset = queryset.prefetch_related('articleblock_set', 'authors', 'people', 'organizations', 'code')
         
         return queryset
@@ -166,6 +144,17 @@ class ArticleDetail(DetailView):
         })
 
         return context
+
+
+class ArticleRedirectView(View):
+    '''
+    No longer splitting articles out into individual sections.
+    '''
+    def get(self, request, *args, **kwargs):
+        slug = kwargs['slug']
+        new_url = reverse('article_detail', kwargs={'slug': slug})
+
+        return redirect(new_url, permanent=True)
 
 
 class ArticleSuggestArticle(FormView):
