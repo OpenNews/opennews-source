@@ -59,7 +59,7 @@ class OrganizationAdmin(AdminImageMixin, admin.ModelAdmin):
     list_filter = ('is_live', 'country', 'state',)
     list_display = ('name', 'is_live', 'show_in_lists', 'admin_image_tag', 'location', 'admin_twitter_tag', 'admin_github_tag', 'admin_count')
     list_editable = ('is_live', 'show_in_lists',)
-    search_fields = ('name', 'description', 'city', 'state', 'country',)
+    search_fields = ('name', 'description', 'city', 'state', 'country', 'organizationadmin__email',)
     fieldsets = (
         ('', {'fields': (('name', 'slug'), ('is_live', 'show_in_lists'), 'email', 'twitter_username', 'github_username', ('github_repos_num', 'github_gists_num'), 'homepage', 'logo', 'description',)}),
         ('Location', {'fields': ('address', ('city', 'state',), 'country',)}),

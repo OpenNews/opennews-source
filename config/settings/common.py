@@ -268,5 +268,5 @@ AUTH0_DOMAIN = env.str('AUTH0_DOMAIN', None)
 AUTH0_CLIENT_ID = env.str('AUTH0_CLIENT_ID', None)
 AUTH0_SECRET = env.str('AUTH0_SECRET', None)
 AUTH0_CALLBACK_URL = BASE_SITE_URL + '/auth/callback/'
-AUTH0_SUCCESS_URL = 'organization_update'
+AUTH0_SUCCESS_URL = 'job_update'
 

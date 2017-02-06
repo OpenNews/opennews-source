@@ -4,10 +4,10 @@
 
 {% block page_main %}
 <div class="content-main">
-    <h1 class="page-title-lead">{{ organization.name }} jobs</h1>
-
     {% if not user.is_authenticated() %}
-    <div class="mod">
+    <h1 class="page-title-lead">Source jobs</h1>
+
+    <div class="mod main-lead">
         <script src="https://cdn.auth0.com/js/lock-passwordless-1.0.min.js"></script>
         <script type="text/javascript">
             var options = {"callbackURL":"{{ AUTH0_CALLBACK_URL }}"}
@@ -18,7 +18,7 @@
         </script>
         <p>If you&rsquo;ve asked us to create an admin account so you can post jobs and manage information about your organization, log in with your email address here.</p>
         <button onclick="lock.magiclink(options)">Log In</button>
-    </div>
+    </div><!-- /end .mod.main-lead -->
     {% endif %}
 
     {% if error_message %}
@@ -28,6 +28,8 @@
     </div>
 
     {% elif user.is_authenticated() and user.is_active and 'people.change_organization' in perms %}
+
+    <h1 class="page-title-lead">{{ organization.name }} jobs</h1>
 
     <div class="mod main-lead">
         {% if messages %}
