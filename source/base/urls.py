@@ -65,13 +65,13 @@ BASE_URLS = [
         name = 'article_list_by_category_feed',
     ),
     # fallback for old section-based URLs
-    url(
-        regex = '^(?P<section>[-\w]+)/$',
-        view = RedirectView.as_view(url='/articles/'),
-        #view = cache_page(STANDARD_CACHE_TIME)(ArticleList.as_view()),
-        kwargs = {},
-        name = 'article_list_by_section',
-    ),
+    #url(
+    #    regex = '^(?P<section>[-\w]+)/$',
+    #    view = RedirectView.as_view(url='/articles/'),
+    #    #view = cache_page(STANDARD_CACHE_TIME)(ArticleList.as_view()),
+    #    kwargs = {},
+    #    name = 'article_list_by_section',
+    #),
     # leaving this in place for section-specific feeds
     url(
         regex = '^(?P<section>[-\w]+)/rss/$',
