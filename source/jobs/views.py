@@ -178,8 +178,6 @@ class JobUpdate(FormView):
             job = self.get_job(job, organization)
             form_message = self.update_job(job, data, task)
 
-        expire_page_cache(reverse('job_list'))
-        expire_page_cache(organization.get_absolute_url())
         messages.success(request, form_message)
         return redirect(self.get_success_url())
 
