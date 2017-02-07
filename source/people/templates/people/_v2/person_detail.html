@@ -79,6 +79,7 @@
                                 <h4 class="hed-article-subhed">{{ article.subhead|typogrify }}</h4>
 
                                 <div class="summary">
+                                    <span class="list-when"><span class="a11y">Posted on </span> <time datetime="{{ article.pubdate.strftime('%Y-%m-%d') }}">{{ article.pretty_pubdate|typogrify }}</time></span>
                                     <p>{{ article.safe_summary|typogrify }}</p>
                                 </div><!-- /end .summary -->
                             </a>

@@ -27,7 +27,8 @@ class PersonAdmin(admin.ModelAdmin):
     filter_horizontal = ('organizations',)
     search_fields = ('first_name', 'last_name', 'description',)
     fieldsets = (
-        ('', {'fields': (('first_name', 'last_name', 'slug'), ('is_live', 'show_in_lists'), 'email', 'photo', 'twitter_username', 'twitter_bio', 'twitter_profile_image_url', 'github_username', ('github_repos_num', 'github_gists_num'), 'description',)}),
+        ('', {'fields': (('first_name', 'last_name', 'slug'), ('is_live', 'show_in_lists'), 'email', 'photo', 'description',)}),
+        ('Accounts', {'fields': ('twitter_username', 'twitter_bio', 'twitter_profile_image_url', 'github_username', ('github_repos_num', 'github_gists_num'),)}),
         ('Related objects', {'fields': ('organizations',)}),
     )
     inlines = [PersonLinkInline,]
