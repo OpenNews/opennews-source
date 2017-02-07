@@ -11,6 +11,7 @@ Local settings
 from .common import *
 
 BASE_SITE_URL = 'http://127.0.0.1:8000'
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['source.opennews.org'])
 
 # DEBUG
 # ------------------------------------------------------------------------------
