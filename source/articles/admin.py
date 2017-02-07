@@ -44,11 +44,12 @@ class ArticleAdmin(AdminImageMixin, admin.ModelAdmin):
         Mirror split tagfield contents in primary `tags` model.
         See source.tags.models for further details.
         '''
-        technology_tags_list = form.cleaned_data['technology_tags']
-        concept_tags_list = form.cleaned_data['concept_tags']
-        merged_tags = technology_tags_list + concept_tags_list
-        if merged_tags:
-            form.cleaned_data['tags'] = merged_tags
+        if 'technology_tags' in form.cleaned_data and 'concept_tags' in form.cleaned_data:
+            technology_tags_list = form.cleaned_data['technology_tags']
+            concept_tags_list = form.cleaned_data['concept_tags']
+            merged_tags = technology_tags_list + concept_tags_list
+            if merged_tags:
+                form.cleaned_data['tags'] = merged_tags
 
         super(ArticleAdmin, self).save_model(request, obj, form, change)
     
