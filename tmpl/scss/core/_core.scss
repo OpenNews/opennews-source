@@ -941,18 +941,18 @@ Headings
 .wf-active .article-main h6 {
     font-family: map-get( $fonts, "sans" );
 }
-.article-main h2 {
+.article-main h2,
+.article-main h3 {
     color: #F7786B;
     font-size: 1.2em;    /* 24/20 */
 }
-.article-main h3 {
+.article-main h4 {
     color: #7C8A98;
     font-size: 1em;
 }
-.article-main h4 {
+.article-main h5 {
     font-size: 0.9em;
 }
-.article-main h5,
 .article-main h6 {
     font-size: 0.8125em;    /* 13/16 */
 }
@@ -1043,29 +1043,34 @@ Table styles
 /*
 Figure styles
 */
-.figure {
+.figure,
+.image-full-width-wrapper {
     font-family: map-get( $fonts, "serif" );;
     margin-bottom: 2em;
 }
-.wf-active .figure {
+.wf-active .figure,
+.wf-active .image-full-width-wrapper {
     font-family: map-get( $fonts, "serif" );;
 }
-.figure img {
+.figure img,
+.image-full-width-wrapper img {
     display: block;
     margin-bottom: 1em;
     width: 100%;
 }
 .figure figcaption,
-.figure .caption {
+.caption {
     border-bottom: 1.125em solid #D8D8D8;    /* 18/16 */
     font-size: 16px;
     font-size: 1rem;
     padding-bottom: 1em;
 }
-.figure p {
+.figure p,
+.image-full-width-wrapper p {
     margin: 0;
 }
-.figure p+p {
+.figure p+p,
+.image-full-width-wrapper p + p {
     margin-top: 1em;
 }
 @media (min-width: 30em) {
