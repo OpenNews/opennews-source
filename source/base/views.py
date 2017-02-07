@@ -43,43 +43,36 @@ class SourceSearchView(SearchView):
     
     def get_results(self):
         '''
-        Limit primary search results to Article and Code matches.
+        Limit primary search results to Article matches.
         Template gets Person and Organization matches separately,
         via `get_secondary_results`.
         '''
-        results = self.form.search().models(Article)
+        results = self.form.search().models(Article).order_by('-pubdate')
         return results
     
     def get_code_results(self):
         '''
-        Get Person matches for separate handling on template.
+        Get Code matches for separate handling on template.
         '''
-        code_results = self.form.search().models(Code)
+        code_results = self.form.search().models(Code).order_by('name')
         return code_results
 
     def get_person_results(self):
         '''
         Get Person matches for separate handling on template.
         '''
-        person_results = self.form.search().models(Person)
+        person_results = self.form.search().models(Person).order_by('first_name')
         return person_results
 
     def get_organization_results(self):
         '''
         Get Organization matches for separate handling on template.
         '''
-        organization_results = self.form.search().models(Organization)
+        organization_results = self.form.search().models(Organization).order_by('name')
         return organization_results
     
     def extra_context(self):
-        page_context = {
-            'content_type_map': {
-                'article': 'Articles',
-                'code': 'Code',
-                'organization': 'Organizations',
-                'person': 'People',
-            }
-        }
+        page_context = {}
         
         if self.query:
             page_context.update({

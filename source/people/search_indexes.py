@@ -4,6 +4,7 @@ from .models import Person, Organization
 
 class PersonIndex(indexes.SearchIndex, indexes.Indexable):
     name = indexes.CharField(model_attr='name', boost=1.2)
+    first_name = indexes.CharField(model_attr='first_name', boost=1.2)
     text = indexes.CharField(document=True, use_template=True)
 
     def get_model(self):

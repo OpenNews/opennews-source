@@ -30,7 +30,7 @@ BASE_URLS = [
     url(r'^people/', include('source.people.urls.people')),
     url(
         regex = '^search/$',
-        view = search_view_factory(view_class=SourceSearchView, form_class=SearchForm, searchqueryset=SearchQuerySet().order_by('django_ct')),
+        view = search_view_factory(view_class=SourceSearchView, form_class=SearchForm),
         kwargs = {},
         name = 'haystack_search',
     ),
