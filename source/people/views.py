@@ -41,13 +41,11 @@ class CommunityList(TemplateView):
         # django-cache-machine does not work with .values() or .values_list()
         article_author_ids = recent_articles.values_list('authors', flat=True)
         article_author_ids.timeout = NO_CACHE
-        article_people_ids = recent_articles.values_list('people', flat=True)
-        article_people_ids.timeout = NO_CACHE
-        code_people_ids = recent_codes.values_list('people', flat=True)
-        code_people_ids.timeout = NO_CACHE
+        #code_people_ids = recent_codes.values_list('people', flat=True)
+        #code_people_ids.timeout = NO_CACHE
         
         # get 3 random unique Person records
-        people_ids = list(article_author_ids) + list(article_people_ids) + list(code_people_ids)
+        people_ids = list(article_author_ids)# + list(code_people_ids)
         people_ids = list(set([x for x in people_ids if x is not None]))
         people_ids = random.sample(people_ids, 3)
         people = Person.objects.filter(id__in=people_ids)
