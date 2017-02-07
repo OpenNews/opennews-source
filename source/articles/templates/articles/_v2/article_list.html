@@ -14,7 +14,7 @@
                     <ol class="list-articles">{% for article in page.object_list %}
                         <li>
                             <a href="{{ article.get_absolute_url() }}">
-                                {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="" />{% endif %}
+                                {% if article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "300x200", crop="center") }}" alt="" {% if article.lead_image_has_border %}class="has-border" {% endif %}/>{% endif %}
                                 <h3 class="hed-article-title">{{ article.title|typogrify }}</h3>
                                 <h4 class="hed-article-subhed">By {% for author in article.get_live_author_set() %}{% if loop.last and not loop.first %} and {% endif %}<a href="{{ author.get_absolute_url() }}">{{ author.name()|smartypants }}</a>{% if not loop.last and loop.length != 2 %}, {% endif %}{% endfor %}</h4>
 

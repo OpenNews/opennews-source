@@ -62,7 +62,7 @@
             <hr />
 
             {% if article.image %}
-            <div class="figure figure-article-lead">
+            <div class="figure figure-article-lead{% if article.lead_image_has_border %} has-border{% endif %}">
                 <figure>
                     <img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "1000") }}" alt="" />
                     {% if article.pretty_caption %}
@@ -187,7 +187,7 @@
                     <ul class="list-promos">{% for recent_article in recent_articles %}
                         <li class="src-promo">
                             <a href="{{ recent_article.get_absolute_url() }}">
-                                {% if recent_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(recent_article.image, "300x200", crop="center") }}" alt="" />
+                                {% if recent_article.image %}<img src="{{ MEDIA_URL }}{{ thumbnail(recent_article.image, "300x200", crop="center") }}" alt="" {% if recent_article.lead_image_has_border %}class="has-border" {% endif %}/>
                                 {% else %}
                                 <img src="{{ static('base/_v2/img/default@1x.png') }}" srcset="{{ static('base/_v2/img/default@2x.png') }} 2x" alt="" />
                                 {% endif %}

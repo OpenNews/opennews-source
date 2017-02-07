@@ -34,6 +34,7 @@ class Article(CachingMixin, models.Model):
     subhead = models.CharField(max_length=128)
     authors = models.ManyToManyField(Person, blank=True, related_name='article_authors')
     image = ImageField(upload_to='img/uploads/article_images', help_text='Resized to fit 100% column width in template', blank=True, null=True)
+    lead_image_has_border = models.BooleanField('Put a border on lead image', default=False)
     image_caption = models.TextField(blank=True)
     image_credit = models.CharField(max_length=128, blank=True, help_text='Optional. Will be appended to end of caption in parens. Accepts HTML.')
     body = models.TextField()
