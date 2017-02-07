@@ -18,7 +18,10 @@ TOKEN_NAME = getattr(settings, 'SESAME_TOKEN_NAME', 'url_auth_token')
 
 
 def get_or_create_user(email):
-    user, created = User.objects.get_or_create(username__iexact=email, email__iexact=email)
+    user, created = User.objects.get_or_create(
+        username__iexact=email, email__iexact=email,
+        defaults={'username': email, 'email': email,}
+    )
 
     if created:
         randomize_user_password(user)

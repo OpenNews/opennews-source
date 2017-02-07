@@ -198,11 +198,6 @@ class Organization(CachingMixin, models.Model):
         if '/' in self.github_username:
             self.github_username = self.github_username.split('/')[-1]
             
-        # make sure we have User records for OrganizationAdmins
-        for admin in self.organizationadmin_set.all():
-            if admin.email:
-                get_or_create_user(admin.email)
-            
         super(Organization, self).save(*args, **kwargs)
 
     @models.permalink
@@ -298,10 +293,13 @@ class OrganizationAdmin(CachingMixin, models.Model):
         verbose_name = 'Organization Admin'
         verbose_name_plural = 'Organization Admins - These email addresses will be able to log in and manage job postings for this organization'
         
-
     def __str__(self):
         return '%s: %s' % (self.organization.name, self.email)
-
+        
+    def clean(self):
+        for field in self._meta.fields:
+            if isinstance(field, (models.CharField, models.TextField)):
+                setattr(self, field.name, getattr(self, field.name).strip())
 
 class OrganizationLink(CachingMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -394,3 +392,12 @@ def clear_caches_for_organization(sender, instance, **kwargs):
     # clear caches for related code index entries
     for code in instance.get_live_code_set():
         expire_page_cache(code.get_absolute_url())
+
+
+@receiver(post_save, sender=Organization)
+@disable_for_loaddata
+def update_org_admin_users(sender, instance, **kwargs):
+    # make sure there's a User record associated with each OrganizationAdmin
+    for admin in instance.organizationadmin_set.all():
+        get_or_create_user(admin.email)
+        

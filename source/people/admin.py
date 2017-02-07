@@ -52,8 +52,8 @@ class OrganizationAdminInline(admin.StackedInline):
     fieldsets = (
         ('', {'fields': ('email',),}),
     )
-
-class OrganizationAdmin(AdminImageMixin, admin.ModelAdmin):
+    
+class OrgAdmin(AdminImageMixin, admin.ModelAdmin):
     save_on_top = True
     prepopulated_fields = {'slug': ('name',)}
     list_filter = ('is_live', 'country', 'state',)
@@ -65,6 +65,6 @@ class OrganizationAdmin(AdminImageMixin, admin.ModelAdmin):
         ('Location', {'fields': ('address', ('city', 'state',), 'country',)}),
     )
     inlines = [OrganizationAdminInline, OrganizationLinkInline,]
-
+            
 admin.site.register(Person, PersonAdmin)
-admin.site.register(Organization, OrganizationAdmin)
+admin.site.register(Organization, OrgAdmin)
