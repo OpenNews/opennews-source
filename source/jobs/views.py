@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template import RequestContext
+from django.template.loader import render_to_string
 from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import FormView
 
@@ -14,8 +15,8 @@ from .forms import JobUpdateForm
 from .models import Job
 from source.base.helpers import dj_date
 from source.people.models import Organization, OrganizationAdmin
-from source.utils.auth import get_or_create_user, randomize_user_password
 from source.utils.caching import expire_page_cache
+from source.utils.email import send_multipart_email
 from source.utils.json import render_json_to_response
 
 from sesame import utils as sesame_utils
@@ -185,14 +186,44 @@ class JobUpdate(FormView):
 class JobsSendLoginLink(View):
     def post(self, request, *args, **kwargs):
         email = request.POST.get('email')
-        
-        user = get_or_create_user(email)
-
         job_update_url = reverse('job_update')
+        
+        try:
+            user = User.objects.get(email__iexact=email)
+        except:
+            # a User record is automatically created when
+            # an OrganizationAdmin is added. If no User record
+            # is found, the address shouldn't be logging in. 
+            msg = 'Sorry, no admin account associated with this email address.'
+            messages.error(request, msg)
+            return redirect(job_update_url)        
+
+        # use django-sesame to send magic login link
         login_token = sesame_utils.get_query_string(user)
         login_link = '{}{}{}'.format(settings.BASE_SITE_URL, job_update_url, login_token)
         msg = 'We just emailed you a login link! Please check your inbox.'
-        print(login_link)
+        
+        email_context = {
+            'site_url': settings.BASE_SITE_URL,
+            'login_link': login_link,
+        }
+    
+        text_content = render_to_string(
+            'jobs/_v2/emails/jobs_admin_login.txt',
+            email_context,
+        )
+        html_content = render_to_string(
+            'jobs/_v2/emails/jobs_admin_login.html',
+            email_context
+        )
+
+        send_multipart_email(
+            subject = 'Source Jobs: Log in to your account',
+            from_email = settings.DEFAULT_FROM_EMAIL,
+            to = email,
+            text_content = text_content,
+            html_content = html_content
+        )
 
         if request.is_ajax():
             result = {'message': msg}

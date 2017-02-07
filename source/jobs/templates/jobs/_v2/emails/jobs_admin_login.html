@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Source Jobs - Login Link</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+</head>
+ 
+<body bgcolor="#ffffff" style="font-family: 'Open Sans', sans-serif; font-size: 16px; margin: 0;">
+    <table style="width: 100%;">
+        <tr>
+            <td style="padding: 24px;>
+                <a href="{{ site_url }}"><img src="{{ site_url }}{{ static('base/_v2/img/source_logo.png') }}" alt="Source" height="30"></a>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td style="padding: 12px 24px; background-color: #ffffff;">
+
+                <p>Click this link to sign into your admin account at Source and post a job for your organization. This link will expire in 5 minutes.</p>
+
+                <p><a href="{{ login_link }}">{{ login_link }}</a></p>
+                
+                <p>If you didn&rsquo;t request a login link, you can ignore this message. Logins are only allowed from authorized email addresses.</p>
+
+                <p><em>&mdash; the Source team</em></p>
+                
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,7 @@
+Click this link to sign into your admin account at Source and post a job for your organization. This link will expire in 5 minutes.
+
+<a href="{{ login_link }}">{{ login_link }}</a>
+
+If you didn&rsquo;t request a login link, you can ignore this message. Logins are only allowed from authorized email addresses.
+
+-- the Source team

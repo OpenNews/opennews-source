@@ -8,9 +8,9 @@
     <h1 class="page-title-lead">Source jobs</h1>
 
     <div class="mod main-lead">
-        <p>If you have an admin account for posting jobs for your organization, log in with your email address here. We&rsquo;ll send a magic login link to your email address.</p>
+        <p>If you have an admin account that lets you post jobs for your organization, log in with your email address here. We&rsquo;ll send a magic login link to your email address.</p>
         
-        <p>If you need an account, <a href="mailto:source@opennews.org?subject=Registration for Job Listings">contact us to set up a profile</a>.</p>
+        <p>If you need an account, <a href="mailto:source@opennews.org?subject=Registration for Job Listings">contact us to set one up</a>.</p>
     </div>
 
     <div class="mod">
@@ -39,7 +39,7 @@
     {% if error_message %}
     <div class="mod">
         <p>{{ error_message }}</p>
-        <p><a href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a></p>
+        <p><a href="{{ url('logout') }}?next={{ request.get_full_path() }}">Log out</a></p>
     </div>
 
     {% elif user.is_authenticated() and user.is_active %}
@@ -146,7 +146,7 @@
         <p>No open jobs listed right now. Use the form at left to add one!</p>
     </div>
     <div class="mod">
-        <p><a href="{{ url('logout') }}?next={{request.get_full_path()}}">Log out</a></p>
+        <p><a href="{{ url('logout') }}?next={{ request.get_full_path() }}">Log out</a></p>
     </div>
 </div>
 {% endif %}
