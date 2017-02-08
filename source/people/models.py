@@ -326,6 +326,9 @@ def clear_caches_for_person(sender, instance, **kwargs):
     # clear cache for person list page
     expire_page_cache(reverse('person_list'))
 
+    # clear cache for community page
+    expire_page_cache(reverse('community_list'))
+
     # clear caches for related articles
     for article in instance.get_live_article_set():
         expire_page_cache(article.get_absolute_url())
@@ -374,6 +377,9 @@ def clear_caches_for_organization(sender, instance, **kwargs):
 
     # clear cache for organization list page
     expire_page_cache(reverse('organization_list'))
+    
+    # clear cache for community page
+    expire_page_cache(reverse('community_list'))
 
     # clear caches for related articles
     for article in instance.get_live_article_set():
