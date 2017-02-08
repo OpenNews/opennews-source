@@ -8,10 +8,19 @@
 
                 <div class="mod main-lead">
                     <p>Newsrooms, civic data orgs, universities, and more.</p>
+                    
+                    <form class="form-submit">
+                        <fieldset>
+                            <p>
+                                <label for="filter">Search:</label>
+                                <input id="filter" value="" type="text" />
+                            </p>
+                        </fieldset>
+                    </form>
                 </div><!-- /end .mod.main-lead -->
                 
                 <div class="mod">
-                    <ul>{% for organization in object_list %}
+                    <ul id="filter-list">{% for organization in object_list %}
                         <li class="profile">
                             <h3 class="profile-name">
                                 <a href="{{ organization.get_absolute_url() }}">
@@ -30,4 +39,12 @@
             </div><!-- /end .content-main -->
 
             {% include "people/_v2/_community_aside.html" %}
+{% endblock %}
+
+{% block body_extra %}
+<script type="text/javascript">
+var filterFormInput = '#filter',
+    listContainer = '#filter-list',
+    filterItemClass = '.profile';
+</script>
 {% endblock %}

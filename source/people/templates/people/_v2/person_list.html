@@ -8,14 +8,22 @@
 
                 <div class="mod main-lead">
                     <p>The community of developers, designers, and data analysts doing journalism through code.</p>
+                    <form class="form-submit">
+                        <fieldset>
+                            <p>
+                                <label for="filter">Search:</label>
+                                <input id="filter" value="" type="text" />
+                            </p>
+                        </fieldset>
+                    </form>
                 </div><!-- /end .mod.main-lead -->
                 
                 <div class="mod">
                     <h2 class="hed-label">Our Community</h2>
-
-                    <ul class="list-promos">
+                    
+                    <ul class="list-promos" id="filter-list">
                     {% for person in object_list %}
-                        <li class="src-promo">
+                        <li class="src-promo list-people">
                             <a href="{{ person.get_absolute_url() }}">
                                 {% if person.photo %}
                                 <img src="{{ MEDIA_URL }}{{ thumbnail(person.photo, "300x200", crop="center") }}" alt="" />
@@ -32,4 +40,12 @@
             </div><!-- /end .content-main -->
 
             {% include "people/_v2/_community_aside.html" %}
+{% endblock %}
+
+{% block body_extra %}
+<script type="text/javascript">
+var filterFormInput = '#filter',
+    listContainer = '#filter-list',
+    filterItemClass = '.src-promo';
+</script>
 {% endblock %}
