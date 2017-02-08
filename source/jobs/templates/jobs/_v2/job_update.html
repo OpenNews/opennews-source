@@ -13,6 +13,12 @@
         <p>If you need an account, <a href="mailto:source@opennews.org?subject=Registration for Job Listings">contact us to set one up</a>.</p>
     </div>
 
+    {% if messages %}
+        {% for message in messages %}
+        <p class="msg-alert">{{ message|safe }}</p>
+        {% endfor %}
+    {% endif %}
+
     <div class="mod">
         <form class="form-submit" action="{{ url('job_send_login_link') }}" method="post">
             {% csrf_token %}
@@ -27,12 +33,6 @@
 
             <p><input type="submit" value="Send me a login link"></p>
         </form>
-        
-        {% if messages %}
-            {% for message in messages %}
-            <p>{{ message|safe }}</p>
-            {% endfor %}
-        {% endif %}
     </div><!-- /end .mod.main-lead -->
     {% endif %}
 
@@ -47,14 +47,14 @@
     <h1 class="page-title-lead">{{ organization.name }} jobs</h1>
 
     <div class="mod main-lead">
-        {% if messages %}
-            {% for message in messages %}
-            <p>{{ message|safe }}</p>
-            {% endfor %}
-        {% else %}
-            <p>{% if job %}Edit listing on Source: {{ job.name }}{% else %}Post a new job on Source{% endif %}</p>
-        {% endif %}
+        <p>{% if job %}Edit listing on Source: {{ job.name }}{% else %}Post a new job on Source{% endif %}</p>
     </div><!-- /end .mod.main-lead -->
+
+    {% if messages %}
+        {% for message in messages %}
+        <p class="msg-alert">{{ message|safe }}</p>
+        {% endfor %}
+    {% endif %}
 
     <div class="mod">
         {% if form.errors %}<p class="msg-error">Oh no! There were a few errors with your submission. Mind double-checking the form, and filling out all the required fields?</p>{% endif %}

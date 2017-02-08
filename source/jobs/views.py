@@ -104,6 +104,7 @@ class JobUpdate(FormView):
     def update_job(self, job, data, task=None):
         if task == 'delete':
             job.delete()
+            expire_page_cache(reverse('job_list'))
             form_message = 'Job listing deleted. Add a new job?'
 
         else:
@@ -187,7 +188,7 @@ class JobsSendLoginLink(View):
         job_update_url = reverse('job_update')
         
         try:
-            user = User.objects.get(email__iexact=email)
+            user = User.objects.get(username__iexact=email)
         except:
             # a User record is automatically created when
             # an OrganizationAdmin is added. If no User record
