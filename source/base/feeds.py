@@ -42,7 +42,8 @@ class ArticleFeed(ObjectWithTagsFeed):
 
     def link(self, obj):
         if self.section:
-            return reverse('article_list_by_section', kwargs={'section': self.section.slug})
+            return reverse('article_list')
+            #return reverse('article_list_by_section', kwargs={'section': self.section.slug})
         elif self.category:
             return reverse('article_list_by_category', kwargs={'category': self.category.slug})
         elif self.tag_slugs:

@@ -186,16 +186,18 @@ def clear_caches_for_code(sender, instance, **kwargs):
     # clear caches for related articles
     for article in instance.get_live_article_set():
         expire_page_cache(article.get_absolute_url())
-        if article.section.slug:
-            expire_page_cache(reverse(
-                'article_list_by_section',
-                kwargs = { 'section': article.section.slug }
-            ))
-        if article.category:
-            expire_page_cache(reverse(
-                'article_list_by_category',
-                kwargs = { 'category': article.category.slug }
-            ))
+        expire_page_cache(reverse('article_list'))
+        
+        #if article.section.slug:
+        #    expire_page_cache(reverse(
+        #        'article_list_by_section',
+        #        kwargs = { 'section': article.section.slug }
+        #    ))
+        #if article.category:
+        #    expire_page_cache(reverse(
+        #        'article_list_by_category',
+        #        kwargs = { 'category': article.category.slug }
+        #    ))
 
     # clear caches for related organizations
     for organization in instance.get_live_organization_set():

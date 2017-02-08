@@ -184,18 +184,20 @@ class ArticleBlock(CachingMixin, models.Model):
 def clear_caches_for_article(sender, instance, **kwargs):
     # clear cache for article detail page
     expire_page_cache(instance.get_absolute_url())
+    expire_page_cache(reverse('article_list'))
     
     # clear cache for article list pages
-    if instance.section.slug:
-        expire_page_cache(reverse(
-            'article_list_by_section',
-            kwargs = { 'section': instance.section.slug }
-        ))
-    if instance.category:
-        expire_page_cache(reverse(
-            'article_list_by_category',
-            kwargs = { 'category': instance.category.slug }
-        ))
+    # deprecated while we don't use section-based URLs
+    #if instance.section.slug:
+    #    expire_page_cache(reverse(
+    #        'article_list_by_section',
+    #        kwargs = { 'section': instance.section.slug }
+    #    ))
+    #if instance.category:
+    #    expire_page_cache(reverse(
+    #        'article_list_by_category',
+    #        kwargs = { 'category': instance.category.slug }
+    #    ))
 
     # clear caches for related organizations
     for organization in instance.get_live_organization_set():
