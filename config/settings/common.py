@@ -48,6 +48,7 @@ THIRD_PARTY_APPS = (
     'taggit',
     'django_jinja',
     'storages',
+    'lockdown',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -238,6 +239,13 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'haystack',
     },
 }
+
+# Lockdown
+LOCKDOWN_ENABLED = env.bool('LOCKDOWN_ENABLED', False)
+if LOCKDOWN_ENABLED:
+    LOCKDOWN_PASSWORDS = env.list('LOCKDOWN_PASSWORDS',[])
+    LOCKDOWN_LOGOUT_KEY = 'logout'
+    MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware',)
 
 TWITTER_CONSUMER_KEY = env.str('TWITTER_CONSUMER_KEY', None)
 TWITTER_CONSUMER_SECRET = env.str('TWITTER_CONSUMER_SECRET', None)
