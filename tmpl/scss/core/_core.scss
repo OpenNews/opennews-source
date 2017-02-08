@@ -1343,6 +1343,10 @@ Lead promo
     display: block;
     margin-bottom: 0.4em;
 }
+
+// temporary fix for lack of person images
+.list-people img { display: none; }
+
 .src-promo p {
     clear: both;
     color: #777;
@@ -1417,9 +1421,9 @@ a:hover .hed-promo {
         flex: 0 1 30%;
         margin-right: 3%;
     }
-    .src-promo:nth-child( 3n ) {
+    /*.src-promo:nth-child( 3n ) {
         margin-right: 0;
-    }
+    }*/
     .src-promo:first-child {
         width: inherit;
     }
