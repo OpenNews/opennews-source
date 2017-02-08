@@ -35,7 +35,7 @@
 
             <div class="content-aside">
                 <div class="mod">
-                    <h2 class="hed-label">List a job on Source</h2>
+                    <h2 class="hed-label">Jobs on Source</h2>
 
                     {% if user.is_authenticated() and user.is_active and not user.is_staff %}
                     <ol class="list-recently">
@@ -44,6 +44,7 @@
 
                             <ul>
                                 <li><a class="has-icon icon-profile" href="{{ url('job_update') }}">Post a new job</a></li>
+                                <li><a class="has-icon" href="{{ url('logout') }}?next={{ request.get_full_path() }}">Log out</a></li>
                             </ul>
                         </li>
                     </ol>
