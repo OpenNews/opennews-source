@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.template import RequestContext
@@ -198,12 +199,14 @@ class JobsSendLoginLink(View):
             return redirect(job_update_url)        
 
         # use django-sesame to send magic login link
+        site_url = '{}://{}'.format(request.scheme, get_current_site(request))
         login_token = sesame_utils.get_query_string(user)
-        login_link = '{}{}{}'.format(settings.BASE_SITE_URL, job_update_url, login_token)
+        login_link = '{}{}{}'.format(site_url, job_update_url, login_token)
+                
         msg = 'We just emailed you a login link! Please check your inbox.'
         
         email_context = {
-            'site_url': settings.BASE_SITE_URL,
+            'site_url': site_url,
             'login_link': login_link,
         }
     
