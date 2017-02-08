@@ -37,21 +37,24 @@
                 <div class="mod">
                     <h2 class="hed-label">List a job on Source</h2>
 
+                    {% if user.is_authenticated() and user.is_active and not user.is_staff %}
                     <ol class="list-recently">
                         <li class="item-recent">
-                            {% if user.is_authenticated() and user.is_active and not user.is_staff %}
                             <p>You&rsquo;re logged in with an organization profile on Source:</p>
 
                             <ul>
                                 <li><a class="has-icon icon-profile" href="{{ url('job_update') }}">Post a new job</a></li>
                             </ul>
-                            {% else %}
+                        </li>
+                    </ol>
+                    {% else %}
+                    <ol class="list-recently">
+                        <li class="item-recent">
                             <p>If you&rsquo;ve already set up an organization profile on Source:</p>
 
                             <ul>
                                 <li><a class="has-icon icon-profile" href="{{ url('job_update') }}">Log in to list a new job</a></li>
                             </ul>
-                            {% endif %}
                         </li>
                         <li class="item-recent">
                             <p>If you don&rsquo;t have an organization profile on Source, we can help you set one up or list a job for you:</p>
@@ -62,6 +65,7 @@
                             </ul>
                         </li>
                     </ol>
+                    {% endif %}
                 </div><!-- /end .mod -->
             </div><!-- /end .content-aside -->
 {% endblock %}

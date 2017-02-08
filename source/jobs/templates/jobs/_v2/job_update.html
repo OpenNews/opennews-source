@@ -142,8 +142,9 @@
                 <p class="has-icon">Posted {{ job.listing_start_date|simple_datesince }}</p>
             </li>{% endfor %}
         </ol>
-        {% endif %}
+        {% else %}
         <p>No open jobs listed right now. Use the form at left to add one!</p>
+        {% endif %}
     </div>
     <div class="mod">
         <p><a href="{{ url('logout') }}?next={{ request.get_full_path() }}">Log out</a></p>
@@ -162,7 +163,6 @@ function confirmJobRemove(jobID) {
 }
 
 function sendLoginLink() {
-
     $.ajax({
         type: "POST",
         url: "{{ url('job_send_login_link') }}",
