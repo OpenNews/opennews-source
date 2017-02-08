@@ -106,6 +106,7 @@ module.exports = function( grunt ) {
                     "<%= _config.dir.templates %>js/count-disqus.js",
                     "<%= _config.dir.templates %>js/tweet-embed.js",
                     "<%= _config.dir.templates %>js/form-phrase.js",
+                    "<%= _config.dir.templates %>js/listfilter-load.js",
                     // source-misc.js is a scratch file for any miscellaneous JS that needs to be run on document.enhance
                     "<%= _config.dir.templates %>js/source-misc.js",
                     // source-init.js needs to be last.
@@ -262,10 +263,10 @@ module.exports = function( grunt ) {
     } );
 
     grunt.registerTask( "build", [
-        "clean",
+        //"clean",
         "sass",
         "postcss",
-        "criticalcss",
+        //"criticalcss",
         "cssmin",
         "concat",
         "uglify",
