@@ -60,8 +60,6 @@ INSTALLED_APPS += ("gunicorn", )
 
 BASE_SITE_URL = 'https://source.opennews.org'
 
-ENGAGE_ROBOTS = False
-
 # STORAGE CONFIGURATION
 # ------------------------------------------------------------------------------
 # Uploaded Media Files

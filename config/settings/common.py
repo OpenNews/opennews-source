@@ -79,6 +79,7 @@ MIGRATION_MODULES = {
 # ------------------------------------------------------------------------------
 DEBUG = env.bool('DJANGO_DEBUG', False)
 
+
 # FIXTURE CONFIGURATION
 # ------------------------------------------------------------------------------
 FIXTURE_DIRS = (
@@ -224,7 +225,7 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 ADMIN_URL = r'^admin/'
 
 # common stuff, 3rd party library settings
-ENGAGE_ROBOTS = False
+ENGAGE_ROBOTS = env.bool('ENGAGE_ROBOTS', False)
 
 CACHE_MIDDLEWARE_SECONDS = 60*15
 FEED_CACHE_SECONDS = 60*15
