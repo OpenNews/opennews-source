@@ -23,7 +23,7 @@
                     
                     <ul class="list-promos" id="filter-list">
                     {% for person in object_list %}
-                        <li class="src-promo list-people">
+                        <li class="src-promo list-people filter-item">
                             <a href="{{ person.get_absolute_url() }}">
                                 {% if person.photo %}
                                 <img src="{{ MEDIA_URL }}{{ thumbnail(person.photo, "300x200", crop="center") }}" alt="" />
@@ -40,12 +40,4 @@
             </div><!-- /end .content-main -->
 
             {% include "people/_v2/_community_aside.html" %}
-{% endblock %}
-
-{% block head_extra %}
-<script type="text/javascript">
-var filterFormInput = '#filter',
-    listContainer = '#filter-list',
-    filterItemClass = '.src-promo';
-</script>
 {% endblock %}

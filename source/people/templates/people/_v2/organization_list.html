@@ -21,7 +21,7 @@
                 
                 <div class="mod">
                     <ul id="filter-list">{% for organization in object_list %}
-                        <li class="profile">
+                        <li class="profile filter-item">
                             <h3 class="profile-name">
                                 <a href="{{ organization.get_absolute_url() }}">
                                     {{ organization.name|smartypants }}
@@ -39,12 +39,4 @@
             </div><!-- /end .content-main -->
 
             {% include "people/_v2/_community_aside.html" %}
-{% endblock %}
-
-{% block head_extra %}
-<script type="text/javascript">
-var filterFormInput = '#filter',
-    listContainer = '#filter-list',
-    filterItemClass = '.profile';
-</script>
 {% endblock %}

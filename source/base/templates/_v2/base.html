@@ -13,6 +13,7 @@
     <meta name="fullJS" content="{{ static('base/_v2/dist/js/main.js') }}" />
     <meta name="fullCSS" content="{{ static('base/_v2/dist/css/main.css') }}" />
 
+    {% block head_extra_pre_initial_js %}{% endblock %}
     <script src="{{ static('base/_v2/dist/js/initial.js') }}"></script>
 
     {% block head_css %}
