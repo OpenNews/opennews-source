@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, url
+from django.contrib.auth import views as auth_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
 
@@ -64,6 +65,12 @@ BASE_URLS = [
         kwargs = {},
         name = 'article_list_by_category_feed',
     ),
+    url(r'^admin/password_reset/$', auth_views.password_reset, name='admin_password_reset'),
+    url(r'^admin/password_reset/done/$', auth_views.password_reset_done, name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$', auth_views.password_reset_confirm, name='password_reset_confirm'),
+    url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
+    url(r'^auth/logout/$', auth_views.logout, name='logout'),
+    url(r'^accounts/login/$', RedirectView.as_view(url='/admin/login/')),
     # fallback for old section-based URLs
     #url(
     #    regex = '^(?P<section>[-\w]+)/$',

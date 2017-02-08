@@ -5,7 +5,6 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.views import logout
 from django.http import HttpResponse
 from django.views import defaults as default_views
 from django.views.generic.base import RedirectView
@@ -15,7 +14,6 @@ from source.base.views import L10NRedirectView
 
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),
-    url(r'^auth/logout/', logout, name='logout'),
     url(r'^en-(us|US)/', L10NRedirectView.as_view()),
     url(r'^favicon.ico$', RedirectView.as_view(url=settings.STATIC_URL+'base/_v2/img/favicon.ico')),
     # Generate a robots.txt
