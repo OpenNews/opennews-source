@@ -6,6 +6,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import logout
+from django.http import HttpResponse
 from django.views import defaults as default_views
 
 from source.base import urls
@@ -20,7 +21,7 @@ urlpatterns = [
     url(r'^robots.txt$',
         lambda r: HttpResponse(
             "User-agent: *\n%s: /" % ('Allow' if settings.ENGAGE_ROBOTS else 'Disallow') ,
-            mimetype="text/plain"
+            content_type="text/plain"
         )
     ),
     url(r'', include(urls.BASE_URLS)),
