@@ -2036,6 +2036,9 @@ Repo metadata
         text-align: right;
         margin-right: 0;
     }
+    .repo-meta li:first-child {
+        text-align: left;
+    }
     .repo-meta a,
     .repo-meta span {
         padding-top: 0.6em;

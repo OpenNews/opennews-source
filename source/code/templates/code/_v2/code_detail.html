@@ -24,12 +24,12 @@
 {% block page_main %}{# block begins inside div.page-main #}
 
             <div class="content-main">
-                <p class="hed-label">Featured Code</p>
+                <a class="hed-label" href="{{ url('code_list') }}">Code</a>
 
                 <h1 class="page-title-lead">{{ code.name|smartypants }}</h1>
 
                 <div class="mod main-lead">
-                    {% if code.description_or_summary %}{{ code.description_or_summary|linebreaks|typogrify|safe }}{% endif %}
+                    {% if code.description_or_summary %}<p>{{ code.description_or_summary|typogrify|safe }} <a class="link-cta" href="{{ code.url }}">Visit the repo</a></p>{% endif %}
                 </div><!-- /end .mod.main-lead -->
 
                 {% if code.get_live_article_set().exists() %}
