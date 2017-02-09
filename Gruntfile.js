@@ -84,7 +84,6 @@ module.exports = function( grunt ) {
                     "<%= grunticon.svg.files[0].dest %>grunticon.loader.js",
                     "<%= _config.dir.templates %>js/config.js",
                     "<%= _config.dir.templates %>js/utils.js",
-                    "<%= _config.dir.templates %>js/typekit.js",
                     // initial.js needs to be last.
                     "<%= _config.dir.templates %>js/initial.js"
                 ],
@@ -95,6 +94,7 @@ module.exports = function( grunt ) {
                     // jquery.min.js needs to be first
                     "<%= _config.dir.templates %>js/lib/jquery.min.js",
                     // Miscellaneous modules/libraries can be loaded here, in preferred order of execution
+                    "<%= _config.dir.templates %>js/typekit.js",
                     "<%= _config.dir.templates %>js/lib/appendAround.js",
                     "<%= _config.dir.templates %>js/lib/ajaxsend.js",
                     "<%= _config.dir.templates %>js/lib/collapsible.js",
