@@ -1842,7 +1842,7 @@ Profiles
 }
 .profile img {
     float: right;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     margin-left: 1em;
     max-width: 130px;
     max-width: 8.125rem;
@@ -1926,6 +1926,10 @@ Profiles
     .profile .profile-links {
         max-width: inherit;
     }
+    .profile-lead .profile-links {
+        max-width: 866px;
+        max-width: 54rem;
+    }
     .supports-flex .profile-links {
         border-top: 1px solid #D8D8D8;
         padding-top: 0.5em;
@@ -1986,7 +1990,7 @@ Comments
 }
 @media (min-width: 65em) {
     .article-matter-back > * {
-        width: 68.864097363083164300%;    /* 679/986 */
+        width: 66.835699797160243407%;    /* 659/986 */
     }
     .article-matter-back .hed-label {
         float: left;
