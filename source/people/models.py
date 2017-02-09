@@ -3,8 +3,9 @@ from datetime import datetime
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.utils.html import format_html
 
@@ -405,11 +406,19 @@ def clear_caches_for_organization(sender, instance, **kwargs):
     for code in instance.get_live_code_set():
         expire_page_cache(code.get_absolute_url())
 
-
-@receiver(post_save, sender=Organization)
+@receiver(post_save, sender=OrganizationAdmin)
 @disable_for_loaddata
-def update_org_admin_users(sender, instance, **kwargs):
+def update_org_admin_user(sender, instance, **kwargs):
     # make sure there's a User record associated with each OrganizationAdmin
-    for admin in instance.organizationadmin_set.all():
-        get_or_create_user(admin.email)
+    get_or_create_user(instance.email)
+
+@receiver(post_delete, sender=OrganizationAdmin)
+def delete_org_admin_user(sender, instance, **kwargs):
+    # make sure we don't have orphan User records when
+    # an OrganizationAdmin gets deleted
+    try:
+        admin = User.objects.get(username__iexact=instance.email)
+        admin.delete()
+    except:
+        pass
         

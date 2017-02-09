@@ -127,7 +127,7 @@ class JobUpdate(FormView):
     def get_organization(self, user):
         if user.is_authenticated() and user.is_active:
             try:
-                org_admin = OrganizationAdmin.objects.get(email__iexact=user.email, organization__is_live=True)
+                org_admin = OrganizationAdmin.objects.get(email__iexact=user.username, organization__is_live=True)
                 return org_admin.organization
             except OrganizationAdmin.DoesNotExist:
                 self.error_message = "Sorry, no Organization account found that matches your email address: {}".format(user.email)
