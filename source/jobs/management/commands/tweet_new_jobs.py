@@ -13,7 +13,6 @@ set up the cron however we like, and it will always get the latest batch
 of jobs that haven't been tweeted yet.
 '''
 from datetime import datetime
-import logging
 import oauth2 as oauth
 import random
 import urllib
@@ -24,18 +23,17 @@ from django.core.urlresolvers import reverse
 
 from source.jobs.models import Job
 
-CONSUMER_KEY=settings.JOBS_TWITTER_CONSUMER_KEY
-CONSUMER_SECRET=settings.JOBS_TWITTER_CONSUMER_SECRET
-ACCESS_KEY=settings.JOBS_TWITTER_ACCESS_TOKEN
-ACCESS_SECRET=settings.JOBS_TWITTER_ACCESS_TOKEN_SECRET
-
-logging.basicConfig(filename='twitter_job_posts.log', filemode='w', level=logging.INFO)
+LOG_PREFIX = 'TWEET_NEW_JOBS'
+CONSUMER_KEY = settings.JOBS_TWITTER_CONSUMER_KEY
+CONSUMER_SECRET = settings.JOBS_TWITTER_CONSUMER_SECRET
+ACCESS_KEY = settings.JOBS_TWITTER_ACCESS_TOKEN
+ACCESS_SECRET = settings.JOBS_TWITTER_ACCESS_TOKEN_SECRET
 
 
 class Command(BaseCommand):
     help = 'Posts new job listings to Twitter.'
     def handle(self, *args, **options):
-        logging.info('Started posting: %s' % datetime.now())
+        print('{} - started posting: {}'.format(LOG_PREFIX, datetime.now()))
         
         # set up Twitter credentials for our API calls
         consumer = oauth.Consumer(key=CONSUMER_KEY, secret=CONSUMER_SECRET)
@@ -45,41 +43,38 @@ class Command(BaseCommand):
 
         # get up to three Job records that are live, within proper time frame,
         # but have not been posted to Twitter yet. oldest records first
-        jobs = Job.live_objects.filter(tweeted_at=None).order_by('listing_start_date')[:3]
+        jobs = Job.live_objects.filter(tweeted_at=None).order_by('listing_start_date')[:2]
 
         # loop through our queryset
         for job in jobs:
             try:
                 # build the tweet
-                job_url = '%s%s#job-%s' % (settings.BASE_SITE_URL, reverse('job_list'), job.pk)
+                job_url = '{}{}#job-{}'.format(settings.BASE_SITE_URL, reverse('job_list'), job.pk)
                 tweet = make_tweet(job.organization.name, job.name, job_url)
                 
                 if settings.DEBUG:
-                    tweet = "TEST POST: %s" % tweet
+                    # for testing
+                    tweet = "TEST POST: {}".format(tweet)
+                    print(tweet)
+                else:
+                    # post the tweet to Twitter
+                    try:
+                        post_tweet(tweet)
+                    except oauth.Error as err:
+                        print('{} - TWITTER ERROR: {}'.format(LOG_PREFIX, err))
                 
-                # post the tweet to Twitter
-                try:
-                    response, content = client.request(
-                        api_endpoint, method='POST',
-                        body = urllib.urlencode({
-                            'status': tweet,
-                            'wrap_links': True
-                        }),
-                    )
-                except oauth.Error as err:
-                    logging.info('TWITTER ERROR: %s' % err)
-                
-                # update `tweeted_at` timestamp so this record
-                # won't be picked up in queryset on next run
-                job.tweeted_at = datetime.now()
-                job.save()
+                    # update `tweeted_at` timestamp so this record
+                    # won't be picked up in queryset on next run
+                    job.tweeted_at = datetime.now()
+                    job.save()
 
-                logging.info('Succesful update: %s' % tweet)
+                    print('Succesful update: %s' % tweet)
+
             except:
-                logging.info('ERROR: %s' % job)
+                print('ERROR: %s' % job)
                 pass
 
-        logging.info('Finished posting: %s' % datetime.now())
+        print('{} - finished posting: {}'.format(LOG_PREFIX, datetime.now()))
 
 TWEET_CONSTRUCTS = [
     ('New job listing from %s: %s.', ('org', 'job')),
@@ -115,3 +110,13 @@ def make_tweet(org_name, job_name, job_url):
         tweet = 'New job listing from %s: %s' % (tweet_data['org'], tweet_data['url'])
     
     return tweet
+
+def post_tweet(tweet):
+    response, content = client.request(
+        api_endpoint, method='POST',
+        body = urllib.urlencode({
+            'status': tweet,
+            'wrap_links': True
+        }),
+    )
+    
