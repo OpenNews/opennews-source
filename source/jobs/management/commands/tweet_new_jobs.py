@@ -114,7 +114,7 @@ def make_tweet(org_name, job_name, job_url):
 def post_tweet(tweet):
     response, content = client.request(
         api_endpoint, method='POST',
-        body = urllib.urlencode({
+        body = urllib.parse.urlencode({
             'status': tweet,
             'wrap_links': True
         }),
