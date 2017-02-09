@@ -963,14 +963,14 @@ Headings
 }
 // .hed-label - little red headlines, they look like labels, naming things is difficult
 .hed-label {
-    background-color: map-get( $colors, "src-red-dark" );
+    background-color: #8D5854;
     color: #FFF;
     display: inline-block;
     font-size: 0.8125em;    /* 13/16 */
     font-weight: 700;
     line-height: 1;
     padding: 1em 1.2em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     text-transform: uppercase;
 }
 a.hed-label {
