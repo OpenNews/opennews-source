@@ -3,20 +3,20 @@
 {% block page_title %}{{ person.name() }}'s profile - {{ super() }}{% endblock %}
 
 {% block head_open_graph %}{{ super() }}
-<!-— facebook open graph tags -->
-<meta property="og:type" content="article" />
-<meta property="og:url" content="{{ request.build_absolute_uri() }}" />
-<meta property="og:title" content="{{ person.name() }}" />{% if person.photo %}
-<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />{% endif %}
+    <!-— facebook open graph tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ request.build_absolute_uri() }}" />
+    <meta property="og:title" content="{{ person.name() }}" />{% if person.photo %}
+    <meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />{% endif %}
  
-<!-— twitter card tags additive with the og: tags -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
-<meta name="twitter:title" value="{{ person.name() }}" />{% if person.photo %}
-<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />
-<meta name="twitter:image:alt" content="{{ person.name() }}" />{% endif %}
-<meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
-<meta name="twitter:site" value="@source" />
+    <!-— twitter card tags additive with the og: tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
+    <meta name="twitter:title" value="{{ person.name() }}" />{% if person.photo %}
+    <meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(person.photo, "600") }}" />
+    <meta name="twitter:image:alt" content="{{ person.name() }}" />{% endif %}
+    <meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
+    <meta name="twitter:site" value="@source" />
 {% endblock %}
 
 {% block page_main %}{# block begins inside div.page-main #}

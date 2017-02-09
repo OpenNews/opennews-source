@@ -3,22 +3,22 @@
 {% block page_title %}{{ code.name }} - {{ super() }}{% endblock %}
 
 {% block head_open_graph %}{{ super() }}
-<!-— facebook open graph tags -->
-<meta property="og:type" content="article" />
-<meta property="og:url" content="{{ request.build_absolute_uri() }}" />
-<meta property="og:title" content="{{ code.name }}" />
-<meta property="og:description" content="{{ code.summary_or_description }}" />{% if code.screenshot %}
-<meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />{% endif %}
+    <!-— facebook open graph tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ request.build_absolute_uri() }}" />
+    <meta property="og:title" content="{{ code.name }}" />
+    <meta property="og:description" content="{{ code.summary_or_description }}" />{% if code.screenshot %}
+    <meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />{% endif %}
  
-<!-— twitter card tags additive with the og: tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
-<meta name="twitter:title" value="{{ code.name }}" />
-<meta name="twitter:description" value="{{ code.summary_or_description }}" />{% if code.screenshot %}
-<meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />
-<meta name="twitter:image:alt" content="{{ code.name }}" />{% endif %}
-<meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
-<meta name="twitter:site" value="@source" />
+    <!-— twitter card tags additive with the og: tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
+    <meta name="twitter:title" value="{{ code.name }}" />
+    <meta name="twitter:description" value="{{ code.summary_or_description }}" />{% if code.screenshot %}
+    <meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(code.screenshot, "600") }}" />
+    <meta name="twitter:image:alt" content="{{ code.name }}" />{% endif %}
+    <meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
+    <meta name="twitter:site" value="@source" />
 {% endblock %}
 
 {% block page_main %}{# block begins inside div.page-main #}
