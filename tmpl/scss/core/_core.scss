@@ -452,11 +452,19 @@ Header
 .site-nav-links a.is-active:hover {
     color: #96DDFF;
 }
+// Hide the site nav when enhanced, to prevent a flash of unenhanced content
+.enhanced .site-nav {
+    display: none;
+}
 .site-nav.collapsible-enhanced {
+    display: block;
     margin: 0 -3.055555555555555555%;        /* 44/1440 */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s, opacity 0.2s;
+}
+.supports-flex .site-nav.collapsible-enhanced {
+    display: flex;
 }
 .site-nav.collapsible-enhanced .site-nav-links {
     display: flex;
@@ -733,6 +741,12 @@ Site search
     margin: 3em -1em 0;
     zoom: 1;
 }
+.enhanced .site-search {
+    display: none;
+}
+.site-search.collapsible-enhanced {
+    display: block;
+}
 .site-search:after {
     content: "";
     clear: both;
@@ -963,14 +977,14 @@ Headings
 }
 // .hed-label - little red headlines, they look like labels, naming things is difficult
 .hed-label {
-    background-color: map-get( $colors, "src-red-dark" );
+    background-color: #8D5854;
     color: #FFF;
     display: inline-block;
     font-size: 0.8125em;    /* 13/16 */
     font-weight: 700;
     line-height: 1;
     padding: 1em 1.2em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     text-transform: uppercase;
 }
 a.hed-label {
@@ -1842,7 +1856,7 @@ Profiles
 }
 .profile img {
     float: right;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     margin-left: 1em;
     max-width: 130px;
     max-width: 8.125rem;
@@ -1926,6 +1940,10 @@ Profiles
     .profile .profile-links {
         max-width: inherit;
     }
+    .profile-lead .profile-links {
+        max-width: 866px;
+        max-width: 54rem;
+    }
     .supports-flex .profile-links {
         border-top: 1px solid #D8D8D8;
         padding-top: 0.5em;
@@ -1986,7 +2004,7 @@ Comments
 }
 @media (min-width: 65em) {
     .article-matter-back > * {
-        width: 68.864097363083164300%;    /* 679/986 */
+        width: 66.835699797160243407%;    /* 659/986 */
     }
     .article-matter-back .hed-label {
         float: left;
