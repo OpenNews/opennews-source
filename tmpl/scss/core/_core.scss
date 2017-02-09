@@ -452,11 +452,19 @@ Header
 .site-nav-links a.is-active:hover {
     color: #96DDFF;
 }
+// Hide the site nav when enhanced, to prevent a flash of unenhanced content
+.enhanced .site-nav {
+    display: none;
+}
 .site-nav.collapsible-enhanced {
+    display: block;
     margin: 0 -3.055555555555555555%;        /* 44/1440 */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s, opacity 0.2s;
+}
+.supports-flex .site-nav.collapsible-enhanced {
+    display: flex;
 }
 .site-nav.collapsible-enhanced .site-nav-links {
     display: flex;
@@ -732,6 +740,12 @@ Site search
     clear: both;
     margin: 3em -1em 0;
     zoom: 1;
+}
+.enhanced .site-search {
+    display: none;
+}
+.site-search.collapsible-enhanced {
+    display: block;
 }
 .site-search:after {
     content: "";
