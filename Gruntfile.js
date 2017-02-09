@@ -159,6 +159,12 @@ module.exports = function( grunt ) {
                 ],
                 dest: "<%= criticalcss.content.options.outputfile %>"
             },
+            crit_home: {
+                src: [
+                    "<%= criticalcss.home.options.outputfile %>"
+                ],
+                dest: "<%= criticalcss.home.options.outputfile %>"
+            },
             css_main: {
                 src: [
                     "<%= Object.keys( sass.dist.files )[ 0 ] %>"
