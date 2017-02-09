@@ -59,7 +59,7 @@ class Command(BaseCommand):
                 else:
                     # post the tweet to Twitter
                     try:
-                        post_tweet(tweet)
+                        post_tweet(tweet, client, api_endpoint)
                     except oauth.Error as err:
                         print('{} - TWITTER ERROR: {}'.format(LOG_PREFIX, err))
                 
@@ -71,7 +71,7 @@ class Command(BaseCommand):
                     print('Succesful update: %s' % tweet)
 
             except:
-                print('ERROR: %s' % job)
+                print('{} - ERROR: {}'.format(LOG_PREFIX, job))
                 pass
 
         print('{} - finished posting: {}'.format(LOG_PREFIX, datetime.now()))
@@ -111,7 +111,7 @@ def make_tweet(org_name, job_name, job_url):
     
     return tweet
 
-def post_tweet(tweet):
+def post_tweet(tweet, client, api_endpoint):
     response, content = client.request(
         api_endpoint, method='POST',
         body = urllib.parse.urlencode({
