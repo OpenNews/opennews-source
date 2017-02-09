@@ -112,4 +112,3 @@ class SlackMessageView(View):
             result = 'failure'
         
         return render_json_to_response({'text': result})
-    
