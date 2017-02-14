@@ -111,4 +111,4 @@ Of course, there will be times when we need to execute arbitrary JavaScript on S
 
 **TLDR:** If you can load non-critical code in a deferred, asynchronous manner, that will keep Source running as fast as possible. 🙌
 
-- Ethan Marcotte
+_-- Ethan Marcotte_
