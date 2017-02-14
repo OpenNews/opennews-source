@@ -194,7 +194,6 @@ MEDIA_ROOT = str(APPS_DIR('media'))
 #MEDIA_URL = '/media/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_ACCESS_KEY_ID = env.str('AWS_S3_ACCESS_KEY_ID', None)
 AWS_S3_SECRET_ACCESS_KEY = env.str('AWS_S3_SECRET_ACCESS_KEY', None)
 AWS_AUTO_CREATE_BUCKET = True
@@ -203,7 +202,6 @@ AWS_STORAGE_BUCKET_NAME = 'media.opennews.org'
 
 from boto.s3.connection import OrdinaryCallingFormat
 AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
-#MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = 'https://media.opennews.org/'
 THUMBNAIL_PRESERVE_FORMAT = True
 THUMBNAIL_DEBUG = DEBUG
