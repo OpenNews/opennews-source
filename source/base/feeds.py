@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from django.conf import settings
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
@@ -12,6 +14,8 @@ from source.jobs.models import Job
 from source.tags.models import TechnologyTag, ConceptTag
 from source.tags.utils import get_validated_tag_list, get_tag_filtered_queryset
 from taggit.models import Tag
+
+ONE_DAY_AGO = datetime.now() - timedelta(hours=24)
 
 class ObjectWithTagsFeed(Feed):
     '''common get_object for Article and Code feeds to handle tag queries'''
@@ -183,3 +187,38 @@ class GuideFeed(Feed):
         queryset = Guide.live_objects.order_by('-pubdate')
         return queryset[:20]
 
+class RecentArticleSummaryFeed(Feed):
+    description_template = "feeds/article_summary_only.html"
+    
+    def title(self, obj):
+        return "Source: Latest Article Summaries"
+
+    def link(self, obj):
+        return reverse('article_list')
+
+    def description(self, obj):
+        return 'Recent articles from Source'
+
+    def item_title(self, item):
+        _name = item.title
+        # Alert anyone using an RSS feed on staging
+        if settings.DEBUG:
+            _name = "THIS IS A TEST ENTRY ON THE STAGING SITE: " + _name
+
+        return _name
+
+    def item_pubdate(self, item):
+        return item.pubdate
+        
+    def item_author_name(self, item):
+        if item.get_live_author_set().exists():
+            return ','.join([author.name() for author in item.get_live_author_set()])
+        return ''
+
+    def item_description(self, item):
+        return item.safe_summary
+
+    def items(self, obj):
+        queryset = Article.live_objects.filter(show_in_lists=True)
+        queryset = queryset.filter(pubdate__gte=ONE_DAY_AGO)
+        return queryset

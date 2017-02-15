@@ -1,0 +1,3 @@
+{% if obj.get_live_author_set().exists() %}<p><strong>{% for author in obj.get_live_author_set() %}{% if loop.first %}By {% endif %}{{ author.name() }}{% if not loop.last %}, {% endif %}{% endfor %}</strong></p>{% endif %}
+
+{{ obj.safe_summary }}

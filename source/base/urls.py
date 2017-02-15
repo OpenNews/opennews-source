@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
 
-from .feeds import ArticleFeed
+from .feeds import ArticleFeed, RecentArticleSummaryFeed
 from .views import SourceSearchView, HomepageView, SlackMessageView
 from haystack.forms import SearchForm
 from haystack.query import SearchQuerySet
@@ -52,6 +52,12 @@ BASE_URLS = [
         view = cache_page(FEED_CACHE_TIME)(ArticleFeed()),
         kwargs = {},
         name = 'homepage_feed',
+    ),
+    url(
+        regex = '^rss/recent-summaries/$',
+        view = cache_page(FEED_CACHE_TIME)(RecentArticleSummaryFeed()),
+        kwargs = {},
+        name = 'recent_summaries_feed',
     ),
     url(
         regex = '^category/(?P<category>[-\w]+)/$',
