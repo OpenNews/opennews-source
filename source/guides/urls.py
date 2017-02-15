@@ -6,7 +6,7 @@ from .views import GuideList, GuideDetail, GuideSuggestGuide
 from source.base.feeds import GuideFeed
 
 STANDARD_CACHE_TIME = getattr(settings, 'CACHE_MIDDLEWARE_SECONDS', 60*15)
-FEED_CACHE_TIME = getattr(settings, 'FEED_CACHE_SECONDS', 60*15)
+FEED_CACHE_TIME = getattr(settings, 'FEED_CACHE_SECONDS', 60*60)
 
 urlpatterns = [
     url(

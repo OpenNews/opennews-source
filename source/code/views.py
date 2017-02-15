@@ -53,8 +53,8 @@ class CodeList(ListView):
 
         if self.tags:
             context['tags'] = self.tags
-            context['rss_link'] = reverse('code_list_by_tag_feed', kwargs={'tag_slugs': self.tag_slugs})
-            context['json_link'] = reverse('code_list_by_tag_feed_json', kwargs={'tag_slugs': self.tag_slugs})
+            #context['rss_link'] = reverse('code_list_by_tag_feed', kwargs={'tag_slugs': self.tag_slugs})
+            #context['json_link'] = reverse('code_list_by_tag_feed_json', kwargs={'tag_slugs': self.tag_slugs})
         else:
             context['rss_link'] = reverse('code_list_feed')
             context['json_link'] = reverse('code_list_feed_json')

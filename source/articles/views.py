@@ -56,7 +56,7 @@ class ArticleList(ListView):
         elif self.tags:
             context.update({
                 'tags': self.tags,
-                'rss_link': reverse('article_list_by_tag_feed', kwargs={'tag_slugs': self.tag_slugs}),
+                #'rss_link': reverse('article_list_by_tag_feed', kwargs={'tag_slugs': self.tag_slugs}),
             })
         else:
             context.update({
