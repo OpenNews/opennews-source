@@ -13,7 +13,7 @@ from source.articles.views import ArticleList, ArticleDetail, ArticleRedirectVie
 from source.utils.caching import ClearCache
 
 STANDARD_CACHE_TIME = getattr(settings, 'CACHE_MIDDLEWARE_SECONDS', 60*15)
-FEED_CACHE_TIME = getattr(settings, 'FEED_CACHE_SECONDS', 60*15)
+FEED_CACHE_TIME = getattr(settings, 'FEED_CACHE_SECONDS', 60*60)
 
 BASE_URLS = [
     url(
