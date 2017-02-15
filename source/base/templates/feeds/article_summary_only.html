@@ -1,3 +1,3 @@
-{% if obj.get_live_author_set().exists() %}<p><strong>{% for author in obj.get_live_author_set() %}{% if loop.first %}By {% endif %}{{ author.name() }}{% if not loop.last %}, {% endif %}{% endfor %}</strong></p>{% endif %}
+{{ obj.title }}{% if obj.get_live_author_set().exists() %}, by {% for author in obj.get_live_author_set() %}{% if loop.last and not loop.first %} and {% endif %}{{ author.name() }}{% if not loop.last and loop.length != 2 %}, {% endif %}{% endfor %}{% endif %}.
 
-{{ obj.safe_summary }}
+{{ obj.safe_summary|safe }}
