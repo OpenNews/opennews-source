@@ -81,8 +81,10 @@ BASE_URLS = [
     #),
     # leaving this in place for section-specific feeds
     url(
-        regex = '^(?P<section>[-\w]+)/rss/$',
-        view = cache_page(FEED_CACHE_TIME)(ArticleFeed()),
+        regex = '^([-\w]+)/rss/$',
+        #regex = '^(?P<section>[-\w]+)/rss/$',
+        view = RedirectView.as_view(url='/rss/'),
+        #view = cache_page(FEED_CACHE_TIME)(ArticleFeed()),
         kwargs = {},
         name = 'article_list_by_section_feed',
     ),
