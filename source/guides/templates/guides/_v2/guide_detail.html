@@ -9,16 +9,16 @@
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ request.build_absolute_uri() }}" />
     <meta property="og:title" content="{{ guide.title }}" />
-    <meta property="og:description" content="{{ guide.summary_or_description }}" />
-    <meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(guide.image, "1200") }}" />
+    <meta property="og:description" content="{{ guide.summary_or_description }}" />{% if guide.image %}
+    <meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(guide.image, "1200") }}" />{% endif %}
  
     <!-— twitter card tags additive with the og: tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:domain" value="{{ settings.BASE_SITE_URL }}" />
     <meta name="twitter:title" value="{{ guide.title }}" />
-    <meta name="twitter:description" value="{{ guide.summary_or_description }}" />
+    <meta name="twitter:description" value="{{ guide.summary_or_description }}" />{% if guide.image %}
     <meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(guide.image, "600") }}" />
-    <meta name="twitter:image:alt" content="{{ guide.pretty_caption }}" />
+    <meta name="twitter:image:alt" content="{{ guide.pretty_caption }}" />{% endif %}
     <meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
     <meta name="twitter:site" value="@source" />
 {% endblock %}
