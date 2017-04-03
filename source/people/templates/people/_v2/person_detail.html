@@ -40,7 +40,7 @@
                     </div><!-- /end .mod.main-lead.profile-bio -->
 
                     <ul class="profile-links">
-                        {% if person.github_username %}<li><a class="has-icon icon-github" href="{{ person.github_username }}">GitHub</a></li>{% endif %}
+                        {% if person.github_username %}<li><a class="has-icon icon-github" href="https://github.com/{{ person.github_username }}">GitHub</a></li>{% endif %}
                         {% if person.twitter_username %}<li><a class="has-icon icon-twitter-alt" href="https://twitter.com/{{ person.twitter_username }}">@{{ person.twitter_username }}</a></li>{% endif %}
                         {% if person.get_website() %}<li><a class="has-icon icon-link u-url" href="{{ person.get_website() }}">Visit website</a></li>{% endif %}
                     </ul>
