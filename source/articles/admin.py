@@ -37,7 +37,9 @@ class ArticleAdmin(AdminImageMixin, admin.ModelAdmin):
         ('Article javascript', {'classes': ('collapse',), 'fields': ('article_js_header', 'article_js_footer')}),
     )
     inlines = [ArticleBlockInline,]
-    readonly_fields = ('tags',)
+    # disabling with form field attr instead, because Django no longer reads
+    # reads values for readonly_fields out of cleaned_data
+    #readonly_fields = ('tags',)
 
     def save_model(self, request, obj, form, change):
         '''
@@ -62,6 +64,8 @@ class ArticleAdmin(AdminImageMixin, admin.ModelAdmin):
             field.widget.attrs['style'] = 'width: 30em;'
         if db_field.name == 'image_caption':
             field.widget.attrs['style'] = 'height: 5em;'
+        if db_field.name == 'tags':
+            field.widget.attrs['disabled'] = 'disabled'
         return field
 
 class CategoryInline(admin.TabularInline):
