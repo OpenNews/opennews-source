@@ -136,7 +136,7 @@ class ArticleDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ArticleDetail, self).get_context_data(**kwargs)
         
-        recent_articles = Article.live_objects.exclude(id=self.object.id).order_by('-pubdate')[:3]
+        recent_articles = Article.live_objects.filter(show_in_lists=True).exclude(id=self.object.id).order_by('-pubdate')[:3]
 
         context.update({
             'section': self.object.section,
