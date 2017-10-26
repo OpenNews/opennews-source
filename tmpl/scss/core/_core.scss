@@ -1162,7 +1162,7 @@ Lists!
 .list-articles li:last-child {
     border-bottom: none;
 }
-.list-articles a {
+.list-articles :not(p) > a {
     color: inherit;
     text-decoration: none;
 }
