@@ -65,6 +65,12 @@
                                 <li><a class="has-icon icon-email-alt" href="mailto:source@opennews.org?subject=Job Listings">Request a job listing</a></li>
                             </ul>
                         </li>
+                        <li class="item-recent">
+                            <ul>
+                                <li><a class="has-icon icon-rss-alt" href="{{ url('job_list_feed') }}">Jobs via RSS</a></li>
+                                <li><a class="has-icon icon-rss-alt" href="{{ url('job_list_feed_json') }}">Jobs via JSON</a></li>
+                            </ul>
+                        </li>
                     </ol>
                     {% endif %}
                 </div><!-- /end .mod -->

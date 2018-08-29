@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>rss</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.06 16.94 16 16.94 16 0.999 0.06 0.999"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="footer" transform="translate(-476.000000, -133.000000)">
+            <g id="connect" transform="translate(474.000000, 84.000000)">
+                <g id="rss" transform="translate(2.840067, 48.490094)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <path d="M0.006,0.999 L0.006,4.067 C7.128,4.067 12.924,9.869 12.924,16.999 L16,16.999 C16,8.179 8.824,0.999 0.006,0.999 Z M0.002,6.435 L0.002,9.502 C1.999,9.502 3.876,10.283 5.29,11.698 C6.702,13.108 7.482,14.995 7.482,17 L10.563,17 C10.563,11.175 5.823,6.436 0.002,6.436 L0.002,6.435 Z M2.13,12.731 C0.955,12.731 1.13686838e-13,13.69 1.13686838e-13,14.858 C1.13686838e-13,16.032 0.955,16.979 2.13,16.979 C3.309,16.979 4.263,16.032 4.263,14.858 C4.263,13.69 3.309,12.731 2.13,12.731 L2.13,12.731 Z" id="Fill-1" fill="#4D4D4D" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
