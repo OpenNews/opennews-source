@@ -134,7 +134,7 @@ def add_class(field, css_class):
 
 @library.global_function
 def get_random_articles(num, recent_days=None):
-    random_articles = Article.live_objects.all()
+    random_articles = Article.live_objects.filter(show_in_lists=True)
     if recent_days:
         cutoff = datetime.datetime.today() - datetime.timedelta(recent_days)
         random_articles = random_articles.filter(pubdate__gte=cutoff)
