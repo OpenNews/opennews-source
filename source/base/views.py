@@ -25,7 +25,7 @@ class HomepageView(ListView):
         
     def get_queryset(self):
         promo_article = self.get_promo_article()
-        queryset = Article.live_objects.filter(show_in_lists=True).exclude(id=promo_article.id)[:9]
+        queryset = Article.live_objects.filter(show_in_lists=True, is_featured=True).exclude(id=promo_article.id)[:9]
             
         return queryset
     
