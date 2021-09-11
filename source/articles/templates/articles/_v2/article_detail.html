@@ -24,6 +24,7 @@
 {% endblock %}
 
 {% block head_extra_pre_initial_js %}{{ super() }}
+{#}
     <script>
         var disqus_config = function () {
             this.page.url = '{{ request.scheme }}://{{ request.get_host() }}{{ article.get_absolute_url() }}';
@@ -31,6 +32,7 @@
             this.page.title = '{{ article.title }} - Source';
         };
     </script>
+{#}
 {% endblock %}
 
 {% block head_extra %}{{ super() }}
@@ -66,7 +68,7 @@
             {% if article.image %}
             <div class="figure figure-article-lead{% if article.lead_image_has_border %} has-border{% endif %}">
                 <figure>
-                    <img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "1000") }}" alt="" />
+                    <img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "1200") }}" alt="" />
                     {% if article.pretty_caption %}
                     <figcaption>
                         <p>{{ article.pretty_caption|typogrify|safe }}</p>
@@ -98,7 +100,7 @@
                     {% if articleblock.image and articleblock.image_presentation == "full-width" %}
                     <div class="figure figure-article-full">
                         <figure>
-                            <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "1000") }}" alt="" />
+                            <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "1200") }}" alt="" />
                             {% if articleblock.pretty_caption %}
                             <figcaption>
                                 <p>{{ articleblock.pretty_caption|typogrify|safe }}</p>
@@ -112,7 +114,7 @@
                     {% if articleblock.image and articleblock.image_presentation == 'full-width-below' %}
                     <div class="figure figure-article-full">
                         <figure>
-                            <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "1000") }}" alt="" />
+                            <img src="{{ MEDIA_URL }}{{ thumbnail(articleblock.image, "1200") }}" alt="" />
                             {% if articleblock.pretty_caption %}
                             <figcaption>
                                 <p>{{ articleblock.pretty_caption|typogrify|safe }}</p>
@@ -123,7 +125,7 @@
                 {% endfor %}
 
                 <ul class="links-article-social">
-                    <li><a class="icon icon-comments" href="#disqus_thread" data-disqus-identifier="article_detail_{{ article.pk }}">Comments</a></li>
+                    {#}<li><a class="icon icon-comments" href="#disqus_thread" data-disqus-identifier="article_detail_{{ article.pk }}">Comments</a></li>{#}
                     <li><a class="icon icon-twitter" href="#" onclick="window.open('https://twitter.com/intent/tweet?via=source&text={{ article.title|escapejs }}&url='+encodeURIComponent(location.href), 'twitter-share-dialog', 'width=626,height=436'); return false;">Share on Twitter</a></li>
                     <li><a class="icon icon-facebook" href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 'facebook-share-dialog', 'width=626,height=436'); return false;">Share on Facebook</a></li>
                 </ul><!-- /end .links-article-social -->
@@ -179,9 +181,11 @@
                 </div><!-- /end .article-credits -->
                 {% endif %}
 
+                {#}
                 <div class="mod article-comments" id="article-comments" data-title="Comments">
                     <div id="disqus_thread"></div>
                 </div><!-- /end .article-comments -->
+                {#}
 
                 <div class="mod article-related">
                     <h2 class="hed-label">Recently</h2>
