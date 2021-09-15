@@ -33,6 +33,7 @@ $is_active = ' aria-describedby="current-page" class="is-active"';
                     <li><a href="#"<?php if ( $current_page == "guides" ) { echo $is_active; }?>>Guides</a></li>
                     <li><a href="#"<?php if ( $current_page == "community" ) { echo $is_active; }?>>Community</a></li>
                     <li><a href="#"<?php if ( $current_page == "jobs" ) { echo $is_active; }?>>Jobs</a></li>
+                    <li><a href="#"<?php if ( $current_page == "donate" ) { echo $is_active; }?>>Donate</a></li>
                 </ul><!-- /end .site-nav-links -->
             </div><!-- /end .site-nav -->
 

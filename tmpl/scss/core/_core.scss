@@ -424,6 +424,14 @@ Header
     display: flex;
     flex-wrap: wrap;
 }
+.site-nav-links li span.donate {
+    background-color: #fc6d1f;
+    padding: 10px 0px 15px;
+    margin-top: 7.5px;
+    display: block;
+    width: 90%;
+}
+
 .oldie .site-nav-links {
     display: block;
 }
@@ -486,7 +494,9 @@ Header
     .site-nav-links li {
         float: left;
         border-bottom: none;
-        flex-basis: 25%;
+        -webkit-flex-basis: 20%;
+        -ms-flex-preferred-size: 20%;
+        flex-basis: 20%;
     }
     .site-nav.collapsible-enhanced .site-nav-links {
         max-height: 5em;
@@ -622,7 +632,7 @@ Header
         display: flex;
     }
     .site-nav {
-        width: 50%;
+        width: 65%;
     }
     .site-nav-links,
     .site-nav-links a {
