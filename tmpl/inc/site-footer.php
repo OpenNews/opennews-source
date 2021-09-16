@@ -16,6 +16,8 @@
 
                     <p>Learn more <a href="#">about the project</a> or <a href="#">contribute your work</a>. <a href="#">Contact us</a>.</p>
 
+                    <p class="donate"><a href="https://opennews.org/donate/">Donate</a> to OpenNews.</p>
+
                     <p><a class="link-cc" href="https://creativecommons.org/licenses/by/3.0/"><img src="/source/base/static/base/_v2/img/cc.png" alt="" />CC Attribution 3.0</a></p>
                 </div><!-- /end .foot-content -->
                 <div class="foot-aside">
