@@ -68,7 +68,7 @@
             {% if article.image %}
             <div class="figure figure-article-lead{% if article.lead_image_has_border %} has-border{% endif %}">
                 <figure>
-                    <img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "1200") }}" alt="" />
+                    <img src="{{ MEDIA_URL }}{{ thumbnail(article.image, "1200") }}" alt="{{ article.image_alt_text }}" />
                     {% if article.pretty_caption %}
                     <figcaption>
                         <p>{{ article.pretty_caption|typogrify|safe }}</p>

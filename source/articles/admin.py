@@ -33,7 +33,7 @@ class ArticleAdmin(AdminImageMixin, admin.ModelAdmin):
     fieldsets = (
         ('', {'fields': (('pubdate', 'is_live', 'show_in_lists', 'allow_comments', 'is_featured'), ('title', 'slug'), 'subhead', ('category', 'tags'), 'technology_tags', 'concept_tags',)}),
         ('Article relationships', {'fields': ('authors', 'people', 'organizations', 'code',)}),
-        ('Article body', {'fields': (('image', 'lead_image_has_border',), 'image_caption', 'image_credit', 'summary', 'body', 'disable_auto_linebreaks')}),
+        ('Article body', {'fields': (('image', 'lead_image_has_border',), 'image_caption', 'image_alt_text', 'image_credit', 'summary', 'body', 'disable_auto_linebreaks')}),
         ('Article javascript', {'classes': ('collapse',), 'fields': ('article_js_header', 'article_js_footer')}),
     )
     inlines = [ArticleBlockInline,]
@@ -63,6 +63,8 @@ class ArticleAdmin(AdminImageMixin, admin.ModelAdmin):
         if db_field.name in ['title','slug']:
             field.widget.attrs['style'] = 'width: 30em;'
         if db_field.name == 'image_caption':
+            field.widget.attrs['style'] = 'height: 5em;'
+        if db_field.name == 'image_alt_text':
             field.widget.attrs['style'] = 'height: 5em;'
         if db_field.name == 'tags':
             field.widget.attrs['disabled'] = 'disabled'
