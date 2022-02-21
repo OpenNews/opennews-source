@@ -148,6 +148,9 @@ class JobFeed(Feed):
 
         return _name
 
+    def item_pubdate(self, item):
+        return item.modified
+
     def item_description(self, item):
         return 'Job posting from %s' % item.organization
         
