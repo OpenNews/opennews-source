@@ -137,9 +137,11 @@ def get_random_articles(num, recent_days=None):
     random_articles = Article.live_objects.filter(show_in_lists=True)
     if recent_days:
         cutoff = datetime.datetime.today() - datetime.timedelta(recent_days)
-        random_articles = random_articles.filter(pubdate__gte=cutoff)
-    random_articles = random_articles.order_by('?')
+        if random_articles.filter(pubdate__gte=cutoff).count() > 0:
+            random_articles = random_articles.filter(pubdate__gte=cutoff)
 
+    random_articles = random_articles.order_by('?')
+    
     try:
         if num == 1:
             return random_articles[0]
