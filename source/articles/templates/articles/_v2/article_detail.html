@@ -10,7 +10,8 @@
     <meta property="og:url" content="{{ request.build_absolute_uri() }}" />
     <meta property="og:title" content="{{ article.title }}" />
     <meta property="og:description" content="{{ article.subhead }}" />{% if article.image %}
-    <meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(article.image, "1200") }}" />{% endif %}
+    <meta property="og:image" content="{{ MEDIA_URL }}{{ thumbnail(article.image, "1200") }}" />{% else %}
+    <meta property="og:image" content="{{ static('base/_v2/img/default@2x.png') }}" />{% endif %}
  
     <!-— twitter card tags additive with the og: tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -18,7 +19,8 @@
     <meta name="twitter:title" value="{{ article.title }}" />
     <meta name="twitter:description" value="{{ article.subhead }}" />{% if article.image %}
     <meta name="twitter:image" content="{{ MEDIA_URL }}{{ thumbnail(article.image, "600") }}" />
-    <meta name="twitter:image:alt" content="{{ article.pretty_caption }}" />{% endif %}
+    <meta name="twitter:image:alt" content="{{ article.pretty_caption }}" />{% else %}
+    <meta name="twitter:image" content="{{ static('base/_v2/img/default@2x.png') }}" />{% endif %}
     <meta name="twitter:url" value="{{ request.build_absolute_uri() }}" />
     <meta name="twitter:site" value="@source" />
 {% endblock %}
