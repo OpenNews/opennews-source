@@ -3,7 +3,7 @@
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
 boto==2.42.0
-certifi==2017.1.23
+certifi==2022.12.7
 Django==1.10.3
 django-appconf==1.0.1
 django-autoslug==1.9.3
