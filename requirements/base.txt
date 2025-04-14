@@ -43,7 +43,7 @@ sqlparse==0.4.3
 typogrify==2.0.7
 unicode-slugify==0.1.3
 Unidecode==0.04.19
-urllib3==1.14
+urllib3==1.26.5
 wheel==0.26.0
 whitenoise==3.2.2
 
