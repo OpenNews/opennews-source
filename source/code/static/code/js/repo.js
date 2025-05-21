@@ -16,6 +16,20 @@
  * Dual licensed under the MIT and GPL licenses.
  * http://darcyclarke.me/
  */
+
+function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, function(match) {
+        const escapeMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return escapeMap[match];
+    });
+}
+
  (function($){
     
     // Github repo
@@ -246,7 +260,7 @@
                             .find('.active')
                             .removeClass('active')
                             .end()
-                            .append('<a href="#" data-id="' + link.data('id') + '" class="active">' + link.text() + '</a>');
+                            .append('<a href="#" data-id="' + link.data('id') + '" class="active">' + escapeHtml(link.text()) + '</a>');
                         transition(el, 'left');
 
                     // Is link a back link 

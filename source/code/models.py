@@ -17,6 +17,7 @@ from source.people.models import Person, Organization
 from source.tags.models import TechnologyTaggedItem, ConceptTaggedItem
 from source.utils.caching import expire_page_cache
 from taggit.managers import TaggableManager
+from urllib.parse import urlparse
 
 GITHUB_CLIENT_ID=settings.GITHUB_CLIENT_ID
 GITHUB_CLIENT_SECRET=settings.GITHUB_CLIENT_SECRET
@@ -63,7 +64,11 @@ class Code(CachingMixin, models.Model):
     def save(self, *args, **kwargs):
         # GitHub API does not like trailing slashes on repo links,
         # so clean things up just in case
-        if self.url and 'github.com' in self.url:
+        #if self.url and 'github.com' in self.url:
+        if self.url:
+            parsed_url = urlparse(self.url)
+            if parsed_url.hostname and (parsed_url.hostname == "github.com" or parsed_url.hostname.endswith(".github.com")):
+                self.url = self.url.rstrip('/')
             self.url = self.url.rstrip('/')
             
         # update GitHub stats
@@ -128,32 +133,36 @@ class Code(CachingMixin, models.Model):
         does _not_ save those stats. That is left to the function that calls
         the method to avoid unnecessary db hits (e.g. the save() method above).
         '''
-        if self.url and '//github.com/' in self.url.lower():
-            # create our connection to the GitHub API
-            _github_location = self.url.split('github.com/')[1]
-            _github_user, _github_repo = _github_location.split('/')
-            _github_api_url = 'https://api.github.com/repos/%s/%s?client_id=%s&client_secret=%s' % (
-                _github_user.lower(), _github_repo.lower(),
-                GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
-            )
-            
-            # get the data for this repo
-            r = requests.get(_github_api_url)
-            _data = r.json
+        if self.url:
+            parsed_url = urlparse(self.url)
+            # enforce URL substring sanitization
+            if parsed_url.hostname and parsed_url.hostname.lower() == 'github.com':
+                # create our connection to the GitHub API
+                _github_location = parsed_url.path.lstrip('/')
+                _github_location = self.url.split('github.com/')[1]
+                _github_user, _github_repo = _github_location.split('/')
+                _github_api_url = 'https://api.github.com/repos/%s/%s?client_id=%s&client_secret=%s' % (
+                    _github_user.lower(), _github_repo.lower(),
+                    GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET
+                )
+                
+                # get the data for this repo
+                r = requests.get(_github_api_url)
+                _data = r.json
 
-            try:
-                # handle GitHub API's ISO8601 timestamps
-                last_push = _data['pushed_at'].strip('Z')
-                last_push = dateutil.parser.parse(last_push, fuzzy=True)
-                self.repo_last_push = last_push
-                # the rest of the API data
-                self.repo_forks = _data['forks']
-                self.repo_watchers = _data['watchers']
-                self.repo_description = _data['description']
-                self.repo_master_branch = _data['master_branch']
-                return True
-            except:
-                return False
+                try:
+                    # handle GitHub API's ISO8601 timestamps
+                    last_push = _data['pushed_at'].strip('Z')
+                    last_push = dateutil.parser.parse(last_push, fuzzy=True)
+                    self.repo_last_push = last_push
+                    # the rest of the API data
+                    self.repo_forks = _data['forks']
+                    self.repo_watchers = _data['watchers']
+                    self.repo_description = _data['description']
+                    self.repo_master_branch = _data['master_branch']
+                    return True
+                except:
+                    return False
                 
         return False
 
