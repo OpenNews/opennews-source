@@ -9,7 +9,7 @@ django-appconf==1.0.1
 django-autoslug==1.9.3
 django-bmemcached==0.2.3
 django-cache-machine==0.9.1
-django-debug-toolbar==1.4
+django-debug-toolbar==1.11.1
 django-environ==0.4.0
 django-haystack==2.7
 django-jinja==2.2.1
